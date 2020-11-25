@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TPP-vD-yEk">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Registration View Controller-->
+        <scene sceneID="ZxZ-72-Jlm">
+            <objects>
+                <viewController id="TPP-vD-yEk" customClass="RegistrationViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aG8-cX-BDE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kbb-gQ-572">
+                                <rect key="frame" x="35" y="249" width="134.5" height="29"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xuO-Lp-RK1" userLabel="registrationStack">
+                                <rect key="frame" x="35" y="308" width="344" height="260"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3hc-Ip-zeg">
+                                        <rect key="frame" x="0.0" y="0.0" width="344" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="mbP-QA-Wzr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j4p-Iu-cas">
+                                        <rect key="frame" x="0.0" y="70" width="344" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="vvP-ia-Rup"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose a password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMO-cz-1bD">
+                                        <rect key="frame" x="0.0" y="140" width="344" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="svl-h9-3cr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="new-password"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAW-Y8-Olj">
+                                        <rect key="frame" x="0.0" y="210" width="344" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="mxV-wf-V32"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="new-password"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfo-HA-kWa">
+                                <rect key="frame" x="35" y="618" width="344" height="50"/>
+                                <color key="backgroundColor" red="0.11764705882352941" green="0.20784313725490194" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="aap-i8-K0V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                                <state key="normal" title="Register"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="registerButtonClick:" destination="TPP-vD-yEk" eventType="touchUpInside" id="Pab-qe-EF4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4c-rC-f8H">
+                                <rect key="frame" x="35" y="688" width="344" height="30.5"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Already have an account? Log in">
+                                            <attributes>
+                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <segue destination="aVJ-Qy-lbI" kind="presentation" modalPresentationStyle="fullScreen" id="IwX-0o-lYB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OA8-uy-RRQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xuO-Lp-RK1" firstAttribute="centerX" secondItem="aG8-cX-BDE" secondAttribute="centerX" id="9tE-Zt-RYd"/>
+                            <constraint firstItem="d4c-rC-f8H" firstAttribute="leading" secondItem="OA8-uy-RRQ" secondAttribute="leading" constant="35" id="Jtc-Rw-Hqg"/>
+                            <constraint firstItem="xuO-Lp-RK1" firstAttribute="top" secondItem="Kbb-gQ-572" secondAttribute="bottom" constant="30" id="Mef-qA-qdH"/>
+                            <constraint firstItem="xfo-HA-kWa" firstAttribute="leading" secondItem="OA8-uy-RRQ" secondAttribute="leading" constant="35" id="PvU-4s-rKx"/>
+                            <constraint firstItem="OA8-uy-RRQ" firstAttribute="trailing" secondItem="xuO-Lp-RK1" secondAttribute="trailing" constant="35" id="V6W-Ta-9ew"/>
+                            <constraint firstItem="Kbb-gQ-572" firstAttribute="leading" secondItem="OA8-uy-RRQ" secondAttribute="leading" constant="35" id="VMc-Yc-VEG"/>
+                            <constraint firstItem="xuO-Lp-RK1" firstAttribute="leading" secondItem="OA8-uy-RRQ" secondAttribute="leading" constant="35" id="bwY-pE-RkQ"/>
+                            <constraint firstItem="d4c-rC-f8H" firstAttribute="top" secondItem="xfo-HA-kWa" secondAttribute="bottom" constant="20" id="gC5-Si-fCV"/>
+                            <constraint firstItem="OA8-uy-RRQ" firstAttribute="trailing" secondItem="d4c-rC-f8H" secondAttribute="trailing" constant="35" id="ie5-c0-tpM"/>
+                            <constraint firstItem="OA8-uy-RRQ" firstAttribute="trailing" secondItem="xfo-HA-kWa" secondAttribute="trailing" constant="35" id="qTw-4R-xsW"/>
+                            <constraint firstItem="xfo-HA-kWa" firstAttribute="top" secondItem="xuO-Lp-RK1" secondAttribute="bottom" constant="50" id="r6R-hx-SUH"/>
+                            <constraint firstItem="xuO-Lp-RK1" firstAttribute="centerY" secondItem="aG8-cX-BDE" secondAttribute="centerY" constant="-10" id="yGo-zc-oa1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="j4p-Iu-cas" id="sGz-op-nk3"/>
+                        <outlet property="nameTextField" destination="3hc-Ip-zeg" id="8bg-P1-wQE"/>
+                        <outlet property="passwordTextField" destination="IMO-cz-1bD" id="AUC-Kd-FkG"/>
+                        <outlet property="repeatPasswordTextField" destination="nAW-Y8-Olj" id="W7f-kh-SAB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="05e-cm-b3n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-132" y="64"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="4LG-rW-waa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="aVJ-Qy-lbI" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="TxQ-pf-75Z"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4JG-2B-Lfy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-382" y="-298"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
