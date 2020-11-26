@@ -31,6 +31,10 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
+                                        <connections>
+                                            <action selector="registrationTextFieldDidBeginEditing:" destination="TPP-vD-yEk" eventType="editingDidBegin" id="Kfn-ZJ-PRy"/>
+                                            <action selector="registrationTextFieldDidEndEditing:" destination="TPP-vD-yEk" eventType="editingDidEnd" id="k9S-w4-NaK"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQE-wA-2Yw">
                                         <rect key="frame" x="0.0" y="70" width="344" height="50"/>
@@ -39,6 +43,10 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
+                                        <connections>
+                                            <action selector="registrationTextFieldDidBeginEditing:" destination="TPP-vD-yEk" eventType="editingDidBegin" id="L7W-hG-QXS"/>
+                                            <action selector="registrationTextFieldDidEndEditing:" destination="TPP-vD-yEk" eventType="editingDidEnd" id="HvJ-6u-o73"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j4p-Iu-cas">
                                         <rect key="frame" x="0.0" y="140" width="344" height="50"/>
@@ -47,6 +55,10 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                                        <connections>
+                                            <action selector="registrationTextFieldDidBeginEditing:" destination="TPP-vD-yEk" eventType="editingDidBegin" id="H72-Gn-WWq"/>
+                                            <action selector="registrationTextFieldDidEndEditing:" destination="TPP-vD-yEk" eventType="editingDidEnd" id="PJu-HH-VPk"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose a password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMO-cz-1bD">
                                         <rect key="frame" x="0.0" y="210" width="344" height="50"/>
@@ -55,6 +67,10 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="new-password"/>
+                                        <connections>
+                                            <action selector="registrationTextFieldDidBeginEditing:" destination="TPP-vD-yEk" eventType="editingDidBegin" id="D1L-78-fcP"/>
+                                            <action selector="registrationTextFieldDidEndEditing:" destination="TPP-vD-yEk" eventType="editingDidEnd" id="Oug-Eu-nAi"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAW-Y8-Olj">
                                         <rect key="frame" x="0.0" y="280" width="344" height="50"/>
@@ -63,6 +79,10 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="new-password"/>
+                                        <connections>
+                                            <action selector="registrationTextFieldDidBeginEditing:" destination="TPP-vD-yEk" eventType="editingDidBegin" id="JpH-Ju-fKG"/>
+                                            <action selector="registrationTextFieldDidEndEditing:" destination="TPP-vD-yEk" eventType="editingDidEnd" id="vRB-on-evR"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                             </stackView>
