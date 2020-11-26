@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum LoginNavigation: String {
+    case home = "toHome"
+}
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
@@ -30,7 +34,7 @@ class LoginViewController: UIViewController {
             case .failure(let error):
                 print("Error: \(error)")
             case .success(let res):
-                print("API Response: \(res)")
+                res.logged == true ? self.navigate(to: .home) : self.showAlert()
             }
         })
     }
@@ -65,3 +69,17 @@ class LoginViewController: UIViewController {
     }
 }
 // Codable json object
+
+private extension LoginViewController {
+    func navigate(to navigation: LoginNavigation) {
+        performSegue(withIdentifier: navigation.rawValue, sender: self)
+    }
+    
+    func showAlert() {
+        let popupAlert = UIAlertController(title: "Oops!", message: "Wrong credentials", preferredStyle: UIAlertController.Style.alert)
+        popupAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
+            popupAlert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(popupAlert, animated: true, completion: nil)
+    }
+}
