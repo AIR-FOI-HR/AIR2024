@@ -20,24 +20,19 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func loginButtonClick(_ sender: UIButton) {
-        let autentificationService = AutentificationService()
-        if let email = emailTextField.text, let password = passwordTextField.text {
-            autentificationService.loginAutentification(email: email, password: password, completitionHandler: { (msg) in
-                if msg {
-                    DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "toHome", sender: self)
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        let popupAlert = UIAlertController(title: "Oops!", message: "Wrong credentials", preferredStyle: UIAlertController.Style.alert)
-                        popupAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
-                            popupAlert.dismiss(animated: true, completion: nil)
-                        }))
-                        self.present(popupAlert, animated: true, completion: nil)
-                    }
-                }
-            })
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            // Return message to the user
+            return
         }
+        AutentificationService().checkCredentials(userEmail: email, userPassword: password, completitionHandler: { apiResponse in
+            // Response from AutentificationService
+            switch(apiResponse) {
+            case .failure(let error):
+                print("Error: \(error)")
+            case .success(let res):
+                print("API Response: \(res)")
+            }
+        })
     }
     
     @IBAction func emailTextFieldStart(_ sender: Any) {
