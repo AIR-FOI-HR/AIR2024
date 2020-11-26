@@ -45,11 +45,11 @@ import CoreServices
 open class MultipartFormData {
     // MARK: - Helper Types
 
-    enum EncodingCharacters {
+    struct EncodingCharacters {
         static let crlf = "\r\n"
     }
 
-    enum BoundaryGenerator {
+    struct BoundaryGenerator {
         enum BoundaryType {
             case initial, encapsulated, final
         }

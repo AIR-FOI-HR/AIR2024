@@ -168,8 +168,8 @@ public struct URLEncoding: ParameterEncoding {
                 urlRequest.url = urlComponents.url
             }
         } else {
-            if urlRequest.headers["Content-Type"] == nil {
-                urlRequest.headers.update(.contentType("application/x-www-form-urlencoded; charset=utf-8"))
+            if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+                urlRequest.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
             }
 
             urlRequest.httpBody = Data(query(parameters).utf8)
@@ -187,26 +187,27 @@ public struct URLEncoding: ParameterEncoding {
     /// - Returns: The percent-escaped, URL encoded query string components.
     public func queryComponents(fromKey key: String, value: Any) -> [(String, String)] {
         var components: [(String, String)] = []
-        switch value {
-        case let dictionary as [String: Any]:
+
+        if let dictionary = value as? [String: Any] {
             for (nestedKey, value) in dictionary {
                 components += queryComponents(fromKey: "\(key)[\(nestedKey)]", value: value)
             }
-        case let array as [Any]:
+        } else if let array = value as? [Any] {
             for value in array {
                 components += queryComponents(fromKey: arrayEncoding.encode(key: key), value: value)
             }
-        case let number as NSNumber:
-            if number.isBool {
-                components.append((escape(key), escape(boolEncoding.encode(value: number.boolValue))))
+        } else if let value = value as? NSNumber {
+            if value.isBool {
+                components.append((escape(key), escape(boolEncoding.encode(value: value.boolValue))))
             } else {
-                components.append((escape(key), escape("\(number)")))
+                components.append((escape(key), escape("\(value)")))
             }
-        case let bool as Bool:
+        } else if let bool = value as? Bool {
             components.append((escape(key), escape(boolEncoding.encode(value: bool))))
-        default:
+        } else {
             components.append((escape(key), escape("\(value)")))
         }
+
         return components
     }
 
@@ -265,8 +266,8 @@ public struct JSONEncoding: ParameterEncoding {
         do {
             let data = try JSONSerialization.data(withJSONObject: parameters, options: options)
 
-            if urlRequest.headers["Content-Type"] == nil {
-                urlRequest.headers.update(.contentType("application/json"))
+            if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+                urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             }
 
             urlRequest.httpBody = data
@@ -293,8 +294,8 @@ public struct JSONEncoding: ParameterEncoding {
         do {
             let data = try JSONSerialization.data(withJSONObject: jsonObject, options: options)
 
-            if urlRequest.headers["Content-Type"] == nil {
-                urlRequest.headers.update(.contentType("application/json"))
+            if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {
+                urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             }
 
             urlRequest.httpBody = data
