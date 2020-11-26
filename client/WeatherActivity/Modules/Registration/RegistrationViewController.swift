@@ -9,14 +9,11 @@ import UIKit
 
 class RegistrationViewController: UIViewController {
     
-    
-    @IBOutlet weak var nameTextField: UITextField!
-    
-    @IBOutlet weak var emailTextField: UITextField!
-    
-    @IBOutlet weak var passwordTextField: UITextField!
-    
-    @IBOutlet weak var repeatPasswordTextField: UITextField!
+    @IBOutlet weak private var firstNameTextField: UITextField!
+    @IBOutlet weak private var lastNameTextField: UITextField!
+    @IBOutlet weak private var emailTextField: UITextField!
+    @IBOutlet weak private var passwordTextField: UITextField!
+    @IBOutlet weak private var repeatPasswordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +21,7 @@ class RegistrationViewController: UIViewController {
     
     @IBAction func registerButtonClick(_ sender: UIButton) {
         let url = URL(string: "http://localhost:3000/registration")
-        if let name = nameTextField.text, let email = emailTextField.text, let password = passwordTextField.text , let repeatPassword = repeatPasswordTextField.text {
+        if let name = firstNameTextField.text, let email = emailTextField.text, let password = passwordTextField.text , let repeatPassword = repeatPasswordTextField.text {
             let json: [String: String] = ["name": name, "email": email, "password": password, "repeatPassword": repeatPassword]
             let jsonData = try? JSONSerialization.data(withJSONObject: json)
             
