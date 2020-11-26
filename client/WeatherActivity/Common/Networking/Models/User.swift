@@ -5,13 +5,26 @@
 //  Created by Kevin Bogdan on 25.11.2020..
 //
 
-import Foundation
+import UIKit
 
-// class / struct
+/*
+ * User structure
+ */
 
-struct User: Decodable {
-    let email: String
-    let password: String
-    let firstName: String
-    let lastName: String
+struct User: Codable {
+    var email: String = "Asd"
+    var username: String
+    var password: String
+    var firstName: String
+    var lastName: String
+    var deviceToken: String
+    var avatar: String
+    
+    // Additional addition as needed
+    enum CodingKeys: String, CodingKey {
+        case email = "mail"
+        case username = "user"
+        case password, firstName, lastName, deviceToken
+        case avatar = "avatarId"
+    }
 }
