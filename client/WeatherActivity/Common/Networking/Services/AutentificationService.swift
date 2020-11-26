@@ -6,28 +6,47 @@
 //
 
 import Foundation
+import Alamofire
+
+struct Constants {
+    // MARK: - Networking
+    
+    static let baseUrl = "http://localhost:3000"
+}
 
 class AutentificationService {
-    let url = URL(string: "http://localhost:3000/login")
     
-    func loginAutentification(email: String, password: String, completitionHandler: @escaping (Bool) -> Void) {
-        let json: [String: String] = ["email": email, "password": password]
-        let jsonData = try? JSONSerialization.data(withJSONObject: json)
-        
-        var request =  URLRequest(url: url!)
-        
-        request.httpMethod = "POST"
-        request.httpBody = jsonData!
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
-        // alamofire - lib
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            guard let sData = data, let jsonData = try? JSONSerialization.jsonObject(with: sData) as? [String: Bool], let msg = jsonData["logged"]  else {
-                return
-            }
-            completitionHandler(msg)
-        })
-        
-        task.resume()
+    func checkCredentials(userEmail email: String, userPassword pw: String, completitionHandler: @escaping (Result<apiResponse,Error>) -> Void) {
+        let login = Login(userEmail: email, userPassword: pw)
+        AF.request(Constants.baseUrl + "/login",
+                   method: .post,
+                   parameters: login,
+                   encoder: JSONParameterEncoder.default).responseData { response in
+                    switch response.result {
+                    case .success(let data):
+                        print(data)
+                        do {
+                            let jsonData = try JSONDecoder().decode(apiResponse.self, from: data)
+                            completitionHandler(.success(jsonData))
+                        } catch (let error){
+                            completitionHandler(.failure(error))
+                        }
+                    case .failure(let error):
+                        completitionHandler(.failure(error))
+                    }
+        }
     }
 }
+
+struct Login: Codable {
+    let userEmail: String
+    let userPassword: String
+}
+
+struct apiResponse: Decodable {
+    let logged: Bool?
+    let deviceToken: String?
+}
+
+
+
