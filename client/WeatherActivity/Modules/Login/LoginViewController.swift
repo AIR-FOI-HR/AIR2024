@@ -23,18 +23,14 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonClick(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
-            // Return message to the user
-            return
-        }
-        AutentificationService().checkCredentials(userEmail: email, userPassword: password, completitionHandler: { apiResponse in
-            // Response from AutentificationService
-            switch(apiResponse) {
-            case .failure(let error):
-                print("Error: \(error)")
-            case .success(let res):
-                res.logged == true ? self.navigate(to: .home) : self.showAlert()
-            }
-        })
+                    // Return message to the user
+                    return
+                }
+                LoginService().checkCredentials(userEmail: email, userPassword: password, onSucces: { apiResponse in
+                        apiResponse.logged == true ? self.navigate(to: .home) : self.showAlert()
+                }, onFailure: { error in
+                    print("error \(error)")
+                })
     }
     
     @IBAction func loginTextFieldDidBeginEditing(_ sender: UITextField) {
