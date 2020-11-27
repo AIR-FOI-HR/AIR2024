@@ -28,6 +28,7 @@
 		8C7C9A57256D610900683AE5 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C9A56256D610900683AE5 /* RegistrationViewController.swift */; };
 		8C7C9A6D256E9FAE00683AE5 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C9A6C256E9FAE00683AE5 /* LoginService.swift */; };
 		8C7C9A7E256EA3EF00683AE5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C9A7D256EA3EF00683AE5 /* User.swift */; };
+		8C8BF4E72570F16D00E1CBE8 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8BF4E62570F16D00E1CBE8 /* RegistrationService.swift */; };
 		A7D77E68BEFDFDA20DEE200C /* Pods_WeatherActivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25880C3376CADF6A9E65DA95 /* Pods_WeatherActivity.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		8C7C9A56256D610900683AE5 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		8C7C9A6C256E9FAE00683AE5 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		8C7C9A7D256EA3EF00683AE5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8C8BF4E62570F16D00E1CBE8 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		9D0162088DB7F3964C37E59B /* Pods_WeatherActivityTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherActivityTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFC291BD77C6178ACC9F8DF6 /* Pods-WeatherActivity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherActivity.debug.xcconfig"; path = "Target Support Files/Pods-WeatherActivity/Pods-WeatherActivity.debug.xcconfig"; sourceTree = "<group>"; };
 		D5F2418815B8012CD9A776E3 /* Pods_WeatherActivity_WeatherActivityUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherActivity_WeatherActivityUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,6 +298,7 @@
 			children = (
 				8C7C9A6C256E9FAE00683AE5 /* LoginService.swift */,
 				42B0FB00257070A700781940 /* Constants.swift */,
+				8C8BF4E62570F16D00E1CBE8 /* RegistrationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */,
 				8C7C9A7E256EA3EF00683AE5 /* User.swift in Sources */,
 				8C7C9A57256D610900683AE5 /* RegistrationViewController.swift in Sources */,
+				8C8BF4E72570F16D00E1CBE8 /* RegistrationService.swift in Sources */,
 				4252F64A25626DE600FCA0CB /* SceneDelegate.swift in Sources */,
 				42EF36C7256C15EB0069E590 /* HomeViewController.swift in Sources */,
 				42B0FB01257070A700781940 /* Constants.swift in Sources */,
