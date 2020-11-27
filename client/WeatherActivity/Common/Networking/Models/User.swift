@@ -12,7 +12,7 @@ import UIKit
  */
 
 struct User: Codable {
-    var email: String = "Asd"
+    var email: String
     var username: String
     var password: String
     var firstName: String
