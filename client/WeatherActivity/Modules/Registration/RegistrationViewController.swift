@@ -20,31 +20,16 @@ class RegistrationViewController: UIViewController {
     }
     
     @IBAction func registerButtonClick(_ sender: UIButton) {
-        let url = URL(string: "http://localhost:3000/registration")
-        if let name = firstNameTextField.text, let email = emailTextField.text, let password = passwordTextField.text , let repeatPassword = repeatPasswordTextField.text {
-            let json: [String: String] = ["name": name, "email": email, "password": password, "repeatPassword": repeatPassword]
-            let jsonData = try? JSONSerialization.data(withJSONObject: json)
-            
-            var request =  URLRequest(url: url!)
-            
-            request.httpMethod = "POST"
-            request.httpBody = jsonData!
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
-            
-            let task = URLSession.shared.dataTask(with: request, completionHandler: getResponse(data:response:error:))
-            
-            task.resume()
-        }
-    }
-    
-    func getResponse(data: Data?, response: URLResponse?, error: Error?) {
-        if let sData = data {
-            if let jsonData = try? JSONSerialization.jsonObject(with: sData) as? [String: String] {
-                print(jsonData["msg"])
-            } else {
-                print("No json object")
-            }
+        if let email = emailTextField.text, let password = passwordTextField.text , let firstName = firstNameTextField.text, let lastName = lastNameTextField.text {
+            let newUser = User(email: email, username: "def", password: password, firstName: firstName, lastName: lastName, deviceToken: "", avatar: "av1")
+            RegistrationService().registrateNewUser(userData: newUser, onSuccess: { registrationResponse in
+                // User registration finished successfully
+                debugPrint(registrationResponse)
+            }, onFailure: {error in
+                // Error occured in registration process
+                debugPrint(error)
+                self.showAlert()
+            })
         }
     }
     
@@ -54,5 +39,15 @@ class RegistrationViewController: UIViewController {
     
     @IBAction func registrationTextFieldDidEndEditing(_ sender: UITextField) {
         sender.textFieldDidEndEditing(sender)
+    }
+}
+
+private extension RegistrationViewController {
+    func showAlert() {
+        let popupAlert = UIAlertController(title: "Oops!", message: "Something went wrong!", preferredStyle: UIAlertController.Style.alert)
+        popupAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
+            popupAlert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(popupAlert, animated: true, completion: nil)
     }
 }
