@@ -11,15 +11,10 @@ enum LoginNavigation: String {
     case home = "toHome"
 }
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var passwordTextField: UITextField!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
     
     @IBAction func loginButtonClick(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
@@ -41,7 +36,6 @@ class LoginViewController: UIViewController {
         sender.textFieldDidEndEditing(sender)
     }
 }
-// Codable json object
 
 private extension LoginViewController {
     func navigate(to navigation: LoginNavigation) {

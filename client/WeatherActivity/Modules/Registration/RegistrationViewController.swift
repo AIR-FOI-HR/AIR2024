@@ -7,17 +7,13 @@
 
 import UIKit
 
-class RegistrationViewController: UIViewController {
+final class RegistrationViewController: UIViewController {
     
     @IBOutlet weak private var firstNameTextField: UITextField!
     @IBOutlet weak private var lastNameTextField: UITextField!
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var passwordTextField: UITextField!
     @IBOutlet weak private var repeatPasswordTextField: UITextField!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
     
     @IBAction func registerButtonClick(_ sender: UIButton) {
         let url = URL(string: "http://localhost:3000/registration")
