@@ -24,7 +24,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xuO-Lp-RK1" userLabel="registrationStack">
                                 <rect key="frame" x="35" y="273" width="344" height="330"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3hc-Ip-zeg">
+                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3hc-Ip-zeg">
                                         <rect key="frame" x="0.0" y="0.0" width="344" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="mbP-QA-Wzr"/>
@@ -34,9 +34,10 @@
                                         <connections>
                                             <action selector="registrationTextFieldDidBeginEditing:" destination="TPP-vD-yEk" eventType="editingDidBegin" id="Kfn-ZJ-PRy"/>
                                             <action selector="registrationTextFieldDidEndEditing:" destination="TPP-vD-yEk" eventType="editingDidEnd" id="k9S-w4-NaK"/>
+                                            <outlet property="delegate" destination="TPP-vD-yEk" id="kQZ-GX-KGi"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQE-wA-2Yw">
+                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQE-wA-2Yw">
                                         <rect key="frame" x="0.0" y="70" width="344" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="fEe-Zb-vTA"/>
@@ -46,9 +47,10 @@
                                         <connections>
                                             <action selector="registrationTextFieldDidBeginEditing:" destination="TPP-vD-yEk" eventType="editingDidBegin" id="L7W-hG-QXS"/>
                                             <action selector="registrationTextFieldDidEndEditing:" destination="TPP-vD-yEk" eventType="editingDidEnd" id="HvJ-6u-o73"/>
+                                            <outlet property="delegate" destination="TPP-vD-yEk" id="rlH-Pe-jbX"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j4p-Iu-cas">
+                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j4p-Iu-cas">
                                         <rect key="frame" x="0.0" y="140" width="344" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="vvP-ia-Rup"/>
@@ -58,9 +60,10 @@
                                         <connections>
                                             <action selector="registrationTextFieldDidBeginEditing:" destination="TPP-vD-yEk" eventType="editingDidBegin" id="H72-Gn-WWq"/>
                                             <action selector="registrationTextFieldDidEndEditing:" destination="TPP-vD-yEk" eventType="editingDidEnd" id="PJu-HH-VPk"/>
+                                            <outlet property="delegate" destination="TPP-vD-yEk" id="sJ4-4M-jUx"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose a password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMO-cz-1bD">
+                                    <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose a password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMO-cz-1bD">
                                         <rect key="frame" x="0.0" y="210" width="344" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="svl-h9-3cr"/>
@@ -70,9 +73,10 @@
                                         <connections>
                                             <action selector="registrationTextFieldDidBeginEditing:" destination="TPP-vD-yEk" eventType="editingDidBegin" id="D1L-78-fcP"/>
                                             <action selector="registrationTextFieldDidEndEditing:" destination="TPP-vD-yEk" eventType="editingDidEnd" id="Oug-Eu-nAi"/>
+                                            <outlet property="delegate" destination="TPP-vD-yEk" id="AfN-0p-Nh9"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAW-Y8-Olj">
+                                    <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAW-Y8-Olj">
                                         <rect key="frame" x="0.0" y="280" width="344" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="mxV-wf-V32"/>
@@ -82,6 +86,7 @@
                                         <connections>
                                             <action selector="registrationTextFieldDidBeginEditing:" destination="TPP-vD-yEk" eventType="editingDidBegin" id="JpH-Ju-fKG"/>
                                             <action selector="registrationTextFieldDidEndEditing:" destination="TPP-vD-yEk" eventType="editingDidEnd" id="vRB-on-evR"/>
+                                            <outlet property="delegate" destination="TPP-vD-yEk" id="4h6-oh-Hn9"/>
                                         </connections>
                                     </textField>
                                 </subviews>
