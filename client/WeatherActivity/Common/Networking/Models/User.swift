@@ -7,10 +7,6 @@
 
 import UIKit
 
-/*
- * User structure
- */
-
 struct User: Codable {
     var email: String
     var username: String
@@ -18,9 +14,8 @@ struct User: Codable {
     var firstName: String
     var lastName: String
     var deviceToken: String
-    var avatar: String
+    var avatar: String?
     
-    // Additional addition as needed
     enum CodingKeys: String, CodingKey {
         case email = "mail"
         case username = "user"
