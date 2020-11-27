@@ -10,35 +10,35 @@ import Alamofire
 
 class LoginService {
     
-    func checkCredentials(userEmail email: String, userPassword pw: String, onSucces: @escaping (apiResponse) -> Void, onFailure: @escaping (Error) -> Void) {
-            let login = Login(userEmail: email, userPassword: pw)
-            AF.request(Constants.baseUrl + "/login",
-               method: .post,
-               parameters: login,
-               encoder: JSONParameterEncoder.default).responseData { response in
-                switch response.result {
-                case .success(let data):
-                    do {
-                        let jsonData = try JSONDecoder().decode(apiResponse.self, from: data)
-                        onSucces(jsonData)
-                    } catch (let error){
-                        onFailure(error)
+    func login(with credentials: LoginCredentials, success: @escaping (AuthResponse) -> Void, failure: @escaping (Error) -> Void) {
+        let url = Constants.baseUrl
+        AF.request(url.appending("/login") as URLConvertible,
+                   method: .post,
+                   parameters: credentials,
+                   encoder: JSONParameterEncoder.default).responseData { response in
+                    switch response.result {
+                    case .success(let data):
+                        do {
+                            let jsonData = try JSONDecoder().decode(AuthResponse.self, from: data)
+                            success(jsonData)
+                        } catch (let error){
+                            failure(error)
+                        }
+                    case .failure(let error):
+                        failure(error)
                     }
-                case .failure(let error):
-                    onFailure(error)
-                }
-            }
-        }
+                   }
+    }
 }
 
-struct Login: Codable {
-    let userEmail: String
-    let userPassword: String
+struct LoginCredentials: Codable {
+    let email: String
+    let password: String
 }
 
-struct apiResponse: Decodable {
-    let logged: Bool?
-    let deviceToken: String?
+struct AuthResponse: Decodable {
+    let logged: Bool
+    let sessionToken: String
 }
 
 

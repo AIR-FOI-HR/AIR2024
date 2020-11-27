@@ -16,17 +16,18 @@ final class RegistrationViewController: UIViewController {
     @IBOutlet weak private var repeatPasswordTextField: UITextField!
     
     @IBAction func registerButtonClick(_ sender: UIButton) {
-        if let email = emailTextField.text, let password = passwordTextField.text , let firstName = firstNameTextField.text, let lastName = lastNameTextField.text {
-            let newUser = User(email: email, username: "def", password: password, firstName: firstName, lastName: lastName, deviceToken: "", avatar: "av1")
-            RegistrationService().registrateNewUser(userData: newUser, onSuccess: { registrationResponse in
-                // User registration finished successfully
-                debugPrint(registrationResponse)
-            }, onFailure: {error in
-                // Error occured in registration process
-                debugPrint(error)
-                self.showAlert()
-            })
+        guard let email = emailTextField.text, let password = passwordTextField.text , let firstName = firstNameTextField.text, let lastName = lastNameTextField.text else {
+            return
         }
+        let newUser = User(email: email, username: "def", password: password, firstName: firstName, lastName: lastName, deviceToken: "", avatar: "av1")
+        RegistrationService().register(userData: newUser, success: { registrationResponse in
+            // User registration finished successfully
+            debugPrint(registrationResponse)
+        }, failure: {error in
+            // Error occured in registration process
+            debugPrint(error)
+            self.showAlert()
+        })
     }
     
     @IBAction func registrationTextFieldDidBeginEditing(_ sender: UITextField) {

@@ -16,16 +16,19 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var passwordTextField: UITextField!
     
+    let loginService = LoginService()
+    
     @IBAction func loginButtonClick(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
-                    // Return message to the user
-                    return
-                }
-                LoginService().checkCredentials(userEmail: email, userPassword: password, onSucces: { apiResponse in
-                        apiResponse.logged == true ? self.navigate(to: .home) : self.showAlert()
-                }, onFailure: { error in
-                    print("error \(error)")
-                })
+            // Return message to the user
+            return
+        }
+        let credentials = LoginCredentials(email: email, password: password)
+        loginService.login(with: credentials, success: { apiResponse in
+            apiResponse.logged == true ? self.navigate(to: .home) : self.showAlert()
+        }, failure: { error in
+            print("error \(error)")
+        })
     }
     
     @IBAction func loginTextFieldDidBeginEditing(_ sender: UITextField) {

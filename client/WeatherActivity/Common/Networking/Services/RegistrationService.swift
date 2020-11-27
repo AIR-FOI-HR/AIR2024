@@ -10,23 +10,24 @@ import Alamofire
 
 class RegistrationService {
     
-    func registrateNewUser(userData user: User, onSuccess: @escaping (registrationResponse)->Void, onFailure: @escaping (Error)->Void) {
-        AF.request(Constants.baseUrl + "/registration",
-           method: .post,
-           parameters: user,
-           encoder: JSONParameterEncoder.default).responseData { response in
-            switch response.result {
-            case .success(let data):
-                do {
-                    let jsonData = try JSONDecoder().decode(registrationResponse.self, from: data)
-                    onSuccess(jsonData)
-                } catch (let error){
-                    onFailure(error)
-                }
-            case .failure(let error):
-                onFailure(error)
-            }
-        }
+    func register(userData user: User, success: @escaping (registrationResponse)->Void, failure: @escaping (Error)->Void) {
+        let url = Constants.baseUrl
+        AF.request(url.appending("/registration") as URLConvertible,
+                   method: .post,
+                   parameters: user,
+                   encoder: JSONParameterEncoder.default).responseData { response in
+                    switch response.result {
+                    case .success(let data):
+                        do {
+                            let jsonData = try JSONDecoder().decode(registrationResponse.self, from: data)
+                            success(jsonData)
+                        } catch (let error){
+                            failure(error)
+                        }
+                    case .failure(let error):
+                        failure(error)
+                    }
+                   }
     }
 }
 
