@@ -21,3 +21,14 @@ extension UITextField: UITextFieldDelegate {
         textFieldEditingEnd.layer.borderWidth = 0
     }
 }
+
+extension UIViewController: UITextFieldDelegate {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
+    }
+}
