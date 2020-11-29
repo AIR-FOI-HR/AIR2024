@@ -61,6 +61,10 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="username"/>
+                                        <connections>
+                                            <action selector="registrationCompletionTextFieldDidBeginEditing:" destination="1Ru-Yl-sjw" eventType="editingDidBegin" id="Hpt-gm-T2J"/>
+                                            <action selector="registrationCompletionTextFieldDidEndEditing:" destination="1Ru-Yl-sjw" eventType="editingDidEnd" id="mYp-Yi-YG2"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                             </stackView>

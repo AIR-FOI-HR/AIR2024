@@ -9,16 +9,11 @@ import UIKit
 
 final class RegistrationCompletionViewController: UIViewController {
 
+    @IBAction func registrationCompletionTextFieldDidBeginEditing(_ sender: UITextField) {
+        sender.textFieldDidBeginEditing(sender)
+    }
     
-    @IBOutlet weak var avatarHorizontalStackView: UIStackView!
-//    override func viewDidAppear(_ animated: Bool) {
-//            super.viewDidAppear(animated)
-//            for _ in 0...10 {
-//                if let dayView = Bundle.main.loadNibNamed("DayView", owner: nil, options: nil)!.first as? DayView {
-//                    dayView.titleLabel.text = "Friday"
-//                    dayView.detailLabel.text = "A long detail text will be shown here"
-//                    avatarHorizontalStackView.addArrangedSubview(dayView)
-//                }
-//            }
-//        }
+    @IBAction func registrationCompletionTextFieldDidEndEditing(_ sender: UITextField) {
+        sender.textFieldDidEndEditing(sender)
+    }
 }
