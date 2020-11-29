@@ -32,11 +32,11 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func loginTextFieldDidBeginEditing(_ sender: UITextField) {
-        sender.textFieldDidBeginEditing(sender)
+        sender.updateTextAppearanceOnFieldDidBeginEditing(sender)
     }
     
     @IBAction func loginTextFieldDidEndEditing(_ sender: UITextField) {
-        sender.textFieldDidEndEditing(sender)
+        sender.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
 }
 

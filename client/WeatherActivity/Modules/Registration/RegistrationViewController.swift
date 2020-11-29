@@ -31,11 +31,11 @@ final class RegistrationViewController: UIViewController {
     }
     
     @IBAction func registrationTextFieldDidBeginEditing(_ sender: UITextField) {
-        sender.textFieldDidBeginEditing(sender)
+        sender.updateTextAppearanceOnFieldDidBeginEditing(sender)
     }
     
     @IBAction func registrationTextFieldDidEndEditing(_ sender: UITextField) {
-        sender.textFieldDidEndEditing(sender)
+        sender.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
 }
 
