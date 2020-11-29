@@ -106,21 +106,28 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="registerButtonClick:" destination="TPP-vD-yEk" eventType="touchUpInside" id="Pab-qe-EF4"/>
+                                    <segue destination="2rS-uI-Fx6" kind="modal" modalPresentationStyle="fullScreen" id="tkh-rh-yxW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4c-rC-f8H">
                                 <rect key="frame" x="35" y="723" width="344" height="31"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="Already have an account? ">
+                                        <fragment content="Already have an account?">
                                             <attributes>
-                                                <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="NSColor" red="0.0046620224461411119" green="0.0046620224461411119" blue="0.0046620224461411119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" ">
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <font key="NSFont" size="16" name="HelveticaNeue"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="Log in">
                                             <attributes>
-                                                <color key="NSColor" red="0.53725490196078429" green="0.792156862745098" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="NSColor" red="0.37647058823529411" green="0.75294117647058822" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <font key="NSFont" size="16" name="HelveticaNeue-Bold"/>
                                             </attributes>
                                         </fragment>
@@ -168,7 +175,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4JG-2B-Lfy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="430" y="64"/>
+            <point key="canvasLocation" x="-133" y="471"/>
+        </scene>
+        <!--RegistrationCompletion-->
+        <scene sceneID="G12-Tj-HwX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RegistrationCompletion" id="2rS-uI-Fx6" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="GX4-qX-G9P"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="unS-nr-YIG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="425" y="64"/>
         </scene>
     </scenes>
     <resources>

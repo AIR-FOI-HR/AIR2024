@@ -67,7 +67,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLd-5f-bFn">
-                                <rect key="frame" x="35" y="656.5" width="344" height="50"/>
+                                <rect key="frame" x="35" y="659" width="344" height="50"/>
                                 <color key="backgroundColor" red="0.1181124523" green="0.20723241570000001" blue="0.2531806231" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8eS-jg-EgY"/>
@@ -86,20 +86,27 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X1r-Ai-FBz">
-                                <rect key="frame" x="35" y="726.5" width="344" height="28.5"/>
+                                <rect key="frame" x="35" y="729" width="344" height="31"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
-                                        <fragment content="Don't have an account? ">
+                                        <fragment content="Don't have an account?">
                                             <attributes>
-                                                <color key="NSColor" systemColor="labelColor"/>
-                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                        <fragment content=" ">
+                                            <attributes>
+                                                <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="Register">
                                             <attributes>
-                                                <color key="NSColor" red="0.53725490196078429" green="0.792156862745098" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
+                                                <color key="NSColor" red="0.37647058823529411" green="0.75294117647058822" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue-Bold"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                             </attributes>
                                         </fragment>
@@ -113,27 +120,27 @@
                                 <rect key="frame" x="57" y="173" width="300" height="235"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VoR-p6-Zb7">
-                                <rect key="frame" x="35" y="578" width="344" height="28.5"/>
+                                <rect key="frame" x="35" y="578" width="344" height="31"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Forgot your password?">
                                             <attributes>
                                                 <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content=" ">
                                             <attributes>
                                                 <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <font key="NSFont" size="14" name="HelveticaNeue"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                             </attributes>
                                         </fragment>
                                         <fragment content="Restore it with ease.">
                                             <attributes>
-                                                <color key="NSColor" red="0.39764337864051869" green="0.75516338249166859" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="14" name="HelveticaNeue-Bold"/>
+                                                <color key="NSColor" red="0.37647058823529411" green="0.75294117647058822" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="16" name="HelveticaNeue-Bold"/>
                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                             </attributes>
                                         </fragment>
@@ -188,9 +195,6 @@
     </scenes>
     <resources>
         <image name="logoWeather" width="300" height="327.5"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

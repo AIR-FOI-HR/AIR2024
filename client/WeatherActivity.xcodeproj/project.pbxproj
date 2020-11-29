@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		29F7320911C8AD977DC70F52 /* Pods_WeatherActivityTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0162088DB7F3964C37E59B /* Pods_WeatherActivityTests.framework */; };
 		4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205CE1425705A3600FF056F /* UIExtensions.swift */; };
+		423CFA5C2572A5BA005CF798 /* RegistrationCompletion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */; };
+		423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */; };
 		4252F64825626DE600FCA0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64725626DE600FCA0CB /* AppDelegate.swift */; };
 		4252F64A25626DE600FCA0CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64925626DE600FCA0CB /* SceneDelegate.swift */; };
 		4252F64C25626DE600FCA0CB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64B25626DE600FCA0CB /* LoginViewController.swift */; };
@@ -55,6 +57,8 @@
 		25880C3376CADF6A9E65DA95 /* Pods_WeatherActivity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherActivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD7A654F1250EF1A82A50B9 /* Pods-WeatherActivity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherActivity.release.xcconfig"; path = "Target Support Files/Pods-WeatherActivity/Pods-WeatherActivity.release.xcconfig"; sourceTree = "<group>"; };
 		4205CE1425705A3600FF056F /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationCompletion.storyboard; sourceTree = "<group>"; };
+		423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCompletionViewController.swift; sourceTree = "<group>"; };
 		4252F64425626DE600FCA0CB /* WeatherActivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherActivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4252F64725626DE600FCA0CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4252F64925626DE600FCA0CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -237,6 +241,8 @@
 			children = (
 				8C7C9A56256D610900683AE5 /* RegistrationViewController.swift */,
 				4252F699256282E800FCA0CB /* Registration.storyboard */,
+				423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */,
+				423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -440,6 +446,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				423CFA5C2572A5BA005CF798 /* RegistrationCompletion.storyboard in Resources */,
 				4252F6AB2562871200FCA0CB /* FirstInitialScreen.storyboard in Resources */,
 				4252F65425626DE900FCA0CB /* LaunchScreen.storyboard in Resources */,
 				4252F6B72562A04000FCA0CB /* SecondInitialScreen.storyboard in Resources */,
@@ -582,6 +589,7 @@
 				8C7C9A7E256EA3EF00683AE5 /* User.swift in Sources */,
 				8C7C9A57256D610900683AE5 /* RegistrationViewController.swift in Sources */,
 				8C8BF4E72570F16D00E1CBE8 /* RegistrationService.swift in Sources */,
+				423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */,
 				4252F64A25626DE600FCA0CB /* SceneDelegate.swift in Sources */,
 				42EF36C7256C15EB0069E590 /* HomeViewController.swift in Sources */,
 				42B0FB01257070A700781940 /* Constants.swift in Sources */,
