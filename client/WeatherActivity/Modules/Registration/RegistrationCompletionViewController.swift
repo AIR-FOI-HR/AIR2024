@@ -10,10 +10,10 @@ import UIKit
 final class RegistrationCompletionViewController: UIViewController {
 
     @IBAction func registrationCompletionTextFieldDidBeginEditing(_ sender: UITextField) {
-        sender.textFieldDidBeginEditing(sender)
+        sender.updateTextAppearanceOnFieldDidBeginEditing(sender)
     }
     
     @IBAction func registrationCompletionTextFieldDidEndEditing(_ sender: UITextField) {
-        sender.textFieldDidEndEditing(sender)
+        sender.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
 }
