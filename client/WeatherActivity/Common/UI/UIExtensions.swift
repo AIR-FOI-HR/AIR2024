@@ -7,6 +7,7 @@
 
 import UIKit
     
+// MARK: Text field start/stop editing
 extension UITextField: UITextFieldDelegate {
     public func updateTextAppearanceOnFieldDidBeginEditing(_ textFieldEditing: UITextField) {
         textFieldEditing.layer.borderColor = UIColor(red:115/255, green:204/255, blue:255/255, alpha: 1).cgColor
@@ -22,6 +23,7 @@ extension UITextField: UITextFieldDelegate {
     }
 }
 
+// MARK: Text field on click next
 extension UIViewController: UITextFieldDelegate {
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
@@ -30,5 +32,18 @@ extension UIViewController: UITextFieldDelegate {
             textField.resignFirstResponder()
         }
         return false
+    }
+}
+
+// MARK: Dismiss keyboard on tap
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
