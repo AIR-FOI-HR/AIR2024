@@ -42,7 +42,6 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="registerButtonClick:" destination="TPP-vD-yEk" eventType="touchUpInside" id="Pab-qe-EF4"/>
-                                                    <segue destination="2rS-uI-Fx6" kind="modal" modalPresentationStyle="fullScreen" id="tkh-rh-yxW"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4c-rC-f8H">
@@ -188,6 +187,7 @@
                         <outlet property="lastNameTextField" destination="JQE-wA-2Yw" id="uhR-in-dFc"/>
                         <outlet property="passwordTextField" destination="IMO-cz-1bD" id="AUC-Kd-FkG"/>
                         <outlet property="repeatPasswordTextField" destination="nAW-Y8-Olj" id="W7f-kh-SAB"/>
+                        <segue destination="2rS-uI-Fx6" kind="presentation" identifier="toRegisterCompletion" id="uDL-PQ-Lie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="05e-cm-b3n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
