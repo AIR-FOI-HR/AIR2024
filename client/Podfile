@@ -6,6 +6,7 @@ target 'WeatherActivity' do
   use_frameworks!
   pod 'Alamofire', '~> 5.2'
   pod 'IQKeyboardManagerSwift'
+  pod 'KeychainSwift', '~> 19.0'
   # Pods for WeatherActivity
 
   target 'WeatherActivityTests' do
