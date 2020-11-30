@@ -187,7 +187,7 @@
                         <outlet property="lastNameTextField" destination="JQE-wA-2Yw" id="uhR-in-dFc"/>
                         <outlet property="passwordTextField" destination="IMO-cz-1bD" id="AUC-Kd-FkG"/>
                         <outlet property="repeatPasswordTextField" destination="nAW-Y8-Olj" id="W7f-kh-SAB"/>
-                        <segue destination="2rS-uI-Fx6" kind="presentation" identifier="toRegisterCompletion" id="uDL-PQ-Lie"/>
+                        <segue destination="2rS-uI-Fx6" kind="presentation" identifier="toRegisterCompletion" modalPresentationStyle="fullScreen" id="uDL-PQ-Lie"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="05e-cm-b3n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
