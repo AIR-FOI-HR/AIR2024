@@ -167,9 +167,6 @@
                             <constraint firstItem="reh-SC-KaC" firstAttribute="leading" secondItem="Bp6-p9-JG1" secondAttribute="leading" constant="35" id="uEo-U8-j7H"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="avatarHorizontalStackView" destination="IxV-l5-83L" id="kmE-6u-yma"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNG-Ml-Wvl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
