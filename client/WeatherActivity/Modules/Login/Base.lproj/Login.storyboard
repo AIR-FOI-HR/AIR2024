@@ -191,7 +191,6 @@
                     <connections>
                         <outlet property="emailTextField" destination="jVp-hi-iDh" id="wdW-jB-VnS"/>
                         <outlet property="passwordTextField" destination="L48-zr-7aj" id="hih-mm-CGR"/>
-                        <outlet property="scrollView" destination="DCx-Yk-ihv" id="Mcr-Fo-i5c"/>
                         <segue destination="U3S-Q6-jJq" kind="presentation" identifier="toHome" modalPresentationStyle="fullScreen" id="LlH-TO-2hZ"/>
                     </connections>
                 </viewController>
