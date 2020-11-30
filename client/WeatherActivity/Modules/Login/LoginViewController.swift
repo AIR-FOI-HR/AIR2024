@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeychainSwift
 
 enum LoginNavigation: String {
     case home = "toHome"
@@ -18,6 +19,19 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak private var passwordTextField: UITextField!
     
     let loginService = LoginService()
+    let keychain = KeychainSwift()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //keychain.delete("sessionToken")
+        if let sessionToken = keychain.get("sessionToken") {
+            loginService.checkForToken(token: sessionToken, success: { checkResponse in
+                checkResponse.token == true ? self.navigate(to: .home) : print(sessionToken)
+            }, failure: { error in
+                print("error \(error)")
+            })
+        }
+    }
     
     @IBAction func loginButtonClick(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
@@ -26,6 +40,7 @@ final class LoginViewController: UIViewController {
         }
         let credentials = LoginCredentials(email: email, password: password)
         loginService.login(with: credentials, success: { apiResponse in
+            self.keychain.set(apiResponse.sessionToken, forKey: "sessionToken")
             apiResponse.logged == true ? self.navigate(to: .home) : self.showAlert()
         }, failure: { error in
             print("error \(error)")
