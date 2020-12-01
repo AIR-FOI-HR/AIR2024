@@ -60,7 +60,7 @@
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0w3-VS-Nql">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0w3-VS-Nql">
                                                         <rect key="frame" x="0.0" y="44" width="319.5" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="Ahk-mG-BMa"/>
@@ -86,49 +86,79 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="IxV-l5-83L" userLabel="avatarHorizontalStack">
                                                         <rect key="frame" x="10" y="0.0" width="635" height="50"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMA-qu-iWj" userLabel="avatar1">
+                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMA-qu-iWj" userLabel="avatar1">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="78z-Xn-WyB"/>
                                                                     <constraint firstAttribute="width" constant="50" id="7uc-HV-kTc"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Button" image="avatar1"/>
+                                                                <connections>
+                                                                    <action selector="avatarPresed:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="Cve-IF-R6T"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZU-UN-2bh" userLabel="avatar2">
+                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZU-UN-2bh" userLabel="avatar2">
                                                                 <rect key="frame" x="65" y="0.0" width="50" height="50"/>
                                                                 <state key="normal" title="Button" image="avatar2"/>
+                                                                <connections>
+                                                                    <action selector="avatarPresed:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="LUU-dk-QMd"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlL-l0-GV9" userLabel="avatar3">
+                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IlL-l0-GV9" userLabel="avatar3">
                                                                 <rect key="frame" x="130" y="0.0" width="50" height="50"/>
                                                                 <state key="normal" title="Button" image="avatar3"/>
+                                                                <connections>
+                                                                    <action selector="avatarPresed:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="EWR-4D-iGs"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WN4-t1-qG0" userLabel="avatar4">
+                                                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WN4-t1-qG0" userLabel="avatar4">
                                                                 <rect key="frame" x="195" y="0.0" width="50" height="50"/>
                                                                 <state key="normal" title="Button" image="avatar4"/>
+                                                                <connections>
+                                                                    <action selector="avatarPresed:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="O11-XG-Y0o"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zsg-Rc-ixd" userLabel="avatar5">
+                                                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zsg-Rc-ixd" userLabel="avatar5">
                                                                 <rect key="frame" x="260" y="0.0" width="50" height="50"/>
                                                                 <state key="normal" title="Button" image="avatar5"/>
+                                                                <connections>
+                                                                    <action selector="avatarPresed:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="Xa6-dw-gap"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHI-E8-T2a" userLabel="avatar6">
+                                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dHI-E8-T2a" userLabel="avatar6">
                                                                 <rect key="frame" x="325" y="0.0" width="50" height="50"/>
                                                                 <state key="normal" title="Button" image="avatar6"/>
+                                                                <connections>
+                                                                    <action selector="avatarPresed:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="9l1-m1-Kdi"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hg5-Hp-WXy" userLabel="avatar7">
+                                                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hg5-Hp-WXy" userLabel="avatar7">
                                                                 <rect key="frame" x="390" y="0.0" width="50" height="50"/>
                                                                 <state key="normal" title="Button" image="avatar7"/>
+                                                                <connections>
+                                                                    <action selector="avatarPresed:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="ux7-Q7-Y0o"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNS-zU-KVj" userLabel="avatar8">
+                                                            <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNS-zU-KVj" userLabel="avatar8">
                                                                 <rect key="frame" x="455" y="0.0" width="50" height="50"/>
                                                                 <state key="normal" title="Button" image="avatar8"/>
+                                                                <connections>
+                                                                    <action selector="avatarPresed:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="fEc-8S-Abu"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMb-bX-cu9" userLabel="avatar9">
+                                                            <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMb-bX-cu9" userLabel="avatar9">
                                                                 <rect key="frame" x="520" y="0.0" width="50" height="50"/>
                                                                 <state key="normal" title="Button" image="avatar9"/>
+                                                                <connections>
+                                                                    <action selector="avatarPresed:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="DfW-nd-1Me"/>
+                                                                </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYK-bN-URn" userLabel="avatar10">
+                                                            <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYK-bN-URn" userLabel="avatar10">
                                                                 <rect key="frame" x="585" y="0.0" width="50" height="50"/>
                                                                 <state key="normal" title="Button" image="avatar10"/>
+                                                                <connections>
+                                                                    <action selector="avatarPresed:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="ZYn-u8-qNs"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -162,6 +192,9 @@
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="finishButtonClicked:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="p4q-Zt-vBB"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -208,6 +241,9 @@
                             <constraint firstItem="Bp6-p9-JG1" firstAttribute="bottom" secondItem="nz1-aU-u3b" secondAttribute="bottom" id="b7B-ig-IVd"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="usernameTextField" destination="0w3-VS-Nql" id="TSb-LC-wwm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNG-Ml-Wvl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
