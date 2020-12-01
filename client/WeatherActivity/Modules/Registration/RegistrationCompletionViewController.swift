@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import KeychainSwift
 
 final class RegistrationCompletionViewController: UIViewController {
     
@@ -17,10 +16,10 @@ final class RegistrationCompletionViewController: UIViewController {
     // MARK: Properties
     
     let alerter = Alerter()
-    let keychain = KeychainSwift()
     let registrationService = RegistrationService()
     var registrationUser: RegistrationUser?
     var selectedAvatar = 0
+    let secureStorage = SecureStorage()
     
     // MARK: IBActions
     
@@ -44,7 +43,7 @@ final class RegistrationCompletionViewController: UIViewController {
     @IBAction func finishButtonClicked(_ sender: UIButton) {
         guard let username = usernameTextField.text else { return }
         registrationUser?.username = username
-        registrationUser?.avatar = selectedAvatar
+        registrationUser?.avatarId = selectedAvatar
         registrationService.register(userData: registrationUser!, success: { registrationResponse in
             if(registrationResponse.msg == "Error") {
                 self.alerter.setAlerterData(title: "Oops!", message: "Error occured in registration process!")
@@ -53,7 +52,7 @@ final class RegistrationCompletionViewController: UIViewController {
                 return
             }
             if registrationResponse.token != "" {
-                self.keychain.set(registrationResponse.token!, forKey: "sessionToken")
+                self.secureStorage.saveToken(sessionToken: registrationResponse.token!, keyType: .sessionToken)
             }
             self.performSegue(withIdentifier: "CompletionToHome", sender: self)
         }, failure: {error in

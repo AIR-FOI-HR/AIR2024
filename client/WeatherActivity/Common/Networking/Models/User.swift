@@ -5,8 +5,6 @@
 //  Created by Kevin Bogdan on 25.11.2020..
 //
 
-import UIKit
-
 struct User: Codable {
     var email: String
     var username: String

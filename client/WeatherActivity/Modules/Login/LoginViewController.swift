@@ -18,10 +18,11 @@ final class LoginViewController: UIViewController {
 
     let loginService = LoginService()
     let secureStorage = SecureStorage()
+    let sessionManager = SessionManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let sessionToken = secureStorage.getToken(keyType: .sessionToken) {
+        if let sessionToken = sessionManager.getToken() {
             loginService.checkForToken(token: sessionToken, success: { checkResponse in
                 self.navigate(to: .home)
             }, failure: { error in
