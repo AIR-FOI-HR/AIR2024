@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: Singleton for registrating user
 class RegistrationUser: Codable {
     var email: String
     var firstName: String

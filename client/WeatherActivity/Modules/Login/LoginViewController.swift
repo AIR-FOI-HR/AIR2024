@@ -6,28 +6,22 @@
 //
 
 import UIKit
-import KeychainSwift
-
-enum LoginNavigation: String {
-    case home = "toHome"
-    case registration = "toRegistration"
-}
 
 final class LoginViewController: UIViewController {
-    
+
     // MARK: IBOutlets
-    
+
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var passwordTextField: UITextField!
-    
+
     // MARK: Properties
-    
+
     let loginService = LoginService()
-    let keychain = KeychainSwift()
-    
+    let secureStorage = SecureStorage()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let sessionToken = keychain.get("sessionToken") {
+        if let sessionToken = secureStorage.getToken(keyType: .sessionToken) {
             loginService.checkForToken(token: sessionToken, success: { checkResponse in
                 self.navigate(to: .home)
             }, failure: { error in
@@ -35,7 +29,7 @@ final class LoginViewController: UIViewController {
             })
         }
     }
-    
+
     @IBAction func loginButtonClick(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             let alerter = Alerter(title: "Oops!", message: "There was a problem with getting your input values")
@@ -45,7 +39,7 @@ final class LoginViewController: UIViewController {
         }
         let credentials = LoginCredentials(email: email, password: password)
         loginService.login(with: credentials, success: { apiResponse in
-            self.keychain.set(apiResponse.sessionToken, forKey: "sessionToken")
+            self.secureStorage.saveToken(sessionToken: apiResponse.sessionToken, keyType: .sessionToken)
             if(!apiResponse.sessionToken.isEmpty) {
                 self.navigate(to: .home)
             }
@@ -62,11 +56,11 @@ final class LoginViewController: UIViewController {
     }
     
     // MARK: IBAction functions
-    
+
     @IBAction func loginTextFieldDidBeginEditing(_ sender: UITextField) {
         sender.updateTextAppearanceOnFieldDidBeginEditing(sender)
     }
-    
+
     @IBAction func loginTextFieldDidEndEditing(_ sender: UITextField) {
         sender.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
@@ -75,7 +69,7 @@ final class LoginViewController: UIViewController {
 // MARK: Navigation
 
 private extension LoginViewController {
-    func navigate(to navigation: LoginNavigation) {
+    func navigate(to navigation: Navigation) {
         performSegue(withIdentifier: navigation.rawValue, sender: self)
     }
 }
