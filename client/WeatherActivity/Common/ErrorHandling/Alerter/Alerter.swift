@@ -12,7 +12,7 @@ class Alerter{
     
     var alerter: UIAlertController
     
-    init(title: String = "Ok", message: String = "Something has gone wrong"){
+    init(title: String = "Oops!", message: String = "Something has gone wrong"){
         self.alerter = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
     }
 
