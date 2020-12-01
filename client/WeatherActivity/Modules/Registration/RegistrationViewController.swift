@@ -112,7 +112,6 @@ private extension RegistrationViewController {
         else if (isPasswordLengthValid(registrationValidator: registrationValidator) == false) {
             return false
         }
-        
         return true
     }
     
