@@ -52,7 +52,9 @@ final class LoginViewController: UIViewController {
                 self.present(alerter.alerter, animated: true, completion: nil)
             }
         }, failure: { error in
-            print("error \(error)")
+            let alerter = Alerter(title: "Oops!", message: "You entered wrong credentials")
+            alerter.addAction(title: "Ok")
+            self.present(alerter.alerter, animated: true, completion: nil)
         })
     }
     
