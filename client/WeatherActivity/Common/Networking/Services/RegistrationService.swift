@@ -10,7 +10,7 @@ import Alamofire
 
 class RegistrationService {
     
-    func register(userData user: User, success: @escaping (registrationResponse)->Void, failure: @escaping (Error)->Void) {
+    func register(userData user: RegistrationUser, success: @escaping (registrationResponse)->Void, failure: @escaping (Error)->Void) {
         let url = Constants.baseUrl
         AF.request(url.appending("/registration") as URLConvertible,
                    method: .post,
@@ -32,7 +32,6 @@ class RegistrationService {
 }
 
 struct registrationResponse: Decodable {
-    let success: Bool
-    let reason: String?
+    let msg: String
 }
 
