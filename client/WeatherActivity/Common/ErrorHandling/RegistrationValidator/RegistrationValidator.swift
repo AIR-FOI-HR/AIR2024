@@ -7,7 +7,9 @@
 
 import Foundation
 
-class RegistrationValidator{
+class RegistrationValidator {
+    
+    // MARK: Properties
     
     let firstName: String
     let lastName: String
@@ -23,6 +25,8 @@ class RegistrationValidator{
         self.repeatedPassword = repeatedPassword
     }
 
+    // MARK: Validate functions
+    
     func emptyFieldExist() -> Bool{
         return firstName.isEmpty || lastName.isEmpty || email.isEmpty || password.isEmpty || repeatedPassword.isEmpty
     }

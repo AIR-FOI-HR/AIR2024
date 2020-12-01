@@ -30,10 +30,10 @@ class LoginService {
             }
     }
     
-    func checkForToken(token SessionToken: String, success: @escaping (TokenCheckResponse) -> Void, failure: @escaping (Error) -> Void) {
+    func checkForToken(token sessionToken: String, success: @escaping (TokenCheckResponse) -> Void, failure: @escaping (Error) -> Void) {
         AF.request(Constants.baseUrl.appending("/tokenCheck") as URLConvertible,
                    method: .post,
-                   parameters: ["sessionToken": SessionToken],
+                   parameters: ["sessionToken": sessionToken],
                    encoder: JSONParameterEncoder.default)
             .responseData { response in
                 switch response.result {

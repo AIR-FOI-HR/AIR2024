@@ -8,7 +8,9 @@
 import Foundation
 import UIKit
 
-class Alerter{
+class Alerter {
+    
+    // MARK: Properties
     
     var alerter: UIAlertController
     
