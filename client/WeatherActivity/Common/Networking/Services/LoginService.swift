@@ -11,8 +11,7 @@ import Alamofire
 class LoginService {
     
     func login(with credentials: LoginCredentials, success: @escaping (AuthResponse) -> Void, failure: @escaping (Error) -> Void) {
-        let url = Constants.baseUrl
-        AF.request(url.appending("/login") as URLConvertible,
+        AF.request(Constants.baseUrl.appending("/login") as URLConvertible,
                    method: .post,
                    parameters: credentials,
                    encoder: JSONParameterEncoder.default)
@@ -52,16 +51,6 @@ class LoginService {
     }
 }
 
-struct LoginCredentials: Codable {
-    let email: String
-    let password: String
-}
 
-struct AuthResponse: Decodable {
-    let logged: Bool
-    let sessionToken: String
-}
 
-struct TokenCheckResponse: Decodable {
-    let token: Bool
-}
+

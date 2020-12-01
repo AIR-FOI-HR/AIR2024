@@ -9,10 +9,8 @@ import Foundation
 import Alamofire
 
 class RegistrationService {
-    
-    func register(userData user: RegistrationUser, success: @escaping (registrationResponse)->Void, failure: @escaping (Error)->Void) {
-        let url = Constants.baseUrl
-        AF.request(url.appending("/registration") as URLConvertible,
+    func register(userData user: RegistrationUser, success: @escaping (RegistrationResponse)->Void, failure: @escaping (Error)->Void) {
+        AF.request(Constants.baseUrl.appending("/registration") as URLConvertible,
                    method: .post,
                    parameters: user,
                    encoder: JSONParameterEncoder.default
@@ -20,7 +18,7 @@ class RegistrationService {
             switch response.result {
             case .success(let data):
                 do {
-                    let jsonData = try JSONDecoder().decode(registrationResponse.self, from: data)
+                    let jsonData = try JSONDecoder().decode(RegistrationResponse.self, from: data)
                     print("jsondata: \(jsonData)")
                     success(jsonData)
                 } catch (let error){
@@ -53,14 +51,5 @@ class RegistrationService {
             }
         }
     }
-}
-
-struct registrationResponse: Decodable {
-    let msg: String
-    let token: String?
-}
-
-struct EmailCheckResponse: Codable {
-    let msg: String
 }
 
