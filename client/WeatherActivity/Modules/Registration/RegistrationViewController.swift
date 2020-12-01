@@ -8,11 +8,14 @@ import UIKit
 
 final class RegistrationViewController: UIViewController {
     
+    // MARK: IBOutlets
     @IBOutlet weak private var firstNameTextField: UITextField!
     @IBOutlet weak private var lastNameTextField: UITextField!
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var passwordTextField: UITextField!
     @IBOutlet weak private var repeatPasswordTextField: UITextField!
+    
+    var registrationUser: RegistrationUser?
     
     @IBAction func registerButtonClick(_ sender: UIButton) {
         let alerter = Alerter()
@@ -45,10 +48,7 @@ final class RegistrationViewController: UIViewController {
             present(alerter.alerter, animated: true, completion: nil)
             return
         }
-        RegistrationUser.registrationUser.email = email
-        RegistrationUser.registrationUser.password = password
-        RegistrationUser.registrationUser.firstName = firstName
-        RegistrationUser.registrationUser.lastName = lastName
+        registrationUser = RegistrationUser(userEmail: email, userFirstName: firstName, userLastName: lastName, userPassword: password)
         
         self.performSegue(withIdentifier: "toRegisterCompletion", sender: self)
     }
@@ -61,4 +61,14 @@ final class RegistrationViewController: UIViewController {
         sender.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
     
+}
+
+// MARK: Segue
+extension RegistrationViewController {
+    internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is RegistrationCompletionViewController == true {
+            let registrationVC = segue.destination as! RegistrationCompletionViewController
+            registrationVC.registrationUser = registrationUser
+        }
+    }
 }

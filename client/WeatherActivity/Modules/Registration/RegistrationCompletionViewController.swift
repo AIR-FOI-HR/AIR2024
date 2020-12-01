@@ -14,6 +14,8 @@ final class RegistrationCompletionViewController: UIViewController {
     let alerter = Alerter()
     let keychain = KeychainSwift()
     
+    var registrationUser: RegistrationUser?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,9 +41,9 @@ final class RegistrationCompletionViewController: UIViewController {
     
     @IBAction func finishButtonClicked(_ sender: UIButton) {
         guard let username = usernameTextField.text else { return }
-        RegistrationUser.registrationUser.username = username
-        RegistrationUser.registrationUser.avatar = selectedAvatar
-        RegistrationService().register(userData: RegistrationUser.registrationUser, success: { registrationResponse in
+        registrationUser?.username = username
+        registrationUser?.avatar = selectedAvatar
+        RegistrationService().register(userData: registrationUser!, success: { registrationResponse in
             if(registrationResponse.msg == "Error") {
                 return
             }
