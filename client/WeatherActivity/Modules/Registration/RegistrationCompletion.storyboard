@@ -243,11 +243,22 @@
                     </view>
                     <connections>
                         <outlet property="usernameTextField" destination="0w3-VS-Nql" id="TSb-LC-wwm"/>
+                        <segue destination="0kc-FN-c75" kind="presentation" identifier="toHome" modalPresentationStyle="fullScreen" id="HXJ-CD-cPH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNG-Ml-Wvl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3886.9565217391309" y="-446.65178571428567"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="gf3-KL-dE1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" id="0kc-FN-c75" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="PCD-Ga-7Cb"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Sb-Uu-1zW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3312" y="-467"/>
         </scene>
     </scenes>
     <resources>
