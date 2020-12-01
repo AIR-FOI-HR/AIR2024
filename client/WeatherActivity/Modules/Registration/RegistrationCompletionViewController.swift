@@ -10,18 +10,17 @@ import KeychainSwift
 
 final class RegistrationCompletionViewController: UIViewController {
     
+    // MARK: IBOutlets
     @IBOutlet weak var usernameTextField: UITextField!
+    
+    // MARK: Propertys
     let alerter = Alerter()
     let keychain = KeychainSwift()
-    
+    let registrationService = RegistrationService()
     var registrationUser: RegistrationUser?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     var selectedAvatar = 0
+    
+    // MARK: IBActions
     @IBAction func avatarPresed(_ sender: UIButton) {
         if(selectedAvatar != 0){
             let currentAvatar = self.view.viewWithTag(sender.tag)
@@ -43,8 +42,11 @@ final class RegistrationCompletionViewController: UIViewController {
         guard let username = usernameTextField.text else { return }
         registrationUser?.username = username
         registrationUser?.avatar = selectedAvatar
-        RegistrationService().register(userData: registrationUser!, success: { registrationResponse in
+        registrationService.register(userData: registrationUser!, success: { registrationResponse in
             if(registrationResponse.msg == "Error") {
+                self.alerter.setAlerterData(title: "Oops!", message: "Error occured in registration process!")
+                self.alerter.addAction(title: "Back")
+                self.present(self.alerter.alerter, animated: true, completion: nil)
                 return
             }
             if registrationResponse.token != "" {

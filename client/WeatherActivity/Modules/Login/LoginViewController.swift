@@ -26,9 +26,9 @@ final class LoginViewController: UIViewController {
         //keychain.delete("sessionToken")
         if let sessionToken = keychain.get("sessionToken") {
             loginService.checkForToken(token: sessionToken, success: { checkResponse in
-                checkResponse.token == true ? self.navigate(to: .home) : print(sessionToken)
+                self.navigate(to: .home)
             }, failure: { error in
-                print("error \(error)")
+                #warning("Return message to the user")
             })
         }
     }
@@ -43,7 +43,7 @@ final class LoginViewController: UIViewController {
         let credentials = LoginCredentials(email: email, password: password)
         loginService.login(with: credentials, success: { apiResponse in
             self.keychain.set(apiResponse.sessionToken, forKey: "sessionToken")
-            if(apiResponse.logged){
+            if(!apiResponse.sessionToken.isEmpty) {
                 self.navigate(to: .home)
             }
             else{

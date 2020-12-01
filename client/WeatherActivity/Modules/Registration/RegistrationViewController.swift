@@ -71,7 +71,7 @@ final class RegistrationViewController: UIViewController {
             }
             
         } failure: { (error) in
-            print(error)
+            #warning("Handle the error")
         }
 
         
