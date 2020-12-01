@@ -6,7 +6,14 @@
 //
 import UIKit
 
-
+enum AlertMessages: String {
+    case inputValuesError = "There was a problem with getting your input values"
+    case emptyFieldsError = "One or more fields are empty!"
+    case invalidEmailError = "You entered invalid e-mail format!"
+    case emailAlreadyExists = "Email is already in use!"
+    case passwordMatchError = "Your passwords don't match!"
+    case passwordLengthError = "Password must be at least 6 characters long!"
+}
 
 final class RegistrationViewController: UIViewController {
     
@@ -21,21 +28,15 @@ final class RegistrationViewController: UIViewController {
     // MARK: Properties
     
     var registrationUser: RegistrationUser?
-    enum AlertMessages: String {
-        case inputValuesError = "There was a problem with getting your input values"
-        case emptyFieldsError = "One or more fields are empty!"
-        case invalidEmailError = "You entered invalid e-mail format!"
-        case emailAlreadyExists = "Email is already in use!"
-        case passwordMatchError = "Your passwords don't match!"
-        case passwordLengthError = "Password must be at least 6 characters long!"
-    }
     let alerter = Alerter()
+    let alertActionText = "Ok"
+    let alertTitle = "Oops!"
+    let registrationService = RegistrationService()
     
     // MARK: IBActions
     
     @IBAction func registerButtonClick(_ sender: UIButton) {
-        let alertActionText = "Ok"
-        let alertTitle = "Oops!"
+        
         alerter.addAction(title: alertActionText)
         
         guard let email = emailTextField.text, let password = passwordTextField.text , let firstName = firstNameTextField.text, let lastName = lastNameTextField.text,
@@ -46,32 +47,17 @@ final class RegistrationViewController: UIViewController {
         }
         
         let registrationValidator = RegistrationValidator(firstName: firstName, lastName: lastName, email: email, password: password, repeatedPassword: repeatedPassword)
-        if(registrationValidator.emptyFieldExist()){
-            alerter.setAlerterData(title: alertTitle, message: AlertMessages.emptyFieldsError.rawValue)
-            present(alerter.alerter, animated: true, completion: nil)
+        
+        if(checkAllValidators(registrationValidator: registrationValidator) == false) {
             return
         }
-        if(!registrationValidator.isValidEmail()){
-            alerter.setAlerterData(title: alertTitle, message: AlertMessages.invalidEmailError.rawValue)
-            present(alerter.alerter, animated: true, completion: nil)
-            return
-        }
-        if(!registrationValidator.isValidRepeatedPassword()){
-            alerter.setAlerterData(title: alertTitle, message: AlertMessages.passwordMatchError.rawValue)
-            present(alerter.alerter, animated: true, completion: nil)
-            return
-        }
-        if(!registrationValidator.isValidPasswordLength()){
-            alerter.setAlerterData(title: alertTitle, message: AlertMessages.passwordLengthError.rawValue)
-            present(alerter.alerter, animated: true, completion: nil)
-            return
-        }
-        RegistrationService().checkEmail(userEmail: email) { (res) in
+        
+        registrationService.checkEmail(userEmail: email) { (res) in
             if res.msg == "Available" {
                 self.registrationUser = RegistrationUser(userEmail: email, userFirstName: firstName, userLastName: lastName, userPassword: password)
                 self.navigate(to: .registrationCompletion)
             } else {
-                self.alerter.setAlerterData(title: alertTitle, message: AlertMessages.emailAlreadyExists.rawValue)
+                self.alerter.setAlerterData(title: self.alertTitle, message: AlertMessages.emailAlreadyExists.rawValue)
                 self.present(self.alerter.alerter, animated: true, completion: nil)
                 return
             }
@@ -108,4 +94,62 @@ private extension RegistrationViewController {
     func navigate(to navigation: Navigation) {
         performSegue(withIdentifier: navigation.rawValue, sender: self)
     }
+}
+
+// MARK: Validation methods
+private extension RegistrationViewController {
+    
+    func checkAllValidators(registrationValidator: RegistrationValidator) -> Bool {
+        if (checkForEmptyFields(registrationValidator: registrationValidator) == false) {
+            return false
+        }
+        else if (isEmailValid(registrationValidator: registrationValidator) == false) {
+            return false
+        }
+        else if (isRepeatedPasswordValid(registrationValidator: registrationValidator) == false) {
+            return false
+        }
+        else if (isPasswordLengthValid(registrationValidator: registrationValidator) == false) {
+            return false
+        }
+        
+        return true
+    }
+    
+    func checkForEmptyFields(registrationValidator: RegistrationValidator) -> Bool {
+        if(registrationValidator.emptyFieldExist()){
+            self.alerter.setAlerterData(title: alertTitle, message: AlertMessages.emptyFieldsError.rawValue)
+            self.present(self.alerter.alerter, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
+    
+    func isEmailValid(registrationValidator: RegistrationValidator) -> Bool {
+        if(!registrationValidator.isValidEmail()){
+            alerter.setAlerterData(title: alertTitle, message: AlertMessages.invalidEmailError.rawValue)
+            present(alerter.alerter, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
+    
+    func isRepeatedPasswordValid(registrationValidator: RegistrationValidator) -> Bool {
+        if(!registrationValidator.isValidRepeatedPassword()){
+            alerter.setAlerterData(title: alertTitle, message: AlertMessages.passwordMatchError.rawValue)
+            present(alerter.alerter, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
+    
+    func isPasswordLengthValid(registrationValidator: RegistrationValidator) -> Bool {
+        if(!registrationValidator.isValidPasswordLength()){
+            alerter.setAlerterData(title: alertTitle, message: AlertMessages.passwordLengthError.rawValue)
+            present(alerter.alerter, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
+    
 }
