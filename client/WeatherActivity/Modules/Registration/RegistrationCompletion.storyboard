@@ -17,16 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nz1-aU-u3b">
-                                <rect key="frame" x="0.0" y="44" width="389.5" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zq3-uk-EDT" userLabel="contentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="389.5" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="reh-SC-KaC" userLabel="topTextStack">
-                                                <rect key="frame" x="35" y="150" width="319.5" height="60"/>
+                                                <rect key="frame" x="35" y="150" width="344" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4e-rd-VqW">
-                                                        <rect key="frame" x="0.0" y="0.0" width="319.5" height="29"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="344" height="29"/>
                                                         <attributedString key="attributedText">
                                                             <fragment content="Hang in there..">
                                                                 <attributes>
@@ -39,7 +39,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3j-Ou-8OR">
-                                                        <rect key="frame" x="0.0" y="29" width="319.5" height="31"/>
+                                                        <rect key="frame" x="0.0" y="29" width="344" height="31"/>
                                                         <attributedString key="attributedText">
                                                             <fragment content="We are almost done!">
                                                                 <attributes>
@@ -53,15 +53,15 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QWF-mi-b4D" userLabel="usernameStack">
-                                                <rect key="frame" x="35" y="240" width="319.5" height="94"/>
+                                                <rect key="frame" x="35" y="240" width="344" height="94"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set the username you'd like to use" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FHc-1o-1E9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="319.5" height="24"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="344" height="24"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0w3-VS-Nql">
-                                                        <rect key="frame" x="0.0" y="44" width="319.5" height="50"/>
+                                                        <rect key="frame" x="0.0" y="44" width="344" height="50"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="Ahk-mG-BMa"/>
                                                         </constraints>
@@ -75,13 +75,13 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="──────────" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLn-nZ-WgS">
-                                                <rect key="frame" x="35" y="384" width="319.5" height="20"/>
+                                                <rect key="frame" x="35" y="384" width="344" height="20"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                 <color key="textColor" systemColor="systemGray6Color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I7v-F2-vgJ" userLabel="avatarScrollView">
-                                                <rect key="frame" x="35" y="498" width="319.5" height="50"/>
+                                                <rect key="frame" x="35" y="498" width="344" height="50"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="IxV-l5-83L" userLabel="avatarHorizontalStack">
                                                         <rect key="frame" x="10" y="0.0" width="635" height="50"/>
@@ -175,12 +175,12 @@
                                                 <viewLayoutGuide key="frameLayoutGuide" id="MAL-G5-fMN"/>
                                             </scrollView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick your avatar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NeU-JQ-tzO">
-                                                <rect key="frame" x="35" y="454" width="319.5" height="24"/>
+                                                <rect key="frame" x="35" y="454" width="344" height="24"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x71-og-fh1">
-                                                <rect key="frame" x="35" y="598" width="319.5" height="50"/>
+                                                <rect key="frame" x="35" y="598" width="344" height="50"/>
                                                 <color key="backgroundColor" red="0.11372549019607843" green="0.20784313725490194" blue="0.25882352941176467" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="oZm-AF-mgP"/>
@@ -243,7 +243,7 @@
                     </view>
                     <connections>
                         <outlet property="usernameTextField" destination="0w3-VS-Nql" id="TSb-LC-wwm"/>
-                        <segue destination="0kc-FN-c75" kind="presentation" identifier="toHome" modalPresentationStyle="fullScreen" id="HXJ-CD-cPH"/>
+                        <segue destination="0kc-FN-c75" kind="presentation" identifier="CompletionToHome" modalPresentationStyle="fullScreen" id="HXJ-CD-cPH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNG-Ml-Wvl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

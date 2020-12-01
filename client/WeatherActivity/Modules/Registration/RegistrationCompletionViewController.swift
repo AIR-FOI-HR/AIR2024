@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import KeychainSwift
 
 final class RegistrationCompletionViewController: UIViewController {
     
     @IBOutlet weak var usernameTextField: UITextField!
     let alerter = Alerter()
+    let keychain = KeychainSwift()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +42,17 @@ final class RegistrationCompletionViewController: UIViewController {
         RegistrationUser.registrationUser.username = username
         RegistrationUser.registrationUser.avatar = selectedAvatar
         RegistrationService().register(userData: RegistrationUser.registrationUser, success: { registrationResponse in
-            debugPrint(registrationResponse)
             if(registrationResponse.msg == "Error") {
                 return
             }
-            self.performSegue(withIdentifier: "toHome", sender: self)
+            if registrationResponse.token != "" {
+                self.keychain.set(registrationResponse.token!, forKey: "sessionToken")
+            }
+            self.performSegue(withIdentifier: "CompletionToHome", sender: self)
         }, failure: {error in
             debugPrint(error)
             self.alerter.setAlerterData(title: "Oops!", message: "Error occured in registration process!")
+            self.alerter.addAction(title: "Back")
             self.present(self.alerter.alerter, animated: true, completion: nil)
             return
         })

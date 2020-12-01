@@ -33,5 +33,6 @@ class RegistrationService {
 
 struct registrationResponse: Decodable {
     let msg: String
+    let token: String?
 }
 

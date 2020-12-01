@@ -23,6 +23,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZD-ue-soe">
+                                <rect key="frame" x="180" y="350" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Log Out"/>
+                                <connections>
+                                    <action selector="logoutPressed:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="dCi-27-OuC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Xft-eF-z2H"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -31,6 +39,9 @@
                             <outletCollection property="gestureRecognizers" destination="pNP-S9-QkH" appends="YES" id="cj2-Jf-kUG"/>
                         </connections>
                     </view>
+                    <connections>
+                        <segue destination="ZfN-al-jwA" kind="presentation" identifier="HomeToLogin" modalPresentationStyle="fullScreen" id="hHI-Xm-YvE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3T-Fp-iTu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <swipeGestureRecognizer direction="right" id="pNP-S9-QkH">
@@ -60,6 +71,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGr-lp-yFv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-485" y="26"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="XkC-QW-8bX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="ZfN-al-jwA" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="GFr-uR-lhG"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZSQ-lH-jn0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-711" y="40"/>
         </scene>
     </scenes>
     <resources>
