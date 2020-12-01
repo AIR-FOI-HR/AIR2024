@@ -7,6 +7,24 @@ const saltRounds = 10;
 const jwt = require('jsonwebtoken')
 const constants = require('../constants');
 
+router.post('/mailcheck', function(req,res,next) {
+    try {
+        let checkEmailSql = `SELECT * FROM user WHERE mail='${req.body.email}'`
+        dbConnection.connection.query(checkEmailSql, (err,data) => {
+            if(err){
+                return res.json({"msg":"error"})
+            } 
+            if (data.length > 0){
+                return res.json({"msg":"Exists"})
+            } else {
+                return res.json({"msg":"Available"})
+            }
+        })
+    } catch (err) {
+        return res.json({"msg":"bsd"})
+    }
+})
+
 router.post('/', function(req,res,next) {
     try {
         bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
@@ -19,7 +37,7 @@ router.post('/', function(req,res,next) {
             console.log(insertUserRegistrationSql)
             dbConnection.connection.query(insertUserRegistrationSql, (err,data) => {
                 if(err) {
-                    return res.json({"msg":"Error"})
+                    return res.json({"msg":"EmailExists"})
                 } else {
                     return res.json({"msg":"Inserted", "token": token})
                 }
