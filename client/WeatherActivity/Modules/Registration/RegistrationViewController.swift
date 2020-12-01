@@ -45,15 +45,11 @@ final class RegistrationViewController: UIViewController {
             present(alerter.alerter, animated: true, completion: nil)
             return
         }
-        let newUser = User(email: email, username: "def", password: password, firstName: firstName, lastName: lastName, deviceToken: "", avatar: "av1")
-        RegistrationService().register(userData: newUser, success: { registrationResponse in
-            debugPrint(registrationResponse)
-        }, failure: {error in
-            debugPrint(error)
-            alerter.setAlerterData(title: "Oops!", message: "Error occured in registration process!")
-            self.present(alerter.alerter, animated: true, completion: nil)
-            return
-        })
+        RegistrationUser.registrationUser.email = email
+        RegistrationUser.registrationUser.password = password
+        RegistrationUser.registrationUser.firstName = firstName
+        RegistrationUser.registrationUser.lastName = lastName
+        
         self.performSegue(withIdentifier: "toRegisterCompletion", sender: self)
     }
     
