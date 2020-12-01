@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 class RegistrationService {
+    
     func register(userData user: RegistrationUser, success: @escaping (RegistrationResponse)->Void, failure: @escaping (Error)->Void) {
         AF.request(Constants.baseUrl.appending("/registration") as URLConvertible,
                    method: .post,

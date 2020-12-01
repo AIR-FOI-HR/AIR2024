@@ -8,6 +8,7 @@
 import Foundation
 
 struct Constants {
+    
     // MARK: - Networking
     
     static let baseUrl = "http://localhost:3000"

@@ -15,15 +15,18 @@ enum LoginNavigation: String {
 
 final class LoginViewController: UIViewController {
     
+    // MARK: IBOutlets
+    
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var passwordTextField: UITextField!
+    
+    // MARK: Properties
     
     let loginService = LoginService()
     let keychain = KeychainSwift()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //keychain.delete("sessionToken")
         if let sessionToken = keychain.get("sessionToken") {
             loginService.checkForToken(token: sessionToken, success: { checkResponse in
                 self.navigate(to: .home)
@@ -59,6 +62,7 @@ final class LoginViewController: UIViewController {
     }
     
     // MARK: IBAction functions
+    
     @IBAction func loginTextFieldDidBeginEditing(_ sender: UITextField) {
         sender.updateTextAppearanceOnFieldDidBeginEditing(sender)
     }
@@ -67,6 +71,8 @@ final class LoginViewController: UIViewController {
         sender.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
 }
+
+// MARK: Navigation
 
 private extension LoginViewController {
     func navigate(to navigation: LoginNavigation) {

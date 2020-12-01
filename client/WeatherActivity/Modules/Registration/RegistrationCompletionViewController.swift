@@ -11,9 +11,11 @@ import KeychainSwift
 final class RegistrationCompletionViewController: UIViewController {
     
     // MARK: IBOutlets
+    
     @IBOutlet weak var usernameTextField: UITextField!
     
-    // MARK: Propertys
+    // MARK: Properties
+    
     let alerter = Alerter()
     let keychain = KeychainSwift()
     let registrationService = RegistrationService()
@@ -21,6 +23,7 @@ final class RegistrationCompletionViewController: UIViewController {
     var selectedAvatar = 0
     
     // MARK: IBActions
+    
     @IBAction func avatarPresed(_ sender: UIButton) {
         if(selectedAvatar != 0){
             let currentAvatar = self.view.viewWithTag(sender.tag)

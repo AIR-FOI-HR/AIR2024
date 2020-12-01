@@ -9,11 +9,14 @@ import UIKit
 final class RegistrationViewController: UIViewController {
     
     // MARK: IBOutlets
+    
     @IBOutlet weak private var firstNameTextField: UITextField!
     @IBOutlet weak private var lastNameTextField: UITextField!
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var passwordTextField: UITextField!
     @IBOutlet weak private var repeatPasswordTextField: UITextField!
+    
+    // MARK: Properties
     
     var registrationUser: RegistrationUser?
     enum AlertMessages: String {
@@ -24,8 +27,9 @@ final class RegistrationViewController: UIViewController {
         case passwordMatchError = "Your passwords don't match!"
         case passwordLengthError = "Password must be at least 6 characters long!"
     }
-    
     let alerter = Alerter()
+    
+    // MARK: IBActions
     
     @IBAction func registerButtonClick(_ sender: UIButton) {
         let alertActionText = "Ok"
@@ -33,7 +37,7 @@ final class RegistrationViewController: UIViewController {
         alerter.addAction(title: alertActionText)
         
         guard let email = emailTextField.text, let password = passwordTextField.text , let firstName = firstNameTextField.text, let lastName = lastNameTextField.text,
-        let repeatedPassword = repeatPasswordTextField.text else {
+              let repeatedPassword = repeatPasswordTextField.text else {
             alerter.setAlerterData(title: alertTitle, message: AlertMessages.inputValuesError.rawValue)
             present(alerter.alerter, animated: true, completion: nil)
             return
@@ -73,9 +77,6 @@ final class RegistrationViewController: UIViewController {
         } failure: { (error) in
             #warning("Handle the error")
         }
-
-        
-        
     }
     
     @IBAction func registrationTextFieldDidBeginEditing(_ sender: UITextField) {
@@ -89,6 +90,7 @@ final class RegistrationViewController: UIViewController {
 }
 
 // MARK: Segue
+
 extension RegistrationViewController {
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is RegistrationCompletionViewController == true {
