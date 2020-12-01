@@ -6,6 +6,8 @@
 //
 import UIKit
 
+
+
 final class RegistrationViewController: UIViewController {
     
     // MARK: IBOutlets
@@ -67,7 +69,7 @@ final class RegistrationViewController: UIViewController {
         RegistrationService().checkEmail(userEmail: email) { (res) in
             if res.msg == "Available" {
                 self.registrationUser = RegistrationUser(userEmail: email, userFirstName: firstName, userLastName: lastName, userPassword: password)
-                self.performSegue(withIdentifier: "toRegisterCompletion", sender: self)
+                self.navigate(to: .registrationCompletion)
             } else {
                 self.alerter.setAlerterData(title: alertTitle, message: AlertMessages.emailAlreadyExists.rawValue)
                 self.present(self.alerter.alerter, animated: true, completion: nil)
@@ -97,5 +99,13 @@ extension RegistrationViewController {
             let registrationVC = segue.destination as! RegistrationCompletionViewController
             registrationVC.registrationUser = registrationUser
         }
+    }
+}
+
+// MARK: Navigation
+
+private extension RegistrationViewController {
+    func navigate(to navigation: Navigation) {
+        performSegue(withIdentifier: navigation.rawValue, sender: self)
     }
 }
