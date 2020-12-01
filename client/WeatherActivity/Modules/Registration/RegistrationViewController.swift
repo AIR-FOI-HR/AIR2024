@@ -20,12 +20,14 @@ final class RegistrationViewController: UIViewController {
         case inputValuesError = "There was a problem with getting your input values"
         case emptyFieldsError = "One or more fields are empty!"
         case invalidEmailError = "You entered invalid e-mail format!"
+        case emailAlreadyExists = "Email is already in use!"
         case passwordMatchError = "Your passwords don't match!"
         case passwordLengthError = "Password must be at least 6 characters long!"
     }
     
+    let alerter = Alerter()
+    
     @IBAction func registerButtonClick(_ sender: UIButton) {
-        let alerter = Alerter()
         let alertActionText = "Ok"
         let alertTitle = "Oops!"
         alerter.addAction(title: alertActionText)
@@ -58,9 +60,22 @@ final class RegistrationViewController: UIViewController {
             present(alerter.alerter, animated: true, completion: nil)
             return
         }
-        registrationUser = RegistrationUser(userEmail: email, userFirstName: firstName, userLastName: lastName, userPassword: password)
+        RegistrationService().checkEmail(userEmail: email) { (res) in
+            if res.msg == "Available" {
+                self.registrationUser = RegistrationUser(userEmail: email, userFirstName: firstName, userLastName: lastName, userPassword: password)
+                self.performSegue(withIdentifier: "toRegisterCompletion", sender: self)
+            } else {
+                self.alerter.setAlerterData(title: alertTitle, message: AlertMessages.emailAlreadyExists.rawValue)
+                self.present(self.alerter.alerter, animated: true, completion: nil)
+                return
+            }
+            
+        } failure: { (error) in
+            print(error)
+        }
+
         
-        self.performSegue(withIdentifier: "toRegisterCompletion", sender: self)
+        
     }
     
     @IBAction func registrationTextFieldDidBeginEditing(_ sender: UITextField) {
