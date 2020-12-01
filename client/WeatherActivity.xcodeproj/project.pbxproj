@@ -36,6 +36,7 @@
 		8C2D041F2576D394002E51D0 /* EmailCheckResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D041E2576D394002E51D0 /* EmailCheckResponse.swift */; };
 		8C2D04242576D8DA002E51D0 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04232576D8DA002E51D0 /* Navigation.swift */; };
 		8C2D04292576D9E9002E51D0 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04282576D9E9002E51D0 /* SecureStorage.swift */; };
+		8C2D042F2576DE3F002E51D0 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D042E2576DE3F002E51D0 /* SessionManager.swift */; };
 		8C7C9A57256D610900683AE5 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C9A56256D610900683AE5 /* RegistrationViewController.swift */; };
 		8C7C9A6D256E9FAE00683AE5 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C9A6C256E9FAE00683AE5 /* LoginService.swift */; };
 		8C7C9A7E256EA3EF00683AE5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C9A7D256EA3EF00683AE5 /* User.swift */; };
@@ -101,6 +102,7 @@
 		8C2D041E2576D394002E51D0 /* EmailCheckResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckResponse.swift; sourceTree = "<group>"; };
 		8C2D04232576D8DA002E51D0 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		8C2D04282576D9E9002E51D0 /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
+		8C2D042E2576DE3F002E51D0 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		8C7C9A56256D610900683AE5 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		8C7C9A6C256E9FAE00683AE5 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		8C7C9A7D256EA3EF00683AE5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 			children = (
 				8C2D04192576D376002E51D0 /* RegistrationResponse.swift */,
 				8C2D041E2576D394002E51D0 /* EmailCheckResponse.swift */,
+				8CE0417125764E04005EFEC4 /* RegistrationUser.swift */,
 			);
 			path = RegistrationModels;
 			sourceTree = "<group>";
@@ -380,9 +383,9 @@
 				8C2D04182576D369002E51D0 /* RegistrationModels */,
 				8C2D040A2576D28B002E51D0 /* LoginModels */,
 				8C7C9A7D256EA3EF00683AE5 /* User.swift */,
-				8CE0417125764E04005EFEC4 /* RegistrationUser.swift */,
 				8C2D04232576D8DA002E51D0 /* Navigation.swift */,
 				8C2D04282576D9E9002E51D0 /* SecureStorage.swift */,
+				8C2D042E2576DE3F002E51D0 /* SessionManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 				8C2D04242576D8DA002E51D0 /* Navigation.swift in Sources */,
 				8C7C9A57256D610900683AE5 /* RegistrationViewController.swift in Sources */,
 				8C2D04292576D9E9002E51D0 /* SecureStorage.swift in Sources */,
+				8C2D042F2576DE3F002E51D0 /* SessionManager.swift in Sources */,
 				8C2D041F2576D394002E51D0 /* EmailCheckResponse.swift in Sources */,
 				8C2D04062576D280002E51D0 /* LoginCredentials.swift in Sources */,
 				8C8BF4E72570F16D00E1CBE8 /* RegistrationService.swift in Sources */,
