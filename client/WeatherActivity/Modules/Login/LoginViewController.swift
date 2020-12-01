@@ -35,13 +35,22 @@ final class LoginViewController: UIViewController {
     
     @IBAction func loginButtonClick(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
-            // Return message to the user
+            let alerter = Alerter(title: "Oops!", message: "There was a problem with getting your input values")
+            alerter.addAction(title: "Ok")
+            present(alerter.alerter, animated: true, completion: nil)
             return
         }
         let credentials = LoginCredentials(email: email, password: password)
         loginService.login(with: credentials, success: { apiResponse in
             self.keychain.set(apiResponse.sessionToken, forKey: "sessionToken")
-            apiResponse.logged == true ? self.navigate(to: .home) : self.showAlert()
+            if(apiResponse.logged){
+                self.navigate(to: .home)
+            }
+            else{
+                let alerter = Alerter(title: "Oops!", message: "You entered wrong credentials")
+                alerter.addAction(title: "Ok")
+                self.present(alerter.alerter, animated: true, completion: nil)
+            }
         }, failure: { error in
             print("error \(error)")
         })
@@ -60,13 +69,5 @@ final class LoginViewController: UIViewController {
 private extension LoginViewController {
     func navigate(to navigation: LoginNavigation) {
         performSegue(withIdentifier: navigation.rawValue, sender: self)
-    }
-    
-    func showAlert() {
-        let popupAlert = UIAlertController(title: "Oops!", message: "Wrong credentials", preferredStyle: UIAlertController.Style.alert)
-        popupAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
-            popupAlert.dismiss(animated: true, completion: nil)
-        }))
-        self.present(popupAlert, animated: true, completion: nil)
     }
 }
