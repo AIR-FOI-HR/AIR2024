@@ -215,6 +215,7 @@
 		4252F67E25626E7C00FCA0CB /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8C303EF32577907F00ACB536 /* Storage */,
 				429A736425758E7500B99F8D /* ErrorHandling */,
 				8C7C9A7C256EA3D000683AE5 /* UI */,
 				8C7C9A6A256E9F8A00683AE5 /* Networking */,
@@ -358,11 +359,20 @@
 			path = RegistrationModels;
 			sourceTree = "<group>";
 		};
+		8C303EF32577907F00ACB536 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				8C2D04282576D9E9002E51D0 /* SecureStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		8C7C9A6A256E9F8A00683AE5 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				8C7C9A7B256EA3A900683AE5 /* Models */,
 				8C7C9A6B256E9F9100683AE5 /* Services */,
+				8C2D042E2576DE3F002E51D0 /* SessionManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -384,8 +394,6 @@
 				8C2D040A2576D28B002E51D0 /* LoginModels */,
 				8C7C9A7D256EA3EF00683AE5 /* User.swift */,
 				8C2D04232576D8DA002E51D0 /* Navigation.swift */,
-				8C2D04282576D9E9002E51D0 /* SecureStorage.swift */,
-				8C2D042E2576DE3F002E51D0 /* SessionManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
