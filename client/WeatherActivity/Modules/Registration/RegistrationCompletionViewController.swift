@@ -19,7 +19,6 @@ final class RegistrationCompletionViewController: UIViewController {
     let registrationService = RegistrationService()
     var registrationUser: RegistrationUser?
     var selectedAvatar = 0
-    let secureStorage = SecureStorage()
     
     // MARK: IBActions
     
@@ -52,7 +51,7 @@ final class RegistrationCompletionViewController: UIViewController {
                 return
             }
             if registrationResponse.token != "" {
-                self.secureStorage.saveToken(sessionToken: registrationResponse.token!, keyType: .sessionToken)
+                SessionManager.shared.saveToken(registrationResponse.token!)
             }
             self.performSegue(withIdentifier: "CompletionToHome", sender: self)
         }, failure: {error in

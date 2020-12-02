@@ -17,7 +17,7 @@ final class LoginViewController: UIViewController {
     // MARK: Properties
 
     let loginService = LoginService()
-    let secureStorage = SecureStorage()
+    let userDefaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,10 @@ final class LoginViewController: UIViewController {
             }, failure: { error in
                 #warning("Return message to the user")
             })
+        }
+        
+        if let lastEmail = userDefaults.array(forKey: "LastEnteredEmail") as? [String] {
+            emailTextField.text = lastEmail[0]
         }
     }
 
@@ -39,8 +43,9 @@ final class LoginViewController: UIViewController {
         }
         let credentials = LoginCredentials(email: email, password: password)
         loginService.login(with: credentials, success: { apiResponse in
-            self.secureStorage.saveToken(sessionToken: apiResponse.sessionToken, keyType: .sessionToken)
+            SessionManager.shared.saveToken(apiResponse.sessionToken)
             if(!apiResponse.sessionToken.isEmpty) {
+                self.userDefaults.set([email], forKey: "LastEnteredEmail")
                 self.navigate(to: .home)
             }
             else{
