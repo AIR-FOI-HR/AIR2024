@@ -34,6 +34,8 @@ final class LoginViewController: UIViewController {
         }
     }
 
+    // MARK: IBActions
+    
     @IBAction func loginButtonClick(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             let alerter = Alerter(title: "Oops!", message: "There was a problem with getting your input values")
@@ -59,8 +61,6 @@ final class LoginViewController: UIViewController {
             self.present(alerter.alerter, animated: true, completion: nil)
         })
     }
-    
-    // MARK: IBAction functions
 
     @IBAction func loginTextFieldDidBeginEditing(_ sender: UITextField) {
         sender.updateTextAppearanceOnFieldDidBeginEditing(sender)
