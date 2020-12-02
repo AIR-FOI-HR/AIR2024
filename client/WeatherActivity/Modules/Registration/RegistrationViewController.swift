@@ -27,7 +27,7 @@ final class RegistrationViewController: UIViewController {
     
     // MARK: Properties
     
-    var registrationUser: RegistrationUser?
+    var firstStepData: FirstStepRegistrationData?
     let alerter = Alerter()
     let alertActionText = "Ok"
     let alertTitle = "Oops!"
@@ -54,7 +54,7 @@ final class RegistrationViewController: UIViewController {
         
         registrationService.checkEmail(userEmail: email) { (res) in
             if res.msg == "Available" {
-                self.registrationUser = RegistrationUser(userEmail: email, userFirstName: firstName, userLastName: lastName, userPassword: password)
+                self.firstStepData = FirstStepRegistrationData(firstName: firstName, lastName: lastName, email: email, password: password)
                 self.navigate(to: .registrationCompletion)
             } else {
                 self.alerter.setAlerterData(title: self.alertTitle, message: AlertMessages.emailAlreadyExists.rawValue)
@@ -75,6 +75,11 @@ final class RegistrationViewController: UIViewController {
         sender.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
     
+    
+    @IBAction func backToLogin(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 // MARK: Segue
@@ -83,7 +88,10 @@ extension RegistrationViewController {
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is RegistrationCompletionViewController == true {
             let registrationVC = segue.destination as! RegistrationCompletionViewController
-            registrationVC.registrationUser = registrationUser
+            guard let data = self.firstStepData else {
+                return
+            }
+            registrationVC.firstStepData = data
         }
     }
 }

@@ -33,7 +33,7 @@ router.post('/', function(req,res,next) {
                 username: req.body.username
             }, constants.jwtKey)
             let hashedPassword = hash    
-            let insertUserRegistrationSql = `INSERT INTO user VALUES ('${req.body.email}', '${req.body.username}', '${hashedPassword}', '${req.body.firstName}', '${req.body.lastName}', '1', ${req.body.avatar}, '${token}');`
+            let insertUserRegistrationSql = `INSERT INTO user VALUES ('${req.body.email}', '${req.body.username}', '${hashedPassword}', '${req.body.firstName}', '${req.body.lastName}', '1', ${req.body.avatarId}, '${token}');`
             console.log(insertUserRegistrationSql)
             dbConnection.connection.query(insertUserRegistrationSql, (err,data) => {
                 if(err) {

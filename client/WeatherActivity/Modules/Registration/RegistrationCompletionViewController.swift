@@ -17,7 +17,8 @@ final class RegistrationCompletionViewController: UIViewController {
     
     let alerter = Alerter()
     let registrationService = RegistrationService()
-    var registrationUser: RegistrationUser?
+    var firstStepData: FirstStepRegistrationData?
+    var secondStepData: SecondStepRegistrationData?
     var selectedAvatar = 0
     
     // MARK: IBActions
@@ -35,15 +36,17 @@ final class RegistrationCompletionViewController: UIViewController {
             let currentAvatar = self.view.viewWithTag(sender.tag)
             sender.selectedButtonAvatar(currentAvatar as! UIButton)
             
-            selectedAvatar = sender.tag
+            selectedAvatar = Int(sender.tag)
         }
     }
     
     @IBAction func finishButtonClicked(_ sender: UIButton) {
         guard let username = usernameTextField.text else { return }
-        registrationUser?.username = username
-        registrationUser?.avatarId = selectedAvatar
-        registrationService.register(userData: registrationUser!, success: { registrationResponse in
+        self.secondStepData = SecondStepRegistrationData(username: username, avatarId: selectedAvatar)
+        let registrationData = RegistrationData(first: firstStepData, second: secondStepData)
+        let registrationUser = RegistrationUser(firstName: registrationData.first!.firstName, lastName: registrationData.first!.lastName, email: registrationData.first!.email, password: registrationData.first!.password, username: registrationData.second!.username, avatarId: registrationData.second!.avatarId)
+        
+        registrationService.register(userData: registrationUser, success: { registrationResponse in
             if(registrationResponse.msg == "Error") {
                 self.alerter.setAlerterData(title: "Oops!", message: "Error occured in registration process!")
                 self.alerter.addAction(title: "Back")
