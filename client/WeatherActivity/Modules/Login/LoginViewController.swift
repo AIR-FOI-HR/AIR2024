@@ -29,7 +29,7 @@ final class LoginViewController: UIViewController {
             })
         }
         
-        if let lastEmail = userDefaults.array(forKey: "LastEnteredEmail") as? [String] {
+        if let lastEmail = userDefaults.array(forKey: Constants.lastEnteredEmail) as? [String] {
             emailTextField.text = lastEmail[0]
         }
     }
@@ -45,7 +45,7 @@ final class LoginViewController: UIViewController {
         loginService.login(with: credentials, success: { apiResponse in
             SessionManager.shared.saveToken(apiResponse.sessionToken)
             if(!apiResponse.sessionToken.isEmpty) {
-                self.userDefaults.set([email], forKey: "LastEnteredEmail")
+                self.userDefaults.set([email], forKey: Constants.lastEnteredEmail)
                 self.navigate(to: .home)
             }
             else{

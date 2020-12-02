@@ -12,4 +12,8 @@ struct Constants {
     // MARK: - Networking
     
     static let baseUrl = "http://localhost:3000"
+    
+    // MARK: User Defaults
+    
+    static let lastEnteredEmail = "LastEnteredEmail"
 }
