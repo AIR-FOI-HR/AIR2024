@@ -7,6 +7,7 @@
 import UIKit
 
 enum AlertMessages: String {
+    case alertTitle = "Oops!"
     case inputValuesError = "There was a problem with getting your input values"
     case emptyFieldsError = "One or more fields are empty!"
     case invalidEmailError = "You entered invalid e-mail format!"
@@ -28,21 +29,15 @@ final class RegistrationViewController: UIViewController {
     // MARK: Properties
     
     var firstStepData: FirstStepRegistrationData?
-    let alerter = Alerter()
-    let alertActionText = "Ok"
-    let alertTitle = "Oops!"
     let registrationService = RegistrationService()
     
     // MARK: IBActions
     
     @IBAction func registerButtonClick(_ sender: UIButton) {
         
-        alerter.addAction(title: alertActionText)
-        
         guard let email = emailTextField.text, let password = passwordTextField.text , let firstName = firstNameTextField.text, let lastName = lastNameTextField.text,
               let repeatedPassword = repeatPasswordTextField.text else {
-            alerter.setAlerterData(title: alertTitle, message: AlertMessages.inputValuesError.rawValue)
-            present(alerter.alerter, animated: true, completion: nil)
+            presentAlert(title: AlertMessages.alertTitle.rawValue, message: AlertMessages.inputValuesError.rawValue)
             return
         }
         
@@ -57,8 +52,7 @@ final class RegistrationViewController: UIViewController {
                 self.firstStepData = FirstStepRegistrationData(firstName: firstName, lastName: lastName, email: email, password: password)
                 self.navigate(to: .registrationCompletion)
             } else {
-                self.alerter.setAlerterData(title: self.alertTitle, message: AlertMessages.emailAlreadyExists.rawValue)
-                self.present(self.alerter.alerter, animated: true, completion: nil)
+                self.presentAlert(title: AlertMessages.alertTitle.rawValue, message: AlertMessages.emailAlreadyExists.rawValue)
                 return
             }
             
@@ -126,8 +120,7 @@ private extension RegistrationViewController {
     
     func checkForEmptyFields(registrationValidator: RegistrationValidator) -> Bool {
         if(registrationValidator.emptyFieldExist()){
-            self.alerter.setAlerterData(title: alertTitle, message: AlertMessages.emptyFieldsError.rawValue)
-            self.present(self.alerter.alerter, animated: true, completion: nil)
+            presentAlert(title: AlertMessages.alertTitle.rawValue, message: AlertMessages.emptyFieldsError.rawValue)
             return false
         }
         return true
@@ -135,8 +128,7 @@ private extension RegistrationViewController {
     
     func isEmailValid(registrationValidator: RegistrationValidator) -> Bool {
         if(!registrationValidator.isValidEmail()){
-            alerter.setAlerterData(title: alertTitle, message: AlertMessages.invalidEmailError.rawValue)
-            present(alerter.alerter, animated: true, completion: nil)
+            presentAlert(title: AlertMessages.alertTitle.rawValue, message: AlertMessages.invalidEmailError.rawValue)
             return false
         }
         return true
@@ -144,8 +136,7 @@ private extension RegistrationViewController {
     
     func isRepeatedPasswordValid(registrationValidator: RegistrationValidator) -> Bool {
         if(!registrationValidator.isValidRepeatedPassword()){
-            alerter.setAlerterData(title: alertTitle, message: AlertMessages.passwordMatchError.rawValue)
-            present(alerter.alerter, animated: true, completion: nil)
+            presentAlert(title: AlertMessages.alertTitle.rawValue, message: AlertMessages.passwordMatchError.rawValue)
             return false
         }
         return true
@@ -153,8 +144,7 @@ private extension RegistrationViewController {
     
     func isPasswordLengthValid(registrationValidator: RegistrationValidator) -> Bool {
         if(!registrationValidator.isValidPasswordLength()){
-            alerter.setAlerterData(title: alertTitle, message: AlertMessages.passwordLengthError.rawValue)
-            present(alerter.alerter, animated: true, completion: nil)
+            presentAlert(title: AlertMessages.alertTitle.rawValue, message: AlertMessages.passwordLengthError.rawValue)
             return false
         }
         return true

@@ -38,9 +38,7 @@ final class LoginViewController: UIViewController {
     
     @IBAction func loginButtonClick(_ sender: UIButton) {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
-            let alerter = Alerter(title: "Oops!", message: "There was a problem with getting your input values")
-            alerter.addAction(title: "Ok")
-            present(alerter.alerter, animated: true, completion: nil)
+            presentAlert(title: "Oops!", message: "There was a problem with getting your input values")
             return
         }
         let credentials = LoginCredentials(email: email, password: password)
@@ -51,14 +49,10 @@ final class LoginViewController: UIViewController {
                 self.navigate(to: .home)
             }
             else{
-                let alerter = Alerter(title: "Oops!", message: "You entered wrong credentials")
-                alerter.addAction(title: "Ok")
-                self.present(alerter.alerter, animated: true, completion: nil)
+                self.presentAlert(title: "Oops!", message: "You entered wrong credentials")
             }
         }, failure: { error in
-            let alerter = Alerter(title: "Oops!", message: "You entered wrong credentials")
-            alerter.addAction(title: "Ok")
-            self.present(alerter.alerter, animated: true, completion: nil)
+            self.presentAlert(title: "Oops!", message: "You entered wrong credentials")
         })
     }
 

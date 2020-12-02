@@ -15,7 +15,6 @@ final class RegistrationCompletionViewController: UIViewController {
     
     // MARK: Properties
     
-    let alerter = Alerter()
     let registrationService = RegistrationService()
     var firstStepData: FirstStepRegistrationData?
     var secondStepData: SecondStepRegistrationData?
@@ -48,9 +47,7 @@ final class RegistrationCompletionViewController: UIViewController {
         
         registrationService.register(userData: registrationUser, success: { registrationResponse in
             if(registrationResponse.msg == "Error") {
-                self.alerter.setAlerterData(title: "Oops!", message: "Error occured in registration process!")
-                self.alerter.addAction(title: "Back")
-                self.present(self.alerter.alerter, animated: true, completion: nil)
+                self.presentAlert(title: "Oops!", message: "Error occured in registration process!")
                 return
             }
             if registrationResponse.token != "" {
@@ -59,9 +56,7 @@ final class RegistrationCompletionViewController: UIViewController {
             self.performSegue(withIdentifier: "CompletionToHome", sender: self)
         }, failure: {error in
             debugPrint(error)
-            self.alerter.setAlerterData(title: "Oops!", message: "Error occured in registration process!")
-            self.alerter.addAction(title: "Back")
-            self.present(self.alerter.alerter, animated: true, completion: nil)
+            self.presentAlert(title: "Oops!", message: "Error occured in registration process!")
             return
         })
     }
