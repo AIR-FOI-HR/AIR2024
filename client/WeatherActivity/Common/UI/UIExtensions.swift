@@ -28,6 +28,7 @@ extension UITextField: UITextFieldDelegate {
 // MARK: Text field on click next
 
 extension UIViewController: UITextFieldDelegate {
+    
     public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
             nextField.becomeFirstResponder()
@@ -39,6 +40,7 @@ extension UIViewController: UITextFieldDelegate {
 }
 
 extension UIButton {
+    
     func selectedButtonAvatar(_ button: UIButton) {
         button.layer.cornerRadius = 5.0
         button.layer.borderWidth = 1

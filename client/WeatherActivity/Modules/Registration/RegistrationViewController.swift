@@ -97,6 +97,7 @@ private extension RegistrationViewController {
 }
 
 // MARK: Validation methods
+
 private extension RegistrationViewController {
     
     func checkAllValidators(registrationValidator: RegistrationValidator) -> Bool {

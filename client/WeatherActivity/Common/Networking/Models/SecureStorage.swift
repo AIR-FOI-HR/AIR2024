@@ -12,6 +12,7 @@ enum SecureStorageKey: String {
 }
 
 class SecureStorage {
+    
     let keychain = KeychainSwift()
     
     func saveToken(sessionToken token: String, keyType key: SecureStorageKey) {
