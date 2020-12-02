@@ -69,6 +69,7 @@
                                                     </attributedString>
                                                 </state>
                                                 <connections>
+                                                    <action selector="backToLogin:" destination="TPP-vD-yEk" eventType="touchUpInside" id="06W-RW-km6"/>
                                                     <segue destination="aVJ-Qy-lbI" kind="presentation" modalPresentationStyle="fullScreen" id="IwX-0o-lYB"/>
                                                 </connections>
                                             </button>
