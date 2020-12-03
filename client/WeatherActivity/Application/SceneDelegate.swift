@@ -19,19 +19,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        if let sessionToken = SessionManager.shared.getToken() {
-            loginService.checkForToken(token: sessionToken, success: { checkResponse in
-                if(checkResponse.token == true){
-                    let homeViewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-                    self.window?.rootViewController = homeViewController
-                    self.window?.makeKeyAndVisible()
-                }
-            }, failure: { error in
-                let homeViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! HomeViewController
-                self.window?.rootViewController = homeViewController
-                self.window?.makeKeyAndVisible()
-            })
-        }
+//        if let sessionToken = SessionManager.shared.getToken() {
+//            loginService.checkForToken(token: sessionToken, success: { checkResponse in
+//                if(checkResponse.token == true){
+//                    let homeViewController = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+//                    self.window?.rootViewController = homeViewController
+//                    self.window?.makeKeyAndVisible()
+//                }
+//            }, failure: { error in
+//                let homeViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! HomeViewController
+//                self.window?.rootViewController = homeViewController
+//                self.window?.makeKeyAndVisible()
+//            })
+//        }
         
         guard let _ = (scene as? UIWindowScene) else { return }
     }
