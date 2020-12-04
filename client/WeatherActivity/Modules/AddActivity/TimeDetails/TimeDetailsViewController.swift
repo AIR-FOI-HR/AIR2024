@@ -23,11 +23,15 @@ class TimeDetailsViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var fromTimePicker: UIDatePicker!
     @IBOutlet weak var untilTimePicker: UIDatePicker!
+    @IBOutlet weak var morningDetailsLabel: UILabel!
     
     // MARK: Properties
     
     let dateFormatter = DateFormatter()
     var locationDetails: LocationDetails?
+    let weatherManager = WeatherManager()
+    #warning("Delete dummy location")
+    let dummyLocation = LocationDetails(latitude: 46.306268, longitude: 16.336089)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +50,22 @@ class TimeDetailsViewController: UIViewController {
     }
 }
 
+// MARK: Data manager
+
+private extension TimeDetailsViewController {
+    
+    func getForecast(date: Date) {
+        weatherManager.getWeatherForecast(date: date, locationCoordinates: dummyLocation) { weatherData in
+            debugPrint(weatherData)
+            self.morningDetailsLabel.text = String(weatherData.main.temp)
+            #warning("Handle succes, weather data object")
+        } failure: { error in
+            #warning("Handle error")
+        }
+
+    }
+}
+
 // MARK: Date time
 
 private extension TimeDetailsViewController {
@@ -53,6 +73,7 @@ private extension TimeDetailsViewController {
     @objc func datePickerEndEditing() {
         dateFormatter.dateFormat = Constants.defaultDateFormat
         debugPrint(datePicker.date)
+        getForecast(date: datePicker.date)
         // GET FORECAST
     }
     
@@ -78,5 +99,3 @@ private extension TimeDetailsViewController {
         return modifiedDate
     }
 }
-
-// MARK: Forecast
