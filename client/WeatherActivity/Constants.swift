@@ -24,4 +24,8 @@ struct Constants {
     static let defaultDateFormat = "dd-MM-yyyy"
     
     // MARK: Openweather API
+    
+    static let weatherApiKey = "02963ce30a9761093ff046cefdccaf73"
+    static let weatherBaseUrlCoordinates = "https://api.openweathermap.org/data/2.5/weather?units=metric&appid=".appending(weatherApiKey)
+    static let weatherBaseUrlName = "https://api.openweathermap.org/data/2.5/weather?units=metric&appid=".appending(weatherApiKey)
 }
