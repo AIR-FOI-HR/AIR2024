@@ -25,6 +25,7 @@ class LocationDetailsViewController: UIViewController {
     var locationManager = CLLocationManager()
     var searchCompleter = MKLocalSearchCompleter()
     var searchSuggestions = [String]()
+    let geoCoder = CLGeocoder()
     
     
     override func viewDidLoad() {
@@ -90,6 +91,7 @@ private extension LocationDetailsViewController {
 extension LocationDetailsViewController: MKLocalSearchCompleterDelegate {
     
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
+        self.searchSuggestions = []
         for res in completer.results {
             self.searchSuggestions.append(res.title)
         }
@@ -109,6 +111,8 @@ extension LocationDetailsViewController {
     @objc func textFieldDidChangeValue() {
         if(locationTextField.text!.count > 3) {
             searchCompleter.queryFragment = locationTextField.text!
+        } else {
+            self.searchSuggestions = []
         }
     }
 }
@@ -119,5 +123,16 @@ extension LocationDetailsViewController: CHDropDownTextFieldDelegate {
     
     func dropDownTextField(_ dropDownTextField: CHDropDownTextField!, didChooseDropDownOptionAt index: UInt) {
         self.locationTextField.text = self.searchSuggestions[Int(index)]
+        self.geoCoder.geocodeAddressString(self.searchSuggestions[Int(index)]) { (placemarks, error) in
+            guard
+                let placemarks = placemarks,
+                let location = placemarks.first?.location
+            else {
+                return
+            }
+            print("lat: \(location.coordinate.latitude)")
+            print("lon: \(location.coordinate.longitude)")
+            self.zoomMap(lat: location.coordinate.latitude, lon: location.coordinate.longitude, setMapPoint: true)
+        }
     }
 }
