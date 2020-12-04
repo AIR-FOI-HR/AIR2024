@@ -5,14 +5,15 @@
 //  Created by Kevin Bogdan on 03.12.2020..
 //
 
-import Foundation
+import MapKit
 
 struct NewActivity {
     
 }
 
 struct LocationDetails {
-    
+    var latitude: CLLocationDegrees
+    var longitude: CLLocationDegrees
 }
 
 struct TimeDetails {
