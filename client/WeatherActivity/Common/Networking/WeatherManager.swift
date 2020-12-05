@@ -11,7 +11,6 @@ import Alamofire
 
 class WeatherManager {
     
-    #warning("Date could be only 5 days later than today")
     func getWeatherForecast(date: Date, locationCoordinates: LocationDetails, success: @escaping (WeatherData)->Void, failure: @escaping (Error)->Void) {
         AF.request(
             Constants.weatherBaseUrlCoordinates.appending("&lat=\(locationCoordinates.latitude)&lon=\(locationCoordinates.longitude)") as URLConvertible,
