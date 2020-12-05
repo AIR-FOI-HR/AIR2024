@@ -5,13 +5,18 @@
 //  Created by Kevin Bogdan on 04.12.2020..
 //
 
-// MARK: - Welcome
+// MARK: - WeatherData API
 
 struct WeatherData: Codable {
     let cod: String?
     let message, cnt: Int?
-    let list: [List]?
+    let weatherList: [WeatherList]?
     let city: City?
+    
+    enum CodingKeys: String, CodingKey {
+        case cod, message, cnt, city
+        case weatherList = "list"
+    }
 }
 
 // MARK: - City
@@ -29,8 +34,8 @@ struct Coord: Codable {
 }
 
 // MARK: - List
-struct List: Codable {
-    let dt: Int?
+struct WeatherList: Codable {
+    let dt: Double?
     let main: MainClass?
     let weather: [Weather]?
     let clouds: Clouds?
