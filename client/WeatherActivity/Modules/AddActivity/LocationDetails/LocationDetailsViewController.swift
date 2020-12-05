@@ -26,6 +26,7 @@ class LocationDetailsViewController: UIViewController {
     var searchCompleter = MKLocalSearchCompleter()
     var searchSuggestions = [String]()
     let geoCoder = CLGeocoder()
+    var locationDetails: LocationDetails?
     
     
     override func viewDidLoad() {
@@ -38,6 +39,9 @@ class LocationDetailsViewController: UIViewController {
         locationTextField.dropDownTableVisibleRowCount = 3
         locationTextField.dropDownDelegate = self
         
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(longTap))
+        gestureRecognizer.delegate = self
+        mapView.addGestureRecognizer(gestureRecognizer)
         
         locationManager.delegate = self
         locationManager.requestLocation()
@@ -56,12 +60,14 @@ class LocationDetailsViewController: UIViewController {
 extension LocationDetailsViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
         if let location = locations.last {
             zoomMap(lat: location.coordinate.latitude, lon: location.coordinate.longitude, setMapPoint: true)
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
         #warning("Handle error")
     }
 }
@@ -80,9 +86,17 @@ private extension LocationDetailsViewController {
     }
     
     func addMapPointAnnotation(lat latitude: CLLocationDegrees, lon longitude: CLLocationDegrees) {
+        removeAnnotations()
         let mapPoint: MKPointAnnotation = MKPointAnnotation()
         mapPoint.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
         mapView.addAnnotation(mapPoint)
+        let coordinates = CLLocation(latitude: latitude, longitude: longitude)
+        geoDecodeFromCoordinates(locationCoordinates: coordinates)
+    }
+    
+    func removeAnnotations() {
+        let allAnnotations = self.mapView.annotations
+        self.mapView.removeAnnotations(allAnnotations)
     }
 }
 
@@ -122,6 +136,7 @@ extension LocationDetailsViewController {
 extension LocationDetailsViewController: CHDropDownTextFieldDelegate {
     
     func dropDownTextField(_ dropDownTextField: CHDropDownTextField!, didChooseDropDownOptionAt index: UInt) {
+        
         self.locationTextField.text = self.searchSuggestions[Int(index)]
         self.geoCoder.geocodeAddressString(self.searchSuggestions[Int(index)]) { (placemarks, error) in
             guard
@@ -130,9 +145,47 @@ extension LocationDetailsViewController: CHDropDownTextFieldDelegate {
             else {
                 return
             }
-            print("lat: \(location.coordinate.latitude)")
-            print("lon: \(location.coordinate.longitude)")
             self.zoomMap(lat: location.coordinate.latitude, lon: location.coordinate.longitude, setMapPoint: true)
         }
+    }
+}
+
+// MARK: Gesture Recognizer delegate
+
+extension LocationDetailsViewController: UIGestureRecognizerDelegate {
+    
+    @objc func longTap(gestureRecognizer: UILongPressGestureRecognizer) {
+        
+        let location = gestureRecognizer.location(in: self.mapView)
+        let coordinate = mapView.convert(location, toCoordinateFrom: self.mapView)
+        self.addMapPointAnnotation(lat: coordinate.latitude, lon: coordinate.longitude)
+        let coordinates = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        geoDecodeFromCoordinates(locationCoordinates: coordinates)
+    }
+}
+
+// MARK: Geo coder
+
+extension LocationDetailsViewController {
+    
+    func geoDecodeFromCoordinates(locationCoordinates cords: CLLocation) {
+        geoCoder.reverseGeocodeLocation(cords) { (placemark, error) in
+            if let loc = placemark?.first {
+                guard let locationName = loc.name, let latitude = loc.location?.coordinate.latitude, let longitude = loc.location?.coordinate.longitude else { return }
+                self.saveLocationData(locationName: locationName, latitude: latitude, longitude: longitude)
+            }
+        }
+    }
+}
+
+// MARK: Location details manager
+
+extension LocationDetailsViewController {
+    
+    func saveLocationData(locationName name: String, latitude lat: CLLocationDegrees, longitude lon: CLLocationDegrees) {
+        
+        self.locationDetails = LocationDetails(locationName: name, latitude: lat, longitude: lon)
+        print(self.locationDetails)
+        #warning("Handle location details struct")
     }
 }
