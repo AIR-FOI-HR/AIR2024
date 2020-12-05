@@ -27,7 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     self.window?.makeKeyAndVisible()
                 }
             }, failure: { error in
-                let homeViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! HomeViewController
+                let homeViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
                 self.window?.rootViewController = homeViewController
                 self.window?.makeKeyAndVisible()
             })
