@@ -23,7 +23,10 @@ class TimeDetailsViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var fromTimePicker: UIDatePicker!
     @IBOutlet weak var untilTimePicker: UIDatePicker!
-    @IBOutlet weak var morningDetailsLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var aqiLabel: UILabel!
+    @IBOutlet weak var windLabel: UILabel!
+    @IBOutlet weak var humidityLabel: UILabel!
     
     // MARK: Properties
     
@@ -57,7 +60,7 @@ private extension TimeDetailsViewController {
     func getForecast(date: Date) {
         weatherManager.getWeatherForecast(date: date, locationCoordinates: dummyLocation) { weatherData in
             debugPrint(weatherData)
-            self.morningDetailsLabel.text = String(weatherData.main.temp)
+            self.temperatureLabel.text = String(weatherData.main.temp)
             #warning("Handle succes, weather data object")
         } failure: { error in
             #warning("Handle error")
