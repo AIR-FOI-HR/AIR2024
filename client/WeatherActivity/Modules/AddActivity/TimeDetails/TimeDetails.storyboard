@@ -100,29 +100,38 @@
                                                             <constraint firstItem="Jx1-yE-93g" firstAttribute="leading" secondItem="aRl-Jw-Uua" secondAttribute="leading" id="f4x-ZA-h7j"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PEB-4n-Pq3" userLabel="Humidity Stack View">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PEB-4n-Pq3" userLabel="Feels Like Stack View">
                                                         <rect key="frame" x="0.0" y="158" width="284" height="50"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Df7-ib-9zF">
                                                                 <rect key="frame" x="0.0" y="0.0" width="284" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aqi.medium" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oCC-kA-vbv">
-                                                                        <rect key="frame" x="0.0" y="-1" width="50" height="51.5"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="thermometer" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="oCC-kA-vbv">
+                                                                        <rect key="frame" x="0.0" y="0.5" width="50" height="50.5"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="50" id="Zhe-e3-PO4"/>
                                                                         </constraints>
                                                                     </imageView>
-                                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qle-jD-u1p">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9w1-AQ-H6k">
                                                                         <rect key="frame" x="50" y="0.0" width="234" height="50"/>
                                                                         <subviews>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="AQI" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTy-1I-Y6E" userLabel="AQI Placeholder Label">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="123.5" height="50"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Feels like" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4N-z0-WeD" userLabel="Temperature Value Label">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="126" height="50"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
-                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moderate (56)" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSK-O8-S8y" userLabel="AQI Value Label">
-                                                                                <rect key="frame" x="123.5" y="0.0" width="110.5" height="50"/>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBe-en-Abn" userLabel="Temperature Value Label">
+                                                                                <rect key="frame" x="126" y="0.0" width="78" height="50"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                                <nil key="textColor"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="° C" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="553-dc-LNC" userLabel="Temperature Placeholder Label">
+                                                                                <rect key="frame" x="204" y="0.0" width="30" height="50"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="30" id="wU9-SJ-vyy"/>
+                                                                                </constraints>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -306,10 +315,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="aqiLabel" destination="FSK-O8-S8y" id="G0l-fU-TM0"/>
                         <outlet property="datePicker" destination="zYI-Zx-WAi" id="ycQ-Ad-TPK"/>
                         <outlet property="fromTimePicker" destination="jzx-Sn-r3T" id="5Gt-1m-xLt"/>
                         <outlet property="humidityLabel" destination="95N-jn-nzT" id="kqN-4v-zpx"/>
+                        <outlet property="temperatureFeelsLikeLabel" destination="dBe-en-Abn" id="Y9g-fF-Odf"/>
                         <outlet property="temperatureLabel" destination="VFl-fb-UcW" id="y7J-FW-B8B"/>
                         <outlet property="untilTimePicker" destination="gdU-y9-Huo" id="t8B-oe-UEm"/>
                         <outlet property="windLabel" destination="Ni1-5i-ctx" id="tyx-Ye-8H7"/>
@@ -321,8 +330,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="aqi.medium" catalog="system" width="128" height="125"/>
         <image name="drop" catalog="system" width="101" height="128"/>
+        <image name="thermometer" catalog="system" width="93" height="128"/>
         <image name="thermometer.sun" catalog="system" width="114" height="128"/>
         <image name="wind" catalog="system" width="128" height="101"/>
         <image name="xmark" catalog="system" width="128" height="113"/>

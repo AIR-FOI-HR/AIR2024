@@ -24,9 +24,9 @@ class TimeDetailsViewController: UIViewController {
     @IBOutlet weak var fromTimePicker: UIDatePicker!
     @IBOutlet weak var untilTimePicker: UIDatePicker!
     @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var aqiLabel: UILabel!
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var humidityLabel: UILabel!
+    @IBOutlet weak var temperatureFeelsLikeLabel: UILabel!
     
     // MARK: Properties
     
@@ -59,13 +59,25 @@ private extension TimeDetailsViewController {
     
     func getForecast(date: Date) {
         weatherManager.getWeatherForecast(date: date, locationCoordinates: dummyLocation) { weatherData in
-            debugPrint(weatherData)
-            self.temperatureLabel.text = String(weatherData.main.temp)
-            #warning("Handle succes, weather data object")
+            self.presentData(weatherData: weatherData)
         } failure: { error in
             #warning("Handle error")
         }
 
+    }
+}
+
+// MARK: - Forecast manager
+
+private extension TimeDetailsViewController {
+    
+    func presentData(weatherData: WeatherData) {
+        
+        guard let temperature = weatherData.main?.temp, let feelsLikeTemp = weatherData.main?.feelsLike, let windSpeed = weatherData.wind?.speed, let humidity = weatherData.main?.humidity else { return }
+        self.temperatureLabel.text = String(temperature)
+        self.temperatureFeelsLikeLabel.text = String(feelsLikeTemp)
+        self.windLabel.text = String(format: "%.2f", windSpeed * 3.6)
+        self.humidityLabel.text = String(humidity)
     }
 }
 
@@ -75,9 +87,7 @@ private extension TimeDetailsViewController {
     
     @objc func datePickerEndEditing() {
         dateFormatter.dateFormat = Constants.defaultDateFormat
-        debugPrint(datePicker.date)
         getForecast(date: datePicker.date)
-        // GET FORECAST
     }
     
     @objc func fromTimePickerEndEditing() {
