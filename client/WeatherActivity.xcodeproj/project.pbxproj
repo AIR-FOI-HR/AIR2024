@@ -37,6 +37,7 @@
 		8C2D04242576D8DA002E51D0 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04232576D8DA002E51D0 /* Navigation.swift */; };
 		8C2D04292576D9E9002E51D0 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04282576D9E9002E51D0 /* SecureStorage.swift */; };
 		8C2D042F2576DE3F002E51D0 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D042E2576DE3F002E51D0 /* SessionManager.swift */; };
+		8C3EE108257E73B10017EEFD /* ForecastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C3EE107257E73B10017EEFD /* ForecastData.swift */; };
 		8C49F0B8257973C10067EA86 /* TimeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49F0B7257973C10067EA86 /* TimeDetailsViewController.swift */; };
 		8C49F0C12579748D0067EA86 /* NewActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49F0C02579748D0067EA86 /* NewActivity.swift */; };
 		8C49F0C6257974CD0067EA86 /* TimeDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C49F0C5257974CD0067EA86 /* TimeDetails.storyboard */; };
@@ -109,6 +110,7 @@
 		8C2D04232576D8DA002E51D0 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		8C2D04282576D9E9002E51D0 /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
 		8C2D042E2576DE3F002E51D0 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		8C3EE107257E73B10017EEFD /* ForecastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastData.swift; sourceTree = "<group>"; };
 		8C49F0B7257973C10067EA86 /* TimeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDetailsViewController.swift; sourceTree = "<group>"; };
 		8C49F0C02579748D0067EA86 /* NewActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivity.swift; sourceTree = "<group>"; };
 		8C49F0C5257974CD0067EA86 /* TimeDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeDetails.storyboard; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				8CDA3FB7257ACB340047C727 /* WeatherData.swift */,
+				8C3EE107257E73B10017EEFD /* ForecastData.swift */,
 			);
 			path = WeatherModels;
 			sourceTree = "<group>";
@@ -740,6 +743,7 @@
 				8C2D041F2576D394002E51D0 /* EmailCheckResponse.swift in Sources */,
 				8C2D04062576D280002E51D0 /* LoginCredentials.swift in Sources */,
 				8C8BF4E72570F16D00E1CBE8 /* RegistrationService.swift in Sources */,
+				8C3EE108257E73B10017EEFD /* ForecastData.swift in Sources */,
 				429A737025758EC900B99F8D /* RegistrationValidator.swift in Sources */,
 				423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */,
 				8CE0417225764E04005EFEC4 /* RegistrationUser.swift in Sources */,

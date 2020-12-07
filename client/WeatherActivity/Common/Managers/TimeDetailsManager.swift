@@ -13,6 +13,7 @@ class TimeDetailsManager {
     
     // Maximum of 5 days apart -> Reason: OpenWeatherMap API Free version gives only forecast for 5 days infront
     func isDateRangeValid(date: Date) -> Bool {
+        
         let nowDate = Date()
         let calendar = Calendar.current
         let nextDate = calendar.date(byAdding: .day, value: Constants.validDateRange, to: nowDate)
@@ -25,6 +26,7 @@ class TimeDetailsManager {
     }
     
     func combineDateAndTime(date: Date, time: Date) -> Date {
+        
         let calendar = Calendar.current
         
         let timeComponents: DateComponents? = calendar.dateComponents([.hour, .minute, .second], from: time)
@@ -41,11 +43,13 @@ class TimeDetailsManager {
     }
     
     func getTime(fromDate date: Date, timeFormat format: TimeFormat) -> String {
+        
         dateFormatter.dateFormat = format.rawValue
         return dateFormatter.string(from: date)
     }
     
     func addTime(to toDate: Date, hours hoursValue: Int = Constants.defaultTimeInterval) -> Date {
+        
         guard let modifiedDate = Calendar.current.date(byAdding: .hour, value: hoursValue, to: toDate) else { return toDate }
         return modifiedDate
     }
