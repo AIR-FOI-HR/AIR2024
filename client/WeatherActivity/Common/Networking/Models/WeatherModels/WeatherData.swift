@@ -20,6 +20,7 @@ struct WeatherData: Codable {
 }
 
 // MARK: - City
+
 struct City: Codable {
     let id: Int?
     let name: String?
@@ -29,11 +30,13 @@ struct City: Codable {
 }
 
 // MARK: - Coord
+
 struct Coord: Codable {
     let lat, lon: Double?
 }
 
 // MARK: - List
+
 struct WeatherList: Codable {
     let dt: Double?
     let main: MainClass?
@@ -53,11 +56,13 @@ struct WeatherList: Codable {
 }
 
 // MARK: - Clouds
+
 struct Clouds: Codable {
     let all: Int?
 }
 
 // MARK: - MainClass
+
 struct MainClass: Codable {
     let temp, feelsLike, tempMin, tempMax: Double?
     let pressure, seaLevel, grndLevel, humidity: Int?
@@ -77,6 +82,7 @@ struct MainClass: Codable {
 }
 
 // MARK: - Rain
+
 struct Rain: Codable {
     let the3H: Double?
 
@@ -86,6 +92,7 @@ struct Rain: Codable {
 }
 
 // MARK: - Weather
+
 struct Weather: Codable {
     let id: Int?
     let main: String?
@@ -100,6 +107,7 @@ struct Weather: Codable {
 }
 
 // MARK: - Wind
+
 struct Wind: Codable {
     let speed: Double?
     let deg: Int?
