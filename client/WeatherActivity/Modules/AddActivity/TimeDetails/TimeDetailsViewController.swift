@@ -38,14 +38,16 @@ class TimeDetailsViewController: UIViewController {
     var locationDetails: LocationDetails?
     let weatherManager = WeatherManager()
     let timeDetailsManager = TimeDetailsManager()
+    let forecastData = ForecastData()
     #warning("Delete dummy location and replace with previous screen data")
     let dummyLocation = LocationDetails(latitude: 46.306268, longitude: 16.336089)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        datePicker.minimumDate = Date()
         datePicker.addTarget(self, action: #selector(datePickerEndEditing), for: .editingDidEnd)
-        fromTimePicker.addTarget(self, action: #selector(fromTimePickerEndEditing), for: .editingDidEnd)
+        fromTimePicker.addTarget(self, action: #selector(fromTimePickerEndEditing), for: .valueChanged)
         setDefault()
     }
     
@@ -77,13 +79,26 @@ private extension TimeDetailsViewController {
 
 private extension TimeDetailsViewController {
     
+    func checkDate() {
+        let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
+        if(timeDetailsManager.isDateRangeValid(date: forecastDate)) {
+            weatherStackView.isHidden = false
+            warningAlertView.isHidden = true
+            getForecast(date: forecastDate)
+        } else {
+            weatherStackView.isHidden = true
+            warningAlertView.isHidden = false
+        }
+    }
+    
     func presentData(weatherData: WeatherList) {
-        guard let temperature = weatherData.main?.temp, let feelsLike = weatherData.main?.feelsLike, let windSpeed = weatherData.wind?.speed, let humidity = weatherData.main?.humidity, let description = weatherData.weather?.first?.weatherDescription else { return }
+        guard let temperature = weatherData.main?.temp, let feelsLike = weatherData.main?.feelsLike, let windSpeed = weatherData.wind?.speed, let humidity = weatherData.main?.humidity, let description = weatherData.weather?.first?.weatherDescription, let condition = weatherData.weather?.first?.id else { return }
         temperatureLabel.text = String(temperature)
         temperatureFeelsLikeLabel.text = String(feelsLike)
         windLabel.text = String(windSpeed)
         humidityLabel.text = String(humidity)
         weatherDescriptionLabel.text = String(description.capitalized)
+        weatherTypeImageView.image = UIImage(systemName: forecastData.getConditionImage(id: condition))
     }
     
     func getForecastForDate(forDate date: Date, weatherData data: WeatherData) {
@@ -105,22 +120,16 @@ private extension TimeDetailsViewController {
     @objc func datePickerEndEditing() {
         dateFormatter.dateFormat = Constants.defaultDateFormat
         #warning("Handle if date is not in range")
-        if(timeDetailsManager.isDateRangeValid(date: datePicker.date)) {
-            weatherStackView.isHidden = false
-            warningAlertView.isHidden = true
-            getForecast(date: datePicker.date)
-        } else {
-            weatherStackView.isHidden = true
-            warningAlertView.isHidden = false
-        }
+        checkDate()
     }
     
     @objc func fromTimePickerEndEditing() {
         let suggestedUntilTime = timeDetailsManager.addTime(to: fromTimePicker.date)
         untilTimePicker.date = suggestedUntilTime
-        let newDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
+        let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
         #warning("Handle if date is not in range")
-        timeDetailsManager.isDateRangeValid(date: newDate) ? getForecast(date: newDate) : print("Not in range")
+        checkDate()
+        //        timeDetailsManager.isDateRangeValid(date: forecastDate) ? getForecast(date: forecastDate) : print("Not in range")
     }
     
     func setDefault() {
