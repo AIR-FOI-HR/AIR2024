@@ -20,19 +20,24 @@ class TimeDetailsViewController: UIViewController {
     
     // MARK: IBOutlets
     
-    @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var fromTimePicker: UIDatePicker!
-    @IBOutlet weak var untilTimePicker: UIDatePicker!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var windLabel: UILabel!
-    @IBOutlet weak var humidityLabel: UILabel!
-    @IBOutlet weak var temperatureFeelsLikeLabel: UILabel!
+    @IBOutlet private weak var datePicker: UIDatePicker!
+    @IBOutlet private weak var fromTimePicker: UIDatePicker!
+    @IBOutlet private weak var untilTimePicker: UIDatePicker!
+    @IBOutlet private weak var temperatureLabel: UILabel!
+    @IBOutlet private weak var windLabel: UILabel!
+    @IBOutlet private weak var humidityLabel: UILabel!
+    @IBOutlet private weak var temperatureFeelsLikeLabel: UILabel!
+    @IBOutlet private weak var weatherStackView: UIStackView!
+    @IBOutlet private weak var warningAlertView: UIStackView!
+    @IBOutlet private weak var weatherTypeImageView: UIImageView!
+    @IBOutlet private weak var weatherDescriptionLabel: UILabel!
     
     // MARK: Properties
     
     let dateFormatter = DateFormatter()
     var locationDetails: LocationDetails?
     let weatherManager = WeatherManager()
+    let timeDetailsManager = TimeDetailsManager()
     #warning("Delete dummy location and replace with previous screen data")
     let dummyLocation = LocationDetails(latitude: 46.306268, longitude: 16.336089)
     
@@ -47,8 +52,9 @@ class TimeDetailsViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        let timeDetails = TimeDetails(date: datePicker.date, fromTime: fromTimePicker.date, untilTime: untilTimePicker.date)
+        let timeDetails = TimeDetails(date: datePicker.date, fromTime: timeDetailsManager.getTime(fromDate: fromTimePicker.date, timeFormat: .hourClock24), untilTime: timeDetailsManager.getTime(fromDate: untilTimePicker.date, timeFormat: .hourClock24))
         let activityDetails = ActivityData(locationDetails: self.locationDetails, timeDetails: timeDetails)
+        debugPrint(activityDetails)
         #warning("Pass arguments to next screen")
     }
 }
@@ -67,16 +73,17 @@ private extension TimeDetailsViewController {
     }
 }
 
-// MARK: - Forecast manager
+// MARK: - Forecast presentation
 
 private extension TimeDetailsViewController {
     
     func presentData(weatherData: WeatherList) {
-        guard let temperature = weatherData.main?.temp, let feelsLike = weatherData.main?.feelsLike, let windSpeed = weatherData.wind?.speed, let humidity = weatherData.main?.humidity else { return }
+        guard let temperature = weatherData.main?.temp, let feelsLike = weatherData.main?.feelsLike, let windSpeed = weatherData.wind?.speed, let humidity = weatherData.main?.humidity, let description = weatherData.weather?.first?.weatherDescription else { return }
         temperatureLabel.text = String(temperature)
         temperatureFeelsLikeLabel.text = String(feelsLike)
         windLabel.text = String(windSpeed)
         humidityLabel.text = String(humidity)
+        weatherDescriptionLabel.text = String(description.capitalized)
     }
     
     func getForecastForDate(forDate date: Date, weatherData data: WeatherData) {
@@ -87,6 +94,7 @@ private extension TimeDetailsViewController {
                 self.presentData(weatherData: dataList[index])
             }
         }
+        #warning("If there is not an date inside API response")
     }
 }
 
@@ -97,60 +105,28 @@ private extension TimeDetailsViewController {
     @objc func datePickerEndEditing() {
         dateFormatter.dateFormat = Constants.defaultDateFormat
         #warning("Handle if date is not in range")
-        isDateRangeValid(date: datePicker.date) ? getForecast(date: datePicker.date) : print("Not in range")
+        if(timeDetailsManager.isDateRangeValid(date: datePicker.date)) {
+            weatherStackView.isHidden = false
+            warningAlertView.isHidden = true
+            getForecast(date: datePicker.date)
+        } else {
+            weatherStackView.isHidden = true
+            warningAlertView.isHidden = false
+        }
     }
     
     @objc func fromTimePickerEndEditing() {
-        let suggestedUntilTime = addTime(to: fromTimePicker.date)
+        let suggestedUntilTime = timeDetailsManager.addTime(to: fromTimePicker.date)
         untilTimePicker.date = suggestedUntilTime
-        let newDate = combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
+        let newDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
         #warning("Handle if date is not in range")
-        isDateRangeValid(date: newDate) ? getForecast(date: newDate) : print("Not in range")
+        timeDetailsManager.isDateRangeValid(date: newDate) ? getForecast(date: newDate) : print("Not in range")
     }
     
     func setDefault() {
         dateFormatter.dateFormat = TimeFormat.hourClock24.rawValue
         guard let defaultTime = dateFormatter.date(from: Constants.defaultTime) else { return }
         fromTimePicker.date = defaultTime
-        untilTimePicker.date = addTime(to: defaultTime)
-    }
-    
-    func getTime(fromDate date: Date, timeFormat format: TimeFormat) -> String {
-        dateFormatter.dateFormat = format.rawValue
-        return dateFormatter.string(from: date)
-    }
-    
-    func addTime(to toDate: Date, hours hoursValue: Int = Constants.defaultTimeInterval) -> Date {
-        guard let modifiedDate = Calendar.current.date(byAdding: .hour, value: hoursValue, to: toDate) else { return toDate }
-        return modifiedDate
-    }
-    
-    // Maximum of 5 days apart -> Reason: OpenWeatherMap API Free version gives only forecast for 5 days infront
-    func isDateRangeValid(date: Date) -> Bool {
-        let nowDate = Date()
-        let calendar = Calendar.current
-        let nextDate = calendar.date(byAdding: .day, value: Constants.validDateRange, to: nowDate)
-        
-        let range = nowDate...nextDate!
-        if range.contains(date) {
-            return true
-        }
-        return false
-    }
-    
-    func combineDateAndTime(date: Date, time: Date) -> Date {
-        let calendar = Calendar.current
-        
-        let timeComponents: DateComponents? = calendar.dateComponents([.hour, .minute, .second], from: time)
-        var dateComponents: DateComponents? = calendar.dateComponents([.day, .month, .year], from: date)
-        
-        dateComponents?.hour = timeComponents?.hour
-        dateComponents?.minute = timeComponents?.minute
-        dateComponents?.second = timeComponents?.second
-        
-        if let newDate: Date = calendar.date(from: dateComponents!) {
-            return newDate
-        }
-        return date
+        untilTimePicker.date = timeDetailsManager.addTime(to: defaultTime)
     }
 }
