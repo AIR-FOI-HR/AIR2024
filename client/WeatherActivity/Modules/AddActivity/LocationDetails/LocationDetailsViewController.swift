@@ -36,7 +36,7 @@ class LocationDetailsViewController: UIViewController {
         
         locationTextField.addTarget(self, action: #selector(textFieldDidChangeValue), for: .editingChanged)
         
-        locationTextField.dropDownTableVisibleRowCount = 3
+        locationTextField.dropDownTableVisibleRowCount = 0
         locationTextField.dropDownDelegate = self
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(longTap))
@@ -123,7 +123,8 @@ extension LocationDetailsViewController: MKLocalSearchCompleterDelegate {
 extension LocationDetailsViewController {
     
     @objc func textFieldDidChangeValue() {
-        if(locationTextField.text!.count > 3) {
+        if(locationTextField.text!.count >= 3) {
+            locationTextField.dropDownTableVisibleRowCount = 3
             searchCompleter.queryFragment = locationTextField.text!
         } else {
             self.searchSuggestions = []
