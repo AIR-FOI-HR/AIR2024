@@ -8,18 +8,56 @@
 import UIKit
 import KeychainSwift
 
-final class HomeViewController: UIViewController {
+class HomeViewController: UIViewController {
     
-    let keychain = KeychainSwift()
+    // MARK: IBOutlets
+    
+    @IBOutlet private var activitiesContainerView: UIStackView!
+    
+    // MARK: Properties
+    
+    private var activityListView: ActivityListView!
+    private let activityService = ActivityService()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupListView()
+        loadActivities()
+    }
+    
+    // MARK: Custom functions
+    
+    private func setupListView() {
+        let listView = ActivityListView.loadFromXib()
+        activitiesContainerView.addArrangedSubview(listView)
+        activityListView = listView
+    }
+    
+    private func loadActivities() {
+        activityListView.showLoading()
+        var activities: [ActivityCellItem] = []
+        if let sessionToken = SessionManager.shared.getToken() {
+            activityService.getActivities(token: sessionToken, success: { activitiesResponse in
+                for activity in activitiesResponse.data {
+                    activities.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, forecastId: activity.forecastId, categoryId: activity.categoryId, activityStatusId: activity.activityStatusId))
+                }
+                self.activityListView.reload(with: activities)
+            }, failure: { error in
+                print("Error while getting activities: \(error)")
+            })
+        }
+    }
+    
+    // MARK: IBActions
+    
     @IBAction func backSwipe(_ sender: UISwipeGestureRecognizer) {
         if sender.state == .ended {
             dismiss(animated: true, completion: nil)
         }
     }
     
-    
     @IBAction func logoutPressed(_ sender: UIButton) {
-        keychain.delete("sessionToken")
+        KeychainSwift().delete("sessionToken")
         self.performSegue(withIdentifier: "HomeToLogin", sender: self)
     }
 }
