@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hWT-Jv-POk">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Category Details View Controller-->
+        <scene sceneID="UDt-1m-QJD">
+            <objects>
+                <viewController id="hWT-Jv-POk" customClass="CategoryDetailsViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dL1-GE-pXh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VqZ-wb-qmj" userLabel="Exit Button">
+                                <rect key="frame" x="20" y="50" width="17.5" height="22"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" image="xmark" catalog="system"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Step 3: Choose categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rA-bk-SLt" userLabel="Step Title Label">
+                                <rect key="frame" x="20" y="97" width="259" height="25.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Can't find what you're looking for?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Do8-fh-yei" userLabel="Search Categories Label">
+                                <rect key="frame" x="20" y="386" width="261" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Choose categories related to your activity" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7I-K6-Emm" userLabel="Description Label">
+                                <rect key="frame" x="20" y="117" width="269.5" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="xQm-PT-sYG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="opaqueSeparatorColor"/>
+                                <color key="highlightedColor" systemColor="labelColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gfm-KA-zMi">
+                                <rect key="frame" x="20" y="487" width="374" height="279"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="279" id="V4b-mt-gEF"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cNh-L7-wre">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" reuseIdentifier="CollectionViewCell" id="iMI-PP-lbG" customClass="CategoriesCollectionViewCell" customModule="WeatherActivity" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="148" height="116"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" insetsLayoutMarginsFromSafeArea="NO" id="498-JM-Cd0">
+                                            <rect key="frame" x="0.0" y="0.0" width="148" height="116"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSp-dk-OHL">
+                                                    <rect key="frame" x="58.5" y="93.5" width="31" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" systemColor="systemGrayColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="PSp-dk-OHL" firstAttribute="bottom" secondItem="498-JM-Cd0" secondAttribute="bottomMargin" id="90N-a0-O3J"/>
+                                                <constraint firstItem="PSp-dk-OHL" firstAttribute="centerX" secondItem="498-JM-Cd0" secondAttribute="centerX" id="Jdh-Dp-tgE"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="148" height="116"/>
+                                        <connections>
+                                            <outlet property="categoryName" destination="PSp-dk-OHL" id="Ppx-dt-yXc"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="hWT-Jv-POk" id="Sbb-hV-eXD"/>
+                                    <outlet property="delegate" destination="hWT-Jv-POk" id="zsI-ZD-upB"/>
+                                </connections>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="0dJ-u3-6gn">
+                                <rect key="frame" x="136.5" y="798" width="141" height="27.5"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
+                            </pageControl>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9hv-4w-KKU">
+                                <rect key="frame" x="20" y="227" width="374" height="130"/>
+                            </stackView>
+                            <searchBar contentMode="redraw" misplaced="YES" searchBarStyle="minimal" placeholder="Search categories..." translatesAutoresizingMaskIntoConstraints="NO" id="DAT-3T-Hsr">
+                                <rect key="frame" x="20" y="413" width="374" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Recent categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Se-4I-gYD" userLabel="Recent Categories Label">
+                                <rect key="frame" x="20" y="175" width="138" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="EUN-qb-kAN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="taH-jP-9be"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="0dJ-u3-6gn" firstAttribute="top" secondItem="gfm-KA-zMi" secondAttribute="bottom" constant="32" id="1Gh-ds-3an"/>
+                            <constraint firstItem="DAT-3T-Hsr" firstAttribute="leading" secondItem="Do8-fh-yei" secondAttribute="leading" id="3ky-ZN-WWO"/>
+                            <constraint firstItem="DAT-3T-Hsr" firstAttribute="top" secondItem="Do8-fh-yei" secondAttribute="bottom" id="54e-zl-6Ce"/>
+                            <constraint firstItem="6rA-bk-SLt" firstAttribute="leading" secondItem="v7I-K6-Emm" secondAttribute="leading" id="Cvo-OZ-iXq"/>
+                            <constraint firstItem="9hv-4w-KKU" firstAttribute="trailing" secondItem="DAT-3T-Hsr" secondAttribute="trailing" id="JRS-BM-7XT"/>
+                            <constraint firstItem="taH-jP-9be" firstAttribute="trailing" secondItem="gfm-KA-zMi" secondAttribute="trailing" constant="20" id="MYZ-dj-f4T"/>
+                            <constraint firstItem="VqZ-wb-qmj" firstAttribute="top" secondItem="taH-jP-9be" secondAttribute="top" constant="4" id="No3-r5-E7L"/>
+                            <constraint firstItem="1Se-4I-gYD" firstAttribute="top" secondItem="v7I-K6-Emm" secondAttribute="bottom" constant="8" symbolic="YES" id="Rdb-fa-4dO"/>
+                            <constraint firstItem="gfm-KA-zMi" firstAttribute="centerX" secondItem="0dJ-u3-6gn" secondAttribute="centerX" id="SM6-nw-k5I"/>
+                            <constraint firstItem="gfm-KA-zMi" firstAttribute="trailing" secondItem="DAT-3T-Hsr" secondAttribute="trailing" id="VU8-EK-3jL"/>
+                            <constraint firstItem="9hv-4w-KKU" firstAttribute="leading" secondItem="Do8-fh-yei" secondAttribute="leading" id="X1Q-bC-HFw"/>
+                            <constraint firstItem="v7I-K6-Emm" firstAttribute="top" secondItem="6rA-bk-SLt" secondAttribute="bottom" constant="14.5" id="cnU-G0-yZV"/>
+                            <constraint firstItem="taH-jP-9be" firstAttribute="bottom" secondItem="0dJ-u3-6gn" secondAttribute="bottom" constant="36.5" id="kaD-e8-j6r"/>
+                            <constraint firstItem="gfm-KA-zMi" firstAttribute="top" secondItem="DAT-3T-Hsr" secondAttribute="bottom" constant="38" id="p0z-zb-ibl"/>
+                            <constraint firstItem="6rA-bk-SLt" firstAttribute="top" secondItem="VqZ-wb-qmj" secondAttribute="bottom" constant="25" id="qaZ-Ty-F2a"/>
+                            <constraint firstItem="1Se-4I-gYD" firstAttribute="leading" secondItem="taH-jP-9be" secondAttribute="leading" constant="20" id="rh5-Yg-mhD"/>
+                            <constraint firstItem="Do8-fh-yei" firstAttribute="top" secondItem="9hv-4w-KKU" secondAttribute="bottom" constant="29" id="rj3-gP-wqe"/>
+                            <constraint firstItem="gfm-KA-zMi" firstAttribute="leading" secondItem="taH-jP-9be" secondAttribute="leading" constant="20" id="tN9-Ok-m18"/>
+                            <constraint firstItem="VqZ-wb-qmj" firstAttribute="leading" secondItem="6rA-bk-SLt" secondAttribute="leading" id="wWY-PQ-hLp"/>
+                            <constraint firstItem="gfm-KA-zMi" firstAttribute="leading" secondItem="DAT-3T-Hsr" secondAttribute="leading" id="xoK-az-4SW"/>
+                            <constraint firstItem="VqZ-wb-qmj" firstAttribute="leading" secondItem="taH-jP-9be" secondAttribute="leading" constant="34" id="yTA-3S-MQv"/>
+                            <constraint firstItem="9hv-4w-KKU" firstAttribute="top" secondItem="1Se-4I-gYD" secondAttribute="bottom" constant="29" id="zgi-Qm-VpW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="gfm-KA-zMi" id="7ep-z1-Bb2"/>
+                        <outlet property="horizontalStack" destination="9hv-4w-KKU" id="V9V-4L-6Tw"/>
+                        <outlet property="pageControl" destination="0dJ-u3-6gn" id="bib-Of-RjF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GaR-IE-mAZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-698.55072463768124" y="47.544642857142854"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
