@@ -2,23 +2,27 @@ PODS:
   - Alamofire (5.4.0)
   - IQKeyboardManagerSwift (6.5.6)
   - KeychainSwift (19.0.0)
+  - SkeletonView (1.11.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - IQKeyboardManagerSwift
   - KeychainSwift (~> 19.0)
+  - SkeletonView
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - IQKeyboardManagerSwift
     - KeychainSwift
+    - SkeletonView
 
 SPEC CHECKSUMS:
   Alamofire: 3b6a534a3df22db367e4dedeeca73d1ddfcf0e2f
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
+  SkeletonView: cc84ce90a804dd0dd7198dd802833411c8a64eaf
 
-PODFILE CHECKSUM: 7693673b5122def5d759914bc6105a28bd541533
+PODFILE CHECKSUM: 23396c638872be72cd3557a14daa04e2cea0bfa6
 
 COCOAPODS: 1.10.0
