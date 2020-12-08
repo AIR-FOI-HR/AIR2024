@@ -10,6 +10,7 @@ var dbConnection = require('./database/connection')
 var loginRouter = require('./routes/login');
 var registrationRouter = require('./routes/registration')
 var tokenCheckRouter = require('./routes/tokenCheck')
+var activityRouter = require('./routes/activity')
 
 var app = express();
 
@@ -27,11 +28,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/login', loginRouter);
 app.use('/registration', registrationRouter)
 app.use('/tokenCheck', tokenCheckRouter)
+app.use('/activity', activityRouter)
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function(err, req, res, next) {
