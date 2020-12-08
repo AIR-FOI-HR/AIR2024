@@ -96,6 +96,9 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="ajU-47-5GK" kind="presentation" id="3n5-Bk-XJN"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uLd-5f-bFn">
                                                 <rect key="frame" x="35" y="609.66666666666663" width="305" height="50"/>
@@ -211,6 +214,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkj-wq-FVS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-225" y="476"/>
+        </scene>
+        <!--CategoriesDetails-->
+        <scene sceneID="Wap-qP-tjK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CategoriesDetails" id="ajU-47-5GK" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="BFg-vo-e3k"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ew0-X7-BsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="374" y="197"/>
         </scene>
         <!--Home-->
         <scene sceneID="cms-pL-fLZ">

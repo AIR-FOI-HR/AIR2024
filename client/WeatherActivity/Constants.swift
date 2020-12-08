@@ -11,7 +11,7 @@ struct Constants {
     
     // MARK: - Networking
     
-    static let baseUrl = "http://localhost:3000"
+    static let baseUrl = "http://192.168.1.7:3000"
     
     // MARK: User Defaults
     
