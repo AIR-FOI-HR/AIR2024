@@ -8,5 +8,6 @@
 import Foundation
 
 struct CategoryResponse: Decodable {
-    let categories: [String]
+    let categories: [String]?
+    let empty: Bool
 }
