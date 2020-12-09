@@ -27,29 +27,28 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
-        getAllCategories()
+        setAllCategories()
         setCollectionViewLayout()
         setRecentCategories()
     }
     
     func updateHorizontalStackView() {
-        // TODO: add images for each category
-            
         horizontalStackView.axis  = NSLayoutConstraint.Axis.horizontal
         horizontalStackView.distribution  = UIStackView.Distribution.fillEqually
         horizontalStackView.alignment = UIStackView.Alignment.center
         horizontalStackView.spacing   = 10.0
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        if !emptyResponse {
-            createLabelsForRecentCategories()
+        if emptyResponse {
+            addNoRecentCategoriesLabel()
         }
         else {
-            createLabelForNoRecentCategories()
+            addRecentCategoriesItems()
         }
     }
     
-    func createLabelsForRecentCategories() {
+    func addRecentCategoriesItems() {
+        // TODO: add images for each category
         for category in recentCategories {
             let textLabel = UILabel()
             textLabel.textAlignment = .center
@@ -60,7 +59,7 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
         }
     }
     
-    func createLabelForNoRecentCategories() {
+    func addNoRecentCategoriesLabel() {
         let textLabel = UILabel()
         textLabel.textAlignment = .center
         textLabel.textColor = UIColor.systemGray
@@ -80,20 +79,22 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
                 self.recentCategories = apiResponse.categories!
                 self.emptyResponse = false
             }
-            
             self.updateHorizontalStackView()
+            // TODO: move self.updateHorizontalStackView() from this function to viewDidLoad() - currently only works this way
         }, failure: { error in
             print(error.localizedDescription)
             self.presentAlert(title: "Oops!", message: "Something went wrong with getting your recent categories!")
         })
     }
     
-    func getAllCategories() {
+    func setAllCategories() {
         categoryService.getAllCategories(success: { apiResponse in
             self.allCategories = apiResponse.categories!
             self.numberOfPages = Int(self.allCategories.count / 6)
             // TODO: fix bug with page control not recognizing last page and not setting propiate number of pages
+            
             self.updateCollectionView()
+            // TODO: move self.updateCollectionView() from this function to viewDidLoad() - currently only works this way
         }, failure: { error in
             print(error.localizedDescription)
             self.presentAlert(title: "Oops!", message: "Something went wrong with getting categories!")
