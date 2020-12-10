@@ -10,14 +10,14 @@
 import UIKit
 import CoreLocation
 import MapKit
-import CHDropDownTextField
+import DropDown
 
 class LocationDetailsViewController: UIViewController {
     
     // MARK: IBOutlets
     
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var locationTextField: CHDropDownTextField!
+    @IBOutlet weak var locationTextField: UITextField!
     
     
     // MARK: Properties
@@ -27,31 +27,23 @@ class LocationDetailsViewController: UIViewController {
     var searchSuggestions = [String]()
     let geoCoder = CLGeocoder()
     var locationDetails: LocationDetails?
-    
+    let dropDown = DropDown()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        
         searchCompleter.delegate = self
-        
-        locationTextField.addTarget(self, action: #selector(textFieldDidChangeValue), for: .editingChanged)
-        
-        locationTextField.dropDownTableVisibleRowCount = 0
-        locationTextField.dropDownDelegate = self
-        
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(longTap))
-        gestureRecognizer.delegate = self
-        mapView.addGestureRecognizer(gestureRecognizer)
-        
-        locationManager.delegate = self
-        locationManager.requestLocation()
-        locationManager.requestWhenInUseAuthorization()
+        setupLocationTextField()
+        setupMapGestureRecognizer()
+        setupLocationManager()
+        setupDropDown()
     }
     
     // MARK: IBActions
     
     @IBAction func currentLocationPressed(_ sender: UIButton) {
-        locationManager.requestLocation()
+        
+        locationManager.startUpdatingLocation()
     }
 }
 
@@ -62,6 +54,7 @@ extension LocationDetailsViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let location = locations.last {
+            self.locationManager.stopUpdatingLocation()
             zoomMap(lat: location.coordinate.latitude, lon: location.coordinate.longitude, setMapPoint: true)
         }
     }
@@ -77,6 +70,7 @@ extension LocationDetailsViewController: CLLocationManagerDelegate {
 private extension LocationDetailsViewController {
     
     func zoomMap(lat latitude: CLLocationDegrees, lon longitude: CLLocationDegrees,  setMapPoint setPoint: Bool) {
+        
         let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let mRegion = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         mapView.setRegion(mRegion, animated: true)
@@ -86,6 +80,7 @@ private extension LocationDetailsViewController {
     }
     
     func addMapPointAnnotation(lat latitude: CLLocationDegrees, lon longitude: CLLocationDegrees) {
+        
         removeAnnotations()
         let mapPoint: MKPointAnnotation = MKPointAnnotation()
         mapPoint.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
@@ -95,6 +90,7 @@ private extension LocationDetailsViewController {
     }
     
     func removeAnnotations() {
+        
         let allAnnotations = self.mapView.annotations
         self.mapView.removeAnnotations(allAnnotations)
     }
@@ -109,11 +105,10 @@ extension LocationDetailsViewController: MKLocalSearchCompleterDelegate {
         for res in completer.results {
             self.searchSuggestions.append(res.title)
         }
-        self.locationTextField.dropDownTableTitlesArray = self.searchSuggestions
+        self.dropDown.dataSource = self.searchSuggestions
     }
     
     private func completer(completer: MKLocalSearchCompleter, didFailWithError error: NSError) {
-        print("NOPE")
         #warning("Handle error")
     }
 }
@@ -122,24 +117,26 @@ extension LocationDetailsViewController: MKLocalSearchCompleterDelegate {
 
 extension LocationDetailsViewController {
     
-    @objc func textFieldDidChangeValue() {
+    @objc func shouldShowDropDown() {
+        
         if(locationTextField.text!.count >= 3) {
-            locationTextField.dropDownTableVisibleRowCount = 3
+            dropDown.show()
             searchCompleter.queryFragment = locationTextField.text!
         } else {
+            dropDown.hide()
             self.searchSuggestions = []
         }
     }
 }
 
-// MARK: CHDropDown delegate
+// MARK: DropDown Selection
 
-extension LocationDetailsViewController: CHDropDownTextFieldDelegate {
-    
-    func dropDownTextField(_ dropDownTextField: CHDropDownTextField!, didChooseDropDownOptionAt index: UInt) {
+extension LocationDetailsViewController {
+
+    func dropDownValueSelected(selected: String) {
         
-        self.locationTextField.text = self.searchSuggestions[Int(index)]
-        self.geoCoder.geocodeAddressString(self.searchSuggestions[Int(index)]) { (placemarks, error) in
+        self.locationTextField.text = selected
+        self.geoCoder.geocodeAddressString(selected) { (placemarks, error) in
             guard
                 let placemarks = placemarks,
                 let location = placemarks.first?.location
@@ -170,11 +167,15 @@ extension LocationDetailsViewController: UIGestureRecognizerDelegate {
 extension LocationDetailsViewController {
     
     func geoDecodeFromCoordinates(locationCoordinates cords: CLLocation) {
+        
         geoCoder.reverseGeocodeLocation(cords) { (placemark, error) in
-            if let loc = placemark?.first {
-                guard let locationName = loc.name, let latitude = loc.location?.coordinate.latitude, let longitude = loc.location?.coordinate.longitude else { return }
-                self.saveLocationData(locationName: locationName, latitude: latitude, longitude: longitude)
-            }
+            guard
+                let loc = placemark?.first,
+                let locationName = loc.name,
+                let latitude = loc.location?.coordinate.latitude,
+                let longitude = loc.location?.coordinate.longitude
+            else { return }
+            self.saveLocationData(locationName: locationName, latitude: latitude, longitude: longitude)
         }
     }
 }
@@ -188,5 +189,41 @@ extension LocationDetailsViewController {
         self.locationDetails = LocationDetails(locationName: name, latitude: lat, longitude: lon)
         print(self.locationDetails)
         #warning("Handle location details struct")
+    }
+}
+
+// MARK: - viewDidLoad Setups
+
+private extension LocationDetailsViewController {
+    
+    func setupLocationTextField() {
+     
+        locationTextField.clearButtonMode = .whileEditing
+        locationTextField.clearsOnBeginEditing = true
+        locationTextField.addTarget(self, action: #selector(shouldShowDropDown), for: .allEvents)
+    }
+    
+    func setupDropDown() {
+        
+        dropDown.anchorView = locationTextField
+        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
+        dropDown.selectionAction = { (index: Int, item: String) in
+            self.dropDownValueSelected(selected: item)
+        }
+        
+    }
+    
+    func setupMapGestureRecognizer() {
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(longTap))
+        gestureRecognizer.delegate = self
+        mapView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    func setupLocationManager() {
+        
+        locationManager.delegate = self
+        locationManager.requestLocation()
+        locationManager.requestWhenInUseAuthorization()
     }
 }
