@@ -48,7 +48,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter activity location..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Ad-os-Za9" userLabel="Location Text Field" customClass="CHDropDownTextField">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter activity location..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Ad-os-Za9" userLabel="Location Text Field">
                                 <rect key="frame" x="20" y="224" width="306" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="avg-Pl-dzg"/>
@@ -98,7 +98,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="locationTextField" destination="0Ad-os-Za9" id="Ra4-Dz-mHX"/>
+                        <outlet property="locationTextField" destination="0Ad-os-Za9" id="5Gt-kj-jy9"/>
                         <outlet property="mapView" destination="k4E-e8-ASp" id="KOO-ZH-0HQ"/>
                     </connections>
                 </viewController>
