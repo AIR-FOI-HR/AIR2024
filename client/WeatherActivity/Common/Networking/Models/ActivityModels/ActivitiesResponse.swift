@@ -7,11 +7,7 @@
 
 import Foundation
 
-struct ActivitiesResponse: Codable {
-    let data: [Activity]
-}
-
-struct Activity: Codable {
+struct Activities: Codable {
     let activityId: Int
     let startTime: String
     let endTime: String

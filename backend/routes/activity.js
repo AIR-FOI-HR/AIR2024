@@ -11,11 +11,8 @@ router.post('/', function (req, res, next) {
             if (err) {
                 return res.json({ "act": false })
             }
-            else if (data.length > 0) {
-                return res.json({ data })
-            }
             else {
-                return res.json({ "act": false })
+                return res.json(data)
             }
         })
     })

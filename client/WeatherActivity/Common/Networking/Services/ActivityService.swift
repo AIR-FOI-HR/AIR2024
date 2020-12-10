@@ -10,7 +10,7 @@ import Alamofire
 
 class ActivityService {
     
-    func getActivities(token sessionToken: String, success: @escaping (ActivitiesResponse) -> Void, failure: @escaping (Error) -> Void) {
+    func getActivities(token sessionToken: String, success: @escaping ([Activities]) -> Void, failure: @escaping (Error) -> Void) {
         AF.request(Constants.baseUrl.appending("/activity") as URLConvertible,
                    method: .post,
                    parameters: ["sessionToken": sessionToken],
@@ -19,7 +19,7 @@ class ActivityService {
             switch response.result {
             case .success(let data):
                 do {
-                    let jsonData = try JSONDecoder().decode(ActivitiesResponse.self, from: data)
+                    let jsonData = try JSONDecoder().decode([Activities].self, from: data)
                     success(jsonData)
                 } catch (let error) {
                     failure(error)

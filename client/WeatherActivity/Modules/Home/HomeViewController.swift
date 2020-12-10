@@ -29,21 +29,27 @@ class HomeViewController: UIViewController {
     
     private func setupListView() {
         let listView = ActivityListView.loadFromXib()
+        listView.delegateHomeViewController = self
         activitiesContainerView.addArrangedSubview(listView)
         activityListView = listView
     }
     
-    private func loadActivities() {
-        activityListView.showLoading()
-        var activities: [ActivityCellItem] = []
+    func loadActivities() {
+        activityListView.setState(state: .loading)
+        var activitiesList: [ActivityCellItem] = []
         if let sessionToken = SessionManager.shared.getToken() {
-            activityService.getActivities(token: sessionToken, success: { activitiesResponse in
-                for activity in activitiesResponse.data {
-                    activities.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, forecastId: activity.forecastId, categoryId: activity.categoryId, activityStatusId: activity.activityStatusId))
+            activityService.getActivities(token: sessionToken, success: { (activities) in
+                if activities.isEmpty {
+                    self.activityListView.setState(state: .noActivities)
                 }
-                self.activityListView.reload(with: activities)
+                else {
+                    for activity in activities {
+                        activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, forecastId: activity.forecastId, categoryId: activity.categoryId, activityStatusId: activity.activityStatusId))
+                    }
+                    self.activityListView.setState(state: .normal(items: activitiesList))
+                }
             }, failure: { error in
-                print("Error while getting activities: \(error)")
+                self.activityListView.setState(state: .error)
             })
         }
     }
