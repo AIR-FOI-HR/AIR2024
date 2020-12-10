@@ -27,13 +27,62 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </tableView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyP-Tk-Z2P">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="JbG-jS-Vot">
+                                    <rect key="frame" x="57" y="159" width="300" height="300"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Errr... there seems to be something missing here... try refreshing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ka-Od-GxU" userLabel="Message">
+                                    <rect key="frame" x="44.5" y="514" width="325" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="325" id="EcJ-5u-FtX"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsC-oU-vpY" userLabel="Refresh">
+                                    <rect key="frame" x="107" y="593" width="200" height="32"/>
+                                    <color key="backgroundColor" red="0.15729419350000001" green="0.81116270980000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="200" id="cUA-Gz-HFQ"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                    <state key="normal" title="Button">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="15"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="didClickButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="d76-Np-bco"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="JbG-jS-Vot" firstAttribute="centerX" secondItem="HyP-Tk-Z2P" secondAttribute="centerX" id="BUD-Lf-Jd0"/>
+                                <constraint firstItem="JbG-jS-Vot" firstAttribute="centerY" secondItem="HyP-Tk-Z2P" secondAttribute="centerY" constant="-100" id="VgN-Mh-KGM"/>
+                                <constraint firstItem="qsC-oU-vpY" firstAttribute="centerX" secondItem="HyP-Tk-Z2P" secondAttribute="centerX" id="ZJK-OR-hMl"/>
+                                <constraint firstItem="7Ka-Od-GxU" firstAttribute="centerY" secondItem="HyP-Tk-Z2P" secondAttribute="centerY" constant="125" id="f4B-rX-aiM"/>
+                                <constraint firstItem="7Ka-Od-GxU" firstAttribute="centerX" secondItem="HyP-Tk-Z2P" secondAttribute="centerX" id="ikK-IW-ghs"/>
+                                <constraint firstItem="qsC-oU-vpY" firstAttribute="centerY" secondItem="HyP-Tk-Z2P" secondAttribute="centerY" constant="200" id="li3-4h-6FE"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="HyP-Tk-Z2P" firstAttribute="top" secondItem="Clt-sp-7Vw" secondAttribute="top" id="LSH-4g-0Jk"/>
                         <constraint firstItem="Tp1-44-PTf" firstAttribute="centerX" secondItem="Clt-sp-7Vw" secondAttribute="centerX" id="Lo0-ha-3Z7"/>
                         <constraint firstItem="Tp1-44-PTf" firstAttribute="centerY" secondItem="Clt-sp-7Vw" secondAttribute="centerY" id="WAm-uE-vC3"/>
+                        <constraint firstAttribute="trailing" secondItem="HyP-Tk-Z2P" secondAttribute="trailing" id="aH5-Mt-xLm"/>
                         <constraint firstItem="Tp1-44-PTf" firstAttribute="top" secondItem="Clt-sp-7Vw" secondAttribute="top" id="eUw-5b-ZzP"/>
+                        <constraint firstItem="HyP-Tk-Z2P" firstAttribute="leading" secondItem="Clt-sp-7Vw" secondAttribute="leading" id="isk-L5-hoS"/>
                         <constraint firstItem="Tp1-44-PTf" firstAttribute="leading" secondItem="Clt-sp-7Vw" secondAttribute="leading" id="kJG-k8-VkO"/>
+                        <constraint firstAttribute="bottom" secondItem="HyP-Tk-Z2P" secondAttribute="bottom" id="tTF-Dl-gQN"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -53,11 +102,15 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="activityListView" destination="Tp1-44-PTf" id="Hs3-hO-tOf"/>
+                <outlet property="button" destination="qsC-oU-vpY" id="Qet-fE-PID"/>
+                <outlet property="message" destination="7Ka-Od-GxU" id="T7L-lZ-hCe"/>
+                <outlet property="messageView" destination="HyP-Tk-Z2P" id="02r-e9-hW6"/>
             </connections>
             <point key="canvasLocation" x="37.681159420289859" y="47.544642857142854"/>
         </view>
     </objects>
     <resources>
+        <image name="blank" width="300" height="300"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
