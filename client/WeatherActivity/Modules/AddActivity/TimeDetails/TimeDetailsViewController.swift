@@ -81,6 +81,7 @@ private extension TimeDetailsViewController {
 private extension TimeDetailsViewController {
     
     func checkDate() {
+        
         let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
         if(timeDetailsManager.isDateRangeValid(date: forecastDate)) {
             weatherStackView.isHidden = false
@@ -93,6 +94,7 @@ private extension TimeDetailsViewController {
     }
     
     func presentData(weatherData: WeatherList) {
+        
         guard let temperature = weatherData.main?.temp,
               let feelsLike = weatherData.main?.feelsLike,
               let windSpeed = weatherData.wind?.speed,
