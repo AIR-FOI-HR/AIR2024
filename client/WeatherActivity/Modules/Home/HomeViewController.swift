@@ -29,7 +29,7 @@ class HomeViewController: UIViewController {
     
     private func setupListView() {
         let listView = ActivityListView.loadFromXib()
-        listView.delegateHomeViewController = self
+        listView.delegate = self
         activitiesContainerView.addArrangedSubview(listView)
         activityListView = listView
     }
@@ -65,5 +65,11 @@ class HomeViewController: UIViewController {
     @IBAction func logoutPressed(_ sender: UIButton) {
         KeychainSwift().delete("sessionToken")
         self.performSegue(withIdentifier: "HomeToLogin", sender: self)
+    }
+}
+
+extension HomeViewController: ActivityListViewDelegate {
+    func didPressReloadAction() {
+        loadActivities()
     }
 }

@@ -9,7 +9,11 @@ import Foundation
 import UIKit
 import SkeletonView
 
-class ActivityListView: UIView {
+protocol ActivityListViewDelegate: AnyObject {
+    func didPressReloadAction()
+}
+
+class ActivityListView: UIView, UITableViewDelegate {
     
     enum State {
         case loading
@@ -28,7 +32,7 @@ class ActivityListView: UIView {
     
     var state: State?
     
-    var delegateHomeViewController: HomeViewController?
+    weak var delegate: ActivityListViewDelegate?
     
     private var dataSource = [ActivityCellItem]()
     
@@ -43,16 +47,14 @@ class ActivityListView: UIView {
         activityListView.estimatedRowHeight = 100
         activityListView.isSkeletonable = true
         activityListView.dataSource = self
+        activityListView.delegate = self
     }
     
     func setState(state: State) {
         self.state = state
         switch state {
         case .error:
-            messageView.isHidden = false
-            message.text = "Errr... there seems to be something missing here... try refreshing"
-            button.setTitle("Refresh", for: .normal)
-            stopLoading()
+            showMessage(messageText: "Errr... there seems to be something missing here... try refreshing", buttonText: "Refresh")
         case .loading:
             messageView.isHidden = true
             showLoading()
@@ -60,19 +62,19 @@ class ActivityListView: UIView {
             messageView.isHidden = true
             reload(with: items)
         case .noActivities:
-            messageView.isHidden = false
-            message.text = "Looks like you don't have any activities. Try adding some"
-            button.setTitle("Add activity", for: .normal)
-            stopLoading()
+            showMessage(messageText: "Looks like you don't have any activities. Try adding some", buttonText: "Add activity")
         }
+    }
+    
+    private func showMessage(messageText: String, buttonText: String) {
+        messageView.isHidden = false
+        message.text = messageText
+        button.setTitle(buttonText, for: .normal)
+        activityListView.hideSkeleton()
     }
     
     private func showLoading() {
         activityListView.showAnimatedGradientSkeleton()
-    }
-    
-    private func stopLoading() {
-        activityListView.hideSkeleton()
     }
     
     private func reload(with items: [ActivityCellItem]) {
@@ -81,9 +83,13 @@ class ActivityListView: UIView {
     }
     
     @IBAction func didClickButton(_ sender: UIButton) {
+        guard let delegate = delegate else {
+            return
+        }
+        
         switch state {
         case .error:
-            delegateHomeViewController?.loadActivities()
+            delegate.didPressReloadAction()
         case .loading:
             break
         case .normal(items: _):
@@ -110,6 +116,10 @@ extension ActivityListView: SkeletonTableViewDataSource {
         let item = dataSource[indexPath.row]
         cell.configure(with: item)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(dataSource[indexPath.row])
     }
 }
 
