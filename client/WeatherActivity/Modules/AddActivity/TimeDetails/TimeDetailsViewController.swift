@@ -36,7 +36,7 @@ class TimeDetailsViewController: UIViewController {
     
     let dateFormatter = DateFormatter()
     var locationDetails: LocationDetails?
-    let weatherManager = WeatherManager()
+    let weatherManager = ForecastService()
     let timeDetailsManager = TimeDetailsManager()
     let forecastData = ForecastData()
     #warning("Delete dummy location and replace with previous screen data")
@@ -49,6 +49,7 @@ class TimeDetailsViewController: UIViewController {
         datePicker.addTarget(self, action: #selector(datePickerEndEditing), for: .editingDidEnd)
         fromTimePicker.addTarget(self, action: #selector(fromTimePickerEndEditing), for: .valueChanged)
         setDefault()
+        initialForecast()
     }
     
     // MARK: IBActions
@@ -92,7 +93,13 @@ private extension TimeDetailsViewController {
     }
     
     func presentData(weatherData: WeatherList) {
-        guard let temperature = weatherData.main?.temp, let feelsLike = weatherData.main?.feelsLike, let windSpeed = weatherData.wind?.speed, let humidity = weatherData.main?.humidity, let description = weatherData.weather?.first?.weatherDescription, let condition = weatherData.weather?.first?.id else { return }
+        guard let temperature = weatherData.main?.temp,
+              let feelsLike = weatherData.main?.feelsLike,
+              let windSpeed = weatherData.wind?.speed,
+              let humidity = weatherData.main?.humidity,
+              let description = weatherData.weather?.first?.weatherDescription,
+              let condition = weatherData.weather?.first?.id
+        else { return }
         temperatureLabel.text = String(temperature)
         temperatureFeelsLikeLabel.text = String(feelsLike)
         windLabel.text = String(windSpeed)
@@ -101,13 +108,21 @@ private extension TimeDetailsViewController {
         weatherTypeImageView.image = UIImage(systemName: forecastData.getConditionImage(id: condition))
     }
     
-    func getForecastForDate(forDate date: Date, weatherData data: WeatherData) {
+    func getForecastForDate(forDate date: Date, weatherData data: WeatherInfo) {
+        
         guard let dataList = data.weatherList else { return }
-        for index in 1...dataList.count - 2 {
-            let range = Date(timeIntervalSince1970: dataList[index].dt!)...Date(timeIntervalSince1970: dataList[index+1].dt!)
-            if range.contains(date) {
-                self.presentData(weatherData: dataList[index])
+        let forecastOnDate = dataList.first { (forecastData) -> Bool in
+            
+            if let dateTime = forecastData.dateTime {
+                let range = Date(timeIntervalSince1970: dateTime)...Date(timeIntervalSince1970: (dateTime + 10800))
+                if range.contains(date) {
+                    return true
+                }
             }
+            return false
+        }
+        if let forecastData = forecastOnDate {
+            self.presentData(weatherData: forecastData)
         }
         #warning("If there is not an date inside API response")
     }
@@ -129,7 +144,6 @@ private extension TimeDetailsViewController {
         let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
         #warning("Handle if date is not in range")
         checkDate()
-        //        timeDetailsManager.isDateRangeValid(date: forecastDate) ? getForecast(date: forecastDate) : print("Not in range")
     }
     
     func setDefault() {
@@ -137,5 +151,11 @@ private extension TimeDetailsViewController {
         guard let defaultTime = dateFormatter.date(from: Constants.defaultTime) else { return }
         fromTimePicker.date = defaultTime
         untilTimePicker.date = timeDetailsManager.addTime(to: defaultTime)
+    }
+    
+    func initialForecast() {
+        
+        let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
+        getForecast(date: forecastDate)
     }
 }
