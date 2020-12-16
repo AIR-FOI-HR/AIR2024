@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oq8-dT-hVy">
-                                <rect key="frame" x="20" y="44" width="788" height="818"/>
+                                <rect key="frame" x="20" y="44" width="374" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFi-9t-eef" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="818"/>
@@ -35,7 +35,6 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter activity location..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Omt-2a-cGk" userLabel="Location Text Field">
                                                 <rect key="frame" x="5" y="162" width="305" height="35"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="305" id="Gga-r9-gXy"/>
                                                     <constraint firstAttribute="height" constant="35" id="iLe-9x-ajn"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -91,12 +90,10 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="kFi-9t-eef" firstAttribute="width" secondItem="Oq8-dT-hVy" secondAttribute="width" multiplier="0.474619" id="2lC-K4-SXs"/>
-                                    <constraint firstItem="kFi-9t-eef" firstAttribute="leading" secondItem="Oq8-dT-hVy" secondAttribute="leading" id="Fyw-UD-gmR"/>
-                                    <constraint firstAttribute="bottom" secondItem="kFi-9t-eef" secondAttribute="bottom" id="LPS-a3-zCU"/>
-                                    <constraint firstItem="kFi-9t-eef" firstAttribute="top" secondItem="Oq8-dT-hVy" secondAttribute="top" id="PFS-cB-8gI"/>
-                                    <constraint firstAttribute="trailing" secondItem="kFi-9t-eef" secondAttribute="trailing" id="koy-I7-Ojr"/>
-                                    <constraint firstItem="kFi-9t-eef" firstAttribute="height" secondItem="Oq8-dT-hVy" secondAttribute="height" id="uSf-gH-l9y"/>
+                                    <constraint firstAttribute="trailing" secondItem="kFi-9t-eef" secondAttribute="trailing" id="5nw-Dm-DMD"/>
+                                    <constraint firstItem="kFi-9t-eef" firstAttribute="top" secondItem="Oq8-dT-hVy" secondAttribute="top" id="6NU-ot-Mtt"/>
+                                    <constraint firstItem="kFi-9t-eef" firstAttribute="leading" secondItem="Oq8-dT-hVy" secondAttribute="leading" id="TAJ-4n-4eZ"/>
+                                    <constraint firstAttribute="bottom" secondItem="kFi-9t-eef" secondAttribute="bottom" id="mnP-KX-8Ey"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="D8S-VO-UQD"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="wYH-9D-Vo7"/>
@@ -110,12 +107,14 @@
                         <viewLayoutGuide key="safeArea" id="taH-jP-9be"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="taH-jP-9be" firstAttribute="bottom" secondItem="Oq8-dT-hVy" secondAttribute="bottom" id="4OH-iq-qdf"/>
-                            <constraint firstItem="Oq8-dT-hVy" firstAttribute="trailing" secondItem="taH-jP-9be" secondAttribute="trailing" constant="394" id="Hzf-6t-jRo"/>
+                            <constraint firstItem="Oq8-dT-hVy" firstAttribute="leading" secondItem="dL1-GE-pXh" secondAttribute="leadingMargin" id="8Zj-GH-4Fj"/>
                             <constraint firstItem="VqZ-wb-qmj" firstAttribute="leading" secondItem="taH-jP-9be" secondAttribute="leading" constant="20" id="IPS-fi-67n"/>
-                            <constraint firstItem="Oq8-dT-hVy" firstAttribute="leading" secondItem="taH-jP-9be" secondAttribute="leading" constant="20" id="LLD-eS-vON"/>
-                            <constraint firstItem="Oq8-dT-hVy" firstAttribute="top" secondItem="taH-jP-9be" secondAttribute="top" id="MpP-jF-25g"/>
+                            <constraint firstItem="kFi-9t-eef" firstAttribute="width" secondItem="dL1-GE-pXh" secondAttribute="width" multiplier="0.903382" id="IqK-7M-wOj"/>
+                            <constraint firstItem="kFi-9t-eef" firstAttribute="height" secondItem="dL1-GE-pXh" secondAttribute="height" multiplier="0.912946" id="SYB-eZ-A2L"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Oq8-dT-hVy" secondAttribute="bottom" id="YYs-ZA-lQi"/>
+                            <constraint firstItem="Oq8-dT-hVy" firstAttribute="top" secondItem="dL1-GE-pXh" secondAttribute="topMargin" id="k2i-jb-2U3"/>
                             <constraint firstItem="VqZ-wb-qmj" firstAttribute="top" secondItem="taH-jP-9be" secondAttribute="top" constant="20" id="ntB-Jf-1QM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Oq8-dT-hVy" secondAttribute="trailing" id="tX7-qI-Kiu"/>
                         </constraints>
                     </view>
                     <connections>
