@@ -5,4 +5,14 @@
 //  Created by Kevin Bogdan on 16.12.2020..
 //
 
-import Foundation
+import UIKit
+
+class CategoryDetailsViewController: UIViewController {
+    
+    // MARK: - Properties
+    
+    @IBOutlet private weak var backButton: UIButton!
+    @IBOutlet private weak var nextButton: UIButton!
+    @IBOutlet private weak var inputTextField: UITextField!
+    
+}
