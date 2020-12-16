@@ -15,4 +15,11 @@ class TimeDetailsViewController: UIViewController {
     @IBOutlet private weak var nextButton: UIButton!
     @IBOutlet private weak var inputTextField: UITextField!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

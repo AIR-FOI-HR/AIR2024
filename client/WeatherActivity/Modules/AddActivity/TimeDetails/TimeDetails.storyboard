@@ -11,7 +11,7 @@
         <!--Time Details View Controller-->
         <scene sceneID="hYN-He-LSs">
             <objects>
-                <viewController id="Oqo-Tv-lhO" customClass="TimeDetailsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimeDetails" id="Oqo-Tv-lhO" customClass="TimeDetailsViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tuv-LF-nbu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,6 +26,9 @@
                                 <rect key="frame" x="92" y="624" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="Oqo-Tv-lhO" eventType="touchUpInside" id="UcQ-zB-Lpa"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tXC-Um-RUh">
                                 <rect key="frame" x="279" y="624" width="32" height="30"/>
