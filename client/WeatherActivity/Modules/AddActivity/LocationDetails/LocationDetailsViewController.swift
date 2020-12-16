@@ -19,7 +19,6 @@ class LocationDetailsViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var locationTextField: UITextField!
     
-    
     // MARK: Properties
     
     var locationManager = CLLocationManager()
@@ -118,14 +117,16 @@ extension LocationDetailsViewController: MKLocalSearchCompleterDelegate {
 extension LocationDetailsViewController {
     
     @objc func shouldShowDropDown() {
-        
-        if(locationTextField.text!.count >= 3) {
-            dropDown.show()
-            searchCompleter.queryFragment = locationTextField.text!
-        } else {
-            dropDown.hide()
-            self.searchSuggestions = []
+        if let locationInput = locationTextField.text {
+            if(locationInput.count >= 3) {
+                dropDown.show()
+                searchCompleter.queryFragment = locationInput
+            } else {
+                dropDown.hide()
+                self.searchSuggestions = []
+            }
         }
+        
     }
 }
 
@@ -206,11 +207,12 @@ private extension LocationDetailsViewController {
     func setupDropDown() {
         
         dropDown.anchorView = locationTextField
-        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
-        dropDown.selectionAction = { (index: Int, item: String) in
-            self.dropDownValueSelected(selected: item)
+        if let bounds = dropDown.anchorView?.plainView.bounds.height {
+            dropDown.bottomOffset = CGPoint(x: 0, y: (bounds))
+            dropDown.selectionAction = { (index: Int, item: String) in
+                self.dropDownValueSelected(selected: item)
+            }
         }
-        
     }
     
     func setupMapGestureRecognizer() {
