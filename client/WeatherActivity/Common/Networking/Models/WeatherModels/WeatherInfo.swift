@@ -7,14 +7,14 @@
 
 // MARK: - WeatherData API
 
-struct WeatherData: Codable {
-    let cod: String?
+struct WeatherInfo: Codable {
+    
     let message, cnt: Int?
     let weatherList: [WeatherList]?
     let city: City?
     
     enum CodingKeys: String, CodingKey {
-        case cod, message, cnt, city
+        case message, cnt, city
         case weatherList = "list"
     }
 }
@@ -22,6 +22,7 @@ struct WeatherData: Codable {
 // MARK: - City
 
 struct City: Codable {
+    
     let id: Int?
     let name: String?
     let coord: Coord?
@@ -32,26 +33,24 @@ struct City: Codable {
 // MARK: - Coord
 
 struct Coord: Codable {
+    
     let lat, lon: Double?
 }
 
 // MARK: - List
 
 struct WeatherList: Codable {
-    let dt: Double?
-    let main: MainClass?
+
+    let dateTime: Double?
+    let main: MainWeatherInfo?
     let weather: [Weather]?
     let clouds: Clouds?
     let wind: Wind?
     let visibility: Int?
-    let pop: Double?
-    let dtTxt: String?
-    let rain: Rain?
 
     enum CodingKeys: String, CodingKey {
-        case dt, main, weather, clouds, wind, visibility, pop
-        case dtTxt = "dt_txt"
-        case rain
+        case dateTime = "dt"
+        case main, weather, clouds, wind, visibility
     }
 }
 
@@ -63,10 +62,9 @@ struct Clouds: Codable {
 
 // MARK: - MainClass
 
-struct MainClass: Codable {
+struct MainWeatherInfo: Codable {
     let temp, feelsLike, tempMin, tempMax: Double?
-    let pressure, seaLevel, grndLevel, humidity: Int?
-    let tempKf: Double?
+    let pressure, humidity: Int?
 
     enum CodingKeys: String, CodingKey {
         case temp
@@ -74,20 +72,7 @@ struct MainClass: Codable {
         case tempMin = "temp_min"
         case tempMax = "temp_max"
         case pressure
-        case seaLevel = "sea_level"
-        case grndLevel = "grnd_level"
         case humidity
-        case tempKf = "temp_kf"
-    }
-}
-
-// MARK: - Rain
-
-struct Rain: Codable {
-    let the3H: Double?
-
-    enum CodingKeys: String, CodingKey {
-        case the3H = "3h"
     }
 }
 
