@@ -10,6 +10,8 @@
 		4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205CE1425705A3600FF056F /* UIExtensions.swift */; };
 		423CFA5C2572A5BA005CF798 /* RegistrationCompletion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */; };
 		423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */; };
+		424F7EA3258BA504003EC185 /* UIButton+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */; };
+		424F7EA8258BB3CE003EC185 /* TextFieldAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F7EA7258BB3CE003EC185 /* TextFieldAppearance.swift */; };
 		4252F64825626DE600FCA0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64725626DE600FCA0CB /* AppDelegate.swift */; };
 		4252F64A25626DE600FCA0CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64925626DE600FCA0CB /* SceneDelegate.swift */; };
 		4252F64C25626DE600FCA0CB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64B25626DE600FCA0CB /* LoginViewController.swift */; };
@@ -70,6 +72,8 @@
 		4205CE1425705A3600FF056F /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationCompletion.storyboard; sourceTree = "<group>"; };
 		423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCompletionViewController.swift; sourceTree = "<group>"; };
+		424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Appearance.swift"; sourceTree = "<group>"; };
+		424F7EA7258BB3CE003EC185 /* TextFieldAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAppearance.swift; sourceTree = "<group>"; };
 		4252F64425626DE600FCA0CB /* WeatherActivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherActivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4252F64725626DE600FCA0CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4252F64925626DE600FCA0CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -425,6 +429,8 @@
 			isa = PBXGroup;
 			children = (
 				4205CE1425705A3600FF056F /* UIExtensions.swift */,
+				424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */,
+				424F7EA7258BB3CE003EC185 /* TextFieldAppearance.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -702,6 +708,7 @@
 				8C7C9A6D256E9FAE00683AE5 /* LoginService.swift in Sources */,
 				8C49F0AB25796C0C0067EA86 /* NewActivity.swift in Sources */,
 				8C2D041A2576D376002E51D0 /* RegistrationResponse.swift in Sources */,
+				424F7EA3258BA504003EC185 /* UIButton+Appearance.swift in Sources */,
 				4252F64825626DE600FCA0CB /* AppDelegate.swift in Sources */,
 				4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */,
 				8C7C9A7E256EA3EF00683AE5 /* User.swift in Sources */,
@@ -711,6 +718,7 @@
 				8C2D042F2576DE3F002E51D0 /* SessionManager.swift in Sources */,
 				8C2D041F2576D394002E51D0 /* EmailCheckResponse.swift in Sources */,
 				8C2D04062576D280002E51D0 /* LoginCredentials.swift in Sources */,
+				424F7EA8258BB3CE003EC185 /* TextFieldAppearance.swift in Sources */,
 				8C49F09C25796B450067EA86 /* LocationDetailsViewController.swift in Sources */,
 				8C8BF4E72570F16D00E1CBE8 /* RegistrationService.swift in Sources */,
 				429A737025758EC900B99F8D /* RegistrationValidator.swift in Sources */,
