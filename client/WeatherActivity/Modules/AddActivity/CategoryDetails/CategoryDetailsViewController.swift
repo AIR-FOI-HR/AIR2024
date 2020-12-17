@@ -27,11 +27,19 @@ class CategoryDetailsViewController: AddActivityStepViewController, SetupButtons
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         
         guard let flowNavigator = flowNavigator else { return }
-        flowNavigator.showNextStep(from: .categoryDetails)
+        flowNavigator.showNextStep(
+            from: .categoryDetails,
+            data: StepData(
+                stepInfo: .categoryDetails,
+                data: CategoryDetailsModel(
+                    category: "Some category"
+                )
+            )
+        )
     }
     
     @IBAction func previousButtonPressed(_ sender: UIButton) {
-    
+        
         guard let flowNavigator = flowNavigator else { return }
         flowNavigator.showPreviousStep()
     }

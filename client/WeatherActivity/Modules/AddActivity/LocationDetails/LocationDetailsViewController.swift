@@ -33,7 +33,14 @@ class LocationDetailsViewController: AddActivityStepViewController, SetupButtons
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         
         guard let flowNavigator = flowNavigator else { return }
-        flowNavigator.showNextStep(from: .locationDetails)
+        flowNavigator.showNextStep(
+            from: .locationDetails,
+            data: StepData(
+                stepInfo: .locationDetails,
+                data: LocationDetailsModel(
+                    latitude: "latitude in location")
+            )
+        )
     }
 }
 

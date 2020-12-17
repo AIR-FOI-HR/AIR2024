@@ -33,8 +33,15 @@ class TimeDetailsViewController: AddActivityStepViewController, SetupButtons {
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         
         guard let flowNavigator = flowNavigator else { return }
-        flowNavigator.showNextStep(from: .timeDetails)
-        
+        flowNavigator.showNextStep(
+            from: .timeDetails,
+            data: StepData(
+                stepInfo: .timeDetails,
+                data: TimeDetailsModel(
+                    time: "Time time"
+                )
+            )
+        )
     }
 }
 

@@ -28,6 +28,7 @@ class AddActivityStepViewController: UIViewController {
         guard let flowNavigator = flowNavigator else { return }
         
         if flowNavigator.isLastStep(step: step) {
+            #warning("On last step: instead of next -> Submit")
             setupDelegate?.hideNextButton()
         }
         

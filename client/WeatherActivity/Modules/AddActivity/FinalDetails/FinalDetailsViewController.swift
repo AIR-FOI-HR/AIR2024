@@ -23,11 +23,19 @@ class FinalDetailsViewController: AddActivityStepViewController, SetupButtons {
     }
     
     // MARK: - Actions
-
+    
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         
         guard let flowNavigator = flowNavigator else { return }
-        flowNavigator.showNextStep(from: .finalDetails)
+        flowNavigator.showNextStep(
+            from: .finalDetails,
+            data: StepData(
+                stepInfo: .finalDetails,
+                data: FinalDetailsModel(
+                    latitude: "some latitude in finals"
+                )
+            )
+        )
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
