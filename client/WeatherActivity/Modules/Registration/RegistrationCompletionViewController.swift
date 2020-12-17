@@ -15,6 +15,7 @@ final class RegistrationCompletionViewController: UIViewController {
     
     // MARK: Properties
     
+    let textFieldAppearance = TextFieldAppearance()
     let registrationService = RegistrationService()
     var firstStepData: FirstStepRegistrationData?
     var secondStepData: SecondStepRegistrationData?
@@ -62,10 +63,10 @@ final class RegistrationCompletionViewController: UIViewController {
     }
     
     @IBAction func registrationCompletionTextFieldDidBeginEditing(_ sender: UITextField) {
-        sender.updateTextAppearanceOnFieldDidBeginEditing(sender)
+        textFieldAppearance.updateTextAppearanceOnFieldDidBeginEditing(sender)
     }
     
     @IBAction func registrationCompletionTextFieldDidEndEditing(_ sender: UITextField) {
-        sender.updateTextAppearanceOnFieldDidEndEditing(sender)
+        textFieldAppearance.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
 }

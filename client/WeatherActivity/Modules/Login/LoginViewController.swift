@@ -8,17 +8,18 @@
 import UIKit
 
 final class LoginViewController: UIViewController {
-
+    
     // MARK: IBOutlets
-
+    
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var passwordTextField: UITextField!
-
+    
     // MARK: Properties
-
+    
+    let textFieldAppearance = TextFieldAppearance()
     let loginService = LoginService()
     let userDefaults = UserDefaults.standard
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let sessionToken = SessionManager.shared.getToken() {
@@ -33,7 +34,7 @@ final class LoginViewController: UIViewController {
             emailTextField.text = lastEmail[0]
         }
     }
-
+    
     // MARK: IBActions
     
     @IBAction func loginButtonClick(_ sender: UIButton) {
@@ -55,13 +56,13 @@ final class LoginViewController: UIViewController {
             self.presentAlert(title: "Oops!", message: "You entered wrong credentials")
         })
     }
-
+    
     @IBAction func loginTextFieldDidBeginEditing(_ sender: UITextField) {
-        sender.updateTextAppearanceOnFieldDidBeginEditing(sender)
+        textFieldAppearance.updateTextAppearanceOnFieldDidBeginEditing(sender)
     }
-
+    
     @IBAction func loginTextFieldDidEndEditing(_ sender: UITextField) {
-        sender.updateTextAppearanceOnFieldDidEndEditing(sender)
+        textFieldAppearance.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
 }
 

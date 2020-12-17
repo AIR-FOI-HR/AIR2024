@@ -28,6 +28,7 @@ final class RegistrationViewController: UIViewController {
     
     // MARK: Properties
     
+    let textFieldAppearance = TextFieldAppearance()
     var firstStepData: FirstStepRegistrationData?
     let registrationService = RegistrationService()
     
@@ -62,11 +63,11 @@ final class RegistrationViewController: UIViewController {
     }
     
     @IBAction func registrationTextFieldDidBeginEditing(_ sender: UITextField) {
-        sender.updateTextAppearanceOnFieldDidBeginEditing(sender)
+        textFieldAppearance.updateTextAppearanceOnFieldDidBeginEditing(sender)
     }
     
     @IBAction func registrationTextFieldDidEndEditing(_ sender: UITextField) {
-        sender.updateTextAppearanceOnFieldDidEndEditing(sender)
+        textFieldAppearance.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
     
     
