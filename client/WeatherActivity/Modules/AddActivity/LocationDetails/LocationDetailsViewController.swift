@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LocationDetailsViewController: UIViewController {
+class LocationDetailsViewController: AddActivityStepViewController, SetupButtons {
     
     // MARK: - Properties
     
@@ -15,4 +15,39 @@ class LocationDetailsViewController: UIViewController {
     @IBOutlet private weak var nextButton: UIButton!
     @IBOutlet private weak var inputTextField: UITextField!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupDelegate = self
+        setupButtons(step: .locationDetails)
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        
+        guard let flowNavigator = flowNavigator else { return }
+        flowNavigator.showPreviousStep()
+    }
+    
+    @IBAction func nextButtonPressed(_ sender: UIButton) {
+        
+        guard let flowNavigator = flowNavigator else { return }
+        flowNavigator.showNextStep(from: .locationDetails)
+    }
+}
+
+// MARK: - Setup Buttons Delegate
+
+extension LocationDetailsViewController {
+    
+    func hideNextButton() {
+        
+        nextButton.isHidden = true
+    }
+    
+    func hidePreviousButton() {
+        
+        backButton.isHidden = true
+    }
 }
