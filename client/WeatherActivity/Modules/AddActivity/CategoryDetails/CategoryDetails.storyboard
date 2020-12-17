@@ -11,7 +11,7 @@
         <!--Category Details View Controller-->
         <scene sceneID="Bc6-tI-62k">
             <objects>
-                <viewController id="0vr-lN-y2J" customClass="CategoryDetailsViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryDetails" id="0vr-lN-y2J" customClass="CategoryDetailsViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ubR-rD-7Fq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,11 +20,17 @@
                                 <rect key="frame" x="124" y="652" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="previousButtonPressed:" destination="0vr-lN-y2J" eventType="touchUpInside" id="nUT-Wb-Gov"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0DG-IR-FOa">
                                 <rect key="frame" x="263" y="652" width="32" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="0vr-lN-y2J" eventType="touchUpInside" id="hyj-qk-U49"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qnZ-vd-dJ7">
                                 <rect key="frame" x="145" y="152" width="125" height="21"/>

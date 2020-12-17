@@ -11,7 +11,7 @@
         <!--Final Details View Controller-->
         <scene sceneID="LNz-PN-gkW">
             <objects>
-                <viewController id="Fr6-8M-sJZ" customClass="FinalDetailsViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FinalDetails" id="Fr6-8M-sJZ" customClass="FinalDetailsViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dXN-y3-X6m">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -20,11 +20,17 @@
                                 <rect key="frame" x="109" y="663" width="34" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="Fr6-8M-sJZ" eventType="touchUpInside" id="Fx7-0B-BLw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePl-mf-LlW">
                                 <rect key="frame" x="262" y="663" width="32" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="Fr6-8M-sJZ" eventType="touchUpInside" id="lbi-9L-zdL"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter text..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rQU-UH-xhu">
                                 <rect key="frame" x="109" y="269" width="185" height="34"/>
