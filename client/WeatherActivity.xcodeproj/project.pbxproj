@@ -37,6 +37,9 @@
 		8C2D04242576D8DA002E51D0 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04232576D8DA002E51D0 /* Navigation.swift */; };
 		8C2D04292576D9E9002E51D0 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04282576D9E9002E51D0 /* SecureStorage.swift */; };
 		8C2D042F2576DE3F002E51D0 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D042E2576DE3F002E51D0 /* SessionManager.swift */; };
+		8C4B642F258B51B70013DADD /* AddActivityStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B642E258B51B70013DADD /* AddActivityStepViewController.swift */; };
+		8C4B6438258B52310013DADD /* AddActivityFlowNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B6437258B52310013DADD /* AddActivityFlowNavigator.swift */; };
+		8C4B6447258B62230013DADD /* AddActivityStepInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4B6446258B62230013DADD /* AddActivityStepInfo.swift */; };
 		8C7C9A57256D610900683AE5 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C9A56256D610900683AE5 /* RegistrationViewController.swift */; };
 		8C7C9A6D256E9FAE00683AE5 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C9A6C256E9FAE00683AE5 /* LoginService.swift */; };
 		8C7C9A7E256EA3EF00683AE5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C9A7D256EA3EF00683AE5 /* User.swift */; };
@@ -115,6 +118,9 @@
 		8C2D04232576D8DA002E51D0 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		8C2D04282576D9E9002E51D0 /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
 		8C2D042E2576DE3F002E51D0 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		8C4B642E258B51B70013DADD /* AddActivityStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityStepViewController.swift; sourceTree = "<group>"; };
+		8C4B6437258B52310013DADD /* AddActivityFlowNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityFlowNavigator.swift; sourceTree = "<group>"; };
+		8C4B6446258B62230013DADD /* AddActivityStepInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityStepInfo.swift; sourceTree = "<group>"; };
 		8C7C9A56256D610900683AE5 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		8C7C9A6C256E9FAE00683AE5 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		8C7C9A7D256EA3EF00683AE5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -393,6 +399,30 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		8C4B642D258B51A60013DADD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				8C4B642E258B51B70013DADD /* AddActivityStepViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		8C4B6436258B521D0013DADD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8C4B6437258B52310013DADD /* AddActivityFlowNavigator.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		8C4B643F258B56730013DADD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8C4B6446258B62230013DADD /* AddActivityStepInfo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		8C7C9A6A256E9F8A00683AE5 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -446,6 +476,9 @@
 		8CB0C474258A4CBA009450B3 /* AddActivity */ = {
 			isa = PBXGroup;
 			children = (
+				8C4B643F258B56730013DADD /* Models */,
+				8C4B6436258B521D0013DADD /* Utilities */,
+				8C4B642D258B51A60013DADD /* Base */,
 				8CB0C478258A4D37009450B3 /* FinalDetails */,
 				8CB0C477258A4D31009450B3 /* CategoryDetails */,
 				8CB0C476258A4D1D009450B3 /* LocationDetails */,
@@ -751,6 +784,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C4B6447258B62230013DADD /* AddActivityStepInfo.swift in Sources */,
 				8C2D04142576D2B8002E51D0 /* TokenCheckResponse.swift in Sources */,
 				4252F64C25626DE600FCA0CB /* LoginViewController.swift in Sources */,
 				8CB0C48C258A4D5F009450B3 /* TimeDetailsViewController.swift in Sources */,
@@ -769,6 +803,7 @@
 				8C2D042F2576DE3F002E51D0 /* SessionManager.swift in Sources */,
 				8C2D041F2576D394002E51D0 /* EmailCheckResponse.swift in Sources */,
 				8C2D04062576D280002E51D0 /* LoginCredentials.swift in Sources */,
+				8C4B6438258B52310013DADD /* AddActivityFlowNavigator.swift in Sources */,
 				8CB0C482258A4D4F009450B3 /* CategoryDetailsViewController.swift in Sources */,
 				8C8BF4E72570F16D00E1CBE8 /* RegistrationService.swift in Sources */,
 				429A737025758EC900B99F8D /* RegistrationValidator.swift in Sources */,
@@ -780,6 +815,7 @@
 				8CB0C487258A4D57009450B3 /* LocationDetailsViewController.swift in Sources */,
 				8CB0C467258A493F009450B3 /* FinalDetailsModel.swift in Sources */,
 				8C2D040C2576D2A6002E51D0 /* AuthResponse.swift in Sources */,
+				8C4B642F258B51B70013DADD /* AddActivityStepViewController.swift in Sources */,
 				429A736825758E9E00B99F8D /* Alert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
