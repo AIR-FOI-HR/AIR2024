@@ -1,5 +1,5 @@
 //
-//  CollectionViewCell.swift
+//  WeatherTypeCollectionViewCell.swift
 //  WeatherActivity
 //
 //  Created by Infinum on 04.12.2020..
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CollectionViewCell: UICollectionViewCell {
+class WeatherTypeCollectionViewCell: UICollectionViewCell {
     
     //MARK: - IBOutlets
     
