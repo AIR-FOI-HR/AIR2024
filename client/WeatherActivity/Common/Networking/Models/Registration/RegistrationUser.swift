@@ -16,22 +16,3 @@ struct RegistrationUser: Codable {
     let username: String
     let avatarId: Int
 }
-
-struct FirstStepRegistrationData {
-    
-    let firstName: String
-    let lastName: String
-    let email: String
-    let password: String
-}
-
-struct SecondStepRegistrationData {
-    
-    let username: String
-    let avatarId: Int
-}
-
-struct RegistrationData {
-    let first: FirstStepRegistrationData?
-    let second: SecondStepRegistrationData?
-}

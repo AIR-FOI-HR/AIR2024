@@ -29,7 +29,7 @@ final class RegistrationViewController: UIViewController {
     // MARK: Properties
     
     let textFieldAppearance = TextFieldAppearance()
-    var firstStepData: FirstStepRegistrationData?
+    var firstStepData: UserInformation?
     let registrationService = RegistrationService()
     
     // MARK: IBActions
@@ -50,7 +50,7 @@ final class RegistrationViewController: UIViewController {
         
         registrationService.checkEmail(userEmail: email) { (res) in
             if res.msg == "Available" {
-                self.firstStepData = FirstStepRegistrationData(firstName: firstName, lastName: lastName, email: email, password: password)
+                self.firstStepData = UserInformation(firstName: firstName, lastName: lastName, email: email, password: password)
                 self.navigate(to: .registrationCompletion)
             } else {
                 self.presentAlert(title: AlertMessages.alertTitle.rawValue, message: AlertMessages.emailAlreadyExists.rawValue)

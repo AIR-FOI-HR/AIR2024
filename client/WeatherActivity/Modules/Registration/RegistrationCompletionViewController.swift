@@ -17,8 +17,8 @@ final class RegistrationCompletionViewController: UIViewController {
     
     let textFieldAppearance = TextFieldAppearance()
     let registrationService = RegistrationService()
-    var firstStepData: FirstStepRegistrationData?
-    var secondStepData: SecondStepRegistrationData?
+    var firstStepData: UserInformation?
+    var secondStepData: UserPreferences?
     var selectedAvatar = 0
     
     // MARK: IBActions
@@ -42,7 +42,7 @@ final class RegistrationCompletionViewController: UIViewController {
     
     @IBAction func finishButtonClicked(_ sender: UIButton) {
         guard let username = usernameTextField.text else { return }
-        self.secondStepData = SecondStepRegistrationData(username: username, avatarId: selectedAvatar)
+        self.secondStepData = UserPreferences(username: username, avatarId: selectedAvatar)
         let registrationData = RegistrationData(first: firstStepData, second: secondStepData)
         let registrationUser = RegistrationUser(firstName: registrationData.first!.firstName, lastName: registrationData.first!.lastName, email: registrationData.first!.email, password: registrationData.first!.password, username: registrationData.second!.username, avatarId: registrationData.second!.avatarId)
         
