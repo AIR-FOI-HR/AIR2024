@@ -8,6 +8,7 @@ target 'WeatherActivity' do
   pod 'IQKeyboardManagerSwift'
   pod 'KeychainSwift', '~> 19.0'
   pod 'SkeletonView'
+  pod 'DropDown'
   # Pods for WeatherActivity
 
   target 'WeatherActivityTests' do
