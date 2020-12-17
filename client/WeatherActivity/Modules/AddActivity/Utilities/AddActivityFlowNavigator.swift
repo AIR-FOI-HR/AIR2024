@@ -14,6 +14,7 @@ class AddActivityFlowNavigator {
     var navigationController: UINavigationController?
     let steps: [StepInfo]
     let initialStep: StepInfo
+    let dataFlowManager = AddActivityFlowDataManager()
     
     init(navigationController: UINavigationController, steps: [StepInfo]) {
         self.steps = steps
@@ -36,7 +37,9 @@ class AddActivityFlowNavigator {
         from.present(navigationController!, animated: true, completion: nil)
     }
     
-    func showNextStep(from: StepInfo) {
+    func showNextStep(from: StepInfo, data: StepData) {
+        #warning("Handle if last step -> submit data")
+        dataFlowManager.saveData(data: data)
         
         guard let currentStep = steps.firstIndex(of: from) else { return }
         let nextStep = steps[currentStep + 1]

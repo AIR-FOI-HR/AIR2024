@@ -13,3 +13,8 @@ enum StepInfo: String {
     case categoryDetails = "CategoryDetails"
     case finalDetails = "FinalDetails"
 }
+
+struct StepData {
+    let stepInfo: StepInfo
+    let data: Codable
+}
