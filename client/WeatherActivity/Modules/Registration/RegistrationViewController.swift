@@ -28,8 +28,8 @@ final class RegistrationViewController: UIViewController {
     
     // MARK: Properties
     
+    var userInformation: UserInformation?
     let textFieldAppearance = TextFieldAppearance()
-    var firstStepData: UserInformation?
     let registrationService = RegistrationService()
     
     // MARK: IBActions
@@ -50,7 +50,7 @@ final class RegistrationViewController: UIViewController {
         
         registrationService.checkEmail(userEmail: email) { (res) in
             if res.msg == "Available" {
-                self.firstStepData = UserInformation(firstName: firstName, lastName: lastName, email: email, password: password)
+                self.userInformation = UserInformation(firstName: firstName, lastName: lastName, email: email, password: password)
                 self.navigate(to: .registrationCompletion)
             } else {
                 self.presentAlert(title: AlertMessages.alertTitle.rawValue, message: AlertMessages.emailAlreadyExists.rawValue)
@@ -83,10 +83,10 @@ extension RegistrationViewController {
     internal override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is RegistrationCompletionViewController == true {
             let registrationVC = segue.destination as! RegistrationCompletionViewController
-            guard let data = self.firstStepData else {
+            guard let data = self.userInformation else {
                 return
             }
-            registrationVC.firstStepData = data
+            registrationVC.userInformation = data
         }
     }
 }
