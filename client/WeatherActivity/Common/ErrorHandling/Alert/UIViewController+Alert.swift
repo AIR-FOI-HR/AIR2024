@@ -1,5 +1,5 @@
 //
-//  Alerter.swift
+//  UIViewController+Alert.swift
 //  WeatherActivity
 //
 //  Created by Infinum on 30.11.2020..
