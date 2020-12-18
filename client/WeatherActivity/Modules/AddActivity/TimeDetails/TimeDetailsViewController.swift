@@ -40,7 +40,7 @@ class TimeDetailsViewController: UIViewController {
     let timeDetailsManager = TimeDetailsManager()
     let forecastData = ForecastData()
     #warning("Delete dummy location and replace with previous screen data")
-    let dummyLocation = LocationDetails(latitude: 46.306268, longitude: 16.336089)
+    let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
     
     override func viewDidLoad() {
         super.viewDidLoad()

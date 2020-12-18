@@ -7,11 +7,8 @@
 
 import MapKit
 
-struct NewActivity {
-    
-}
-
 struct LocationDetails {
+    var locationName: String
     var latitude: CLLocationDegrees
     var longitude: CLLocationDegrees
 }
