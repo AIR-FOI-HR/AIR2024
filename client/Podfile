@@ -7,6 +7,9 @@ target 'WeatherActivity' do
   pod 'Alamofire', '~> 5.2'
   pod 'IQKeyboardManagerSwift'
   pod 'KeychainSwift', '~> 19.0'
+  
+  pod 'CHIPageControl/Aleppo'
+  
   # Pods for WeatherActivity
 
   target 'WeatherActivityTests' do
