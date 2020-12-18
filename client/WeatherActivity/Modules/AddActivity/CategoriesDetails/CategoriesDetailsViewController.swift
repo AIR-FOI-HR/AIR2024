@@ -6,22 +6,28 @@
 //
 
 import UIKit
+import CHIPageControl
 
-final class CategoryDetailsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+
+final class CategoryDetailsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
     // MARK: IBOutlets
 
     @IBOutlet weak var horizontalStackView: UIStackView!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var pageControl: UIPageControl!
-        
+    @IBOutlet weak var pageControl: CHIPageControlAleppo!
+    
     // MARK: Properties
     
     let categoryService = CategoryService()
     var allCategories = [String]()
     var recentCategories = [String]()
-    var numberOfPages: Int = 0
-    var emptyResponse: Bool = true
+    var searchAllCategories = [String]()
+    var selectedCategory = ""
+    var isRecentCategoriesSelected: Bool = false
+    
+    let allCategoryImages: UIImage = UIImage(named: "avatar1")!
+    #warning("TODO: all images for each category")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +42,10 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
         horizontalStackView.axis  = NSLayoutConstraint.Axis.horizontal
         horizontalStackView.distribution  = UIStackView.Distribution.fillEqually
         horizontalStackView.alignment = UIStackView.Alignment.center
-        horizontalStackView.spacing   = 10.0
+        horizontalStackView.spacing = 5.0
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        if emptyResponse {
+        if recentCategories.isEmpty {
             addNoRecentCategoriesLabel()
         }
         else {
@@ -48,14 +54,63 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
     }
     
     func addRecentCategoriesItems() {
-        // TODO: add images for each category
+        var index = 0
         for category in recentCategories {
+            let verticalStackView = UIStackView()
+            verticalStackView.axis = NSLayoutConstraint.Axis.vertical
+            verticalStackView.accessibilityIdentifier = category
+            #warning("TODO: Find better way for getting pressed category name in recent categories?")
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(stackViewPressed(_:)))
+            
             let textLabel = UILabel()
             textLabel.textAlignment = .center
             textLabel.textColor = UIColor.systemGray
             textLabel.font = textLabel.font.withSize(13)
             textLabel.text  = category
-            horizontalStackView.addArrangedSubview(textLabel)
+            
+            let imageView = UIImageView(image: allCategoryImages)
+            imageView.contentMode = .center
+            imageView.isUserInteractionEnabled = true
+            imageView.addGestureRecognizer(tapGestureRecognizer)
+            imageView.tag = index
+                        
+            verticalStackView.addArrangedSubview(imageView)
+            verticalStackView.addArrangedSubview(textLabel)
+            horizontalStackView.addArrangedSubview(verticalStackView)
+            
+            index += 1
+        }
+    }
+    
+    @objc func stackViewPressed(_ sender: UITapGestureRecognizer) {
+        guard let selectedIndex = sender.view?.tag else {
+            fatalError("Couldn't get index of pressed stackView")
+        }
+        let selectedView = horizontalStackView.arrangedSubviews[selectedIndex]
+        guard let selectedCategoryIdentifier = selectedView.accessibilityIdentifier else {
+            fatalError("Accessibility identifier for selected image doesn't exist.")
+        }
+        guard let visibleCells = collectionView.visibleCells as? [CategoriesCollectionViewCell] else {
+            fatalError("Couldn't get visible cells in collection view.")
+        }
+        isRecentCategoriesSelected = true
+        deselectAllRecentCategories()
+        selectedView.layer.borderWidth = 1.2
+        selectedView.layer.borderColor = UIColor.gray.cgColor
+        selectedView.layer.cornerRadius = 10
+        for cell in visibleCells {
+            if cell.categoryName.text == selectedCategory {
+                cell.layer.borderColor = UIColor.clear.cgColor
+                cell.layer.borderWidth = 0
+            }
+        }
+        selectedCategory = selectedCategoryIdentifier
+    }
+    
+    func deselectAllRecentCategories() {
+        for stackView in horizontalStackView.arrangedSubviews {
+            stackView.layer.borderWidth = 0
+            stackView.layer.borderColor = UIColor.clear.cgColor
         }
     }
     
@@ -69,32 +124,26 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
     }
     
     func setRecentCategories() {
-        let email = "test3@gmail.com"
-        // TODO: get logged user's mail (not hardcoded)
-        categoryService.getRecentCategories(userEmail: email, success: { apiResponse in
-            if(apiResponse.empty) {
-                self.emptyResponse = true
-            }
-            else {
-                self.recentCategories = apiResponse.categories!
-                self.emptyResponse = false
-            }
-            self.updateHorizontalStackView()
-            // TODO: move self.updateHorizontalStackView() from this function to viewDidLoad() - currently only works this way
-        }, failure: { error in
-            print(error.localizedDescription)
-            self.presentAlert(title: "Oops!", message: "Something went wrong with getting your recent categories!")
-        })
+        if let sessionToken = SessionManager.shared.getToken() {
+            categoryService.getRecentCategories(token: sessionToken, success: { apiResponse in
+                if(!apiResponse.categories.isEmpty) {
+                    self.recentCategories = apiResponse.categories
+                }
+                self.updateHorizontalStackView()
+            }, failure: { error in
+                print(error.localizedDescription)
+                self.presentAlert(title: "Oops!", message: "Something went wrong with getting your recent categories!")
+            })
+        }
     }
     
     func setAllCategories() {
         categoryService.getAllCategories(success: { apiResponse in
-            self.allCategories = apiResponse.categories!
-            self.numberOfPages = Int(self.allCategories.count / 6)
-            // TODO: fix bug with page control not recognizing last page and not setting propiate number of pages
-            
+            self.allCategories = apiResponse.categories
+            self.searchAllCategories = self.allCategories
+            let nbCategories = Double(self.allCategories.count)
+            self.pageControl.numberOfPages = Int(ceil(nbCategories / 6.0))
             self.updateCollectionView()
-            // TODO: move self.updateCollectionView() from this function to viewDidLoad() - currently only works this way
         }, failure: { error in
             print(error.localizedDescription)
             self.presentAlert(title: "Oops!", message: "Something went wrong with getting categories!")
@@ -105,42 +154,74 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
         return allCategories.count
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        pageControl.currentPage = Int(scrollView.contentOffset.x) / Int(scrollView.frame.width)
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let visibleRect = CGRect(origin: self.collectionView.contentOffset, size: self.collectionView.bounds.size)
-        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-        if let visibleIndexPath = self.collectionView.indexPathForItem(at: visiblePoint) {
-            self.pageControl.currentPage = visibleIndexPath.row
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoriesCollectionViewCell else {
+            fatalError("Couldn't get selected cell in collection view.")
         }
+        guard let categoryName = cell.categoryName.text else {
+            fatalError("Label for selected category in collection view is empty.")
+        }
+        isRecentCategoriesSelected = false
+        deselectAllRecentCategories()
+        updateCollectionView()
+        selectedCategory = categoryName
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CategoriesCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CategoriesCollectionViewCell else {
+            fatalError()
+        }
         cell.categoryName.text = allCategories[indexPath.item]
-        // TODO: add images for each category
+        cell.categoryImage.image = allCategoryImages
+                
+        if selectedCategory == cell.categoryName.text && !isRecentCategoriesSelected {
+            cell.layer.borderColor = UIColor.gray.cgColor
+            cell.layer.borderWidth = 1.2
+            cell.layer.cornerRadius = 10
+            cell.isSelected = true
+        }
+        else {
+            cell.layer.borderWidth = 0
+            cell.layer.borderColor = UIColor.clear.cgColor
+        }
         return cell
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let newPageNumber = Int(ceil(scrollView.contentOffset.x / scrollView.frame.width))
+        pageControl.set(progress: newPageNumber, animated: true)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.allCategories.removeAll()
+        for category in self.searchAllCategories {
+            if (category.lowercased().contains(searchText.lowercased())) {
+                self.allCategories.append(category)
+            }
+        }
+        if (searchText.isEmpty) {
+            self.allCategories = self.searchAllCategories
+        }
+        updateCollectionView()
+    }
+    
     func updateCollectionView() {
-//        DispatchQueue.main.async {
         self.collectionView.reloadData()
-//        }
     }
     
     func setCollectionViewLayout() {
-        pageControl.hidesForSinglePage = true
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         let width = collectionView.bounds.width / 3 - (collectionView.layoutMargins.left + collectionView.layoutMargins.right) / 2
+        #warning("TODO: Fix cell width and other constraints + scrollview")
         let height = collectionView.bounds.size.height / 2 - (collectionView.layoutMargins.top + collectionView.layoutMargins.bottom) / 2
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: width, height: height)
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView!.collectionViewLayout = layout
+        collectionView.allowsMultipleSelection = false
+        collectionView.collectionViewLayout = layout
     }
     
 }
+
