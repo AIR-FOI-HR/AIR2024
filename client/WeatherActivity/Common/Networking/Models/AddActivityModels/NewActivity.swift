@@ -15,8 +15,8 @@ struct LocationDetails {
 
 struct TimeDetails {
     var date: Date
-    var fromTime: Date
-    var untilTime: Date
+    var fromTime: String
+    var untilTime: String
 }
 
 struct ActivityData {
