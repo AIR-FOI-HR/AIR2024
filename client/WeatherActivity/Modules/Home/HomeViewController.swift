@@ -69,6 +69,12 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: ActivityListViewDelegate {
+    func didPressRow(activity: ActivityCellItem) {
+        let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
+        details.commonInit(activity: activity)
+        self.present(details, animated: true, completion: nil)
+    }
+    
     func didPressReloadAction() {
         loadActivities()
     }

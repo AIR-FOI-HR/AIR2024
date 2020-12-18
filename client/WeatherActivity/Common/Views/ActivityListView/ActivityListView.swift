@@ -11,6 +11,7 @@ import SkeletonView
 
 protocol ActivityListViewDelegate: AnyObject {
     func didPressReloadAction()
+    func didPressRow(activity: ActivityCellItem)
 }
 
 class ActivityListView: UIView, UITableViewDelegate {
@@ -119,7 +120,11 @@ extension ActivityListView: SkeletonTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(dataSource[indexPath.row])
+        guard let delegate = delegate else {
+            return
+        }
+        delegate.didPressRow(activity: dataSource[indexPath.row])
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

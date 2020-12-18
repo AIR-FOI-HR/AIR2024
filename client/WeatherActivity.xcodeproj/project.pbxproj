@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205CE1425705A3600FF056F /* UIExtensions.swift */; };
+		4227A754258CB7730082C0E8 /* ActivityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227A752258CB7730082C0E8 /* ActivityDetailsViewController.swift */; };
+		4227A755258CB7730082C0E8 /* ActivityDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4227A753258CB7730082C0E8 /* ActivityDetailsViewController.xib */; };
 		4238F62E257D7C7600A755BE /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4238F62D257D7C7600A755BE /* ActivityService.swift */; };
 		4238F634257D7DDE00A755BE /* ActivitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4238F633257D7DDE00A755BE /* ActivitiesResponse.swift */; };
 		423CFA5C2572A5BA005CF798 /* RegistrationCompletion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */; };
@@ -75,6 +77,8 @@
 /* Begin PBXFileReference section */
 		21E3DBCF3D927D95E4389908 /* Pods_WeatherActivity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherActivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4205CE1425705A3600FF056F /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		4227A752258CB7730082C0E8 /* ActivityDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsViewController.swift; sourceTree = "<group>"; };
+		4227A753258CB7730082C0E8 /* ActivityDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityDetailsViewController.xib; sourceTree = "<group>"; };
 		4238F62D257D7C7600A755BE /* ActivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityService.swift; sourceTree = "<group>"; };
 		4238F633257D7DDE00A755BE /* ActivitiesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesResponse.swift; sourceTree = "<group>"; };
 		423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationCompletion.storyboard; sourceTree = "<group>"; };
@@ -161,14 +165,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2F8E925E90F4C4B1B3051671 /* Frameworks */ = {
+		4227A751258CB6FA0082C0E8 /* ActivityDetails */ = {
 			isa = PBXGroup;
 			children = (
-				25880C3376CADF6A9E65DA95 /* Pods_WeatherActivity.framework */,
-				D5F2418815B8012CD9A776E3 /* Pods_WeatherActivity_WeatherActivityUITests.framework */,
-				9D0162088DB7F3964C37E59B /* Pods_WeatherActivityTests.framework */,
+				4227A752258CB7730082C0E8 /* ActivityDetailsViewController.swift */,
+				4227A753258CB7730082C0E8 /* ActivityDetailsViewController.xib */,
 			);
-			name = Frameworks;
+			path = ActivityDetails;
 			sourceTree = "<group>";
 		};
 		4238F632257D7CB800A755BE /* ActivityModels */ = {
@@ -257,6 +260,7 @@
 		4252F67F25626E9F00FCA0CB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4227A751258CB6FA0082C0E8 /* ActivityDetails */,
 				8C49F09925796ADF0067EA86 /* AddActivity */,
 				42EF36C0256C157C0069E590 /* Home */,
 				4252F6BE2562A93B00FCA0CB /* InitialScreens */,
@@ -641,6 +645,7 @@
 				42780140257CF11200E9EE9C /* ActivityCell.xib in Resources */,
 				8C49F0A425796B760067EA86 /* LocationDetails.storyboard in Resources */,
 				4252F65125626DE900FCA0CB /* Assets.xcassets in Resources */,
+				4227A755258CB7730082C0E8 /* ActivityDetailsViewController.xib in Resources */,
 				4252F64F25626DE600FCA0CB /* Login.storyboard in Resources */,
 				42EF36C2256C159F0069E590 /* Home.storyboard in Resources */,
 			);
@@ -780,6 +785,7 @@
 				4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */,
 				8C7C9A7E256EA3EF00683AE5 /* User.swift in Sources */,
 				8C2D04242576D8DA002E51D0 /* Navigation.swift in Sources */,
+				4227A754258CB7730082C0E8 /* ActivityDetailsViewController.swift in Sources */,
 				8C7C9A57256D610900683AE5 /* RegistrationViewController.swift in Sources */,
 				8C2D04292576D9E9002E51D0 /* SecureStorage.swift in Sources */,
 				8C2D042F2576DE3F002E51D0 /* SessionManager.swift in Sources */,
