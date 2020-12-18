@@ -52,13 +52,14 @@ final class FinalDetailsViewController: UIViewController, UICollectionViewDelega
     
     @IBOutlet weak private var titleTextField: UITextField!
     @IBOutlet weak private var descriptionTextField: UITextField!
-    @IBOutlet weak private var collectionView: UICollectionView!
+    @IBOutlet weak private var weathersCollectionView: UICollectionView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.allowsMultipleSelection = true
+        weathersCollectionView.delegate = self
+        weathersCollectionView.dataSource = self
+        weathersCollectionView.allowsMultipleSelection = true
     }
     
     // MARK: - Properties
