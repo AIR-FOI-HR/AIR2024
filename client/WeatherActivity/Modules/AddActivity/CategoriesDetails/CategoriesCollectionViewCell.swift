@@ -12,9 +12,6 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlets
     
     @IBOutlet weak var categoryName: UILabel!
+    @IBOutlet weak var categoryImage: UIImageView!
     
-    // TODO: add categoryImage outlet
-    
-    
-    // TODO: add handler for selecting cell
 }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		29F7320911C8AD977DC70F52 /* Pods_WeatherActivityTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D0162088DB7F3964C37E59B /* Pods_WeatherActivityTests.framework */; };
 		4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205CE1425705A3600FF056F /* UIExtensions.swift */; };
-		4236998D258153DE00325248 /* CategoriesSearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4236998C258153DE00325248 /* CategoriesSearchBarView.swift */; };
 		423CFA5C2572A5BA005CF798 /* RegistrationCompletion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */; };
 		423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */; };
 		4252F64825626DE600FCA0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64725626DE600FCA0CB /* AppDelegate.swift */; };
@@ -75,7 +74,6 @@
 		25880C3376CADF6A9E65DA95 /* Pods_WeatherActivity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherActivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AD7A654F1250EF1A82A50B9 /* Pods-WeatherActivity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherActivity.release.xcconfig"; path = "Target Support Files/Pods-WeatherActivity/Pods-WeatherActivity.release.xcconfig"; sourceTree = "<group>"; };
 		4205CE1425705A3600FF056F /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
-		4236998C258153DE00325248 /* CategoriesSearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesSearchBarView.swift; sourceTree = "<group>"; };
 		423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationCompletion.storyboard; sourceTree = "<group>"; };
 		423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCompletionViewController.swift; sourceTree = "<group>"; };
 		4252F64425626DE600FCA0CB /* WeatherActivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherActivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -368,7 +366,6 @@
 				42D29B91257FADC500F74E5D /* CategoriesDetailsViewController.swift */,
 				42D29B9C257FAE0900F74E5D /* CategoriesDetails.storyboard */,
 				42D29BA1257FAE2D00F74E5D /* CategoriesCollectionViewCell.swift */,
-				4236998C258153DE00325248 /* CategoriesSearchBarView.swift */,
 				4294A88E258CEAA60003240C /* CagegoryModel.swift */,
 			);
 			path = CategoriesDetails;
@@ -733,7 +730,6 @@
 				4252F64A25626DE600FCA0CB /* SceneDelegate.swift in Sources */,
 				4294A88F258CEAA60003240C /* CagegoryModel.swift in Sources */,
 				42EF36C7256C15EB0069E590 /* HomeViewController.swift in Sources */,
-				4236998D258153DE00325248 /* CategoriesSearchBarView.swift in Sources */,
 				42B0FB01257070A700781940 /* Constants.swift in Sources */,
 				8C2D040C2576D2A6002E51D0 /* AuthResponse.swift in Sources */,
 				429A736825758E9E00B99F8D /* Alert.swift in Sources */,
