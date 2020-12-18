@@ -27,10 +27,10 @@ class CategoryService {
             }
     }
     
-    func getRecentCategories(userEmail email: String, success: @escaping (CategoryResponse)->Void, failure: @escaping (Error)->Void) {
+    func getRecentCategories(token sessionToken: String, success: @escaping (CategoryResponse)->Void, failure: @escaping (Error)->Void) {
         AF.request(Constants.baseUrl.appending("/categories/recentCategories") as URLConvertible,
                    method: .post,
-                   parameters: ["email":email],
+                   parameters: ["sessionToken": sessionToken],
                    encoder: JSONParameterEncoder.default
         ).responseData { response in
             switch response.result {
@@ -39,7 +39,6 @@ class CategoryService {
                     let jsonData = try JSONDecoder().decode(CategoryResponse.self, from: data)
                     success(jsonData)
                 } catch (let error){
-                    print("er: \(error)")
                     failure(error)
                 }
             case .failure(let error):
