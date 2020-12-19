@@ -51,6 +51,10 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                                <connections>
+                                                                    <action selector="finalDetailsTextFieldDidBeginEditing:" destination="62S-Lz-yEg" eventType="editingDidBegin" id="yzP-0N-uwC"/>
+                                                                    <action selector="finalDetailsTextFieldDidEndEditing:" destination="62S-Lz-yEg" eventType="editingDidEnd" id="BSo-At-7Rh"/>
+                                                                </connections>
                                                             </textField>
                                                             <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Pl-z6-C9h" userLabel="descriptionTextField">
                                                                 <rect key="frame" x="0.0" y="70" width="350" height="50"/>
@@ -59,6 +63,10 @@
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                                <connections>
+                                                                    <action selector="finalDetailsTextFieldDidBeginEditing:" destination="62S-Lz-yEg" eventType="editingDidBegin" id="vfD-um-Lf3"/>
+                                                                    <action selector="finalDetailsTextFieldDidEndEditing:" destination="62S-Lz-yEg" eventType="editingDidEnd" id="oFd-Kq-mcj"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
@@ -79,6 +87,9 @@
                                                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GxF-ll-8Z9" userLabel="indoorButton">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="150"/>
                                                                                 <state key="normal" image="Indoor"/>
+                                                                                <connections>
+                                                                                    <action selector="typeOfActivityPressed:" destination="62S-Lz-yEg" eventType="touchUpInside" id="L6G-KK-iSx"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -94,6 +105,9 @@
                                                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Er-hw-dwg" userLabel="outdoorButton">
                                                                                 <rect key="frame" x="0.0" y="0.0" width="165" height="150"/>
                                                                                 <state key="normal" image="Outdoor"/>
+                                                                                <connections>
+                                                                                    <action selector="typeOfActivityPressed:" destination="62S-Lz-yEg" eventType="touchUpInside" id="AFM-A6-hwM"/>
+                                                                                </connections>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -260,6 +274,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="descriptionTextField" destination="5Pl-z6-C9h" id="LKK-V2-DCq"/>
+                        <outlet property="titleTextField" destination="2GM-iV-WUt" id="hSM-iE-p6r"/>
                         <outlet property="weathersCollectionView" destination="Ik9-Ir-flU" id="m5H-pL-eVt"/>
                     </connections>
                 </viewController>
