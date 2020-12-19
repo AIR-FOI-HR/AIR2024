@@ -24,21 +24,21 @@ enum SelectedActivityType: Int {
 }
 
 enum WeatherType: String, CaseIterable {
-    case sunny = "Sunny"
-    case cloudy = "Cloudy"
-    case sunCloudy = "SunCloudy"
-    case rainy = "Rainy"
-    case foggy = "Foggy"
-    case snowy = "Snowy"
-    case stormy = "Stormy"
-    case windy = "Windy"
+    case sunny = "sunny"
+    case cloudy = "cloudy"
+    case sunCloudy = "sunCloudy"
+    case rainy = "rainy"
+    case foggy = "foggy"
+    case snowy = "snowy"
+    case stormy = "stormy"
+    case windy = "windy"
 }
 
-//MARK: - Weather class
+//MARK: - WeatherCell class
 
-class Weather {
+class WeatherCell {
     var typeOfWeather: WeatherType
-    var name: String? { typeOfWeather.rawValue }
+    var name: String? { typeOfWeather.rawValue.capitalizingFirstLetter() }
     var image: UIImage? { UIImage(named: typeOfWeather.rawValue) }
     
     init(type: WeatherType) {
@@ -54,7 +54,6 @@ final class FinalDetailsViewController: UIViewController, UICollectionViewDelega
     @IBOutlet weak private var descriptionTextField: UITextField!
     @IBOutlet weak private var weathersCollectionView: UICollectionView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         weathersCollectionView.delegate = self
@@ -65,7 +64,7 @@ final class FinalDetailsViewController: UIViewController, UICollectionViewDelega
     // MARK: - Properties
 
     var isSelectedActivityType = false
-    var selectedActivityType = SelectedActivityType.indoor.rawValue
+    var selectedActivityType = SelectedActivityType.indoor
     var selectedSupportedWeathers = [String]()
     
     //MARK: - IBActions
@@ -73,26 +72,26 @@ final class FinalDetailsViewController: UIViewController, UICollectionViewDelega
     @IBAction func typeOfActivityPressed(_ sender: UIButton) {
         if isSelectedActivityType == true {
             let selectedTag = sender.tag
-            let current = self.view.viewWithTag(selectedTag)
-            sender.selectedOutdoorIndoor(current as! UIButton)
+            guard let current = self.view.viewWithTag(selectedTag), let newCurrent = current as? UIButton else { return }
+            sender.selectedOutdoorIndoor(newCurrent)
             
-            let previous = self.view.viewWithTag(selectedActivityType)
-            sender.deselectedOutdoorIndoor(previous as! UIButton)
+            guard let previous = self.view.viewWithTag(selectedActivityType.rawValue), let newPrevious = previous as? UIButton else { return }
+            sender.deselectedOutdoorIndoor(newPrevious)
             
             if selectedTag == SelectedActivityType.indoor.rawValue {
-                selectedActivityType = SelectedActivityType.indoor.rawValue
+                selectedActivityType = SelectedActivityType.indoor
             } else {
-                selectedActivityType = SelectedActivityType.outdoor.rawValue
+                selectedActivityType = SelectedActivityType.outdoor
             }
         } else {
             let selectedTag = sender.tag
-            let current = self.view.viewWithTag(sender.tag)
+            guard let current = self.view.viewWithTag(sender.tag) else { return }
             sender.selectedOutdoorIndoor(current as! UIButton)
             
             if selectedTag == SelectedActivityType.indoor.rawValue {
-                selectedActivityType = SelectedActivityType.indoor.rawValue
+                selectedActivityType = SelectedActivityType.indoor
             } else {
-                selectedActivityType = SelectedActivityType.outdoor.rawValue
+                selectedActivityType = SelectedActivityType.outdoor
             }
             isSelectedActivityType = true
         }
@@ -110,7 +109,6 @@ final class FinalDetailsViewController: UIViewController, UICollectionViewDelega
             presentAlert(title: FinalDetailsAlertMessages.supportedWeatherAlertTTitle.rawValue, message: FinalDetailsAlertMessages.supportedWeatherAlertTMessage.rawValue)
         }
         else {
-            print(selectedActivityType)
             #warning("Proceed with future code")
         }
     }
@@ -125,14 +123,9 @@ final class FinalDetailsViewController: UIViewController, UICollectionViewDelega
     
     //MARK: - CollectionVIew handling
     
-    let sunny = Weather(type: .sunny)
-    let cloudy = Weather(type: .cloudy)
-    let sunCloudy = Weather(type: .sunCloudy)
-    let rainy = Weather(type: .rainy)
-    let foggy = Weather(type: .foggy)
-    let snowy = Weather(type: .snowy)
-    let stormy = Weather(type: .stormy)
-    let windy = Weather(type: .windy)
+    var possibleWeathers: [WeatherCell] {
+        [.init(type: .sunny), .init(type: .cloudy), .init(type: .sunCloudy), .init(type: .rainy), .init(type: .foggy), .init(type: .snowy), .init(type: .stormy), .init(type: .windy)]
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return WeatherType.allCases.count
@@ -141,9 +134,20 @@ final class FinalDetailsViewController: UIViewController, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? WeatherTypeCollectionViewCell else { fatalError() }
         
-        let weatherNames = [sunny.name, cloudy.name, sunCloudy.name, rainy.name, foggy.name, snowy.name, stormy.name, windy.name]
-        let weatherImages = [sunny.image, cloudy.image, sunCloudy.image, rainy.image, foggy.image, snowy.image, stormy.image, windy.image]
+        var weatherNames = [String]()
+        var weatherImages = [UIImage]()
         
+        for item in possibleWeathers {
+            if let weatherName = item.name {
+                weatherNames.append(weatherName)
+            }
+        }
+        for item in possibleWeathers {
+            if let weatherImage = item.image {
+                weatherImages.append(weatherImage)
+            }
+        }
+
         cell.weatherLabel.text = weatherNames[indexPath.item]
         cell.weatherImageView.image = weatherImages[indexPath.item]
         
@@ -175,5 +179,15 @@ final class FinalDetailsViewController: UIViewController, UICollectionViewDelega
         
         guard let removeAt = selectedSupportedWeathers.firstIndex(of: "\(indexPath.item + 1)") else { return }
         selectedSupportedWeathers.remove(at: removeAt)
+    }
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
     }
 }
