@@ -23,22 +23,11 @@ final class LoginViewController: UIViewController {
     
     let textFieldAppearance = TextFieldAppearance()
     let loginService = LoginService()
-    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let sessionToken = SessionManager.shared.getToken() {
-            loginService.checkForToken(token: sessionToken, success: { checkResponse in
-                self.navigate(to: .home)
-            }, failure: { error in
-                #warning("Return message to the user")
-            })
-        }
         
-        if let lastEmail = userDefaults.array(forKey: Constants.StandardStorageKeys.lastEnteredEmail.rawValue) as? [String] {
-            print(lastEmail)
-            emailTextField.text = lastEmail[0]
-        }
+        emailTextField.text = UserDefaultsManager.shared.getUserDefaultString(key: .lastEnteredEmail)
     }
     
     // MARK: IBActions
@@ -52,7 +41,7 @@ final class LoginViewController: UIViewController {
         loginService.login(with: credentials, success: { apiResponse in
             SessionManager.shared.saveToken(apiResponse.sessionToken)
             if(!apiResponse.sessionToken.isEmpty) {
-                self.userDefaults.set([email], forKey: Constants.StandardStorageKeys.lastEnteredEmail.rawValue)
+                UserDefaultsManager.shared.saveUserDefault(value: email, key: .lastEnteredEmail)
                 self.navigate(to: .home)
             }
             else{

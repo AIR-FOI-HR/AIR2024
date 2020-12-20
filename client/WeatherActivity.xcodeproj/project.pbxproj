@@ -12,6 +12,8 @@
 		423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */; };
 		424F7EA3258BA504003EC185 /* UIButton+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */; };
 		424F7EA8258BB3CE003EC185 /* TextFieldAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F7EA7258BB3CE003EC185 /* TextFieldAppearance.swift */; };
+		4252C841258F95C900A2A7CC /* StandardStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252C840258F95C900A2A7CC /* StandardStorage.swift */; };
+		4252C846258F99E400A2A7CC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252C845258F99E400A2A7CC /* UserDefaultsManager.swift */; };
 		4252F64825626DE600FCA0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64725626DE600FCA0CB /* AppDelegate.swift */; };
 		4252F64A25626DE600FCA0CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64925626DE600FCA0CB /* SceneDelegate.swift */; };
 		4252F64C25626DE600FCA0CB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64B25626DE600FCA0CB /* LoginViewController.swift */; };
@@ -73,6 +75,8 @@
 		423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCompletionViewController.swift; sourceTree = "<group>"; };
 		424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Appearance.swift"; sourceTree = "<group>"; };
 		424F7EA7258BB3CE003EC185 /* TextFieldAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAppearance.swift; sourceTree = "<group>"; };
+		4252C840258F95C900A2A7CC /* StandardStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardStorage.swift; sourceTree = "<group>"; };
+		4252C845258F99E400A2A7CC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		4252F64425626DE600FCA0CB /* WeatherActivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherActivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4252F64725626DE600FCA0CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4252F64925626DE600FCA0CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -363,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				8C2D04282576D9E9002E51D0 /* SecureStorage.swift */,
+				4252C840258F95C900A2A7CC /* StandardStorage.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 				8C7C9A7B256EA3A900683AE5 /* Models */,
 				8C7C9A6B256E9F9100683AE5 /* Services */,
 				8C2D042E2576DE3F002E51D0 /* SessionManager.swift */,
+				4252C845258F99E400A2A7CC /* UserDefaultsManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -700,6 +706,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4252C841258F95C900A2A7CC /* StandardStorage.swift in Sources */,
 				8C2D04142576D2B8002E51D0 /* TokenCheckResponse.swift in Sources */,
 				4252F64C25626DE600FCA0CB /* LoginViewController.swift in Sources */,
 				8C7C9A6D256E9FAE00683AE5 /* LoginService.swift in Sources */,
@@ -722,6 +729,7 @@
 				8CE0417225764E04005EFEC4 /* RegistrationUser.swift in Sources */,
 				4252F64A25626DE600FCA0CB /* SceneDelegate.swift in Sources */,
 				42EF36C7256C15EB0069E590 /* HomeViewController.swift in Sources */,
+				4252C846258F99E400A2A7CC /* UserDefaultsManager.swift in Sources */,
 				42B0FB01257070A700781940 /* Constants.swift in Sources */,
 				8C2D040C2576D2A6002E51D0 /* AuthResponse.swift in Sources */,
 				429A736825758E9E00B99F8D /* UIViewController+Alert.swift in Sources */,
