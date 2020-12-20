@@ -11,9 +11,11 @@ struct Constants {
     
     // MARK: - Networking
     
-    static let baseUrl = "http://localhost:3000"
+    static let baseUrl = "http://seyziich.com:3100"
     
     // MARK: User Defaults
     
-    static let lastEnteredEmail = "LastEnteredEmail"
+    enum StandardStorageKeys: String {
+        case lastEnteredEmail = "LastEnteredEmail"
+    }
 }
