@@ -16,6 +16,10 @@ enum AlertMessages: String {
     case passwordLengthError = "Password must be at least 6 characters long!"
 }
 
+enum RegisterNavigation: String {
+    case registrationCompletion = "toRegisterCompletion"
+}
+
 final class RegistrationViewController: UIViewController {
     
     // MARK: IBOutlets
@@ -94,8 +98,8 @@ extension RegistrationViewController {
 // MARK: Navigation
 
 private extension RegistrationViewController {
-    func navigate(to navigation: Navigation) {
-        performSegue(withIdentifier: navigation.rawValue, sender: self)
+    func navigate(to path: RegisterNavigation) {
+        performSegue(withIdentifier: path.rawValue, sender: self)
     }
 }
 

@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum LoginNavigation: String {
+    case home = "toHome"
+    case registration = "toRegistration"
+}
+
 final class LoginViewController: UIViewController {
     
     // MARK: IBOutlets
@@ -70,7 +75,7 @@ final class LoginViewController: UIViewController {
 // MARK: Navigation
 
 private extension LoginViewController {
-    func navigate(to navigation: Navigation) {
-        performSegue(withIdentifier: navigation.rawValue, sender: self)
+    func navigate(to path: LoginNavigation) {
+        performSegue(withIdentifier: path.rawValue, sender: self)
     }
 }
