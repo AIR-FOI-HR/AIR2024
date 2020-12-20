@@ -26,4 +26,8 @@ class SessionManager {
     func getToken() -> String? {
         return secureStorage.getToken(keyType: .sessionToken)
     }
+    
+    func deleteToken() {
+        secureStorage.deleteToken(keyType: .sessionToken)
+    }
 }
