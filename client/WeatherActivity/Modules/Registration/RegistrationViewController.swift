@@ -53,7 +53,7 @@ final class RegistrationViewController: UIViewController {
         }
         
         registrationService.checkEmail(userEmail: email) { (res) in
-            if res.msg == "Available" {
+            if res.message == "Available" {
                 self.userInformation = UserInformation(firstName: firstName, lastName: lastName, email: email, password: password)
                 self.navigate(to: .registrationCompletion)
             } else {

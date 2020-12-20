@@ -35,7 +35,6 @@
 		8C2D04062576D280002E51D0 /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04052576D280002E51D0 /* LoginCredentials.swift */; };
 		8C2D040C2576D2A6002E51D0 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D040B2576D2A6002E51D0 /* AuthResponse.swift */; };
 		8C2D04142576D2B8002E51D0 /* TokenCheckResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04132576D2B8002E51D0 /* TokenCheckResponse.swift */; };
-		8C2D041A2576D376002E51D0 /* RegistrationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04192576D376002E51D0 /* RegistrationResponse.swift */; };
 		8C2D041F2576D394002E51D0 /* EmailCheckResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D041E2576D394002E51D0 /* EmailCheckResponse.swift */; };
 		8C2D04292576D9E9002E51D0 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04282576D9E9002E51D0 /* SecureStorage.swift */; };
 		8C2D042F2576DE3F002E51D0 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D042E2576DE3F002E51D0 /* SessionManager.swift */; };
@@ -103,7 +102,6 @@
 		8C2D04052576D280002E51D0 /* LoginCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentials.swift; sourceTree = "<group>"; };
 		8C2D040B2576D2A6002E51D0 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		8C2D04132576D2B8002E51D0 /* TokenCheckResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCheckResponse.swift; sourceTree = "<group>"; };
-		8C2D04192576D376002E51D0 /* RegistrationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationResponse.swift; sourceTree = "<group>"; };
 		8C2D041E2576D394002E51D0 /* EmailCheckResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckResponse.swift; sourceTree = "<group>"; };
 		8C2D04282576D9E9002E51D0 /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
 		8C2D042E2576DE3F002E51D0 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -354,7 +352,6 @@
 		8C2D04182576D369002E51D0 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				8C2D04192576D376002E51D0 /* RegistrationResponse.swift */,
 				8C2D041E2576D394002E51D0 /* EmailCheckResponse.swift */,
 				8CE0417125764E04005EFEC4 /* RegistrationUser.swift */,
 				427A6F43258C03AA007EDB4B /* RegistrationUserData.swift */,
@@ -707,7 +704,6 @@
 				4252F64C25626DE600FCA0CB /* LoginViewController.swift in Sources */,
 				8C7C9A6D256E9FAE00683AE5 /* LoginService.swift in Sources */,
 				8C49F0AB25796C0C0067EA86 /* NewActivity.swift in Sources */,
-				8C2D041A2576D376002E51D0 /* RegistrationResponse.swift in Sources */,
 				424F7EA3258BA504003EC185 /* UIButton+Appearance.swift in Sources */,
 				4252F64825626DE600FCA0CB /* AppDelegate.swift in Sources */,
 				4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */,

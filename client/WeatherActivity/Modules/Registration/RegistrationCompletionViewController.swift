@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum RegistrationCompletionNavigation: String {
+    case home = "CompletionToHome"
+}
+
 final class RegistrationCompletionViewController: UIViewController {
     
     // MARK: IBOutlets
@@ -47,14 +51,8 @@ final class RegistrationCompletionViewController: UIViewController {
         let registrationUser = RegistrationUser(firstName: registrationData.first!.firstName, lastName: registrationData.first!.lastName, email: registrationData.first!.email, password: registrationData.first!.password, username: registrationData.second!.username, avatarId: registrationData.second!.avatarId)
         
         registrationService.register(userData: registrationUser, success: { registrationResponse in
-            if(registrationResponse.msg == "Error") {
-                self.presentAlert(title: "Oops!", message: "Error occured in registration process!")
-                return
-            }
-            if registrationResponse.token != "" {
-                SessionManager.shared.saveToken(registrationResponse.token!)
-            }
-            self.performSegue(withIdentifier: "CompletionToHome", sender: self)
+            SessionManager.shared.saveToken(registrationResponse.sessionToken)
+            self.navigate(to: .home)
         }, failure: {error in
             debugPrint(error)
             self.presentAlert(title: "Oops!", message: "Error occured in registration process!")
@@ -68,5 +66,11 @@ final class RegistrationCompletionViewController: UIViewController {
     
     @IBAction func registrationCompletionTextFieldDidEndEditing(_ sender: UITextField) {
         textFieldAppearance.updateTextAppearanceOnFieldDidEndEditing(sender)
+    }
+}
+
+private extension RegistrationCompletionViewController {
+    func navigate(to path: RegistrationCompletionNavigation) {
+        performSegue(withIdentifier: path.rawValue, sender: self)
     }
 }

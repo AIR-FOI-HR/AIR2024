@@ -8,7 +8,7 @@
 import UIKit
 
 enum HomeNavigation: String {
-    case login = "toHome"
+    case login = "HomeToLogin"
 }
 
 final class HomeViewController: UIViewController {
