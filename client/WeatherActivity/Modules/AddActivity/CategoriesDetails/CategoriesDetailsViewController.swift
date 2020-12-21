@@ -26,9 +26,6 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
     var selectedCategory = ""
     var isRecentCategoriesSelected: Bool = false
     
-    let allCategoryImages: UIImage = UIImage(named: "avatar1")!
-    #warning("TODO: all images for each category")
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
@@ -56,10 +53,12 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
     func addRecentCategoriesItems() {
         var index = 0
         for category in recentCategories {
+            let categoryName = category.categoryName.rawValue
+                
             let verticalStackView = UIStackView()
             verticalStackView.axis = NSLayoutConstraint.Axis.vertical
-            verticalStackView.accessibilityIdentifier = category.categoryName.rawValue
-            verticalStackView.spacing = 15.0
+            verticalStackView.accessibilityIdentifier = categoryName
+            verticalStackView.spacing = 10.0
             
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(stackViewPressed(_:)))
             
@@ -67,10 +66,14 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
             textLabel.textAlignment = .center
             textLabel.textColor = UIColor.systemGray
             textLabel.font = textLabel.font.withSize(13)
-            textLabel.text  = category.categoryName.rawValue
+            textLabel.text  = categoryName
             
-            let imageView = UIImageView(image: allCategoryImages)
-            imageView.contentMode = .center
+            let categoryImage = UIImage(named: categoryName.lowercased())
+            let imageView = UIImageView(image: categoryImage)
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint(item: imageView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 84.0).isActive = true
+            
+            imageView.contentMode = .scaleAspectFit
             imageView.isUserInteractionEnabled = true
             imageView.addGestureRecognizer(tapGestureRecognizer)
             imageView.tag = index
@@ -172,8 +175,10 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CategoriesCollectionViewCell else {
             fatalError()
         }
-        cell.categoryName.text = allCategories[indexPath.item].categoryName.rawValue
-        cell.categoryImage.image = allCategoryImages
+        let categoryName = allCategories[indexPath.item].categoryName.rawValue
+        cell.categoryName.text = categoryName
+        let categoryImage = UIImage(named: categoryName.lowercased())
+        cell.categoryImage.image = categoryImage
         
         if selectedCategory == cell.categoryName.text && !isRecentCategoriesSelected {
             cell.layer.borderColor = UIColor.gray.cgColor
@@ -196,8 +201,8 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         allCategories.removeAll()
         for category in searchAllCategories {
-            let categoryName = category.categoryName.rawValue.lowercased()
-            if (categoryName.contains(searchText.lowercased())) {
+            let categoryName = category.categoryName.rawValue
+            if (categoryName.lowercased().contains(searchText.lowercased())) {
                 allCategories.append(category)
             }
         }
