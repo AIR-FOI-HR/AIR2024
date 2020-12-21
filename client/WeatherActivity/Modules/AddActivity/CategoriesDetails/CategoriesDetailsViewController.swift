@@ -20,9 +20,9 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
     // MARK: Properties
     
     let categoryService = CategoryService()
-    var allCategories = [String]()
-    var recentCategories = [String]()
-    var searchAllCategories = [String]()
+    var allCategories = [Category]()
+    var recentCategories = [Category]()
+    var searchAllCategories = [Category]()
     var selectedCategory = ""
     var isRecentCategoriesSelected: Bool = false
     
@@ -58,15 +58,16 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
         for category in recentCategories {
             let verticalStackView = UIStackView()
             verticalStackView.axis = NSLayoutConstraint.Axis.vertical
-            verticalStackView.accessibilityIdentifier = category
-            #warning("TODO: Find better way for getting pressed category name in recent categories?")
+            verticalStackView.accessibilityIdentifier = category.categoryName.rawValue
+            verticalStackView.spacing = 15.0
+            
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(stackViewPressed(_:)))
             
             let textLabel = UILabel()
             textLabel.textAlignment = .center
             textLabel.textColor = UIColor.systemGray
             textLabel.font = textLabel.font.withSize(13)
-            textLabel.text  = category
+            textLabel.text  = category.categoryName.rawValue
             
             let imageView = UIImageView(image: allCategoryImages)
             imageView.contentMode = .center
@@ -171,9 +172,9 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CategoriesCollectionViewCell else {
             fatalError()
         }
-        cell.categoryName.text = allCategories[indexPath.item]
+        cell.categoryName.text = allCategories[indexPath.item].categoryName.rawValue
         cell.categoryImage.image = allCategoryImages
-                
+        
         if selectedCategory == cell.categoryName.text && !isRecentCategoriesSelected {
             cell.layer.borderColor = UIColor.gray.cgColor
             cell.layer.borderWidth = 1.2
@@ -193,26 +194,26 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.allCategories.removeAll()
-        for category in self.searchAllCategories {
-            if (category.lowercased().contains(searchText.lowercased())) {
-                self.allCategories.append(category)
+        allCategories.removeAll()
+        for category in searchAllCategories {
+            let categoryName = category.categoryName.rawValue.lowercased()
+            if (categoryName.contains(searchText.lowercased())) {
+                allCategories.append(category)
             }
         }
         if (searchText.isEmpty) {
-            self.allCategories = self.searchAllCategories
+            allCategories = searchAllCategories
         }
         updateCollectionView()
     }
     
     func updateCollectionView() {
-        self.collectionView.reloadData()
+        collectionView.reloadData()
     }
     
     func setCollectionViewLayout() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let width = collectionView.bounds.width / 3 - (collectionView.layoutMargins.left + collectionView.layoutMargins.right) / 2
-        #warning("TODO: Fix cell width and other constraints + scrollview")
+        let width = (UIScreen.main.bounds.width - 40) / 3 - (collectionView.layoutMargins.left + collectionView.layoutMargins.right) / 2
         let height = collectionView.bounds.size.height / 2 - (collectionView.layoutMargins.top + collectionView.layoutMargins.bottom) / 2
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: width, height: height)
