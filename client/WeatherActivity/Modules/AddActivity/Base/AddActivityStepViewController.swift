@@ -10,6 +10,7 @@ import UIKit
 // MARK: - Protocol
 
 protocol SetupButtons {
+    #warning("Change to better name -> showSubmitButton()")
     func hideNextButton()
     func hidePreviousButton()
 }

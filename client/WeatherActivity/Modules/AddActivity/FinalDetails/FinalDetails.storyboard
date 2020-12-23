@@ -45,6 +45,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Data from previous screens" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D70-Ne-SK6">
+                                <rect key="frame" x="97" y="366" width="209" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gd8-mQ-pps" userLabel="Time Data">
+                                <rect key="frame" x="97" y="407" width="197" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kp3-gB-9CU" userLabel="Location Data">
+                                <rect key="frame" x="97" y="465" width="197" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="u8U-Kz-wk6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -52,7 +73,9 @@
                     <connections>
                         <outlet property="backButton" destination="olS-mo-owV" id="GTN-l4-gfq"/>
                         <outlet property="inputTextField" destination="rQU-UH-xhu" id="bbg-RH-d2k"/>
+                        <outlet property="locationDataLabel" destination="Gd8-mQ-pps" id="fM3-xQ-hLJ"/>
                         <outlet property="nextButton" destination="ePl-mf-LlW" id="VqK-Qf-7wJ"/>
+                        <outlet property="timeDataLabel" destination="Kp3-gB-9CU" id="AGI-WG-Puv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yva-vl-X29" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
