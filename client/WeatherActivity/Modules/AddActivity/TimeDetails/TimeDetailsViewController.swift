@@ -14,12 +14,22 @@ class TimeDetailsViewController: AddActivityStepViewController, SetupButtons {
     @IBOutlet private weak var backButton: UIButton!
     @IBOutlet private weak var nextButton: UIButton!
     @IBOutlet private weak var inputTextField: UITextField!
+    @IBOutlet private weak var dataLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupDelegate = self
         setupButtons(step: .timeDetails)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let flowNavigator = flowNavigator else { return }
+        guard
+            let data: LocationDetailsModel = flowNavigator.dataFlowManager.getData(forStep: .locationDetails) else { return }
+        dataLabel.text = data.latitude
     }
     
     // MARK: - Actions

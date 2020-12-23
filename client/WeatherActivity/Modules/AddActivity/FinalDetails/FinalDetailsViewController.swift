@@ -11,15 +11,29 @@ class FinalDetailsViewController: AddActivityStepViewController, SetupButtons {
     
     // MARK: - Properties
     
-    @IBOutlet weak var inputTextField: UITextField!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet private weak var inputTextField: UITextField!
+    @IBOutlet private weak var backButton: UIButton!
+    @IBOutlet private weak var nextButton: UIButton!
+    @IBOutlet private weak var locationDataLabel: UILabel!
+    @IBOutlet private weak var timeDataLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupDelegate = self
         setupButtons(step: .finalDetails)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let flowNavigator = flowNavigator else { return }
+        guard
+            let locationData: LocationDetailsModel = flowNavigator.dataFlowManager.getData(forStep: .locationDetails),
+            let timeData: TimeDetailsModel = flowNavigator.dataFlowManager.getData(forStep: .timeDetails)
+        else { return }
+        locationDataLabel.text = locationData.latitude
+        timeDataLabel.text = timeData.time
     }
     
     // MARK: - Actions
@@ -51,7 +65,7 @@ extension FinalDetailsViewController {
     
     func hideNextButton() {
         
-        nextButton.isHidden = true
+        nextButton.setTitle("Submit", for: .normal)
     }
     
     func hidePreviousButton() {
