@@ -38,7 +38,7 @@ class LocationDetailsViewController: AddActivityStepViewController, SetupButtons
             data: StepData(
                 stepInfo: .locationDetails,
                 data: LocationDetailsModel(
-                    latitude: "latitude in location")
+                    latitude: inputTextField.text ?? "22.33")
             )
         )
     }
