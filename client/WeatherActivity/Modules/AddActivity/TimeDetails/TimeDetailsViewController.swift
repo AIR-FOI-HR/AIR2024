@@ -2,71 +2,171 @@
 //  TimeDetailsViewController.swift
 //  WeatherActivity
 //
-//  Created by Kevin Bogdan on 16.12.2020..
+//  Created by Kevin Bogdan on 03.12.2020..
 //
+
+// MARK: Imports
 
 import UIKit
 
+// MARK: Time formats
+
+enum TimeFormat: String {
+    case hourClock24 = "HH:mm"
+    case hourClock12 = "h:mm a"
+}
+
 class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     
-    // MARK: - Properties
+    // MARK: IBOutlets
     
-    @IBOutlet private weak var backButton: UIButton!
-    @IBOutlet private weak var nextButton: UIButton!
-    @IBOutlet private weak var inputTextField: UITextField!
-    @IBOutlet private weak var dataLabel: UILabel!
+    @IBOutlet private weak var datePicker: UIDatePicker!
+    @IBOutlet private weak var fromTimePicker: UIDatePicker!
+    @IBOutlet private weak var untilTimePicker: UIDatePicker!
+    @IBOutlet private weak var temperatureLabel: UILabel!
+    @IBOutlet private weak var windLabel: UILabel!
+    @IBOutlet private weak var humidityLabel: UILabel!
+    @IBOutlet private weak var temperatureFeelsLikeLabel: UILabel!
+    @IBOutlet private weak var weatherStackView: UIStackView!
+    @IBOutlet private weak var warningAlertView: UIStackView!
+    @IBOutlet private weak var weatherTypeImageView: UIImageView!
+    @IBOutlet private weak var weatherDescriptionLabel: UILabel!
+    
+    // MARK: Properties
+    
+    let dateFormatter = DateFormatter()
+    var locationDetails: LocationDetails?
+    let weatherManager = ForecastService()
+    let timeDetailsManager = TimeDetailsManager()
+    let forecastData = ForecastData()
+    #warning("Delete dummy location and replace with previous screen data")
+    let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupDelegate = self
-        setupButtons(step: .timeDetails)
+        datePicker.minimumDate = Date()
+        datePicker.addTarget(self, action: #selector(datePickerEndEditing), for: .editingDidEnd)
+        fromTimePicker.addTarget(self, action: #selector(fromTimePickerEndEditing), for: .valueChanged)
+        setDefault()
+        initialForecast()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        guard let flowNavigator = flowNavigator else { return }
-        guard
-            let data: LocationDetailsModel = flowNavigator.dataFlowManager.getData(forStep: .locationDetails) else { return }
-        dataLabel.text = data.latitude
-    }
-    
-    // MARK: - Actions
-    
-    @IBAction func backButtonPressed(_ sender: UIButton) {
-        
-        guard let flowNavigator = flowNavigator else { return }
-        flowNavigator.showPreviousStep()
-    }
+    // MARK: IBActions
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        
-        guard let flowNavigator = flowNavigator else { return }
-        flowNavigator.showNextStep(
-            from: .timeDetails,
-            data: StepData(
-                stepInfo: .timeDetails,
-                data: TimeDetailsModel(
-                    time: "Time time"
-                )
-            )
-        )
+        let timeDetails = TimeDetails(date: datePicker.date, fromTime: timeDetailsManager.getTime(fromDate: fromTimePicker.date, timeFormat: .hourClock24), untilTime: timeDetailsManager.getTime(fromDate: untilTimePicker.date, timeFormat: .hourClock24))
+        let activityDetails = ActivityData(locationDetails: self.locationDetails, timeDetails: timeDetails)
+        debugPrint(activityDetails)
+        #warning("Pass arguments to next screen")
     }
 }
 
-// MARK: - Setup Buttons Delegate
+// MARK: Data manager
+
+private extension TimeDetailsViewController {
+    
+    func getForecast(date: Date) {
+        weatherManager.getWeatherForecast(date: date, locationCoordinates: dummyLocation) { weatherData in
+            self.getForecastForDate(forDate: date, weatherData: weatherData)
+        } failure: { error in
+            print(error)
+            #warning("Handle error")
+        }
+    }
+}
+
+// MARK: - Forecast presentation
+
+private extension TimeDetailsViewController {
+    
+    func checkDate() {
+        
+        let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
+        if(timeDetailsManager.isDateRangeValid(date: forecastDate)) {
+            weatherStackView.isHidden = false
+            warningAlertView.isHidden = true
+            getForecast(date: forecastDate)
+        } else {
+            weatherStackView.isHidden = true
+            warningAlertView.isHidden = false
+        }
+    }
+    
+    func presentData(weatherData: WeatherList) {
+        
+        guard let temperature = weatherData.main?.temp,
+              let feelsLike = weatherData.main?.feelsLike,
+              let windSpeed = weatherData.wind?.speed,
+              let humidity = weatherData.main?.humidity,
+              let description = weatherData.weather?.first?.weatherDescription,
+              let condition = weatherData.weather?.first?.id
+        else { return }
+        temperatureLabel.text = String(temperature)
+        temperatureFeelsLikeLabel.text = String(feelsLike)
+        windLabel.text = String(windSpeed)
+        humidityLabel.text = String(humidity)
+        weatherDescriptionLabel.text = String(description.capitalized)
+        weatherTypeImageView.image = UIImage(systemName: forecastData.getConditionImage(id: condition))
+    }
+    
+    func getForecastForDate(forDate date: Date, weatherData data: WeatherInfo) {
+        
+        guard let dataList = data.weatherList else { return }
+        let forecastOnDate = dataList.first { (forecastData) -> Bool in
+            
+            if let dateTime = forecastData.dateTime {
+                let range = Date(timeIntervalSince1970: dateTime)...Date(timeIntervalSince1970: (dateTime + 10800))
+                if range.contains(date) {
+                    return true
+                }
+            }
+            return false
+        }
+        if let forecastData = forecastOnDate {
+            self.presentData(weatherData: forecastData)
+        }
+        #warning("If there is not an date inside API response")
+    }
+}
+
+// MARK: Date time
+
+private extension TimeDetailsViewController {
+    
+    @objc func datePickerEndEditing() {
+        dateFormatter.dateFormat = Constants.defaultDateFormat
+        #warning("Handle if date is not in range")
+        checkDate()
+    }
+    
+    @objc func fromTimePickerEndEditing() {
+        let suggestedUntilTime = timeDetailsManager.addTime(to: fromTimePicker.date)
+        untilTimePicker.date = suggestedUntilTime
+        let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
+        #warning("Handle if date is not in range")
+        checkDate()
+    }
+    
+    func setDefault() {
+        dateFormatter.dateFormat = TimeFormat.hourClock24.rawValue
+        guard let defaultTime = dateFormatter.date(from: Constants.defaultTime) else { return }
+        fromTimePicker.date = defaultTime
+        untilTimePicker.date = timeDetailsManager.addTime(to: defaultTime)
+    }
+    
+    func initialForecast() {
+        
+        let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
+        getForecast(date: forecastDate)
+    }
+}
+
+// MARK: - Protocol ViewInteface
 
 extension TimeDetailsViewController {
     
-    func setAction(_ action: Action, hidden: Bool) {
-        switch(action) {
-        case .next:
-            nextButton.isHidden = hidden
-        case .previous:
-            backButton.isHidden = hidden
-        case .submit:
-            nextButton.setTitle("Submit", for: .normal)
-        }
+    func setAction(_ actiion: Action, hidden: Bool) {
+        #warning("Set it up with proper buttons")
     }
 }
