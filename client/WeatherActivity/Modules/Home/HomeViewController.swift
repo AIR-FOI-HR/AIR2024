@@ -51,6 +51,8 @@ class HomeViewController: UIViewController {
             }, failure: { error in
                 self.activityListView.setState(state: .error)
             })
+        } else {
+            self.activityListView.setState(state: .error)
         }
     }
     
@@ -66,6 +68,18 @@ class HomeViewController: UIViewController {
         KeychainSwift().delete("sessionToken")
         self.performSegue(withIdentifier: "HomeToLogin", sender: self)
     }
+    
+    @IBAction func addActivityButtonPressed(_ sender: UIButton) {
+        
+        let navigationController = UINavigationController()
+        let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoryDetails, .finalDetails]
+        
+        let flowNavigator = AddActivityFlowNavigator(navigationController: navigationController, steps: steps)
+        
+        flowNavigator.presentFlow(from: self)
+        
+    }
+    
 }
 
 extension HomeViewController: ActivityListViewDelegate {

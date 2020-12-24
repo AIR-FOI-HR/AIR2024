@@ -46,7 +46,7 @@ class WeatherCell {
     }
 }
 
-final class FinalDetailsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+final class FinalDetailsViewController: AddActivityStepViewController, UICollectionViewDelegate, UICollectionViewDataSource, ViewInterface {
     
     // MARK: - IBOutlets
     
@@ -189,5 +189,14 @@ extension String {
 
     mutating func capitalizeFirstLetter() {
         self = self.capitalizingFirstLetter()
+    }
+}
+
+// MARK: - Protocol ViewInteface
+
+extension FinalDetailsViewController {
+    
+    func setAction(_ actiion: Action, hidden: Bool) {
+        #warning("Set it up with proper buttons")
     }
 }

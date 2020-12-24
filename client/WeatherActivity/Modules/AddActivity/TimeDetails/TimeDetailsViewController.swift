@@ -16,7 +16,7 @@ enum TimeFormat: String {
     case hourClock12 = "h:mm a"
 }
 
-class TimeDetailsViewController: UIViewController {
+class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     
     // MARK: IBOutlets
     
@@ -159,5 +159,14 @@ private extension TimeDetailsViewController {
         
         let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
         getForecast(date: forecastDate)
+    }
+}
+
+// MARK: - Protocol ViewInteface
+
+extension TimeDetailsViewController {
+    
+    func setAction(_ actiion: Action, hidden: Bool) {
+        #warning("Set it up with proper buttons")
     }
 }
