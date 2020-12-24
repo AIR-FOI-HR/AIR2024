@@ -27,8 +27,8 @@ class FinalDetailsViewController: AddActivityStepViewController, ViewInterface {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let flowNavigator = flowNavigator else { return }
         guard
+            let flowNavigator = flowNavigator,
             let locationData: LocationDetailsModel = flowNavigator.dataFlowManager.getData(forStep: .locationDetails),
             let timeData: TimeDetailsModel = flowNavigator.dataFlowManager.getData(forStep: .timeDetails)
         else { return }
