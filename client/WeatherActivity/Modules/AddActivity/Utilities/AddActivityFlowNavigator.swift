@@ -43,7 +43,7 @@ class AddActivityFlowNavigator {
             #warning("Handle if last step -> submit data")
             let jsonData = dataFlowManager.dataToJson()
             #warning("Send data to backend")
-            print(jsonData)
+            debugPrint(jsonData)
         }
         else {
             dataFlowManager.saveData(data: data)

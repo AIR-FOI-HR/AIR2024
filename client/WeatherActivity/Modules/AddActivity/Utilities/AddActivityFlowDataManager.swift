@@ -19,7 +19,6 @@ class AddActivityFlowDataManager {
         
         stepsData.removeAll(where: { $0.stepInfo == data.stepInfo })
         stepsData.append(data)
-        print(stepsData)
     }
     
     func dataToJson() -> String? {
@@ -43,6 +42,5 @@ class AddActivityFlowDataManager {
                 .map({ $0.data })
         else { return nil }
         return data as? T
-        
     }
 }
