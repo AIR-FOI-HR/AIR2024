@@ -7,12 +7,19 @@
 
 import UIKit
 
+// MARK: - Buttons actions
+
+enum Action {
+    case previous
+    case next
+    case submit
+}
+
 // MARK: - Protocol
 
-protocol SetupButtons {
-    #warning("Change to better name -> showSubmitButton()")
-    func hideNextButton()
-    func hidePreviousButton()
+protocol ViewInterface {
+    
+    func setAction(_ action: Action, hidden: Bool)
 }
 
 class AddActivityStepViewController: UIViewController {
@@ -20,7 +27,7 @@ class AddActivityStepViewController: UIViewController {
     // MARK: - Properties
     
     var flowNavigator: AddActivityFlowNavigator?
-    var setupDelegate: SetupButtons?
+    var setupDelegate: ViewInterface?
     
     // MARK: - Methods
     
@@ -29,12 +36,13 @@ class AddActivityStepViewController: UIViewController {
         guard let flowNavigator = flowNavigator else { return }
         
         if flowNavigator.isLastStep(step: step) {
-            #warning("On last step: instead of next -> Submit")
-            setupDelegate?.hideNextButton()
+            
+            setupDelegate?.setAction(.submit, hidden: true)
         }
         
         if flowNavigator.isFirstStep(step: step) {
-            setupDelegate?.hidePreviousButton()
+            
+            setupDelegate?.setAction(.previous, hidden: true)
         }
         
     }
