@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryDetailsViewController: AddActivityStepViewController, SetupButtons {
+class CategoryDetailsViewController: AddActivityStepViewController, ViewInterface {
     
     // MARK: - Properties
     
@@ -49,13 +49,14 @@ class CategoryDetailsViewController: AddActivityStepViewController, SetupButtons
 
 extension CategoryDetailsViewController {
     
-    func hideNextButton() {
-        
-        nextButton.isHidden = true
-    }
-    
-    func hidePreviousButton() {
-        
-        backButton.isHidden = true
+    func setAction(_ action: Action, hidden: Bool) {
+        switch(action) {
+        case .next:
+            nextButton.isHidden = hidden
+        case .previous:
+            backButton.isHidden = hidden
+        case .submit:
+            nextButton.setTitle("Submit", for: .normal)
+        }
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LocationDetailsViewController: AddActivityStepViewController, SetupButtons {
+class LocationDetailsViewController: AddActivityStepViewController, ViewInterface {
     
     // MARK: - Properties
     
@@ -48,13 +48,14 @@ class LocationDetailsViewController: AddActivityStepViewController, SetupButtons
 
 extension LocationDetailsViewController {
     
-    func hideNextButton() {
-        
-        nextButton.isHidden = true
-    }
-    
-    func hidePreviousButton() {
-        
-        backButton.isHidden = true
+    func setAction(_ action: Action, hidden: Bool) {
+        switch(action) {
+        case .next:
+            nextButton.isHidden = hidden
+        case .previous:
+            backButton.isHidden = hidden
+        case .submit:
+            nextButton.setTitle("Submit", for: .normal)
+        }
     }
 }
