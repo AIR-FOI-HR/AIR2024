@@ -11,6 +11,7 @@ var loginRouter = require('./routes/login');
 var registrationRouter = require('./routes/registration')
 var tokenCheckRouter = require('./routes/tokenCheck')
 var categoriesRouter = require('./routes/categories')
+var activityRouter = require('./routes/activity')
 
 var app = express();
 
@@ -26,9 +27,10 @@ app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/login', loginRouter);
-app.use('/registration', registrationRouter);
-app.use('/tokenCheck', tokenCheckRouter);
 app.use('/categories', categoriesRouter);
+app.use('/registration', registrationRouter)
+app.use('/tokenCheck', tokenCheckRouter)
+app.use('/activity', activityRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
