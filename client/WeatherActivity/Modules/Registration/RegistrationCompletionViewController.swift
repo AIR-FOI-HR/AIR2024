@@ -48,7 +48,11 @@ final class RegistrationCompletionViewController: UIViewController {
         guard let username = usernameTextField.text else { return }
         self.userPreferences = UserPreferences(username: username, avatarId: selectedAvatar)
         let registrationData = RegistrationData(first: userInformation, second: userPreferences)
-        let registrationUser = RegistrationUser(firstName: registrationData.first!.firstName, lastName: registrationData.first!.lastName, email: registrationData.first!.email, password: registrationData.first!.password, username: registrationData.second!.username, avatarId: registrationData.second!.avatarId)
+        guard let firstScreenData = registrationData.first, let secondScreenData = registrationData.second else {
+            return
+        }
+        
+        let registrationUser = RegistrationUser(firstName: firstScreenData.firstName, lastName: firstScreenData.lastName, email: firstScreenData.email, password: firstScreenData.password, username: secondScreenData.username, avatarId: secondScreenData.avatarId)
         
         registrationService.register(userData: registrationUser, success: { registrationResponse in
             SessionManager.shared.saveToken(registrationResponse.sessionToken)
