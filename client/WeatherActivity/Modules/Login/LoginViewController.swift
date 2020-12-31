@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum LoginNavigation: String {
+    case home = "toHome"
+    case registration = "toRegistration"
+}
+
 final class LoginViewController: UIViewController {
     
     // MARK: IBOutlets
@@ -18,21 +23,11 @@ final class LoginViewController: UIViewController {
     
     let textFieldAppearance = TextFieldAppearance()
     let loginService = LoginService()
-    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let sessionToken = SessionManager.shared.getToken() {
-            loginService.checkForToken(token: sessionToken, success: { checkResponse in
-                self.navigate(to: .home)
-            }, failure: { error in
-                #warning("Return message to the user")
-            })
-        }
         
-        if let lastEmail = userDefaults.array(forKey: Constants.lastEnteredEmail) as? [String] {
-            emailTextField.text = lastEmail[0]
-        }
+        emailTextField.text = UserDefaultsManager.shared.getUserDefaultString(key: .lastEnteredEmail)
     }
     
     // MARK: IBActions
@@ -46,7 +41,7 @@ final class LoginViewController: UIViewController {
         loginService.login(with: credentials, success: { apiResponse in
             SessionManager.shared.saveToken(apiResponse.sessionToken)
             if(!apiResponse.sessionToken.isEmpty) {
-                self.userDefaults.set([email], forKey: Constants.lastEnteredEmail)
+                UserDefaultsManager.shared.saveUserDefault(value: email, key: .lastEnteredEmail)
                 self.navigate(to: .home)
             }
             else{
@@ -69,7 +64,7 @@ final class LoginViewController: UIViewController {
 // MARK: Navigation
 
 private extension LoginViewController {
-    func navigate(to navigation: Navigation) {
-        performSegue(withIdentifier: navigation.rawValue, sender: self)
+    func navigate(to path: LoginNavigation) {
+        performSegue(withIdentifier: path.rawValue, sender: self)
     }
 }

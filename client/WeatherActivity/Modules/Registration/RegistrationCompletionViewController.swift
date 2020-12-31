@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum RegistrationCompletionNavigation: String {
+    case home = "CompletionToHome"
+}
+
 final class RegistrationCompletionViewController: UIViewController {
     
     // MARK: IBOutlets
@@ -44,17 +48,15 @@ final class RegistrationCompletionViewController: UIViewController {
         guard let username = usernameTextField.text else { return }
         self.userPreferences = UserPreferences(username: username, avatarId: selectedAvatar)
         let registrationData = RegistrationData(first: userInformation, second: userPreferences)
-        let registrationUser = RegistrationUser(firstName: registrationData.first!.firstName, lastName: registrationData.first!.lastName, email: registrationData.first!.email, password: registrationData.first!.password, username: registrationData.second!.username, avatarId: registrationData.second!.avatarId)
+        guard let firstScreenData = registrationData.first, let secondScreenData = registrationData.second else {
+            return
+        }
+        
+        let registrationUser = RegistrationUser(firstName: firstScreenData.firstName, lastName: firstScreenData.lastName, email: firstScreenData.email, password: firstScreenData.password, username: secondScreenData.username, avatarId: secondScreenData.avatarId)
         
         registrationService.register(userData: registrationUser, success: { registrationResponse in
-            if(registrationResponse.msg == "Error") {
-                self.presentAlert(title: "Oops!", message: "Error occured in registration process!")
-                return
-            }
-            if registrationResponse.token != "" {
-                SessionManager.shared.saveToken(registrationResponse.token!)
-            }
-            self.performSegue(withIdentifier: "CompletionToHome", sender: self)
+            SessionManager.shared.saveToken(registrationResponse.sessionToken)
+            self.navigate(to: .home)
         }, failure: {error in
             debugPrint(error)
             self.presentAlert(title: "Oops!", message: "Error occured in registration process!")
@@ -68,5 +70,11 @@ final class RegistrationCompletionViewController: UIViewController {
     
     @IBAction func registrationCompletionTextFieldDidEndEditing(_ sender: UITextField) {
         textFieldAppearance.updateTextAppearanceOnFieldDidEndEditing(sender)
+    }
+}
+
+private extension RegistrationCompletionViewController {
+    func navigate(to path: RegistrationCompletionNavigation) {
+        performSegue(withIdentifier: path.rawValue, sender: self)
     }
 }

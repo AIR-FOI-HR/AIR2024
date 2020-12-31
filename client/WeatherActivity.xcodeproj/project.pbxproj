@@ -12,6 +12,8 @@
 		423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */; };
 		424F7EA3258BA504003EC185 /* UIButton+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */; };
 		424F7EA8258BB3CE003EC185 /* TextFieldAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F7EA7258BB3CE003EC185 /* TextFieldAppearance.swift */; };
+		4252C841258F95C900A2A7CC /* StandardStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252C840258F95C900A2A7CC /* StandardStorage.swift */; };
+		4252C846258F99E400A2A7CC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252C845258F99E400A2A7CC /* UserDefaultsManager.swift */; };
 		4252F64825626DE600FCA0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64725626DE600FCA0CB /* AppDelegate.swift */; };
 		4252F64A25626DE600FCA0CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64925626DE600FCA0CB /* SceneDelegate.swift */; };
 		4252F64C25626DE600FCA0CB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64B25626DE600FCA0CB /* LoginViewController.swift */; };
@@ -35,9 +37,7 @@
 		8C2D04062576D280002E51D0 /* LoginCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04052576D280002E51D0 /* LoginCredentials.swift */; };
 		8C2D040C2576D2A6002E51D0 /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D040B2576D2A6002E51D0 /* AuthResponse.swift */; };
 		8C2D04142576D2B8002E51D0 /* TokenCheckResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04132576D2B8002E51D0 /* TokenCheckResponse.swift */; };
-		8C2D041A2576D376002E51D0 /* RegistrationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04192576D376002E51D0 /* RegistrationResponse.swift */; };
 		8C2D041F2576D394002E51D0 /* EmailCheckResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D041E2576D394002E51D0 /* EmailCheckResponse.swift */; };
-		8C2D04242576D8DA002E51D0 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04232576D8DA002E51D0 /* Navigation.swift */; };
 		8C2D04292576D9E9002E51D0 /* SecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D04282576D9E9002E51D0 /* SecureStorage.swift */; };
 		8C2D042F2576DE3F002E51D0 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2D042E2576DE3F002E51D0 /* SessionManager.swift */; };
 		8C49F09C25796B450067EA86 /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C49F09B25796B450067EA86 /* LocationDetailsViewController.swift */; };
@@ -75,6 +75,8 @@
 		423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCompletionViewController.swift; sourceTree = "<group>"; };
 		424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Appearance.swift"; sourceTree = "<group>"; };
 		424F7EA7258BB3CE003EC185 /* TextFieldAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAppearance.swift; sourceTree = "<group>"; };
+		4252C840258F95C900A2A7CC /* StandardStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardStorage.swift; sourceTree = "<group>"; };
+		4252C845258F99E400A2A7CC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		4252F64425626DE600FCA0CB /* WeatherActivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherActivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4252F64725626DE600FCA0CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4252F64925626DE600FCA0CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,9 +106,7 @@
 		8C2D04052576D280002E51D0 /* LoginCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCredentials.swift; sourceTree = "<group>"; };
 		8C2D040B2576D2A6002E51D0 /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		8C2D04132576D2B8002E51D0 /* TokenCheckResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCheckResponse.swift; sourceTree = "<group>"; };
-		8C2D04192576D376002E51D0 /* RegistrationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationResponse.swift; sourceTree = "<group>"; };
 		8C2D041E2576D394002E51D0 /* EmailCheckResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCheckResponse.swift; sourceTree = "<group>"; };
-		8C2D04232576D8DA002E51D0 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		8C2D04282576D9E9002E51D0 /* SecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorage.swift; sourceTree = "<group>"; };
 		8C2D042E2576DE3F002E51D0 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		8C49F09B25796B450067EA86 /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
@@ -356,7 +356,6 @@
 		8C2D04182576D369002E51D0 /* Registration */ = {
 			isa = PBXGroup;
 			children = (
-				8C2D04192576D376002E51D0 /* RegistrationResponse.swift */,
 				8C2D041E2576D394002E51D0 /* EmailCheckResponse.swift */,
 				8CE0417125764E04005EFEC4 /* RegistrationUser.swift */,
 				427A6F43258C03AA007EDB4B /* RegistrationUserData.swift */,
@@ -368,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				8C2D04282576D9E9002E51D0 /* SecureStorage.swift */,
+				4252C840258F95C900A2A7CC /* StandardStorage.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -403,6 +403,7 @@
 				8C7C9A7B256EA3A900683AE5 /* Models */,
 				8C7C9A6B256E9F9100683AE5 /* Services */,
 				8C2D042E2576DE3F002E51D0 /* SessionManager.swift */,
+				4252C845258F99E400A2A7CC /* UserDefaultsManager.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -423,7 +424,6 @@
 				8C2D04182576D369002E51D0 /* Registration */,
 				8C2D040A2576D28B002E51D0 /* Login */,
 				8C7C9A7D256EA3EF00683AE5 /* User.swift */,
-				8C2D04232576D8DA002E51D0 /* Navigation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -706,16 +706,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4252C841258F95C900A2A7CC /* StandardStorage.swift in Sources */,
 				8C2D04142576D2B8002E51D0 /* TokenCheckResponse.swift in Sources */,
 				4252F64C25626DE600FCA0CB /* LoginViewController.swift in Sources */,
 				8C7C9A6D256E9FAE00683AE5 /* LoginService.swift in Sources */,
 				8C49F0AB25796C0C0067EA86 /* NewActivity.swift in Sources */,
-				8C2D041A2576D376002E51D0 /* RegistrationResponse.swift in Sources */,
 				424F7EA3258BA504003EC185 /* UIButton+Appearance.swift in Sources */,
 				4252F64825626DE600FCA0CB /* AppDelegate.swift in Sources */,
 				4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */,
 				8C7C9A7E256EA3EF00683AE5 /* User.swift in Sources */,
-				8C2D04242576D8DA002E51D0 /* Navigation.swift in Sources */,
 				8C7C9A57256D610900683AE5 /* RegistrationViewController.swift in Sources */,
 				8C2D04292576D9E9002E51D0 /* SecureStorage.swift in Sources */,
 				8C2D042F2576DE3F002E51D0 /* SessionManager.swift in Sources */,
@@ -730,6 +729,7 @@
 				8CE0417225764E04005EFEC4 /* RegistrationUser.swift in Sources */,
 				4252F64A25626DE600FCA0CB /* SceneDelegate.swift in Sources */,
 				42EF36C7256C15EB0069E590 /* HomeViewController.swift in Sources */,
+				4252C846258F99E400A2A7CC /* UserDefaultsManager.swift in Sources */,
 				42B0FB01257070A700781940 /* Constants.swift in Sources */,
 				8C2D040C2576D2A6002E51D0 /* AuthResponse.swift in Sources */,
 				429A736825758E9E00B99F8D /* UIViewController+Alert.swift in Sources */,

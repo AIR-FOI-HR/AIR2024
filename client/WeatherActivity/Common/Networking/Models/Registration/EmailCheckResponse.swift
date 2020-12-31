@@ -6,5 +6,5 @@
 //
 
 struct EmailCheckResponse: Codable {
-    let msg: String
+    let exists: Bool
 }

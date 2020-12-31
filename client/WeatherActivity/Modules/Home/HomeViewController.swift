@@ -6,11 +6,13 @@
 //
 
 import UIKit
-import KeychainSwift
+
+enum HomeNavigation: String {
+    case login = "HomeToLogin"
+}
 
 final class HomeViewController: UIViewController {
     
-    let keychain = KeychainSwift()
     @IBAction func backSwipe(_ sender: UISwipeGestureRecognizer) {
         if sender.state == .ended {
             dismiss(animated: true, completion: nil)
@@ -19,7 +21,13 @@ final class HomeViewController: UIViewController {
     
     
     @IBAction func logoutPressed(_ sender: UIButton) {
-        keychain.delete("sessionToken")
-        self.performSegue(withIdentifier: "HomeToLogin", sender: self)
+        SessionManager.shared.deleteToken()
+        navigate(to: .login)
+    }
+}
+
+private extension HomeViewController {
+    func navigate(to path: HomeNavigation) {
+        performSegue(withIdentifier: path.rawValue, sender: self)
     }
 }
