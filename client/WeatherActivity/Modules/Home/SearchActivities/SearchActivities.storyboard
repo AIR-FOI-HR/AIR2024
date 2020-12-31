@@ -21,16 +21,16 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k7u-7a-kZd">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="836"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="793"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CnU-Nk-uRn" userLabel="Parent Stack View">
-                                                <rect key="frame" x="35" y="10" width="344" height="816"/>
+                                                <rect key="frame" x="16" y="10" width="382" height="773"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Gxa-Cx-Tz8" userLabel="Search Filter Stack View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="344" height="103"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="103"/>
                                                         <subviews>
                                                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search activities.." showsCancelButton="YES" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mgw-Yn-MUg">
-                                                                <rect key="frame" x="0.0" y="0.0" width="344" height="103"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="103"/>
                                                                 <textInputTraits key="textInputTraits"/>
                                                                 <scopeButtonTitles>
                                                                     <string>All</string>
@@ -41,7 +41,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MlP-Jc-UDX" userLabel="Categories Collection View">
-                                                        <rect key="frame" x="0.0" y="113" width="344" height="50"/>
+                                                        <rect key="frame" x="0.0" y="113" width="382" height="50"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="mvN-dB-yFE"/>
@@ -96,18 +96,8 @@
                                                             <outlet property="delegate" destination="Nge-wy-o5I" id="Nfd-8Q-7KJ"/>
                                                         </connections>
                                                     </collectionView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzZ-Zg-OBE">
-                                                        <rect key="frame" x="0.0" y="173" width="344" height="33"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                                        <state key="normal" title="CLICK ME">
-                                                            <color key="titleColor" red="0.00014277506439449911" green="0.19172624207643335" blue="0.29701494929766414" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="discardFilters:" destination="Nge-wy-o5I" eventType="touchUpInside" id="NwE-01-83E"/>
-                                                        </connections>
-                                                    </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dAe-FI-Q56" userLabel="Activities Stack View">
-                                                        <rect key="frame" x="0.0" y="216" width="344" height="600"/>
+                                                        <rect key="frame" x="0.0" y="173" width="382" height="600"/>
                                                         <color key="backgroundColor" red="0.11764705882352941" green="0.38346978475240473" blue="0.68232873473504574" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="600" id="PXc-5n-Zhi"/>
@@ -119,9 +109,9 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="CnU-Nk-uRn" secondAttribute="bottom" constant="10" id="1Cq-hM-Tg5"/>
-                                            <constraint firstItem="CnU-Nk-uRn" firstAttribute="leading" secondItem="k7u-7a-kZd" secondAttribute="leading" constant="35" id="Els-K2-YXD"/>
+                                            <constraint firstItem="CnU-Nk-uRn" firstAttribute="leading" secondItem="k7u-7a-kZd" secondAttribute="leading" constant="16" id="Els-K2-YXD"/>
                                             <constraint firstItem="CnU-Nk-uRn" firstAttribute="top" secondItem="k7u-7a-kZd" secondAttribute="top" constant="10" id="KtV-P1-vUH"/>
-                                            <constraint firstAttribute="trailing" secondItem="CnU-Nk-uRn" secondAttribute="trailing" constant="35" id="s2t-4m-jSI"/>
+                                            <constraint firstAttribute="trailing" secondItem="CnU-Nk-uRn" secondAttribute="trailing" constant="16" id="s2t-4m-jSI"/>
                                         </constraints>
                                     </view>
                                 </subviews>

@@ -20,7 +20,7 @@ enum Categories: String, CaseIterable {
     case entertainment = "Entertainment"
 }
 
-//MARK: - CategoryCell class
+//MARK: - Classes
 
 class CategoryCell {
     var categoryType: Categories
@@ -50,6 +50,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     //MARK: - Properties
     
     private var selectedTime: SelectedTime?
+    private var previous = 0
     private var selectedCategory: Int? = 0
     private var activityListView: ActivityListView!
     private var activitiesList: [ActivityCellItem] = []
@@ -74,22 +75,22 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         let currentTimeStamp = dateFormatter.string(from: currentDateTime)
         return currentTimeStamp
     }
-
+    
     //MARK: - Search bar
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.activityListView.setState(state: .loading)
+        activityListView.setState(state: .loading)
         
         let filteredActivitiesBySearch = filteredActivitiesList.filter { activity in
             return activity.title.lowercased().contains(searchText.lowercased())
         }
         
         if searchText.isEmpty {
-            self.activityListView.setState(state: .normal(items: filteredActivitiesList))
+            activityListView.setState(state: .normal(items: filteredActivitiesList))
         } else if filteredActivitiesBySearch.isEmpty {
-            self.activityListView.setState(state: .noActivities)
+            activityListView.setState(state: .noActivities)
         } else {
-            self.activityListView.setState(state: .normal(items: filteredActivitiesBySearch))
+            activityListView.setState(state: .normal(items: filteredActivitiesBySearch))
         }
     }
     
@@ -110,7 +111,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
     }
-
+    
     //MARK: - CollectionVIew handling
     
     var categories: [CategoryCell] {
@@ -142,10 +143,15 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
-        cell.isSelected = true
-        cell.backgroundColor = categoryColors[indexPath.item].withAlphaComponent(1.0)
+        if selectedCategory == indexPath.item + 1 {
+            cell.backgroundColor = categoryColors[indexPath.item]
+            resetCategories()
+        } else {
+            cell.isSelected = true
+            cell.backgroundColor = categoryColors[indexPath.item].withAlphaComponent(1.0)
+            selectedCategory = indexPath.item + 1
+        }
         
-        selectedCategory = indexPath.item + 1
         handleFilter()
     }
     
@@ -154,21 +160,22 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         cell.backgroundColor = categoryColors[indexPath.item]
-        
-//        selectedCategory = 0
-//        handleFilter()
+        selectedCategory = 0
+        activityListView.setState(state: .loading)
     }
     
-    @IBAction func discardFilters(_ sender: UIButton) {
-        self.activityListView.setState(state: .loading)
+    //MARK: - Function for reseting categories
+    
+    func resetCategories() {
         selectedCategory = 0
-        self.activityListView.setState(state: .normal(items: activitiesList))
+        activityListView.setState(state: .loading)
+        activityListView.setState(state: .normal(items: activitiesList))
     }
     
     // MARK: - Custom functions
     
     private func handleFilter() {
-        self.activityListView.setState(state: .loading)
+        activityListView.setState(state: .loading)
         
         var filter: [(ActivityCellItem) -> Bool] = []
         
@@ -196,9 +203,9 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         }
         
         if filteredActivitiesList.isEmpty {
-            self.activityListView.setState(state: .noActivities)
+            activityListView.setState(state: .noActivities)
         } else {
-            self.activityListView.setState(state: .normal(items: filteredActivitiesList))
+            activityListView.setState(state: .normal(items: filteredActivitiesList))
         }
     }
     
