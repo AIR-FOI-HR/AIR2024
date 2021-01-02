@@ -42,6 +42,7 @@
 		42D29B92257FADC500F74E5D /* CategoriesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D29B91257FADC500F74E5D /* CategoriesDetailsViewController.swift */; };
 		42D29B9D257FAE0900F74E5D /* CategoriesDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42D29B9C257FAE0900F74E5D /* CategoriesDetails.storyboard */; };
 		42D29BA2257FAE2D00F74E5D /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D29BA1257FAE2D00F74E5D /* CategoriesCollectionViewCell.swift */; };
+		42D320F225A0EE4F002E627E /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D320F125A0EE4F002E627E /* AvatarCollectionViewCell.swift */; };
 		42EF36C2256C159F0069E590 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42EF36C1256C159F0069E590 /* Home.storyboard */; };
 		42EF36C7256C15EB0069E590 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EF36C6256C15EB0069E590 /* HomeViewController.swift */; };
 		548B022222BD917EE347199F /* Pods_WeatherActivityTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0EAF181C676D14C06AB651 /* Pods_WeatherActivityTests.framework */; };
@@ -142,6 +143,7 @@
 		42D29B91257FADC500F74E5D /* CategoriesDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDetailsViewController.swift; sourceTree = "<group>"; };
 		42D29B9C257FAE0900F74E5D /* CategoriesDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CategoriesDetails.storyboard; sourceTree = "<group>"; };
 		42D29BA1257FAE2D00F74E5D /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
+		42D320F125A0EE4F002E627E /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
 		42EF36C1256C159F0069E590 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		42EF36C6256C15EB0069E590 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4889E5E4675144E82D660FD3 /* Pods-WeatherActivity-WeatherActivityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherActivity-WeatherActivityUITests.release.xcconfig"; path = "Target Support Files/Pods-WeatherActivity-WeatherActivityUITests/Pods-WeatherActivity-WeatherActivityUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				4252F699256282E800FCA0CB /* Registration.storyboard */,
 				423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */,
 				423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */,
+				42D320F125A0EE4F002E627E /* AvatarCollectionViewCell.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -929,6 +932,7 @@
 				4252C841258F95C900A2A7CC /* StandardStorage.swift in Sources */,
 				8C4B6447258B62230013DADD /* AddActivityStepInfo.swift in Sources */,
 				8C2D04142576D2B8002E51D0 /* TokenCheckResponse.swift in Sources */,
+				42D320F225A0EE4F002E627E /* AvatarCollectionViewCell.swift in Sources */,
 				4252F64C25626DE600FCA0CB /* LoginViewController.swift in Sources */,
 				42D29B86257FAD0A00F74E5D /* CategoryResponse.swift in Sources */,
 				8CB0C48C258A4D5F009450B3 /* TimeDetailsViewController.swift in Sources */,
