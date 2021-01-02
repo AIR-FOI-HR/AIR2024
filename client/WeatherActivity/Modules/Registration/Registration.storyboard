@@ -208,10 +208,10 @@
         <!--Login-->
         <scene sceneID="4LG-rW-waa">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4JG-2B-Lfy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="Login" id="aVJ-Qy-lbI" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="TxQ-pf-75Z"/>
                 </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4JG-2B-Lfy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-133" y="471"/>
         </scene>

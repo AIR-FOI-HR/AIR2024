@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F6W-Xh-eMs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F6W-Xh-eMs">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,30 +16,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hey, you came from log in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnJ-du-FEf">
-                                <rect key="frame" x="99" y="288" width="218" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZD-ue-soe">
-                                <rect key="frame" x="180" y="350" width="55" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Log Out"/>
-                                <connections>
-                                    <action selector="logoutPressed:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="dCi-27-OuC"/>
-                                </connections>
-                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fgL-18-9DJ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8a-0g-htt" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pye-sh-jLV" userLabel="Activities Container View">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="788"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </stackView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xZD-ue-soe">
+                                                <rect key="frame" x="0.0" y="788" width="414" height="30"/>
+                                                <state key="normal" title="Log Out"/>
+                                                <connections>
+                                                    <action selector="logoutPressed:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="dCi-27-OuC"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="pye-sh-jLV" firstAttribute="leading" secondItem="xZD-ue-soe" secondAttribute="leading" id="1mM-y9-Ayz"/>
+                                            <constraint firstItem="pye-sh-jLV" firstAttribute="trailing" secondItem="xZD-ue-soe" secondAttribute="trailing" id="Of9-SA-HaF"/>
+                                            <constraint firstItem="pye-sh-jLV" firstAttribute="leading" secondItem="b8a-0g-htt" secondAttribute="leading" id="Va4-9y-Qhc"/>
+                                            <constraint firstAttribute="bottom" secondItem="xZD-ue-soe" secondAttribute="bottom" id="aEp-lY-IsC"/>
+                                            <constraint firstItem="pye-sh-jLV" firstAttribute="top" secondItem="b8a-0g-htt" secondAttribute="top" id="fFy-cl-RRd"/>
+                                            <constraint firstItem="pye-sh-jLV" firstAttribute="centerX" secondItem="b8a-0g-htt" secondAttribute="centerX" id="peC-ag-f1N"/>
+                                            <constraint firstItem="xZD-ue-soe" firstAttribute="top" secondItem="pye-sh-jLV" secondAttribute="bottom" id="py0-4I-vCa"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="b8a-0g-htt" firstAttribute="leading" secondItem="fgL-18-9DJ" secondAttribute="leading" id="5Hs-GW-4zC"/>
+                                    <constraint firstItem="b8a-0g-htt" firstAttribute="centerX" secondItem="fgL-18-9DJ" secondAttribute="centerX" id="60d-F2-CbT"/>
+                                    <constraint firstAttribute="bottom" secondItem="b8a-0g-htt" secondAttribute="bottom" id="6gL-H2-Njx"/>
+                                    <constraint firstAttribute="trailing" secondItem="b8a-0g-htt" secondAttribute="trailing" id="MqQ-us-OLh"/>
+                                    <constraint firstItem="b8a-0g-htt" firstAttribute="top" secondItem="fgL-18-9DJ" secondAttribute="top" id="XSX-0A-IEa"/>
+                                    <constraint firstItem="b8a-0g-htt" firstAttribute="centerY" secondItem="fgL-18-9DJ" secondAttribute="centerY" id="afA-5I-laM"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Xft-eF-z2H"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="fgL-18-9DJ" firstAttribute="centerX" secondItem="PM6-D4-Xec" secondAttribute="centerX" id="EcA-Nf-edb"/>
+                            <constraint firstItem="fgL-18-9DJ" firstAttribute="leading" secondItem="Xft-eF-z2H" secondAttribute="leading" id="HzY-GA-Gu5"/>
+                            <constraint firstItem="fgL-18-9DJ" firstAttribute="top" secondItem="Xft-eF-z2H" secondAttribute="top" id="JUA-54-6rw"/>
+                            <constraint firstItem="fgL-18-9DJ" firstAttribute="bottom" secondItem="Xft-eF-z2H" secondAttribute="bottom" id="rdo-B3-Z8H"/>
+                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="pNP-S9-QkH" appends="YES" id="cj2-Jf-kUG"/>
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="activitiesContainerView" destination="pye-sh-jLV" id="Av6-bT-Y1W"/>
                         <segue destination="ZfN-al-jwA" kind="presentation" identifier="HomeToLogin" modalPresentationStyle="fullScreen" id="hHI-Xm-YvE"/>
                     </connections>
                 </viewController>
@@ -50,7 +83,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-12" y="55"/>
+            <point key="canvasLocation" x="-13.043478260869566" y="54.910714285714285"/>
         </scene>
         <!--Main-->
         <scene sceneID="aTk-0E-t4M">
