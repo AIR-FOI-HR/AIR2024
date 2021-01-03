@@ -151,6 +151,7 @@
                     </view>
                     <connections>
                         <outlet property="activitiesContainerView" destination="4IS-q9-HT3" id="NVE-ZY-2Yi"/>
+                        <outlet property="forecastDescriptionLabel" destination="wSt-bg-fvJ" id="zd1-gk-vsc"/>
                         <segue destination="ZfN-al-jwA" kind="presentation" identifier="HomeToLogin" modalPresentationStyle="fullScreen" id="hHI-Xm-YvE"/>
                     </connections>
                 </viewController>

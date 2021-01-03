@@ -13,16 +13,20 @@ class HomeViewController: UIViewController {
     // MARK: IBOutlets
     
     @IBOutlet weak private var activitiesContainerView: UIStackView!
+    @IBOutlet weak private var forecastDescriptionLabel: UILabel!
     
     // MARK: Properties
     
     private var activityListView: ActivityListView!
     private let activityService = ActivityService()
+    private let forecastService = ForecastService()
+    private let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupListView()
         loadActivities()
+        getTodaysForecast()
     }
     
     // MARK: Custom functions
@@ -71,5 +75,25 @@ class HomeViewController: UIViewController {
 extension HomeViewController: ActivityListViewDelegate {
     func didPressReloadAction() {
         loadActivities()
+    }
+}
+
+extension HomeViewController {
+    
+    func getTodaysForecast() {
+        
+        forecastService.getWeatherForecast(date: Date(), locationCoordinates: dummyLocation) { (weatherInfo) in
+            guard
+                let weatherList = weatherInfo.weatherList,
+                let forecastData = weatherList.first?.weather,
+                let forecastTemperature = weatherList.first?.main?.temp,
+                let forecastDescription = forecastData.first?.weatherDescription
+            else { return }
+            self.forecastDescriptionLabel.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst()), with temperature: \(forecastTemperature)";
+            
+        } failure: { (error) in
+            print(error)
+        }
+
     }
 }
