@@ -39,6 +39,8 @@ class ActivityListView: UIView, UITableViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupActivityListView()
+        activityListView.separatorStyle = .none
+        activityListView.showsVerticalScrollIndicator = false
     }
     
     private func setupActivityListView() {
@@ -104,22 +106,35 @@ class ActivityListView: UIView, UITableViewDelegate {
 
 extension ActivityListView: SkeletonTableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource.count
+        return 1
     }
-    
+
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return Self.cellIdentifier
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath) as! ActivityCell
-        let item = dataSource[indexPath.row]
+        let item = dataSource[indexPath.section]
         cell.configure(with: item)
         return cell
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let headerView = view as? UITableViewHeaderFooterView else { return }
+        headerView.tintColor = .clear
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(dataSource[indexPath.row])
+        print(dataSource[indexPath.section])
     }
 }
 

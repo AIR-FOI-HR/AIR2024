@@ -12,7 +12,7 @@ class HomeViewController: UIViewController {
     
     // MARK: IBOutlets
     
-    @IBOutlet private var activitiesContainerView: UIStackView!
+    @IBOutlet weak private var activitiesContainerView: UIStackView!
     
     // MARK: Properties
     
