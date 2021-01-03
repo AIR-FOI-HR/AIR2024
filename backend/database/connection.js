@@ -1,21 +1,10 @@
 var mysql = require('mysql');
-var connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'weatheractivity',
-  multipleStatements: true
-})
-if(connection.state != "connected"){
-  connection.connect((err) => {
-    if(err) {
-      console.log(err.code);
-      console.log(err.fatal);
-    } else {
-      console.log("Connected")
-    }
-  });
-}
 
+var pool = mysql.createPool({
+  host: 'www.seyziich.com',
+  user: 'bobi',
+  password: 'zg4w8aaQWVPn8zGs',
+  database: 'bobi'
+});
 
-exports.connection = connection
+exports.connection = pool;
