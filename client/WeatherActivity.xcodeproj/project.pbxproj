@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4204AFFE25A228E800ED9F3B /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */; };
 		4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205CE1425705A3600FF056F /* UIExtensions.swift */; };
 		4238F62E257D7C7600A755BE /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4238F62D257D7C7600A755BE /* ActivityService.swift */; };
 		4238F634257D7DDE00A755BE /* ActivitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4238F633257D7DDE00A755BE /* ActivitiesResponse.swift */; };
@@ -93,6 +94,7 @@
 
 /* Begin PBXFileReference section */
 		21E3DBCF3D927D95E4389908 /* Pods_WeatherActivity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherActivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		4205CE1425705A3600FF056F /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		420EB74625790E9F00ABCFAE /* FinalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalDetailsViewController.swift; sourceTree = "<group>"; };
 		420EB74B25790EC100ABCFAE /* FinalDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FinalDetails.storyboard; sourceTree = "<group>"; };
@@ -580,6 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				4205CE1425705A3600FF056F /* UIExtensions.swift */,
+				4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -945,6 +948,7 @@
 				8C3EE108257E73B10017EEFD /* ForecastData.swift in Sources */,
 				429A737025758EC900B99F8D /* RegistrationValidator.swift in Sources */,
 				423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */,
+				4204AFFE25A228E800ED9F3B /* PaddingLabel.swift in Sources */,
 				8CE0417225764E04005EFEC4 /* RegistrationUser.swift in Sources */,
 				4278013F257CF11200E9EE9C /* ActivityCell.swift in Sources */,
 				4252F64A25626DE600FCA0CB /* SceneDelegate.swift in Sources */,

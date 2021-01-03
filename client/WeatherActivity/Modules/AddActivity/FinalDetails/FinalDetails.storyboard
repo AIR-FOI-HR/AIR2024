@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="62S-Lz-yEg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="62S-Lz-yEg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -18,34 +18,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="scrollableAxes" translatesAutoresizingMaskIntoConstraints="NO" id="Hby-ZD-FqM">
-                                <rect key="frame" x="0.0" y="44" width="414" height="728"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="718"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ut9-de-IOp">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="679.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="697"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="pcW-0W-dBi" userLabel="parentStackView">
-                                                <rect key="frame" x="32" y="32" width="350" height="615.5"/>
+                                                <rect key="frame" x="16" y="30" width="382" height="647"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="HXR-gh-ug7" userLabel="titleStackVIew">
-                                                        <rect key="frame" x="0.0" y="0.0" width="350" height="45.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="75"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 4: Activity details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDo-Rk-8WZ">
-                                                                <rect key="frame" x="0.0" y="0.0" width="350" height="26.5"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpM-8R-RnK" userLabel="Exit Button">
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="22"/>
+                                                                <color key="tintColor" systemColor="labelColor"/>
+                                                                <state key="normal" image="xmark" catalog="system"/>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Step 4: Activity details" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jDo-Rk-8WZ">
+                                                                <rect key="frame" x="0.0" y="27" width="382" height="26.5"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="22"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fill out remaining activity details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yam-sT-UKL">
-                                                                <rect key="frame" x="0.0" y="31.5" width="350" height="14"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fill out remaining activity details" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yam-sT-UKL">
+                                                                <rect key="frame" x="0.0" y="58.5" width="382" height="16.5"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                                <color key="textColor" red="0.37445438269412878" green="0.37445438269412878" blue="0.37445438269412878" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dJk-mu-K5Z" userLabel="textFieldsStackView">
-                                                        <rect key="frame" x="0.0" y="75.5" width="350" height="120"/>
+                                                        <rect key="frame" x="0.0" y="105" width="382" height="120"/>
                                                         <subviews>
                                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2GM-iV-WUt" userLabel="titleTextField">
-                                                                <rect key="frame" x="0.0" y="0.0" width="350" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="9IO-Ga-wK7"/>
                                                                 </constraints>
@@ -57,7 +63,7 @@
                                                                 </connections>
                                                             </textField>
                                                             <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Pl-z6-C9h" userLabel="descriptionTextField">
-                                                                <rect key="frame" x="0.0" y="70" width="350" height="50"/>
+                                                                <rect key="frame" x="0.0" y="70" width="382" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="9oH-TK-WDf"/>
                                                                 </constraints>
@@ -71,21 +77,21 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ElT-gC-qwj" userLabel="activityTypeStackView">
-                                                        <rect key="frame" x="0.0" y="225.5" width="350" height="180"/>
+                                                        <rect key="frame" x="0.0" y="255" width="382" height="181"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YrQ-cz-EWv">
-                                                                <rect key="frame" x="0.0" y="0.0" width="350" height="20"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of activity" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YrQ-cz-EWv">
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="21"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="cGE-zj-6Lh" userLabel="outdoorIndoorStack">
-                                                                <rect key="frame" x="0.0" y="30" width="350" height="150"/>
+                                                                <rect key="frame" x="0.0" y="31" width="382" height="150"/>
                                                                 <subviews>
                                                                     <stackView opaque="NO" tag="1" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uUg-H4-RUK" userLabel="outdoorStack">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="165" height="150"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="181" height="150"/>
                                                                         <subviews>
                                                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GxF-ll-8Z9" userLabel="indoorButton">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="165" height="150"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="181" height="150"/>
                                                                                 <state key="normal" image="Indoor"/>
                                                                                 <connections>
                                                                                     <action selector="typeOfActivityPressed:" destination="62S-Lz-yEg" eventType="touchUpInside" id="L6G-KK-iSx"/>
@@ -100,10 +106,10 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </stackView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lT5-Uj-QJZ" userLabel="indoorStack">
-                                                                        <rect key="frame" x="185" y="0.0" width="165" height="150"/>
+                                                                        <rect key="frame" x="201" y="0.0" width="181" height="150"/>
                                                                         <subviews>
                                                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Er-hw-dwg" userLabel="outdoorButton">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="165" height="150"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="181" height="150"/>
                                                                                 <state key="normal" image="Outdoor"/>
                                                                                 <connections>
                                                                                     <action selector="typeOfActivityPressed:" destination="62S-Lz-yEg" eventType="touchUpInside" id="AFM-A6-hwM"/>
@@ -125,15 +131,15 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="epb-Ch-zUP" userLabel="supportedWeatherStackView">
-                                                        <rect key="frame" x="0.0" y="435.5" width="350" height="180"/>
+                                                        <rect key="frame" x="0.0" y="466" width="382" height="181"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What kind of weather you wouldn't like?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lif-Wg-uch">
-                                                                <rect key="frame" x="0.0" y="0.0" width="350" height="20"/>
-                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What kind of weather you wouldn't like?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lif-Wg-uch">
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="21"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ik9-Ir-flU" userLabel="collectionView">
-                                                                <rect key="frame" x="0.0" y="30" width="350" height="150"/>
+                                                                <rect key="frame" x="0.0" y="31" width="382" height="150"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="150" id="BSU-QT-bwH"/>
@@ -193,10 +199,10 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="pcW-0W-dBi" firstAttribute="top" secondItem="Ut9-de-IOp" secondAttribute="top" constant="32" id="6py-jC-rkU"/>
-                                            <constraint firstAttribute="bottom" secondItem="pcW-0W-dBi" secondAttribute="bottom" constant="32" id="Luw-ZE-T4n"/>
-                                            <constraint firstItem="pcW-0W-dBi" firstAttribute="leading" secondItem="Ut9-de-IOp" secondAttribute="leading" constant="32" id="Vmo-Pa-9d4"/>
-                                            <constraint firstAttribute="trailing" secondItem="pcW-0W-dBi" secondAttribute="trailing" constant="32" id="YQ2-yt-aIQ"/>
+                                            <constraint firstItem="pcW-0W-dBi" firstAttribute="top" secondItem="Ut9-de-IOp" secondAttribute="top" constant="30" id="6py-jC-rkU"/>
+                                            <constraint firstAttribute="bottom" secondItem="pcW-0W-dBi" secondAttribute="bottom" constant="20" id="Luw-ZE-T4n"/>
+                                            <constraint firstItem="pcW-0W-dBi" firstAttribute="leading" secondItem="Ut9-de-IOp" secondAttribute="leading" constant="16" id="Vmo-Pa-9d4"/>
+                                            <constraint firstAttribute="trailing" secondItem="pcW-0W-dBi" secondAttribute="trailing" constant="16" id="YQ2-yt-aIQ"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -208,13 +214,13 @@
                                 </constraints>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rVe-Jd-mgO" userLabel="Footer View">
-                                <rect key="frame" x="0.0" y="772" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="762" width="414" height="100"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="X1x-Pw-h2U">
-                                        <rect key="frame" x="35" y="20" width="344" height="50"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="X1x-Pw-h2U">
+                                        <rect key="frame" x="16" y="30" width="382" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaS-6a-gXJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="156" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="181" height="50"/>
                                                 <color key="backgroundColor" red="0.10980392160000001" green="0.20784313730000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="XcP-Mz-zkj"/>
@@ -230,10 +236,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-lO-CmP">
-                                                <rect key="frame" x="188" y="0.0" width="156" height="50"/>
+                                                <rect key="frame" x="201" y="0.0" width="181" height="50"/>
                                                 <color key="backgroundColor" red="0.35677075390000001" green="0.74840950969999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
-                                                <state key="normal" title="Next">
+                                                <state key="normal" title="Add activity">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -241,15 +247,18 @@
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="addActivityClick:" destination="62S-Lz-yEg" eventType="touchUpInside" id="5Pq-tD-INP"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="X1x-Pw-h2U" secondAttribute="bottom" constant="20" id="Ui5-s2-Axx"/>
-                                    <constraint firstAttribute="trailing" secondItem="X1x-Pw-h2U" secondAttribute="trailing" constant="35" id="YZ6-0D-Rej"/>
-                                    <constraint firstItem="X1x-Pw-h2U" firstAttribute="leading" secondItem="rVe-Jd-mgO" secondAttribute="leading" constant="35" id="nAK-3b-oCj"/>
-                                    <constraint firstItem="X1x-Pw-h2U" firstAttribute="top" secondItem="rVe-Jd-mgO" secondAttribute="top" constant="20" id="tNO-lj-T3H"/>
+                                    <constraint firstAttribute="trailing" secondItem="X1x-Pw-h2U" secondAttribute="trailing" constant="16" id="YZ6-0D-Rej"/>
+                                    <constraint firstItem="X1x-Pw-h2U" firstAttribute="leading" secondItem="rVe-Jd-mgO" secondAttribute="leading" constant="16" id="nAK-3b-oCj"/>
+                                    <constraint firstItem="X1x-Pw-h2U" firstAttribute="top" secondItem="rVe-Jd-mgO" secondAttribute="top" constant="30" id="tNO-lj-T3H"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2db-dZ-fB7">
@@ -287,6 +296,10 @@
     <resources>
         <image name="Indoor" width="170" height="170"/>
         <image name="Outdoor" width="170" height="170"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -198,7 +198,7 @@ extension LocationDetailsViewController {
 private extension LocationDetailsViewController {
     
     func setupLocationTextField() {
-     
+
         locationTextField.clearButtonMode = .whileEditing
         locationTextField.clearsOnBeginEditing = true
         locationTextField.addTarget(self, action: #selector(shouldShowDropDown), for: .allEvents)
