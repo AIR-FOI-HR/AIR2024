@@ -1,88 +1,135 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yhs-QM-z1U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yhs-QM-z1U">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--First Initial Screen View Controller-->
         <scene sceneID="qPg-Iu-MK2">
             <objects>
-                <viewController id="Yhs-QM-z1U" sceneMemberID="viewController">
+                <viewController id="Yhs-QM-z1U" customClass="FirstInitialScreenViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NoU-JS-xgp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nf0-Sx-VOG">
-                                <rect key="frame" x="347" y="94" width="32" height="31"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Skip">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WeatherActivity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-cb-Jih">
-                                <rect key="frame" x="35" y="94" width="175" height="29"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rainActivity" translatesAutoresizingMaskIntoConstraints="NO" id="4ds-b8-dNY">
-                                <rect key="frame" x="35" y="155" width="344" height="298"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create activites based on your location and weather forecast" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWh-RW-USa">
-                                <rect key="frame" x="35" y="503" width="344" height="98"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creating activites has never been easier. Use location and weather forecast to organise all your plans." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUs-6J-Vav">
-                                <rect key="frame" x="35" y="616" width="344" height="63"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.33000001311302185" translatesAutoresizingMaskIntoConstraints="NO" id="LnT-ET-iP5">
-                                <rect key="frame" x="35" y="714" width="344" height="4"/>
-                                <color key="progressTintColor" red="0.37254901959999998" green="0.61568627450000002" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
-                            </progressView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssR-GK-Wjz">
-                                <rect key="frame" x="318" y="768" width="61" height="33"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Next →">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqo-eH-dl1">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="15H-fz-sD1">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="691.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="ZAC-d3-6wn" userLabel="Parent Stack View">
+                                                <rect key="frame" x="16" y="30" width="382" height="641.5"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="137" translatesAutoresizingMaskIntoConstraints="NO" id="ZbK-Ee-toD" userLabel="Header Stack View">
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="31"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WeatherActivity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rhm-bO-LJr">
+                                                                <rect key="frame" x="0.0" y="0.0" width="174.5" height="31"/>
+                                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="24"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gHQ-ME-y5x">
+                                                                <rect key="frame" x="311.5" y="0.0" width="70.5" height="31"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <state key="normal" title="Skip">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rainActivity" translatesAutoresizingMaskIntoConstraints="NO" id="6QU-ES-0me">
+                                                        <rect key="frame" x="0.0" y="61" width="382" height="298"/>
+                                                    </imageView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Dnq-Ql-gnF">
+                                                        <rect key="frame" x="0.0" y="389" width="382" height="172.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create activites based on your location and weather forecast" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="adF-p7-Cqp">
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="65.5"/>
+                                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="28"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creating activites has never been easier. Use location and weather forecast to organise all your plans." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apH-GP-1dQ">
+                                                                <rect key="frame" x="0.0" y="85.5" width="382" height="63"/>
+                                                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.33000001311302185" translatesAutoresizingMaskIntoConstraints="NO" id="1qx-Ju-Hbt">
+                                                                <rect key="frame" x="0.0" y="168.5" width="382" height="4"/>
+                                                                <color key="progressTintColor" red="0.37254901959999998" green="0.61568627450000002" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </progressView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MIo-sC-gUO">
+                                                        <rect key="frame" x="0.0" y="591.5" width="382" height="50"/>
+                                                        <color key="backgroundColor" red="0.40000000000000002" green="0.77647058820000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="loZ-cl-WCI"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <state key="normal" title="Next →">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="6QU-ES-0me" firstAttribute="leading" secondItem="ZAC-d3-6wn" secondAttribute="leading" id="3MS-sW-pq0"/>
+                                                    <constraint firstItem="ZbK-Ee-toD" firstAttribute="leading" secondItem="ZAC-d3-6wn" secondAttribute="leading" id="4Py-7a-m5E"/>
+                                                    <constraint firstAttribute="trailing" secondItem="MIo-sC-gUO" secondAttribute="trailing" id="dYP-gy-9Yy"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ZbK-Ee-toD" secondAttribute="trailing" id="ogc-c1-3ia"/>
+                                                    <constraint firstAttribute="trailing" secondItem="6QU-ES-0me" secondAttribute="trailing" id="uSg-1h-4P3"/>
+                                                    <constraint firstItem="MIo-sC-gUO" firstAttribute="leading" secondItem="ZAC-d3-6wn" secondAttribute="leading" id="yZQ-Ru-S0F"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.070588235294117646" green="0.12941176470588234" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="ZAC-d3-6wn" firstAttribute="top" secondItem="15H-fz-sD1" secondAttribute="top" constant="30" id="Een-Kp-oN0"/>
+                                            <constraint firstItem="ZAC-d3-6wn" firstAttribute="leading" secondItem="15H-fz-sD1" secondAttribute="leading" constant="16" id="Wbn-Rc-six"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZAC-d3-6wn" secondAttribute="trailing" constant="16" id="bdF-OQ-Mv6"/>
+                                            <constraint firstAttribute="bottom" secondItem="ZAC-d3-6wn" secondAttribute="bottom" constant="20" id="iPA-7B-hcv"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.070588235294117646" green="0.12941176470588234" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="15H-fz-sD1" secondAttribute="trailing" id="0jo-M1-OgO"/>
+                                    <constraint firstItem="15H-fz-sD1" firstAttribute="top" secondItem="rqo-eH-dl1" secondAttribute="top" id="CdV-Dl-Ktb"/>
+                                    <constraint firstItem="15H-fz-sD1" firstAttribute="leading" secondItem="rqo-eH-dl1" secondAttribute="leading" id="EzP-t3-r0s"/>
+                                    <constraint firstAttribute="bottom" secondItem="15H-fz-sD1" secondAttribute="bottom" id="HcG-Xh-H6m"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CzO-F8-GGs"/>
-                        <color key="backgroundColor" red="0.048739545047283173" green="0.10548908263444901" blue="0.13472297787666321" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.070588235294117646" green="0.12941176470588234" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ssR-GK-Wjz" firstAttribute="top" secondItem="LnT-ET-iP5" secondAttribute="bottom" constant="50" id="26v-zX-OGy"/>
-                            <constraint firstItem="Nf0-Sx-VOG" firstAttribute="top" secondItem="CzO-F8-GGs" secondAttribute="top" constant="50" id="3QL-tX-KZ9"/>
-                            <constraint firstItem="CzO-F8-GGs" firstAttribute="trailing" secondItem="LnT-ET-iP5" secondAttribute="trailing" constant="35" id="9JY-Ws-fhP"/>
-                            <constraint firstItem="CzO-F8-GGs" firstAttribute="trailing" secondItem="Nf0-Sx-VOG" secondAttribute="trailing" constant="35" id="C46-QD-qwD"/>
-                            <constraint firstItem="LnT-ET-iP5" firstAttribute="leading" secondItem="CzO-F8-GGs" secondAttribute="leading" constant="35" id="CIu-ip-VMr"/>
-                            <constraint firstItem="RUs-6J-Vav" firstAttribute="top" secondItem="QWh-RW-USa" secondAttribute="bottom" constant="15" id="CQO-P2-Vw3"/>
-                            <constraint firstItem="CzO-F8-GGs" firstAttribute="trailing" secondItem="ssR-GK-Wjz" secondAttribute="trailing" constant="35" id="FxP-lS-D6V"/>
-                            <constraint firstItem="RUs-6J-Vav" firstAttribute="leading" secondItem="CzO-F8-GGs" secondAttribute="leading" constant="35" id="Kru-CJ-369"/>
-                            <constraint firstItem="QWh-RW-USa" firstAttribute="leading" secondItem="CzO-F8-GGs" secondAttribute="leading" constant="35" id="MwF-Jy-QgS"/>
-                            <constraint firstItem="CzO-F8-GGs" firstAttribute="trailing" secondItem="RUs-6J-Vav" secondAttribute="trailing" constant="35" id="Pef-8G-JHM"/>
-                            <constraint firstItem="CzO-F8-GGs" firstAttribute="trailing" secondItem="QWh-RW-USa" secondAttribute="trailing" constant="35" id="PzI-wn-80B"/>
-                            <constraint firstItem="gJd-cb-Jih" firstAttribute="leading" secondItem="CzO-F8-GGs" secondAttribute="leading" constant="35" id="ZY5-LP-Kgt"/>
-                            <constraint firstItem="LnT-ET-iP5" firstAttribute="top" secondItem="RUs-6J-Vav" secondAttribute="bottom" constant="35" id="cSF-pp-ZRJ"/>
-                            <constraint firstItem="CzO-F8-GGs" firstAttribute="trailing" secondItem="4ds-b8-dNY" secondAttribute="trailing" constant="35" id="hMP-wT-pcR"/>
-                            <constraint firstItem="4ds-b8-dNY" firstAttribute="leading" secondItem="CzO-F8-GGs" secondAttribute="leading" constant="35" id="kq8-XC-KE0"/>
-                            <constraint firstItem="gJd-cb-Jih" firstAttribute="top" secondItem="CzO-F8-GGs" secondAttribute="top" constant="50" id="mX7-vI-0fj"/>
-                            <constraint firstItem="4ds-b8-dNY" firstAttribute="top" secondItem="Nf0-Sx-VOG" secondAttribute="bottom" constant="30" id="nsx-c2-iNR"/>
-                            <constraint firstItem="QWh-RW-USa" firstAttribute="top" secondItem="4ds-b8-dNY" secondAttribute="bottom" constant="50" id="sgz-bU-J2M"/>
+                            <constraint firstItem="15H-fz-sD1" firstAttribute="width" secondItem="NoU-JS-xgp" secondAttribute="width" id="4aQ-dx-Ve9"/>
+                            <constraint firstItem="CzO-F8-GGs" firstAttribute="trailing" secondItem="rqo-eH-dl1" secondAttribute="trailing" id="I1Y-ll-zb2"/>
+                            <constraint firstItem="rqo-eH-dl1" firstAttribute="top" secondItem="CzO-F8-GGs" secondAttribute="top" id="UTA-CK-g1F"/>
+                            <constraint firstItem="CzO-F8-GGs" firstAttribute="bottom" secondItem="rqo-eH-dl1" secondAttribute="bottom" id="cFG-wx-Tsd"/>
+                            <constraint firstItem="rqo-eH-dl1" firstAttribute="leading" secondItem="CzO-F8-GGs" secondAttribute="leading" id="zp6-YX-gUa"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="nextButton" destination="MIo-sC-gUO" id="iLt-oY-YTE"/>
+                        <outlet property="skipButton" destination="gHQ-ME-y5x" id="nU6-wx-r5e"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u57-G5-is4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
