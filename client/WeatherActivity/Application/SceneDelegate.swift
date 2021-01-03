@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let sessionToken = SessionManager.shared.getToken() {
             loginService.checkForToken(token: sessionToken, success: {
                 checkResponse in
-                if(checkResponse.token == true) {
+                if(checkResponse.sessionToken == true) {
                     self.setupInitialStoryboard(storyboard: .home, viewContoller: .home)
                 } else {
                     self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)

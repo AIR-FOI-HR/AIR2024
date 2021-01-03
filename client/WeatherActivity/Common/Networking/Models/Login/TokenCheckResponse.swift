@@ -6,5 +6,5 @@
 //
 
 struct TokenCheckResponse: Decodable {
-    let token: Bool
+    let sessionToken: Bool
 }
