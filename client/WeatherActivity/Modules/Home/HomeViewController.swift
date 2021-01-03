@@ -13,13 +13,20 @@ class HomeViewController: UIViewController {
     // MARK: IBOutlets
     
     @IBOutlet weak private var activitiesContainerView: UIStackView!
-    @IBOutlet weak private var forecastDescriptionLabel: UILabel!
+    @IBOutlet weak private var weatherTypeLabel: UILabel!
+    @IBOutlet weak private var temperatureLabel: UILabel!
+    @IBOutlet weak private var temperatureFeelsLabel: UILabel!
+    @IBOutlet weak private var windLabel: UILabel!
+    @IBOutlet weak private var humidityLabel: UILabel!
+    @IBOutlet weak private var todaysDescription: UILabel!
+    @IBOutlet weak var weatherTypeImageView: UIImageView!
     
     // MARK: Properties
     
     private var activityListView: ActivityListView!
     private let activityService = ActivityService()
     private let forecastService = ForecastService()
+    private let forecastData = ForecastData()
     private let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
     
     override func viewDidLoad() {
@@ -81,19 +88,28 @@ extension HomeViewController: ActivityListViewDelegate {
 extension HomeViewController {
     
     func getTodaysForecast() {
-        
+
         forecastService.getWeatherForecast(date: Date(), locationCoordinates: dummyLocation) { (weatherInfo) in
             guard
                 let weatherList = weatherInfo.weatherList,
-                let forecastData = weatherList.first?.weather,
-                let forecastTemperature = weatherList.first?.main?.temp,
-                let forecastDescription = forecastData.first?.weatherDescription
+                let temperatureForecast = weatherList.first?.main?.temp?.rounded(.up),
+                let temperatureFeelsLikeForecast = weatherList.first?.main?.feelsLike?.rounded(.up),
+                let windForecast = weatherList.first?.wind?.speed?.rounded(.up),
+                let humidityForecast = weatherList.first?.main?.humidity,
+                let dataForecast = weatherList.first?.weather,
+                let condition = dataForecast.first?.id,
+                let forecastDescription = dataForecast.first?.weatherDescription
             else { return }
-            self.forecastDescriptionLabel.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst()), with temperature: \(forecastTemperature)";
             
+            self.weatherTypeLabel.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst())"
+            self.temperatureLabel.text = "\(Int(temperatureForecast)) ° C"
+            self.temperatureFeelsLabel.text = "\(Int(temperatureFeelsLikeForecast)) ° C"
+            self.windLabel.text = "\(Int(windForecast)) km/h"
+            self.humidityLabel.text = "\(humidityForecast) %"
+            self.weatherTypeImageView.image = UIImage(systemName: self.forecastData.getConditionImage(id: condition))
+            self.todaysDescription.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst()), with temperature: \(Int(temperatureForecast)) ° C"
         } failure: { (error) in
             print(error)
         }
-
     }
 }
