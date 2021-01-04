@@ -99,7 +99,10 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
     
     @IBAction func addActivityClick(_ sender: UIButton) {
         
-        guard let title = titleTextField.text, let description = descriptionTextField.text else { return }
+        guard
+            let title = titleTextField.text,
+            let description = descriptionTextField.text
+        else { return }
         
         if title.isEmpty || description.isEmpty {
             presentAlert(title: FinalDetailsAlertMessages.textFieldsAlertTitle.rawValue, message: FinalDetailsAlertMessages.textFieldsAlertTMessage.rawValue)
@@ -109,9 +112,31 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
             presentAlert(title: FinalDetailsAlertMessages.supportedWeatherAlertTTitle.rawValue, message: FinalDetailsAlertMessages.supportedWeatherAlertTMessage.rawValue)
         }
         else {
-            #warning("Proceed with future code")
+            guard
+                let flowNavigator = flowNavigator
+            else { return }
+            flowNavigator.showNextStep(
+                from: .finalDetails,
+                data: StepData(
+                    stepInfo: .finalDetails,
+                    data: FinalDetails(
+                        title: title,
+                        description: description,
+                        typeOfActivity: selectedActivityType.rawValue,
+                        supportedWeather: selectedSupportedWeathers)
+                )
+            )
         }
     }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        flowNavigator.showPreviousStep()
+    }
+    
     
     @IBAction func finalDetailsTextFieldDidBeginEditing(_ sender: UITextField) {
         sender.updateTextAppearanceOnFieldDidBeginEditing(sender)
