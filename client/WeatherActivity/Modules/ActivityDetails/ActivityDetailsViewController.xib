@@ -16,6 +16,7 @@
                 <outlet property="activityDescription" destination="nen-e9-yzF" id="EaG-cM-Qfy"/>
                 <outlet property="activityImageView" destination="nLI-Q7-xu1" id="LDy-fg-zni"/>
                 <outlet property="activityLocation" destination="gxj-23-UFb" id="iyE-08-gSn"/>
+                <outlet property="activityStatus" destination="nAf-31-fg7" id="mzb-0d-BKp"/>
                 <outlet property="activityTime" destination="qiA-rY-aVk" id="ZHF-cX-oiM"/>
                 <outlet property="activityTitle" destination="wKe-Bi-JgZ" id="m1F-w3-i7J"/>
                 <outlet property="bodyUIView" destination="s4C-51-Lhe" id="Xyz-UP-mXT"/>
@@ -40,22 +41,35 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ze-Hx-x2a" userLabel="TitleHeader View">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="100"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="spT-6a-pyT" userLabel="Title Stack View">
-                                                    <rect key="frame" x="10" y="10" width="362" height="80"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="spT-6a-pyT" userLabel="Title Stack View">
+                                                    <rect key="frame" x="10" y="10" width="362" height="75"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="activityTitle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKe-Bi-JgZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="362" height="37.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="362" height="33.5"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FVW-OV-7S7" userLabel="Date Stack View">
-                                                            <rect key="frame" x="0.0" y="42.5" width="362" height="37.5"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FVW-OV-7S7" userLabel="Activity status Stack View">
+                                                            <rect key="frame" x="0.0" y="41.5" width="362" height="33.5"/>
                                                             <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In progress" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAf-31-fg7" userLabel="activityStatus">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="114" height="33.5"/>
+                                                                    <color key="backgroundColor" red="0.1176470588" green="0.21176470589999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="highlightedColor" red="0.90980392156862744" green="0.52941176470588236" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="activityDate" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFU-aE-oLp">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="114" height="37.5"/>
+                                                                    <rect key="frame" x="124" y="0.0" width="114" height="33.5"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
@@ -66,21 +80,9 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="activityTime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiA-rY-aVk">
-                                                                    <rect key="frame" x="124" y="0.0" width="114" height="37.5"/>
+                                                                    <rect key="frame" x="248" y="0.0" width="114" height="33.5"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                            <integer key="value" value="5"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSe-bG-JKb">
-                                                                    <rect key="frame" x="248" y="0.0" width="114" height="37.5"/>
-                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
@@ -97,11 +99,10 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.39937916400000001" green="0.77816164489999995" blue="0.99987548589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="spT-6a-pyT" secondAttribute="bottom" constant="10" id="9b5-dH-DUs"/>
+                                                <constraint firstAttribute="bottom" secondItem="spT-6a-pyT" secondAttribute="bottom" constant="15" id="9b5-dH-DUs"/>
                                                 <constraint firstItem="spT-6a-pyT" firstAttribute="top" secondItem="0Ze-Hx-x2a" secondAttribute="top" constant="10" id="FxW-uu-gMt"/>
                                                 <constraint firstItem="spT-6a-pyT" firstAttribute="leading" secondItem="0Ze-Hx-x2a" secondAttribute="leading" constant="10" id="ehP-jJ-F0T"/>
                                                 <constraint firstAttribute="trailing" secondItem="spT-6a-pyT" secondAttribute="trailing" constant="10" id="ohT-Ej-vup"/>
-                                                <constraint firstAttribute="height" constant="100" id="ry0-P5-fWG"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
