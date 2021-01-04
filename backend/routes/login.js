@@ -9,11 +9,14 @@ const { response } = require('express');
 router.post('/', (req, res, next) => {
     var email = req.body.email;
     var password = req.body.password;
+    var firstName, avatarName = "";
     dbConnection.connection.query(`SELECT * FROM user WHERE mail='${email}'`, (err, data) => {
         if (err) {
             return res.json({ "sessionToken": null });
         }
         else if (data.length > 0) {
+            firstName = data[0].firstName;
+            avatarName = data[0].avatarName;
             bcrypt.compare(password, data[0].password, function (err, response) {
                 if (response) {
                     const token = jwt.sign({
@@ -24,7 +27,7 @@ router.post('/', (req, res, next) => {
                         if (err) {
                             return res.json({ "sessionToken": null });
                         } else {
-                            return res.json({ "sessionToken": token });
+                            return res.json({ "sessionToken": token, "userName": firstName, "userAvatar": avatarName });
                         }
                     });
                 }
