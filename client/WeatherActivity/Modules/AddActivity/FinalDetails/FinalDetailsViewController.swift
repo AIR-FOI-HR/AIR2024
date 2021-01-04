@@ -14,8 +14,6 @@ enum FinalDetailsAlertMessages: String {
     case textFieldsAlertTMessage = "Make sure to fill them up so you can have better insight in your activities!"
     case activityTypeAlertTTitle = "Err.. It looks like you didnt select activity type"
     case activityTypeAlertTMessage = "Make sure to do it so you can have better insight in your activities!"
-    case supportedWeatherAlertTTitle = "Err.. It looks like you didnt select any supported weathers"
-    case supportedWeatherAlertTMessage = "Make sure to select them so we can let you know when the weather changes"
 }
 
 enum SelectedActivityType: Int {
@@ -108,10 +106,7 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
             presentAlert(title: FinalDetailsAlertMessages.textFieldsAlertTitle.rawValue, message: FinalDetailsAlertMessages.textFieldsAlertTMessage.rawValue)
         } else if isSelectedActivityType == false {
             presentAlert(title: FinalDetailsAlertMessages.activityTypeAlertTTitle.rawValue, message: FinalDetailsAlertMessages.activityTypeAlertTMessage.rawValue)
-        } else if selectedSupportedWeathers.isEmpty {
-            presentAlert(title: FinalDetailsAlertMessages.supportedWeatherAlertTTitle.rawValue, message: FinalDetailsAlertMessages.supportedWeatherAlertTMessage.rawValue)
-        }
-        else {
+        } else {
             guard
                 let flowNavigator = flowNavigator
             else { return }
