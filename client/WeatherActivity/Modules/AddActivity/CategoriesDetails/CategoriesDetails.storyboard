@@ -9,22 +9,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Category Details View Controller-->
+        <!--Categories Details View Controller-->
         <scene sceneID="UDt-1m-QJD">
             <objects>
-                <viewController id="hWT-Jv-POk" customClass="CategoryDetailsViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoriesDetails" id="hWT-Jv-POk" customClass="CategoriesDetailsViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dL1-GE-pXh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVh-oS-Iof">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xVh-oS-Iof">
                                 <rect key="frame" x="0.0" y="44" width="414" height="728"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pnK-TS-oJ5">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pnK-TS-oJ5">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="762"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="bQz-jn-Kei">
-                                                <rect key="frame" x="16" y="20" width="382" height="722"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="bQz-jn-Kei">
+                                                <rect key="frame" x="16" y="20" width="382" height="764"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="D11-ZH-uqZ">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="71"/>
@@ -83,8 +83,8 @@
                                                             </searchBar>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eQi-gh-fcM">
-                                                        <rect key="frame" x="0.0" y="424" width="382" height="298"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eQi-gh-fcM">
+                                                        <rect key="frame" x="0.0" y="424" width="382" height="340"/>
                                                         <subviews>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gfm-KA-zMi">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="280"/>
@@ -140,8 +140,8 @@
                                                                     <outlet property="delegate" destination="hWT-Jv-POk" id="zsI-ZD-upB"/>
                                                                 </connections>
                                                             </collectionView>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7E3-Lh-Pie" customClass="CHIPageControlAleppo" customModule="CHIPageControl">
-                                                                <rect key="frame" x="0.0" y="290" width="382" height="8"/>
+                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7E3-Lh-Pie" customClass="CHIPageControlAleppo" customModule="CHIPageControl">
+                                                                <rect key="frame" x="0.0" y="290" width="382" height="50"/>
                                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <userDefinedRuntimeAttributes>
@@ -199,6 +199,9 @@
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="backButtonPressed:" destination="hWT-Jv-POk" eventType="touchUpInside" id="csu-qx-z1a"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knM-5j-YpY">
                                                 <rect key="frame" x="201" y="0.0" width="181" height="50"/>
@@ -212,6 +215,9 @@
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="nextButtonPressed:" destination="hWT-Jv-POk" eventType="touchUpInside" id="vGO-fa-wrE"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -257,11 +263,6 @@
             <point key="canvasLocation" x="-698.55072463768124" y="47.544642857142854"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="7E3-Lh-Pie">
-            <size key="intrinsicContentSize" width="34" height="8"/>
-        </designable>
-    </designables>
     <resources>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">

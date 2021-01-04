@@ -12,7 +12,7 @@
         <!--Final Details View Controller-->
         <scene sceneID="hWF-JI-66B">
             <objects>
-                <viewController id="62S-Lz-yEg" customClass="FinalDetailsViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FinalDetails" id="62S-Lz-yEg" customClass="FinalDetailsViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uJ4-BX-DPD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,6 +234,9 @@
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="backButtonPressed:" destination="62S-Lz-yEg" eventType="touchUpInside" id="cMe-wd-fDS"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-lO-CmP">
                                                 <rect key="frame" x="201" y="0.0" width="181" height="50"/>

@@ -145,6 +145,9 @@
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="nextButtonPressed:" destination="hWT-Jv-POk" eventType="touchUpInside" id="90x-8y-9hC"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

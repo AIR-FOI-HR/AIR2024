@@ -12,7 +12,7 @@
         <!--Time Details View Controller-->
         <scene sceneID="z88-y4-bLV">
             <objects>
-                <viewController id="Ycq-qu-8D1" customClass="TimeDetailsViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimeDetails" id="Ycq-qu-8D1" customClass="TimeDetailsViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uC8-Ls-GEP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -436,6 +436,9 @@
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="backButtonPressed:" destination="Ycq-qu-8D1" eventType="touchUpInside" id="W7b-DG-FG4"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6f8-o0-oW6">
                                                 <rect key="frame" x="201" y="0.0" width="181" height="50"/>
@@ -449,6 +452,9 @@
                                                         <integer key="value" value="5"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="nextButtonPressed:" destination="Ycq-qu-8D1" eventType="touchUpInside" id="k1X-De-gIK"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

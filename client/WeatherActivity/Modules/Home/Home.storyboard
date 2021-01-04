@@ -35,6 +35,14 @@
                                                     <action selector="logoutPressed:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="dCi-27-OuC"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6zW-s6-WgH" userLabel="AddActivityButton">
+                                                <rect key="frame" x="262" y="788" width="83" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Add Activity"/>
+                                                <connections>
+                                                    <action selector="addActivityButtonPressed:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="dpj-3s-nlI"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
