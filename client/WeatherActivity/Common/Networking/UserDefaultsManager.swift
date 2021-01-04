@@ -19,11 +19,19 @@ class UserDefaultsManager {
 
     // MARK: Public methods
     
-    func saveUserDefault(value: String, key: StandardStorageKeys) {
+    func saveUserDefault(value: Any, key: StandardStorageKeys) {
         standardStorage.saveUserDefault(value: value, key: key)
+    }
+    
+    func getUserDefaultBool(key: StandardStorageKeys) -> Bool {
+        return standardStorage.getUserDefaultBool(key: key)
     }
     
     func getUserDefaultString(key: StandardStorageKeys) -> String {
         return standardStorage.getUserDefaultString(key: key)
+    }
+    
+    func deleteUserDefault(key: StandardStorageKeys) {
+        standardStorage.deleteUserDefault(key: key)
     }
 }

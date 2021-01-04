@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yhs-QM-z1U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yhs-QM-z1U">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,7 +10,7 @@
         <!--First Initial Screen View Controller-->
         <scene sceneID="qPg-Iu-MK2">
             <objects>
-                <viewController id="Yhs-QM-z1U" customClass="FirstInitialScreenViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstInitialScreenViewController" id="Yhs-QM-z1U" customClass="FirstInitialScreenViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NoU-JS-xgp">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,6 +41,9 @@
                                                                 <state key="normal" title="Skip">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="onSkipClick:" destination="Yhs-QM-z1U" eventType="touchUpInside" id="SdQ-af-3Id"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -86,6 +89,9 @@
                                                                 <integer key="value" value="5"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="onNextClick:" destination="Yhs-QM-z1U" eventType="touchUpInside" id="ik3-Ic-HsB"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -129,11 +135,31 @@
                     <connections>
                         <outlet property="nextButton" destination="MIo-sC-gUO" id="iLt-oY-YTE"/>
                         <outlet property="skipButton" destination="gHQ-ME-y5x" id="nU6-wx-r5e"/>
+                        <segue destination="Yhh-DX-rLR" kind="presentation" identifier="toSecondInitialScreen" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="VNY-Go-daT"/>
+                        <segue destination="ypu-Cc-OH7" kind="presentation" identifier="toLogin" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="7oF-RF-eeW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u57-G5-is4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-13.043478260869566" y="52.901785714285715"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="Uyw-yh-dRm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="ypu-Cc-OH7" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1wI-HY-Qsx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="633" y="-50"/>
+        </scene>
+        <!--SecondInitialScreen-->
+        <scene sceneID="707-P1-2BC">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SecondInitialScreen" storyboardName="SecondInitialScreen" id="Yhh-DX-rLR" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="NVt-cO-yBE"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WAy-kz-F1z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="633" y="201"/>
         </scene>
     </scenes>
     <resources>

@@ -39,12 +39,14 @@ final class LoginViewController: UIViewController {
         }
         let credentials = LoginCredentials(email: email, password: password)
         loginService.login(with: credentials, success: { apiResponse in
-            SessionManager.shared.saveToken(apiResponse.sessionToken)
             if(!apiResponse.sessionToken.isEmpty) {
                 UserDefaultsManager.shared.saveUserDefault(value: email, key: .lastEnteredEmail)
+                UserDefaultsManager.shared.saveUserDefault(value: apiResponse.userName, key: .userName)
+                UserDefaultsManager.shared.saveUserDefault(value: apiResponse.userAvatar, key: .userAvatar)
+                SessionManager.shared.saveToken(apiResponse.sessionToken)
                 self.navigate(to: .home)
             }
-            else{
+            else {
                 self.presentAlert(title: "Oops!", message: "You entered wrong credentials")
             }
         }, failure: { error in

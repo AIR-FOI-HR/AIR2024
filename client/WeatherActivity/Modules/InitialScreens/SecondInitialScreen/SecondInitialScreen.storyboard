@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hy5-NH-2Bx">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hy5-NH-2Bx">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,6 +41,9 @@
                                                                 <state key="normal" title="Skip">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="onSkipClick:" destination="hy5-NH-2Bx" eventType="touchUpInside" id="8fC-jw-oDS"/>
+                                                                </connections>
                                                             </button>
                                                         </subviews>
                                                     </stackView>
@@ -86,6 +89,9 @@
                                                                 <integer key="value" value="5"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="onNextClick:" destination="hy5-NH-2Bx" eventType="touchUpInside" id="0kM-Mv-MWZ"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -129,11 +135,31 @@
                     <connections>
                         <outlet property="nextButton" destination="Jbv-sw-wo6" id="69U-dj-z8o"/>
                         <outlet property="skipButton" destination="Aji-O4-94O" id="SUh-aa-S4n"/>
+                        <segue destination="lDB-qv-NQ0" kind="presentation" identifier="toThirdInitialScreen" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="scI-he-o80"/>
+                        <segue destination="3xY-d8-Z4F" kind="presentation" identifier="toLogin" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="omd-6b-qRY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ea9-aB-24H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="402.89855072463769" y="-242.41071428571428"/>
+        </scene>
+        <!--ThirdInitialScreen-->
+        <scene sceneID="iCd-23-L0p">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ThirdInitialScreen" id="lDB-qv-NQ0" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="8Nv-t5-lLY"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o18-EO-IU1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1012" y="-132"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="uWM-yz-rN9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="3xY-d8-Z4F" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X4k-fn-dGC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="992" y="-276"/>
         </scene>
     </scenes>
     <resources>

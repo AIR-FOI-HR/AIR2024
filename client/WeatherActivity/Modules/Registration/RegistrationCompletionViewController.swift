@@ -141,6 +141,8 @@ final class RegistrationCompletionViewController: UIViewController, UICollection
         let registrationUser = RegistrationUser(firstName: firstScreenData.firstName, lastName: firstScreenData.lastName, email: firstScreenData.email, password: firstScreenData.password, username: secondScreenData.username, avatarId: secondScreenData.avatarId)
         
         registrationService.register(userData: registrationUser, success: { registrationResponse in
+            UserDefaultsManager.shared.saveUserDefault(value: registrationResponse.userName, key: .userName)
+            UserDefaultsManager.shared.saveUserDefault(value: registrationResponse.userAvatar, key: .userAvatar)
             SessionManager.shared.saveToken(registrationResponse.sessionToken)
             self.navigate(to: .home)
         }, failure: {error in

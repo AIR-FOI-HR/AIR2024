@@ -10,11 +10,13 @@ import UIKit
 enum initialStoryboard: String {
     case home = "Home"
     case login = "Login"
+    case firstInitialScreen = "FirstInitialScreen"
 }
 
 enum initialViewController: String {
     case home = "HomeViewController"
     case login = "LoginViewController"
+    case firstInitialScreen = "FirstInitialScreenViewController"
 }
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -27,20 +29,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
-        if let sessionToken = SessionManager.shared.getToken() {
-            loginService.checkForToken(token: sessionToken, success: {
-                checkResponse in
-                if(checkResponse.sessionToken == true) {
-                    self.setupInitialStoryboard(storyboard: .home, viewContoller: .home)
-                } else {
-                    self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
-                }
-            }, failure: { error in
-                self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
-            })
+        if !UserDefaultsManager.shared.getUserDefaultBool(key: .firstTime) {
+            self.setupInitialStoryboard(storyboard: .firstInitialScreen, viewContoller: .firstInitialScreen)
         } else {
-            self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
+            if let sessionToken = SessionManager.shared.getToken() {
+                loginService.checkForToken(token: sessionToken, success: {
+                    checkResponse in
+                    if(checkResponse.sessionToken == true) {
+                        self.setupInitialStoryboard(storyboard: .home, viewContoller: .home)
+                    } else {
+                        self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
+                    }
+                }, failure: { error in
+                    self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
+                })
+            } else {
+                self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
+            }
         }
+        
         
         guard let _ = (scene as? UIWindowScene) else { return }
     }
