@@ -13,10 +13,15 @@ struct LocationDetails: Codable {
     let longitude: CLLocationDegrees
 }
 
-struct TimeDetails: Codable {
+struct TimeWeatherDetails: Codable {
     let date: Date
     let fromTime: String
     let untilTime: String
+    let weatherIdentifier: Int
+    let temperature: Double
+    let feelsLike: Double
+    let wind: Double
+    let humidity: Int
 }
 
 struct FinalDetails: Codable {
