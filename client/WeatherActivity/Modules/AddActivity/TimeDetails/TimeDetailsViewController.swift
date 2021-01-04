@@ -55,10 +55,27 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     // MARK: IBActions
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        let timeDetails = TimeDetails(date: datePicker.date, fromTime: timeDetailsManager.getTime(fromDate: fromTimePicker.date, timeFormat: .hourClock24), untilTime: timeDetailsManager.getTime(fromDate: untilTimePicker.date, timeFormat: .hourClock24))
-        let activityDetails = ActivityData(locationDetails: self.locationDetails, timeDetails: timeDetails)
-        debugPrint(activityDetails)
-        #warning("Pass arguments to next screen")
+        
+        let timeDetails = TimeDetails(
+            date: datePicker.date,
+            fromTime: timeDetailsManager.getTime(fromDate: fromTimePicker.date, timeFormat: .hourClock24),
+            untilTime: timeDetailsManager.getTime(fromDate: untilTimePicker.date, timeFormat: .hourClock24))
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        flowNavigator.showNextStep(
+            from: .timeDetails,
+            data: StepData(
+                stepInfo: .timeDetails,
+                data: timeDetails))
+    }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        flowNavigator.showPreviousStep()
     }
 }
 
