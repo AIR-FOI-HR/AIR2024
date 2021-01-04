@@ -202,7 +202,6 @@ extension LocationDetailsViewController {
     func saveLocationData(locationName name: String, latitude lat: CLLocationDegrees, longitude lon: CLLocationDegrees) {
         
         self.locationDetails = LocationDetails(locationName: name, latitude: lat, longitude: lon)
-        print(self.locationDetails)
         #warning("Handle location details struct")
     }
 }

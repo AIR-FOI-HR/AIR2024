@@ -39,6 +39,7 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     let weatherManager = ForecastService()
     let timeDetailsManager = TimeDetailsManager()
     let forecastData = ForecastData()
+    var timeWeatherDetails: TimeWeatherDetails?
     #warning("Delete dummy location and replace with previous screen data")
     let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
     
@@ -56,10 +57,6 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         
-        let timeDetails = TimeDetails(
-            date: datePicker.date,
-            fromTime: timeDetailsManager.getTime(fromDate: fromTimePicker.date, timeFormat: .hourClock24),
-            untilTime: timeDetailsManager.getTime(fromDate: untilTimePicker.date, timeFormat: .hourClock24))
         guard
             let flowNavigator = flowNavigator
         else { return }
@@ -67,7 +64,7 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
             from: .timeDetails,
             data: StepData(
                 stepInfo: .timeDetails,
-                data: timeDetails))
+                data: timeWeatherDetails))
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -125,6 +122,17 @@ private extension TimeDetailsViewController {
         humidityLabel.text = String(humidity)
         weatherDescriptionLabel.text = String(description.capitalized)
         weatherTypeImageView.image = UIImage(systemName: forecastData.getConditionImage(id: condition))
+        
+        timeWeatherDetails = TimeWeatherDetails(
+            date: datePicker.date,
+            fromTime: timeDetailsManager.getTime(fromDate: fromTimePicker.date, timeFormat: .hourClock24),
+            untilTime: timeDetailsManager.getTime(fromDate: untilTimePicker.date, timeFormat: .hourClock24),
+            weatherIdentifier: forecastData.getConditionId(id: condition),
+            temperature: temperature,
+            feelsLike: feelsLike,
+            wind: windSpeed,
+            humidity: humidity
+        )
     }
     
     func getForecastForDate(forDate date: Date, weatherData data: WeatherInfo) {
