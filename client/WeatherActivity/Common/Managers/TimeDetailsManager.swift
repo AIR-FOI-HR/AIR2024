@@ -48,6 +48,12 @@ class TimeDetailsManager {
         return dateFormatter.string(from: date)
     }
     
+    func getDate(fromDate date: Date) -> String {
+        
+        dateFormatter.dateFormat = DateFormat.databaseFormat.rawValue;
+        return dateFormatter.string(from: date)
+    }
+    
     func addTime(to toDate: Date, hours hoursValue: Int = Constants.defaultTimeInterval) -> Date {
         
         guard let modifiedDate = Calendar.current.date(byAdding: .hour, value: hoursValue, to: toDate) else { return toDate }

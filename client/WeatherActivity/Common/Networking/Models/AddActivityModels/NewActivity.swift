@@ -14,7 +14,7 @@ struct LocationDetails: Codable {
 }
 
 struct TimeWeatherDetails: Codable {
-    let date: Date
+    let date: String
     let fromTime: String
     let untilTime: String
     let weatherIdentifier: Int

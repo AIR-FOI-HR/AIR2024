@@ -16,6 +16,10 @@ enum TimeFormat: String {
     case hourClock12 = "h:mm a"
 }
 
+enum DateFormat: String {
+    case databaseFormat = "YYYY-MM-dd"
+}
+
 class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     
     // MARK: IBOutlets
@@ -123,8 +127,9 @@ private extension TimeDetailsViewController {
         weatherDescriptionLabel.text = String(description.capitalized)
         weatherTypeImageView.image = UIImage(systemName: forecastData.getConditionImage(id: condition))
         
+        let formattedDate = timeDetailsManager.getDate(fromDate: datePicker.date)
         timeWeatherDetails = TimeWeatherDetails(
-            date: datePicker.date,
+            date: formattedDate,
             fromTime: timeDetailsManager.getTime(fromDate: fromTimePicker.date, timeFormat: .hourClock24),
             untilTime: timeDetailsManager.getTime(fromDate: untilTimePicker.date, timeFormat: .hourClock24),
             weatherIdentifier: forecastData.getConditionId(id: condition),
