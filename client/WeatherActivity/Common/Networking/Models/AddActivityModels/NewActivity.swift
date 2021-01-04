@@ -7,19 +7,25 @@
 
 import MapKit
 
-struct LocationDetails {
-    var locationName: String
-    var latitude: CLLocationDegrees
-    var longitude: CLLocationDegrees
+struct LocationDetails: Codable {
+    let locationName: String
+    let latitude: CLLocationDegrees
+    let longitude: CLLocationDegrees
 }
 
-struct TimeDetails {
-    var date: Date
-    var fromTime: String
-    var untilTime: String
+struct TimeDetails: Codable {
+    let date: Date
+    let fromTime: String
+    let untilTime: String
 }
 
-struct ActivityData {
-    var locationDetails: LocationDetails? = nil
-    var timeDetails: TimeDetails? = nil
+struct FinalDetails: Codable {
+    let title: String
+    let description: String
+    let typeOfActivity: Int
+    let supportedWeather: [String]
+}
+
+struct CategoryDetails: Codable {
+    let selectedCategory: String
 }
