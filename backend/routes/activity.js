@@ -3,20 +3,26 @@ const router = express.Router();
 const dbConnection = require('../database/connection');
 
 router.post('/', function (req, res, next) {
-    console.log(req.body)
-    var token = req.body.sessionToken
-    dbConnection.connection.query(`SELECT mail FROM user WHERE sessionToken='${token}'`, (error, data) => {
-        dbConnection.connection.query(`SELECT a.activityId, startTime, endTime, title, description, locationName, forecastId, categoryId, activityStatusId FROM activity a, doing d, user u, location l WHERE a.activityId=d.activityId AND d.mail='${data[0].mail}' AND a.locationId=l.locationId`, (err, data) => {
-            console.log(data)
+    dbConnection.connection.query(
+        `SELECT a.activityId, startTime, endTime, title, description, locationName, latitude, longitude, temperature, feelsLike, wind, humidity, forecastType, c.name, type, statusType FROM activity a
+        JOIN location l ON a.locationId=l.locationId
+        JOIN forecast f ON a.forecastId=f.forecastId
+        JOIN forecasttype ftype ON f.forecastTypeId=ftype.forecastTypeId
+        JOIN category c ON a.categoryId=c.categoryId
+        JOIN activitystatus astatus ON a.activityStatusId=astatus.activityStatusId
+        JOIN doing d ON a.activityId=d.activityId
+        JOIN user u ON d.mail=u.mail WHERE u.sessionToken='${req.body.sessionToken}'`, (err, data) => {
             if (err) {
-                return res.json({ "act": false })
+                return res.json(err)
+            } else {
+                let list = data.map((activity) => {
+                    activity.type = activity.type === 3 ? "Indoor" : "Outdoor";
+                    return activity;
+                })
+                return res.json(list)
             }
-            else {
-                return res.json(data)
-            }
-        })
-    })
-    
+        }
+    )
 });
 
 module.exports = router;
