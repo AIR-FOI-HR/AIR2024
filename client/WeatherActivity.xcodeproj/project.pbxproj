@@ -10,6 +10,8 @@
 		4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205CE1425705A3600FF056F /* UIExtensions.swift */; };
 		4238F62E257D7C7600A755BE /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4238F62D257D7C7600A755BE /* ActivityService.swift */; };
 		4238F634257D7DDE00A755BE /* ActivitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4238F633257D7DDE00A755BE /* ActivitiesResponse.swift */; };
+		42394BCF25A33D6D0088DE9B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42394BCE25A33D6D0088DE9B /* CalendarViewController.swift */; };
+		42394BDC25A33DA40088DE9B /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42394BDB25A33DA40088DE9B /* Calendar.storyboard */; };
 		423CFA5C2572A5BA005CF798 /* RegistrationCompletion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */; };
 		423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */; };
 		4252F64825626DE600FCA0CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252F64725626DE600FCA0CB /* AppDelegate.swift */; };
@@ -98,6 +100,8 @@
 		420EB74B25790EC100ABCFAE /* FinalDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FinalDetails.storyboard; sourceTree = "<group>"; };
 		4238F62D257D7C7600A755BE /* ActivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityService.swift; sourceTree = "<group>"; };
 		4238F633257D7DDE00A755BE /* ActivitiesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesResponse.swift; sourceTree = "<group>"; };
+		42394BCE25A33D6D0088DE9B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		42394BDB25A33DA40088DE9B /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationCompletion.storyboard; sourceTree = "<group>"; };
 		423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCompletionViewController.swift; sourceTree = "<group>"; };
 		4252F64425626DE600FCA0CB /* WeatherActivity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherActivity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +219,15 @@
 			path = ActivityModels;
 			sourceTree = "<group>";
 		};
+		42394BCD25A33D500088DE9B /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				42394BCE25A33D6D0088DE9B /* CalendarViewController.swift */,
+				42394BDB25A33DA40088DE9B /* Calendar.storyboard */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		4252F63B25626DE600FCA0CB = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +308,7 @@
 		4252F67F25626E9F00FCA0CB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				42394BCD25A33D500088DE9B /* Calendar */,
 				8CB0C474258A4CBA009450B3 /* AddActivity */,
 				42EF36C0256C157C0069E590 /* Home */,
 				4252F6BE2562A93B00FCA0CB /* InitialScreens */,
@@ -777,6 +791,7 @@
 				8C9CD86D2594A9FB00D49E16 /* Login.storyboard in Resources */,
 				423CFA5C2572A5BA005CF798 /* RegistrationCompletion.storyboard in Resources */,
 				42D29B9D257FAE0900F74E5D /* CategoriesDetails.storyboard in Resources */,
+				42394BDC25A33DA40088DE9B /* Calendar.storyboard in Resources */,
 				4252F6AB2562871200FCA0CB /* FirstInitialScreen.storyboard in Resources */,
 				4252F6B72562A04000FCA0CB /* SecondInitialScreen.storyboard in Resources */,
 				8CB0C49E258A4D7E009450B3 /* LocationDetails.storyboard in Resources */,
@@ -924,6 +939,7 @@
 				8C49F0C12579748D0067EA86 /* NewActivity.swift in Sources */,
 				8C2D041A2576D376002E51D0 /* RegistrationResponse.swift in Sources */,
 				4252F64825626DE600FCA0CB /* AppDelegate.swift in Sources */,
+				42394BCF25A33D6D0088DE9B /* CalendarViewController.swift in Sources */,
 				42D29BA2257FAE2D00F74E5D /* CategoriesCollectionViewCell.swift in Sources */,
 				42780156257CF94E00E9EE9C /* ActivityListView.swift in Sources */,
 				4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */,
