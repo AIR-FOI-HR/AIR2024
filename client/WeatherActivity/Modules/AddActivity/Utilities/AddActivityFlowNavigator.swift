@@ -40,10 +40,17 @@ class AddActivityFlowNavigator {
     func showNextStep(from: StepInfo, data: StepData) {
         
         if (isLastStep(step: from)) {
-            #warning("Handle if last step -> submit data")
-            let jsonData = dataFlowManager.dataToJson()
-            #warning("Send data to backend")
-            debugPrint(jsonData)
+            dataFlowManager.saveData(data: data)
+            guard
+                let jsonData = dataFlowManager.dataToJson()
+            else { return }
+            ActivityService().insertActivities(activityData: jsonData) { (provjera) -> Void in
+                print(provjera)
+                self.dismissFlow()
+            } failure: { (error) in
+                print(error)
+            }
+            
         }
         else {
             dataFlowManager.saveData(data: data)
@@ -51,7 +58,9 @@ class AddActivityFlowNavigator {
             guard let currentStep = steps.firstIndex(of: from) else { return }
             let nextStep = steps[currentStep + 1]
             let storyboard = UIStoryboard(name: nextStep.rawValue, bundle: nil)
-            let stepViewController = storyboard.instantiateViewController(identifier: nextStep.rawValue) as! AddActivityStepViewController
+            guard
+                let stepViewController = storyboard.instantiateViewController(identifier: nextStep.rawValue) as? AddActivityStepViewController
+            else { return }
             stepViewController.flowNavigator = self
             navigationController?.pushViewController(stepViewController, animated: true)
         }
