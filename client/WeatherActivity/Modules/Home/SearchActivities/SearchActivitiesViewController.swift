@@ -11,7 +11,7 @@ import UIKit
 
 enum Categories: String, CaseIterable {
     case food = "Food"
-    case sport = "Sport"
+    case sport = "Sports"
     case family = "Family"
     case romance = "Romance"
     case business = "Business"
@@ -51,11 +51,12 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     
     private var selectedTime: SelectedTime?
     private var previous = 0
-    private var selectedCategory: Int? = 0
+    private var selectedCategory: String? = ""
     private var activityListView: ActivityListView!
     private var activitiesList: [ActivityCellItem] = []
     private var filteredActivitiesList: [ActivityCellItem] = []
     private let activityService = ActivityService()
+    private var categoryNames = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +89,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         if searchText.isEmpty {
             activityListView.setState(state: .normal(items: filteredActivitiesList))
         } else if filteredActivitiesBySearch.isEmpty {
-            activityListView.setState(state: .noActivities)
+            activityListView.setState(state: .noFilteredActivities)
         } else {
             activityListView.setState(state: .normal(items: filteredActivitiesBySearch))
         }
@@ -110,6 +111,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
+        handleFilter()
     }
     
     //MARK: - CollectionVIew handling
@@ -117,6 +119,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     var categories: [CategoryCell] {
         [.init(type: .food), .init(type: .sport), .init(type: .family), .init(type: .romance), .init(type: .business), .init(type: .studying), .init(type: .shopping), .init(type: .entertainment)]
     }
+    
     
     let categoryColors = [UIColor.Food, UIColor.Sport, UIColor.Family, UIColor.Romance, UIColor.Business, UIColor.Studying, UIColor.Shopping, UIColor.Entertainment]
     
@@ -127,7 +130,6 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as? CategoryCollectionViewCell else { fatalError() }
         
-        var categoryNames = [String]()
         for item in categories {
             if let categoryName = item.name {
                 categoryNames.append(categoryName)
@@ -143,15 +145,14 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
-        if selectedCategory == indexPath.item + 1 {
+        if selectedCategory == categoryNames[indexPath.item] {
             cell.backgroundColor = categoryColors[indexPath.item]
-            resetCategories()
+            selectedCategory = ""
         } else {
             cell.isSelected = true
             cell.backgroundColor = categoryColors[indexPath.item].withAlphaComponent(1.0)
-            selectedCategory = indexPath.item + 1
+            selectedCategory = categoryNames[indexPath.item]
         }
-        
         handleFilter()
     }
     
@@ -160,16 +161,8 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         cell.backgroundColor = categoryColors[indexPath.item]
-        selectedCategory = 0
+        selectedCategory = ""
         activityListView.setState(state: .loading)
-    }
-    
-    //MARK: - Function for reseting categories
-    
-    func resetCategories() {
-        selectedCategory = 0
-        activityListView.setState(state: .loading)
-        activityListView.setState(state: .normal(items: activitiesList))
     }
     
     // MARK: - Custom functions
@@ -192,8 +185,8 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
             filter.append({$0.startTime > self.getCurrentTimeStamp()})
         }
         
-        if selectedCategory != 0 {
-            filter.append({$0.categoryId == self.selectedCategory})
+        if selectedCategory != "" {
+            filter.append({$0.name == self.selectedCategory})
         }
         
         filteredActivitiesList = activitiesList.filter { activity in
@@ -203,7 +196,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         }
         
         if filteredActivitiesList.isEmpty {
-            activityListView.setState(state: .noActivities)
+            activityListView.setState(state: .noFilteredActivities)
         } else {
             activityListView.setState(state: .normal(items: filteredActivitiesList))
         }
@@ -225,7 +218,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
                 }
                 else {
                     for activity in activities {
-                        self.activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, forecastId: activity.forecastId, categoryId: activity.categoryId, activityStatusId: activity.activityStatusId))
+                        self.activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType))
                     }
                     self.filteredActivitiesList = self.activitiesList
                     self.activityListView.setState(state: .normal(items: self.activitiesList))
@@ -242,6 +235,12 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
 //MARK: - Extensions
 
 extension SearchActivitiesViewController: ActivityListViewDelegate {
+    func didPressRow(activity: ActivityCellItem) {
+        let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
+        details.commonInit(activity: activity)
+        self.present(details, animated: true, completion: nil)
+    }
+    
     func didPressReloadAction() {
         loadActivities()
     }

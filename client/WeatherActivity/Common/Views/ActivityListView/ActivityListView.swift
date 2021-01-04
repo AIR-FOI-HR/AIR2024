@@ -11,6 +11,7 @@ import SkeletonView
 
 protocol ActivityListViewDelegate: AnyObject {
     func didPressReloadAction()
+    func didPressRow(activity: ActivityCellItem)
 }
 
 class ActivityListView: UIView, UITableViewDelegate {
@@ -20,6 +21,7 @@ class ActivityListView: UIView, UITableViewDelegate {
         case error
         case normal(items: [ActivityCellItem])
         case noActivities
+        case noFilteredActivities
     }
     
     @IBOutlet private var activityListView: UITableView!
@@ -65,6 +67,9 @@ class ActivityListView: UIView, UITableViewDelegate {
             reload(with: items)
         case .noActivities:
             showMessage(messageText: "Looks like you don't have any activities. Try adding some", buttonText: "Add activity")
+        case .noFilteredActivities:
+            showMessage(messageText: "Looks like your search didn't find anything... hmm try something else!", buttonText: "")
+            button.isHidden = true
         }
     }
     
@@ -98,6 +103,8 @@ class ActivityListView: UIView, UITableViewDelegate {
             break
         case .noActivities:
             #warning("addActivityFunction")
+        case .noFilteredActivities:
+            break
         default:
             break
         }
@@ -125,7 +132,7 @@ extension ActivityListView: SkeletonTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
+        return 10
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -134,7 +141,11 @@ extension ActivityListView: SkeletonTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(dataSource[indexPath.section])
+        guard let delegate = delegate else {
+            return
+        }
+        delegate.didPressRow(activity: dataSource[indexPath.row])
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

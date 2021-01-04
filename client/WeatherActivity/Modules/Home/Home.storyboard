@@ -423,6 +423,7 @@
                         <outlet property="weatherTypeLabel" destination="Gjm-lJ-UFv" id="D4g-9h-VxG"/>
                         <outlet property="windLabel" destination="HBT-6d-wUz" id="ZOV-eD-d1s"/>
                         <segue destination="ZfN-al-jwA" kind="presentation" identifier="HomeToLogin" modalPresentationStyle="fullScreen" id="hHI-Xm-YvE"/>
+                        <segue destination="lwX-kA-JEc" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="3ab-cc-GgR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3T-Fp-iTu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -433,6 +434,14 @@
                 </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-13.043478260869566" y="54.910714285714285"/>
+        </scene>
+        <!--SearchActivities-->
+        <scene sceneID="w9d-vF-yZF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SearchActivities" id="lwX-kA-JEc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5NB-9F-9Ps" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="511" y="55"/>
         </scene>
         <!--Main-->
         <scene sceneID="aTk-0E-t4M">
@@ -452,7 +461,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGr-lp-yFv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-485" y="26"/>
+            <point key="canvasLocation" x="-606" y="55"/>
         </scene>
         <!--Login-->
         <scene sceneID="XkC-QW-8bX">

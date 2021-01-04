@@ -51,15 +51,18 @@ class HomeViewController: UIViewController {
         if let sessionToken = SessionManager.shared.getToken() {
             activityService.getActivities(token: sessionToken, success: { (activities) in
                 if activities.isEmpty {
+                    print("tusam")
                     self.activityListView.setState(state: .noActivities)
                 }
                 else {
                     for activity in activities {
-                        activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, forecastId: activity.forecastId, categoryId: activity.categoryId, activityStatusId: activity.activityStatusId))
+                        activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType))
                     }
+                    print(activitiesList)
                     self.activityListView.setState(state: .normal(items: activitiesList))
                 }
             }, failure: { error in
+                print(error)
                 self.activityListView.setState(state: .error)
             })
         }
@@ -80,6 +83,12 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: ActivityListViewDelegate {
+    func didPressRow(activity: ActivityCellItem) {
+        let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
+        details.commonInit(activity: activity)
+        self.present(details, animated: true, completion: nil)
+    }
+    
     func didPressReloadAction() {
         loadActivities()
     }
