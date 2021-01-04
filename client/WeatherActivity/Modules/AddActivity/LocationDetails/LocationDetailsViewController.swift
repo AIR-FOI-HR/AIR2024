@@ -44,6 +44,20 @@ class LocationDetailsViewController: AddActivityStepViewController, ViewInterfac
         
         locationManager.startUpdatingLocation()
     }
+    
+    @IBAction func nextButtonPressed(_ sender: UIButton) {
+            
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        flowNavigator.showNextStep(
+            from: .locationDetails,
+            data: StepData(
+                stepInfo: .locationDetails,
+                data: locationDetails
+            )
+        )
+    }
 }
 
 // MARK: CLLocationManagerDelegate
