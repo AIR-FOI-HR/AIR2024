@@ -33,10 +33,14 @@ class ActivityDetailsViewController: UIViewController {
         titleUIView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         bodyUIView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
-        switch localActivity?.activityStatusId {
-        case 1:
+        switch localActivity?.statusType {
+        case "In progress":
             color = UIColor(red: 59.0/255.0, green: 245.0/255.0, blue: 170.0/255.0, alpha: 1)
-        case 2:
+        case "Delayed":
+            color = UIColor(red: 242.0/255.0, green: 146.0/255.0, blue: 97.0/255.0, alpha: 1)
+        case "Canceled":
+            color = UIColor(red: 242.0/255.0, green: 146.0/255.0, blue: 97.0/255.0, alpha: 1)
+        case "Completed":
             color = UIColor(red: 242.0/255.0, green: 146.0/255.0, blue: 97.0/255.0, alpha: 1)
         default:
             color = UIColor(red: 59.0/255.0, green: 245.0/255.0, blue: 170.0/255.0, alpha: 1)
@@ -46,13 +50,13 @@ class ActivityDetailsViewController: UIViewController {
             return
         }
         activityTitle.text = localActivity.title
-        activityStatus.text = String(localActivity.activityStatusId)
+        activityStatus.text = localActivity.statusType
         activityStatus.backgroundColor = color
         activityDate.text = getDate(timestamp: localActivity.startTime)
         activityTime.text = getTime(timestamp: localActivity.startTime)
         activityDescription.text = localActivity.description
-        activityCategory.text = String(localActivity.categoryId)
-        activityImageView.image = UIImage(named: "logoWeather")
+        activityCategory.text = localActivity.name
+//        activityImageView.image = UIImage(named: localActivity.type)
         activityLocation.text = localActivity.locationName
     }
     
