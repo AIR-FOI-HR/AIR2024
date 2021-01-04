@@ -17,7 +17,7 @@ enum TimeFormat: String {
 }
 
 enum DateFormat: String {
-    case databaseFormat = "YYYY-MM-dd"
+    case databaseFormat = "YYYY-MM-dd HH:mm:ss"
 }
 
 class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
@@ -43,7 +43,8 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     let weatherManager = ForecastService()
     let timeDetailsManager = TimeDetailsManager()
     let forecastData = ForecastData()
-    var timeWeatherDetails: TimeWeatherDetails?
+    var timeDetails: TimeDetails?
+    var weatherDetails: WeatherDetails?
     #warning("Delete dummy location and replace with previous screen data")
     let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
     
@@ -62,13 +63,19 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         
         guard
-            let flowNavigator = flowNavigator
+            let flowNavigator = flowNavigator,
+            let timeDetails = timeDetails
         else { return }
         flowNavigator.showNextStep(
             from: .timeDetails,
             data: StepData(
                 stepInfo: .timeDetails,
-                data: timeWeatherDetails))
+                data: TimeWeatherStep(
+                    timeDetails: timeDetails,
+                    weatherDetails: weatherDetails
+                )
+            )
+        )
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -108,6 +115,7 @@ private extension TimeDetailsViewController {
         } else {
             weatherStackView.isHidden = true
             warningAlertView.isHidden = false
+            setInitialDate()
         }
     }
     
@@ -127,11 +135,7 @@ private extension TimeDetailsViewController {
         weatherDescriptionLabel.text = String(description.capitalized)
         weatherTypeImageView.image = UIImage(systemName: forecastData.getConditionImage(id: condition))
         
-        let formattedDate = timeDetailsManager.getDate(fromDate: datePicker.date)
-        timeWeatherDetails = TimeWeatherDetails(
-            date: formattedDate,
-            fromTime: timeDetailsManager.getTime(fromDate: fromTimePicker.date, timeFormat: .hourClock24),
-            untilTime: timeDetailsManager.getTime(fromDate: untilTimePicker.date, timeFormat: .hourClock24),
+        weatherDetails = WeatherDetails(
             weatherIdentifier: forecastData.getConditionId(id: condition),
             temperature: temperature,
             feelsLike: feelsLike,
@@ -158,6 +162,22 @@ private extension TimeDetailsViewController {
         }
         #warning("If there is not an date inside API response")
     }
+    
+    func setInitialDate() {
+        
+        let formattedStartDate = timeDetailsManager.getDate(
+                fromDate: timeDetailsManager.combineDateAndTime(
+                    date: datePicker.date,
+                    time: fromTimePicker.date))
+        let formattedUntilDate = timeDetailsManager.getDate(
+                fromDate: timeDetailsManager.combineDateAndTime(
+                    date: datePicker.date,
+                    time: untilTimePicker.date))
+        timeDetails = TimeDetails(
+                date: timeDetailsManager.getDate(fromDate: datePicker.date),
+                fromTime: formattedStartDate,
+                untilTime: formattedUntilDate)
+    }
 }
 
 // MARK: Date time
@@ -165,12 +185,14 @@ private extension TimeDetailsViewController {
 private extension TimeDetailsViewController {
     
     @objc func datePickerEndEditing() {
+        
         dateFormatter.dateFormat = Constants.defaultDateFormat
         #warning("Handle if date is not in range")
         checkDate()
     }
     
     @objc func fromTimePickerEndEditing() {
+        
         let suggestedUntilTime = timeDetailsManager.addTime(to: fromTimePicker.date)
         untilTimePicker.date = suggestedUntilTime
         let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
@@ -179,6 +201,7 @@ private extension TimeDetailsViewController {
     }
     
     func setDefault() {
+        
         dateFormatter.dateFormat = TimeFormat.hourClock24.rawValue
         guard let defaultTime = dateFormatter.date(from: Constants.defaultTime) else { return }
         fromTimePicker.date = defaultTime
@@ -188,7 +211,8 @@ private extension TimeDetailsViewController {
     func initialForecast() {
         
         let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
-        getForecast(date: forecastDate)
+        checkDate()
+//        getForecast(date: forecastDate)
     }
 }
 
