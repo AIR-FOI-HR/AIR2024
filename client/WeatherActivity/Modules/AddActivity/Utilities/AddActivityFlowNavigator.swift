@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol AddActivityFlowNavigatorDelegate: AnyObject {
+    func didFinishInsert()
+}
+
 class AddActivityFlowNavigator {
     
     // MARK: - Properties
@@ -15,6 +19,8 @@ class AddActivityFlowNavigator {
     let steps: [StepInfo]
     let initialStep: StepInfo
     let dataFlowManager = AddActivityFlowDataManager()
+    
+    weak var delegate: AddActivityFlowNavigatorDelegate?
     
     init(navigationController: UINavigationController, steps: [StepInfo]) {
         self.steps = steps
@@ -47,6 +53,7 @@ class AddActivityFlowNavigator {
             ActivityService().insertActivities(activityData: jsonData) { (provjera) -> Void in
                 print(provjera)
                 self.dismissFlow()
+                self.delegate?.didFinishInsert()
             } failure: { (error) in
                 print(error)
             }

@@ -14,9 +14,6 @@ struct ActivityCellItem {
     let title: String
     let description: String
     let locationName: String
-    let forecastId: Int
-    let categoryId: Int
-    let activityStatusId: Int
 }
 
 class ActivityCell: UITableViewCell {

@@ -44,7 +44,7 @@ class HomeViewController: UIViewController {
                 }
                 else {
                     for activity in activities {
-                        activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, forecastId: activity.forecastId, categoryId: activity.categoryId, activityStatusId: activity.activityStatusId))
+                        activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName))
                     }
                     self.activityListView.setState(state: .normal(items: activitiesList))
                 }
@@ -78,12 +78,19 @@ class HomeViewController: UIViewController {
         
         flowNavigator.presentFlow(from: self)
         
+        flowNavigator.delegate = self
     }
     
 }
 
 extension HomeViewController: ActivityListViewDelegate {
     func didPressReloadAction() {
+        loadActivities()
+    }
+}
+
+extension HomeViewController: AddActivityFlowNavigatorDelegate {
+    func didFinishInsert() {
         loadActivities()
     }
 }
