@@ -31,4 +31,5 @@ enum AllCategories: String, Codable, CaseIterable {
     case tv = "TV"
     case videogames = "Videogames"
     case walking = "Walking"
+    case uncategorized = "Uncategorized"
 }

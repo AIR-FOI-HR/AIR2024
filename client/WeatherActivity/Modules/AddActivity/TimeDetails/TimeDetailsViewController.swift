@@ -55,7 +55,7 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
         datePicker.addTarget(self, action: #selector(datePickerEndEditing), for: .editingDidEnd)
         fromTimePicker.addTarget(self, action: #selector(fromTimePickerEndEditing), for: .valueChanged)
         setDefault()
-        initialForecast()
+        checkDate()
     }
     
     // MARK: IBActions
@@ -206,13 +206,7 @@ private extension TimeDetailsViewController {
         guard let defaultTime = dateFormatter.date(from: Constants.defaultTime) else { return }
         fromTimePicker.date = defaultTime
         untilTimePicker.date = timeDetailsManager.addTime(to: defaultTime)
-    }
-    
-    func initialForecast() {
-        
-        let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
-        checkDate()
-//        getForecast(date: forecastDate)
+        setInitialDate()
     }
 }
 
