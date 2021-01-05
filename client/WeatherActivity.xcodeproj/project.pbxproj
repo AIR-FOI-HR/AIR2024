@@ -10,6 +10,8 @@
 		4215924E25939B9700DF5C33 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4215924D25939B9700DF5C33 /* CategoryCollectionViewCell.swift */; };
 		4227A754258CB7730082C0E8 /* ActivityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227A752258CB7730082C0E8 /* ActivityDetailsViewController.swift */; };
 		4227A755258CB7730082C0E8 /* ActivityDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4227A753258CB7730082C0E8 /* ActivityDetailsViewController.xib */; };
+		4204AFFE25A228E800ED9F3B /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */; };
+		4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205CE1425705A3600FF056F /* UIExtensions.swift */; };
 		4238F62E257D7C7600A755BE /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4238F62D257D7C7600A755BE /* ActivityService.swift */; };
 		4238F634257D7DDE00A755BE /* ActivitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4238F633257D7DDE00A755BE /* ActivitiesResponse.swift */; };
 		423CFA5C2572A5BA005CF798 /* RegistrationCompletion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */; };
@@ -107,6 +109,7 @@
 
 /* Begin PBXFileReference section */
 		21E3DBCF3D927D95E4389908 /* Pods_WeatherActivity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherActivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		4205CE1425705A3600FF056F /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		420EB74625790E9F00ABCFAE /* FinalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalDetailsViewController.swift; sourceTree = "<group>"; };
 		420EB74B25790EC100ABCFAE /* FinalDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FinalDetails.storyboard; sourceTree = "<group>"; };
@@ -638,6 +641,7 @@
 				424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */,
 				424F7EA7258BB3CE003EC185 /* TextFieldAppearance.swift */,
 				425246F925A0DBE500E5F003 /* UIExtensions.swift */,
+				4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1011,6 +1015,7 @@
 				429A737025758EC900B99F8D /* RegistrationValidator.swift in Sources */,
 				427A6F44258C03AA007EDB4B /* RegistrationUserData.swift in Sources */,
 				423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */,
+				4204AFFE25A228E800ED9F3B /* PaddingLabel.swift in Sources */,
 				8CE0417225764E04005EFEC4 /* RegistrationUser.swift in Sources */,
 				425246FA25A0DBE500E5F003 /* UIExtensions.swift in Sources */,
 				4278013F257CF11200E9EE9C /* ActivityCell.swift in Sources */,

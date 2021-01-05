@@ -9,7 +9,7 @@ import UIKit
 import CHIPageControl
 
 
-final class CategoryDetailsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
+final class CategoriesDetailsViewController: AddActivityStepViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate {
     
     // MARK: IBOutlets
 
@@ -49,6 +49,32 @@ final class CategoryDetailsViewController: UIViewController, UICollectionViewDat
             addRecentCategoriesItems()
         }
     }
+    
+    // MARK: - IBActions
+    @IBAction func nextButtonPressed(_ sender: UIButton) {
+        
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        flowNavigator.showNextStep(
+            from: .categoriesDetails,
+            data: StepData(
+                stepInfo: .categoriesDetails,
+                data: CategoryDetails(
+                    selectedCategory: selectedCategory)
+            )
+        )
+    }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        flowNavigator.showPreviousStep()
+    }
+    
+    
     
     func addRecentCategoriesItems() {
         var index = 0

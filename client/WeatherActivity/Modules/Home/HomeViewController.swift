@@ -101,11 +101,13 @@ private extension HomeViewController {
     @IBAction func addActivityButtonPressed(_ sender: UIButton) {
         
         let navigationController = UINavigationController()
-        let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoryDetails, .finalDetails]
+        let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
         let flowNavigator = AddActivityFlowNavigator(navigationController: navigationController, steps: steps)
         
         flowNavigator.presentFlow(from: self)
+        
+        flowNavigator.delegate = self
     }
 }
 
@@ -147,5 +149,11 @@ extension HomeViewController {
         } failure: { (error) in
             print(error)
         }
+    }
+}
+
+extension HomeViewController: AddActivityFlowNavigatorDelegate {
+    func didFinishInsert() {
+        loadActivities()
     }
 }
