@@ -39,7 +39,7 @@ router.post('/insert/', function (req, res, next) {
                     if (activity.TimeDetails.weatherDetails) {
                         forecastSql = `INSERT INTO forecast VALUES ('default', ${activity.TimeDetails.weatherDetails.temperature}, ${activity.TimeDetails.weatherDetails.feelsLike}, ${activity.TimeDetails.weatherDetails.wind}, ${activity.TimeDetails.weatherDetails.humidity}, ${activity.TimeDetails.weatherDetails.weatherIdentifier})`;
                     } else {
-                        forecastSql = `INSERT INTO forecast VALUES ('default', null, null, null, null, null)`;
+                        forecastSql = `INSERT INTO forecast VALUES ('default', null, null, null, null, 0)`;
                     }
                     connection.query(forecastSql, (err, result) => {
                         var forecastId = result.insertId;
@@ -54,7 +54,7 @@ router.post('/insert/', function (req, res, next) {
                                     if (data.length > 0) {
                                         categoryId = data[0].categoryId;
                                     } else {
-                                        categoryId = null;
+                                        categoryId = 0;
                                     }
                                     connection.query(`INSERT INTO activity (startTime, endTime, title, description, forecastId, locationId, categoryId, activityStatusId) VALUES ('${activity.TimeDetails.timeDetails.fromTime}', '${activity.TimeDetails.timeDetails.untilTime}', '${activity.FinalDetails.title}', '${activity.FinalDetails.description}', ${forecastId}, ${locationId}, ${categoryId}, ${1})`, (err, result) => {
                                         var activityId = result.insertId;
