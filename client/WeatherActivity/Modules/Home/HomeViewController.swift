@@ -6,7 +6,11 @@
 //
 
 import UIKit
-import KeychainSwift
+
+enum HomeNavigation: String {
+    case login = "HomeToLogin"
+    case search = "toSearchActivities"
+}
 
 class HomeViewController: UIViewController {
     
@@ -19,7 +23,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak private var windLabel: UILabel!
     @IBOutlet weak private var humidityLabel: UILabel!
     @IBOutlet weak private var todaysDescription: UILabel!
-    @IBOutlet weak var weatherTypeImageView: UIImageView!
+    @IBOutlet weak private var weatherTypeImageView: UIImageView!
+    @IBOutlet weak private var helloNameLabel: UILabel!
+    @IBOutlet weak private var avatarImageView: UIImageView!
     
     // MARK: Properties
     
@@ -31,12 +37,18 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerSetUp()
         setupListView()
         loadActivities()
         getTodaysForecast()
     }
     
     // MARK: Custom functions
+    
+    private func headerSetUp() {
+        helloNameLabel.text = "Hello " + UserDefaultsManager.shared.getUserDefaultString(key: .userName)
+        avatarImageView.image = UIImage(named: UserDefaultsManager.shared.getUserDefaultString(key: .userAvatar))
+    }
     
     private func setupListView() {
         let listView = ActivityListView.loadFromXib()
@@ -51,20 +63,19 @@ class HomeViewController: UIViewController {
         if let sessionToken = SessionManager.shared.getToken() {
             activityService.getActivities(token: sessionToken, success: { (activities) in
                 if activities.isEmpty {
-                    print("tusam")
                     self.activityListView.setState(state: .noActivities)
                 }
                 else {
                     for activity in activities {
                         activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType))
                     }
-                    print(activitiesList)
                     self.activityListView.setState(state: .normal(items: activitiesList))
                 }
             }, failure: { error in
-                print(error)
                 self.activityListView.setState(state: .error)
             })
+        } else {
+            self.activityListView.setState(state: .error)
         }
     }
     
@@ -77,8 +88,24 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func logoutPressed(_ sender: UIButton) {
-        KeychainSwift().delete("sessionToken")
-        self.performSegue(withIdentifier: "HomeToLogin", sender: self)
+        SessionManager.shared.deleteToken()
+        navigate(to: .login)
+    }
+}
+
+private extension HomeViewController {
+    func navigate(to path: HomeNavigation) {
+        performSegue(withIdentifier: path.rawValue, sender: self)
+    }
+    
+    @IBAction func addActivityButtonPressed(_ sender: UIButton) {
+        
+        let navigationController = UINavigationController()
+        let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoryDetails, .finalDetails]
+        
+        let flowNavigator = AddActivityFlowNavigator(navigationController: navigationController, steps: steps)
+        
+        flowNavigator.presentFlow(from: self)
     }
 }
 
@@ -97,7 +124,7 @@ extension HomeViewController: ActivityListViewDelegate {
 extension HomeViewController {
     
     func getTodaysForecast() {
-
+        
         forecastService.getWeatherForecast(date: Date(), locationCoordinates: dummyLocation) { (weatherInfo) in
             guard
                 let weatherList = weatherInfo.weatherList,

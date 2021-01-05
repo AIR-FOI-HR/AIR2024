@@ -21,10 +21,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLY-mf-Ab6">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1061"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1049"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pZO-DJ-CeB">
-                                                <rect key="frame" x="16" y="20" width="382" height="1021"/>
+                                                <rect key="frame" x="16" y="20" width="382" height="1009"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="IB6-9e-XnZ" userLabel="Header Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
@@ -59,41 +59,18 @@
                                                             <string>Title</string>
                                                         </scopeButtonTitles>
                                                     </searchBar>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xTF-Ew-HcJ" userLabel="Activities">
-                                                        <rect key="frame" x="0.0" y="146" width="382" height="412"/>
-                                                        <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="Uyr-21-XjX" userLabel="Today week Stack View">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="32"/>
-                                                                <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kt-bp-iNu" userLabel="Today button">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="147" height="32"/>
-                                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                                                                        <state key="normal" title="Today">
-                                                                            <color key="titleColor" systemColor="labelColor"/>
-                                                                        </state>
-                                                                    </button>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pyq-UB-kwT" userLabel="Week button">
-                                                                        <rect key="frame" x="147" y="0.0" width="235" height="32"/>
-                                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                                        <state key="normal" title="This week">
-                                                                            <color key="titleColor" systemColor="labelColor"/>
-                                                                        </state>
-                                                                    </button>
-                                                                </subviews>
-                                                            </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4IS-q9-HT3" userLabel="Activities Container View">
-                                                                <rect key="frame" x="0.0" y="32" width="382" height="380"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="380" id="Sec-20-ehQ"/>
-                                                                </constraints>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </stackView>
-                                                        </subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4IS-q9-HT3" userLabel="Activities Container View">
+                                                        <rect key="frame" x="0.0" y="146" width="382" height="400"/>
+                                                        <color key="backgroundColor" red="0.1176470588" green="0.21176470589999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="400" id="45w-Zl-jDQ"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="aWA-4q-L3S" userLabel="Weather forecast Stack View">
-                                                        <rect key="frame" x="0.0" y="578" width="382" height="393"/>
+                                                        <rect key="frame" x="0.0" y="566" width="382" height="393"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="hN8-Yz-J67">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="43"/>
@@ -373,7 +350,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qka-ro-0dV">
-                                                        <rect key="frame" x="0.0" y="991" width="382" height="30"/>
+                                                        <rect key="frame" x="0.0" y="979" width="382" height="30"/>
                                                         <state key="normal" title="Log Out"/>
                                                         <connections>
                                                             <action selector="logoutPressed:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="OGs-je-KgY"/>
@@ -415,6 +392,8 @@
                     </view>
                     <connections>
                         <outlet property="activitiesContainerView" destination="4IS-q9-HT3" id="NVE-ZY-2Yi"/>
+                        <outlet property="avatarImageView" destination="Q4U-28-9de" id="qS0-sX-OCR"/>
+                        <outlet property="helloNameLabel" destination="rGy-n5-WBc" id="wKi-LI-AO9"/>
                         <outlet property="humidityLabel" destination="lvK-hg-6JG" id="KEe-yM-Gpe"/>
                         <outlet property="temperatureFeelsLabel" destination="m3G-um-0si" id="koG-27-jrZ"/>
                         <outlet property="temperatureLabel" destination="WH1-9q-5j6" id="C0n-pX-VtU"/>
@@ -423,7 +402,7 @@
                         <outlet property="weatherTypeLabel" destination="Gjm-lJ-UFv" id="D4g-9h-VxG"/>
                         <outlet property="windLabel" destination="HBT-6d-wUz" id="ZOV-eD-d1s"/>
                         <segue destination="ZfN-al-jwA" kind="presentation" identifier="HomeToLogin" modalPresentationStyle="fullScreen" id="hHI-Xm-YvE"/>
-                        <segue destination="lwX-kA-JEc" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="3ab-cc-GgR"/>
+                        <segue destination="lwX-kA-JEc" kind="presentation" identifier="toSearchActivities" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="3ab-cc-GgR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3T-Fp-iTu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -481,9 +460,6 @@
         <image name="thermometer" catalog="system" width="93" height="128"/>
         <image name="thermometer.sun" catalog="system" width="114" height="128"/>
         <image name="wind" catalog="system" width="128" height="101"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

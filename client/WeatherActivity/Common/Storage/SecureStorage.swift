@@ -22,4 +22,8 @@ class SecureStorage {
     func getToken(keyType key: SecureStorageKey) -> String? {
         return keychain.get(key.rawValue)
     }
+    
+    func deleteToken(keyType key: SecureStorageKey) {
+        keychain.delete(key.rawValue)
+    }
 }

@@ -144,7 +144,7 @@ extension ActivityListView: SkeletonTableViewDataSource {
         guard let delegate = delegate else {
             return
         }
-        delegate.didPressRow(activity: dataSource[indexPath.row])
+        delegate.didPressRow(activity: dataSource[indexPath.section])
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

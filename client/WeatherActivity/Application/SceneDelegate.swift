@@ -6,18 +6,48 @@
 //
 
 import UIKit
-import KeychainSwift
+
+enum initialStoryboard: String {
+    case home = "Home"
+    case login = "Login"
+    case firstInitialScreen = "FirstInitialScreen"
+}
+
+enum initialViewController: String {
+    case home = "HomeViewController"
+    case login = "LoginViewController"
+    case firstInitialScreen = "FirstInitialScreenViewController"
+}
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    let keychain = KeychainSwift()
     let loginService = LoginService()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
+        if !UserDefaultsManager.shared.getUserDefaultBool(key: .firstTime) {
+            self.setupInitialStoryboard(storyboard: .firstInitialScreen, viewContoller: .firstInitialScreen)
+        } else {
+            if let sessionToken = SessionManager.shared.getToken() {
+                loginService.checkForToken(token: sessionToken, success: {
+                    checkResponse in
+                    if(checkResponse.sessionToken == true) {
+                        self.setupInitialStoryboard(storyboard: .home, viewContoller: .home)
+                    } else {
+                        self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
+                    }
+                }, failure: { error in
+                    self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
+                })
+            } else {
+                self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
+            }
+        }
+        
         
         guard let _ = (scene as? UIWindowScene) else { return }
     }
@@ -49,7 +79,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 
+extension SceneDelegate {
+    func setupInitialStoryboard(storyboard: initialStoryboard, viewContoller: initialViewController) {
+        let initialViewController = UIStoryboard(name: storyboard.rawValue, bundle: nil).instantiateViewController(identifier: viewContoller.rawValue)
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+    }
+}
