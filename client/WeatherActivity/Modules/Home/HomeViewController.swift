@@ -45,6 +45,16 @@ class HomeViewController: UIViewController {
     
     // MARK: Custom functions
     
+    private func getCurrentTimeStamp() -> String {
+        let currentDateTime = Date()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        let currentTimeStamp = dateFormatter.string(from: currentDateTime)
+        return currentTimeStamp
+    }
+    
     private func headerSetUp() {
         helloNameLabel.text = "Hello " + UserDefaultsManager.shared.getUserDefaultString(key: .userName)
         avatarImageView.image = UIImage(named: UserDefaultsManager.shared.getUserDefaultString(key: .userAvatar))
@@ -59,6 +69,7 @@ class HomeViewController: UIViewController {
     
     func loadActivities() {
         activityListView.setState(state: .loading)
+        let currentTime = getCurrentTimeStamp()
         var activitiesList: [ActivityCellItem] = []
         if let sessionToken = SessionManager.shared.getToken() {
             activityService.getActivities(token: sessionToken, success: { (activities) in
@@ -67,9 +78,15 @@ class HomeViewController: UIViewController {
                 }
                 else {
                     for activity in activities {
-                        activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType))
+                        if activity.startTime > currentTime {
+                            activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType))
+                        }
                     }
-                    self.activityListView.setState(state: .normal(items: activitiesList))
+                    if activitiesList.isEmpty {
+                        self.activityListView.setState(state: .noActivities)
+                    } else {
+                        self.activityListView.setState(state: .normal(items: activitiesList))
+                    }
                 }
             }, failure: { error in
                 self.activityListView.setState(state: .error)
@@ -90,6 +107,10 @@ class HomeViewController: UIViewController {
     @IBAction func logoutPressed(_ sender: UIButton) {
         SessionManager.shared.deleteToken()
         navigate(to: .login)
+    }
+    
+    @IBAction func searchButtonClicked(_ sender: UIButton) {
+        navigate(to: .search)
     }
 }
 

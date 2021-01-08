@@ -10,7 +10,7 @@ import Foundation
 class AddActivityFlowDataManager {
     
     // MARK: - Properties
-    
+
     var stepsData: [StepData] = []
     
     // MARK: - Methods

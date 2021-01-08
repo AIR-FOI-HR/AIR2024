@@ -90,7 +90,7 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
             
             let textLabel = UILabel()
             textLabel.textAlignment = .center
-            textLabel.textColor = UIColor.systemGray
+            textLabel.textColor = UIColor.black
             textLabel.font = textLabel.font.withSize(13)
             textLabel.text  = categoryName
             
@@ -126,7 +126,7 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
         isRecentCategoriesSelected = true
         deselectAllRecentCategories()
         selectedView.layer.borderWidth = 1.2
-        selectedView.layer.borderColor = UIColor.gray.cgColor
+        selectedView.layer.borderColor = UIColor.LightBlueColor.cgColor
         selectedView.layer.cornerRadius = 10
         for cell in visibleCells {
             if cell.categoryName.text == selectedCategory {
@@ -147,7 +147,7 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
     func addNoRecentCategoriesLabel() {
         let textLabel = UILabel()
         textLabel.textAlignment = .center
-        textLabel.textColor = UIColor.systemGray
+        textLabel.textColor = UIColor.black
         textLabel.font = textLabel.font.withSize(16)
         textLabel.text  = "You don't have any recent categories"
         horizontalStackView.addArrangedSubview(textLabel)
@@ -207,7 +207,7 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
         cell.categoryImage.image = categoryImage
         
         if selectedCategory == cell.categoryName.text && !isRecentCategoriesSelected {
-            cell.layer.borderColor = UIColor.gray.cgColor
+            cell.layer.borderColor = UIColor.LightBlueColor.cgColor
             cell.layer.borderWidth = 1.2
             cell.layer.cornerRadius = 10
             cell.isSelected = true

@@ -47,6 +47,6 @@ class ActivityCell: UITableViewCell {
         activityLocation.text = item.locationName
         activityDate.text = date
         activityTime.text = time
-        #warning("adjust image")
+        activityImage.image = UIImage(named: item.name.lowercased())
     }
 }

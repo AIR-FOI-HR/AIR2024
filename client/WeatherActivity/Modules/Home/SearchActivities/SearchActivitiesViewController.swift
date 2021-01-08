@@ -230,6 +230,11 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
             self.activityListView.setState(state: .error)
         }
     }
+    
+    @IBAction func backButtonClicked(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 //MARK: - Extensions

@@ -16,6 +16,8 @@ enum CustomColors {
     case YellowColor
     case PinkColor
     case CyanColor
+    case LightBlueColor
+    case DarkBlueColor
     
     func toUIColor() -> UIColor {
         switch self {
@@ -30,11 +32,15 @@ enum CustomColors {
         case .PurpleColor:
             return UIColor.hexColor(hex: "#EDABFF")
         case .YellowColor:
-            return UIColor.hexColor(hex: "#f5de50")
+            return UIColor.hexColor(hex: "#F5DE50")
         case .PinkColor:
             return UIColor.hexColor(hex: "#F78BC2")
         case .CyanColor:
             return UIColor.hexColor(hex: "#5DF0EB")
+        case .LightBlueColor:
+            return UIColor.hexColorFullAlpha(hex: "#5BBFFF")
+        case .DarkBlueColor:
+            return UIColor.hexColorFullAlpha(hex: "#1C3643")
         }
     }
 }
@@ -48,6 +54,8 @@ extension UIColor {
     static var Studying = CustomColors.YellowColor.toUIColor()
     static var Shopping = CustomColors.PinkColor.toUIColor()
     static var Entertainment = CustomColors.CyanColor.toUIColor()
+    static var LightBlueColor = CustomColors.LightBlueColor.toUIColor()
+    static var DarkBlueColor = CustomColors.DarkBlueColor.toUIColor()
     
     class func hexColor(hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
@@ -68,6 +76,28 @@ extension UIColor {
             green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(0.2)
+        )
+    }
+    
+    class func hexColorFullAlpha(hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+        
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+        
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+        
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
         )
     }
 }
