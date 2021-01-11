@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol AddActivityFlowNavigatorDelegate: AnyObject {
+    func didFinishInsert()
+}
+
 class AddActivityFlowNavigator {
     
     // MARK: - Properties
@@ -15,6 +19,8 @@ class AddActivityFlowNavigator {
     let steps: [StepInfo]
     let initialStep: StepInfo
     let dataFlowManager = AddActivityFlowDataManager()
+    
+    weak var delegate: AddActivityFlowNavigatorDelegate?
     
     init(navigationController: UINavigationController, steps: [StepInfo]) {
         self.steps = steps
@@ -40,10 +46,18 @@ class AddActivityFlowNavigator {
     func showNextStep(from: StepInfo, data: StepData) {
         
         if (isLastStep(step: from)) {
-            #warning("Handle if last step -> submit data")
-            let jsonData = dataFlowManager.dataToJson()
-            #warning("Send data to backend")
-            debugPrint(jsonData)
+            dataFlowManager.saveData(data: data)
+            guard
+                let jsonData = dataFlowManager.dataToJson()
+            else { return }
+            ActivityService().insertActivities(activityData: jsonData) { (provjera) -> Void in
+                print(provjera)
+                self.dismissFlow()
+                self.delegate?.didFinishInsert()
+            } failure: { (error) in
+                print(error)
+            }
+            
         }
         else {
             dataFlowManager.saveData(data: data)
@@ -51,7 +65,9 @@ class AddActivityFlowNavigator {
             guard let currentStep = steps.firstIndex(of: from) else { return }
             let nextStep = steps[currentStep + 1]
             let storyboard = UIStoryboard(name: nextStep.rawValue, bundle: nil)
-            let stepViewController = storyboard.instantiateViewController(identifier: nextStep.rawValue) as! AddActivityStepViewController
+            guard
+                let stepViewController = storyboard.instantiateViewController(identifier: nextStep.rawValue) as? AddActivityStepViewController
+            else { return }
             stepViewController.flowNavigator = self
             navigationController?.pushViewController(stepViewController, animated: true)
         }

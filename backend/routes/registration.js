@@ -20,7 +20,7 @@ router.post('/', (req, res, next) => {
                 if (err) {
                     return res.json({ "sessionToken": null })
                 } else {
-                    return res.json({ "sessionToken": token })
+                    return res.json({ "sessionToken": token, "userName": req.body.firstName, "userAvatar": avatarId })
                 }
             })
         });

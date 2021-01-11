@@ -14,8 +14,6 @@ enum FinalDetailsAlertMessages: String {
     case textFieldsAlertTMessage = "Make sure to fill them up so you can have better insight in your activities!"
     case activityTypeAlertTTitle = "Err.. It looks like you didnt select activity type"
     case activityTypeAlertTMessage = "Make sure to do it so you can have better insight in your activities!"
-    case supportedWeatherAlertTTitle = "Err.. It looks like you didnt select any supported weathers"
-    case supportedWeatherAlertTMessage = "Make sure to select them so we can let you know when the weather changes"
 }
 
 enum SelectedActivityType: Int {
@@ -66,6 +64,7 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
     var isSelectedActivityType = false
     var selectedActivityType = SelectedActivityType.indoor
     var selectedSupportedWeathers = [String]()
+    let textFieldAppearance = TextFieldAppearance()
     
     //MARK: - IBActions
     
@@ -74,6 +73,7 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
             let selectedTag = sender.tag
             guard let current = self.view.viewWithTag(selectedTag), let newCurrent = current as? UIButton else { return }
             sender.selectedOutdoorIndoor(newCurrent)
+            sender.selectedButtonAvatar(newCurrent)
             
             guard let previous = self.view.viewWithTag(selectedActivityType.rawValue), let newPrevious = previous as? UIButton else { return }
             sender.deselectedOutdoorIndoor(newPrevious)
@@ -99,26 +99,48 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
     
     @IBAction func addActivityClick(_ sender: UIButton) {
         
-        guard let title = titleTextField.text, let description = descriptionTextField.text else { return }
+        guard
+            let title = titleTextField.text,
+            let description = descriptionTextField.text
+        else { return }
         
         if title.isEmpty || description.isEmpty {
             presentAlert(title: FinalDetailsAlertMessages.textFieldsAlertTitle.rawValue, message: FinalDetailsAlertMessages.textFieldsAlertTMessage.rawValue)
         } else if isSelectedActivityType == false {
             presentAlert(title: FinalDetailsAlertMessages.activityTypeAlertTTitle.rawValue, message: FinalDetailsAlertMessages.activityTypeAlertTMessage.rawValue)
-        } else if selectedSupportedWeathers.isEmpty {
-            presentAlert(title: FinalDetailsAlertMessages.supportedWeatherAlertTTitle.rawValue, message: FinalDetailsAlertMessages.supportedWeatherAlertTMessage.rawValue)
-        }
-        else {
-            #warning("Proceed with future code")
+        } else {
+            guard
+                let flowNavigator = flowNavigator
+            else { return }
+            flowNavigator.showNextStep(
+                from: .finalDetails,
+                data: StepData(
+                    stepInfo: .finalDetails,
+                    data: FinalDetails(
+                        title: title,
+                        description: description,
+                        typeOfActivity: selectedActivityType.rawValue,
+                        supportedWeather: selectedSupportedWeathers)
+                )
+            )
         }
     }
     
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        flowNavigator.showPreviousStep()
+    }
+    
+    
     @IBAction func finalDetailsTextFieldDidBeginEditing(_ sender: UITextField) {
-        sender.updateTextAppearanceOnFieldDidBeginEditing(sender)
+        textFieldAppearance.updateTextAppearanceOnFieldDidBeginEditing(sender)
     }
     
     @IBAction func finalDetailsTextFieldDidEndEditing(_ sender: UITextField) {
-        sender.updateTextAppearanceOnFieldDidEndEditing(sender)
+        textFieldAppearance.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
     
     //MARK: - CollectionVIew handling

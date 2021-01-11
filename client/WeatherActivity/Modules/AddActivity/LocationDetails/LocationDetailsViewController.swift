@@ -44,6 +44,20 @@ class LocationDetailsViewController: AddActivityStepViewController, ViewInterfac
         
         locationManager.startUpdatingLocation()
     }
+    
+    @IBAction func nextButtonPressed(_ sender: UIButton) {
+            
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        flowNavigator.showNextStep(
+            from: .locationDetails,
+            data: StepData(
+                stepInfo: .locationDetails,
+                data: locationDetails
+            )
+        )
+    }
 }
 
 // MARK: CLLocationManagerDelegate
@@ -188,7 +202,6 @@ extension LocationDetailsViewController {
     func saveLocationData(locationName name: String, latitude lat: CLLocationDegrees, longitude lon: CLLocationDegrees) {
         
         self.locationDetails = LocationDetails(locationName: name, latitude: lat, longitude: lon)
-        print(self.locationDetails)
         #warning("Handle location details struct")
     }
 }
@@ -198,7 +211,7 @@ extension LocationDetailsViewController {
 private extension LocationDetailsViewController {
     
     func setupLocationTextField() {
-     
+
         locationTextField.clearButtonMode = .whileEditing
         locationTextField.clearsOnBeginEditing = true
         locationTextField.addTarget(self, action: #selector(shouldShowDropDown), for: .allEvents)

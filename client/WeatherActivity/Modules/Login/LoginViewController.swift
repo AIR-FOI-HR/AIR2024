@@ -7,33 +7,29 @@
 
 import UIKit
 
+enum LoginNavigation: String {
+    case home = "toHome"
+    case registration = "toRegistration"
+}
+
 final class LoginViewController: UIViewController {
-
+    
     // MARK: IBOutlets
-
+    
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var passwordTextField: UITextField!
-
+    
     // MARK: Properties
-
+    
+    let textFieldAppearance = TextFieldAppearance()
     let loginService = LoginService()
-    let userDefaults = UserDefaults.standard
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let sessionToken = SessionManager.shared.getToken() {
-            loginService.checkForToken(token: sessionToken, success: { checkResponse in
-                self.navigate(to: .home)
-            }, failure: { error in
-                #warning("Return message to the user")
-            })
-        }
         
-        if let lastEmail = userDefaults.array(forKey: Constants.lastEnteredEmail) as? [String] {
-            emailTextField.text = lastEmail[0]
-        }
+        emailTextField.text = UserDefaultsManager.shared.getUserDefaultString(key: .lastEnteredEmail)
     }
-
+    
     // MARK: IBActions
     
     @IBAction func loginButtonClick(_ sender: UIButton) {
@@ -43,32 +39,34 @@ final class LoginViewController: UIViewController {
         }
         let credentials = LoginCredentials(email: email, password: password)
         loginService.login(with: credentials, success: { apiResponse in
-            SessionManager.shared.saveToken(apiResponse.sessionToken)
             if(!apiResponse.sessionToken.isEmpty) {
-                self.userDefaults.set([email], forKey: Constants.lastEnteredEmail)
+                UserDefaultsManager.shared.saveUserDefault(value: email, key: .lastEnteredEmail)
+                UserDefaultsManager.shared.saveUserDefault(value: apiResponse.userName, key: .userName)
+                UserDefaultsManager.shared.saveUserDefault(value: apiResponse.userAvatar, key: .userAvatar)
+                SessionManager.shared.saveToken(apiResponse.sessionToken)
                 self.navigate(to: .home)
             }
-            else{
+            else {
                 self.presentAlert(title: "Oops!", message: "You entered wrong credentials")
             }
         }, failure: { error in
             self.presentAlert(title: "Oops!", message: "You entered wrong credentials")
         })
     }
-
+    
     @IBAction func loginTextFieldDidBeginEditing(_ sender: UITextField) {
-        sender.updateTextAppearanceOnFieldDidBeginEditing(sender)
+        textFieldAppearance.updateTextAppearanceOnFieldDidBeginEditing(sender)
     }
-
+    
     @IBAction func loginTextFieldDidEndEditing(_ sender: UITextField) {
-        sender.updateTextAppearanceOnFieldDidEndEditing(sender)
+        textFieldAppearance.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
 }
 
 // MARK: Navigation
 
 private extension LoginViewController {
-    func navigate(to navigation: Navigation) {
-        performSegue(withIdentifier: navigation.rawValue, sender: self)
+    func navigate(to path: LoginNavigation) {
+        performSegue(withIdentifier: path.rawValue, sender: self)
     }
 }

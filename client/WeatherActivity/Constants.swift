@@ -13,10 +13,6 @@ struct Constants {
     
     static let baseUrl = "http://seyziich.com:3100"
     
-    // MARK: User Defaults
-    
-    static let lastEnteredEmail = "LastEnteredEmail"
-    
     // MARK: Date time
     
     static let defaultTime = "16:00"

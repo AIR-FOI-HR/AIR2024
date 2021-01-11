@@ -14,7 +14,14 @@ struct Activities: Codable {
     let title: String
     let description: String
     let locationName: String
-    let forecastId: Int
-    let categoryId: Int
-    let activityStatusId: Int
+    let latitude: Double
+    let longitude: Double
+    let temperature: Float?
+    let feelsLike: Float?
+    let wind: Float?
+    let humidity: Int?
+    let forecastType: String?
+    let name: String
+    let type: String
+    let statusType: String
 }

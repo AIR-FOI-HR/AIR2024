@@ -10,7 +10,7 @@ import UIKit
 enum StepInfo: String {
     case locationDetails = "LocationDetails"
     case timeDetails = "TimeDetails"
-    case categoryDetails = "CategoryDetails"
+    case categoriesDetails = "CategoriesDetails"
     case finalDetails = "FinalDetails"
 }
 
