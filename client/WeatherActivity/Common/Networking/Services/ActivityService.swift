@@ -38,11 +38,10 @@ class ActivityService {
         ).responseData { response in
             switch response.result {
             case .success(let data):
-                do {
-                    success(true)
-                } catch (let error) {
-                    failure(error)
+                guard let response = String(bytes: data, encoding: .utf8), let res = Bool(response) else {
+                    return
                 }
+                success(res)
             case .failure(let error):
                 failure(error)
             }

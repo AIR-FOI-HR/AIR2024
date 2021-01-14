@@ -135,6 +135,8 @@ private extension TimeDetailsViewController {
         weatherDescriptionLabel.text = String(description.capitalized)
         weatherTypeImageView.image = UIImage(systemName: forecastData.getConditionImage(id: condition))
         
+        setInitialDate()
+        
         weatherDetails = WeatherDetails(
             weatherIdentifier: forecastData.getConditionId(id: condition),
             temperature: temperature,

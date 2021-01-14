@@ -51,9 +51,10 @@ class AddActivityFlowNavigator {
                 let jsonData = dataFlowManager.dataToJson()
             else { return }
             ActivityService().insertActivities(activityData: jsonData) { (provjera) -> Void in
-                print(provjera)
-                self.dismissFlow()
-                self.delegate?.didFinishInsert()
+                if provjera {
+                    self.dismissFlow()
+                    self.delegate?.didFinishInsert()
+                }
             } failure: { (error) in
                 print(error)
             }
