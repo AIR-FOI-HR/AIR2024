@@ -35,6 +35,8 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     @IBOutlet private weak var warningAlertView: UIStackView!
     @IBOutlet private weak var weatherTypeImageView: UIImageView!
     @IBOutlet private weak var weatherDescriptionLabel: UILabel!
+    @IBOutlet private weak var weatherTypeLabel: UILabel!
+    
     
     // MARK: Properties
     
@@ -128,12 +130,13 @@ private extension TimeDetailsViewController {
               let description = weatherData.weather?.first?.weatherDescription,
               let condition = weatherData.weather?.first?.id
         else { return }
-        temperatureLabel.text = String(temperature)
-        temperatureFeelsLikeLabel.text = String(feelsLike)
-        windLabel.text = String(windSpeed)
-        humidityLabel.text = String(humidity)
-        weatherDescriptionLabel.text = String(description.capitalized)
+        weatherTypeLabel.text = "\(description.prefix(1).capitalized)\(description.dropFirst())"
+        temperatureLabel.text = "\(Int(temperature)) °C"
+        temperatureFeelsLikeLabel.text = "\(Int(feelsLike)) °C"
+        windLabel.text = "\(Int(windSpeed)) km/h"
+        humidityLabel.text = "\(humidity) %"
         weatherTypeImageView.image = UIImage(systemName: forecastData.getConditionImage(id: condition))
+        weatherDescriptionLabel.text = "\(description.prefix(1).capitalized)\(description.dropFirst()), with temperature: \(Int(temperature)) °C"
         
         weatherDetails = WeatherDetails(
             weatherIdentifier: forecastData.getConditionId(id: condition),

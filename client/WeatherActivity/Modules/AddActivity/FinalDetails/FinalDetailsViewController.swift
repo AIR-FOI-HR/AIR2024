@@ -73,7 +73,6 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
             let selectedTag = sender.tag
             guard let current = self.view.viewWithTag(selectedTag), let newCurrent = current as? UIButton else { return }
             sender.selectedOutdoorIndoor(newCurrent)
-            sender.selectedButtonAvatar(newCurrent)
             
             guard let previous = self.view.viewWithTag(selectedActivityType.rawValue), let newPrevious = previous as? UIButton else { return }
             sender.deselectedOutdoorIndoor(newPrevious)
@@ -184,7 +183,6 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
         cell.isSelected = true
         cell.layer.borderColor = UIColor(red:115/255, green:204/255, blue:255/255, alpha: 1).cgColor
         cell.layer.borderWidth = 1.0
-        cell.layer.backgroundColor = UIColor(red:29/255, green:53/255, blue:66/255, alpha: 1).cgColor
         
         selectedSupportedWeathers.append(String(indexPath.item + 1))
     }
@@ -195,9 +193,7 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
         
         guard let cell = collectionView.cellForItem(at: indexPath) else { return }
         cell.isSelected = false
-        cell.layer.borderColor = UIColor.white.cgColor
         cell.layer.borderWidth = 0
-        cell.layer.backgroundColor = UIColor.systemGray6.cgColor
         
         guard let removeAt = selectedSupportedWeathers.firstIndex(of: "\(indexPath.item + 1)") else { return }
         selectedSupportedWeathers.remove(at: removeAt)

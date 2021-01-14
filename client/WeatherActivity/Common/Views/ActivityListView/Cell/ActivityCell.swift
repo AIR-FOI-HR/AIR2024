@@ -28,11 +28,11 @@ struct ActivityCellItem {
 
 class ActivityCell: UITableViewCell {
 
-    @IBOutlet weak var activityTitle: UILabel!
-    @IBOutlet weak var activityLocation: UILabel!
-    @IBOutlet weak var activityTime: UILabel!
-    @IBOutlet weak var activityDate: UILabel!
-    @IBOutlet weak var activityImage: UIImageView!
+    @IBOutlet weak private var activityTitle: UILabel!
+    @IBOutlet weak private var activityLocation: UILabel!
+    @IBOutlet weak private var activityTime: UILabel!
+    @IBOutlet weak private var activityDate: UILabel!
+    @IBOutlet weak private var activityImage: UIImageView!
     
     func configure(with item: ActivityCellItem) {
         let dateFormatter = DateFormatter()
