@@ -86,6 +86,9 @@ class ActivityListView: UIView, UITableViewDelegate {
     
     private func reload(with items: [ActivityCellItem]) {
         dataSource = items
+        if !activityListView.isSkeletonActive {
+            showLoading()
+        }
         activityListView.hideSkeleton(reloadDataAfter: true)
     }
     
