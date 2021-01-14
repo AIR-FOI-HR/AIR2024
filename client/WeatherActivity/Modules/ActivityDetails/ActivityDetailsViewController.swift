@@ -8,10 +8,15 @@
 import UIKit
 import MapKit
 
+protocol ActivityDetailsViewControllerDelegate: AnyObject {
+    func didDeleteActivity(deletedActivity: Int)
+}
+
 class ActivityDetailsViewController: UIViewController {
 
     //MARK: - IBOutlets
-    
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak private var activityTitle: UILabel!
     @IBOutlet weak private var activityDate: UILabel!
     @IBOutlet weak private var activityTime: UILabel!
@@ -42,6 +47,8 @@ class ActivityDetailsViewController: UIViewController {
     let weatherManager = ForecastService()
     let forecastData = ForecastData()
     var color: UIColor?
+    
+    weak var delegate: ActivityDetailsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,6 +84,33 @@ class ActivityDetailsViewController: UIViewController {
         activityLocation.text = localActivity.locationName
         
         zoomMap(lat: localActivity.latitude, lon: localActivity.longitude, setMapPoint: true)
+    }
+    
+    //MARK: - IBOutlet functions
+    
+    @IBAction func onEditPressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func onDeletePressed(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Activity deletion", message: "Do you really want to delete selected activity? This action cannot be undone!", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action in
+            guard let localActivity = self.localActivity else {
+                return
+            }
+            ActivityService().deleteActivities(activity: localActivity.activityId, success: { response in
+                if response {
+                    self.dismiss(animated: true, completion: nil)
+                    self.delegate?.didDeleteActivity(deletedActivity: localActivity.activityId)
+                } else {
+                    print("there was an error deleting activity!")
+                }
+            }, failure: { error in
+                print(error)
+            })
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
     //MARK: - Functions

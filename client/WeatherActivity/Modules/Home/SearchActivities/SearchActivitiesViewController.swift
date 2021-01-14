@@ -80,8 +80,6 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     //MARK: - Search bar
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        activityListView.setState(state: .loading)
-        
         let filteredActivitiesBySearch = filteredActivitiesList.filter { activity in
             return activity.title.lowercased().contains(searchText.lowercased())
         }
@@ -168,8 +166,6 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     // MARK: - Custom functions
     
     private func handleFilter() {
-        activityListView.setState(state: .loading)
-        
         var filter: [(ActivityCellItem) -> Bool] = []
         
         if searchBar.text != "" {
@@ -212,7 +208,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     func loadActivities() {
         activityListView.setState(state: .loading)
         if let sessionToken = SessionManager.shared.getToken() {
-            activityService.getActivities(token: sessionToken, success: { (activities) in
+            activityService.getActivities(for: "search", token: sessionToken, success: { (activities) in
                 if activities.isEmpty {
                     self.activityListView.setState(state: .noActivities)
                 }
@@ -239,14 +235,23 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
 
 //MARK: - Extensions
 
-extension SearchActivitiesViewController: ActivityListViewDelegate {
+extension SearchActivitiesViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate {
     func didPressRow(activity: ActivityCellItem) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
+        details.delegate = self
     }
     
     func didPressReloadAction() {
         loadActivities()
+    }
+    
+    func didDeleteActivity(deletedActivity: Int) {
+        guard let index = activitiesList.firstIndex(where: { $0.activityId == deletedActivity }) else {
+            return
+        }
+        activitiesList.remove(at: index)
+        self.activityListView.setState(state: .normal(items: self.activitiesList))
     }
 }
