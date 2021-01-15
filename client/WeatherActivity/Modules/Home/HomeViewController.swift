@@ -40,8 +40,12 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         headerSetUp()
         setupListView()
-        loadActivities()
         getTodaysForecast()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadActivities()
+        print("home will appear")
     }
     
     // MARK: Custom functions
@@ -117,13 +121,19 @@ private extension HomeViewController {
     }
     
     @IBAction func addActivityButtonPressed(_ sender: UIButton) {
-        
+        openActivityFlow(activity: nil)
+    }
+    
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItem?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
         let flowNavigator = AddActivityFlowNavigator(navigationController: navigationController, steps: steps)
         
         flowNavigator.presentFlow(from: self)
+        
+        flowNavigator.isEditing = isEditing
+        flowNavigator.editingActivity = activity
         
         flowNavigator.delegate = self
     }
@@ -149,7 +159,11 @@ extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewContr
         self.activityListView.setState(state: .normal(items: self.activitiesList))
     }
     
-    func didFinishInsert() {
+    func didEditActivity(activity: ActivityCellItem) {
+        openActivityFlow(isEditing: true, activity: activity)
+    }
+    
+    func didFinishFlow() {
         loadActivities()
     }
 }

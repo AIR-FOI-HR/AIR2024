@@ -45,8 +45,7 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     let forecastData = ForecastData()
     var timeDetails: TimeDetails?
     var weatherDetails: WeatherDetails?
-    #warning("Delete dummy location and replace with previous screen data")
-    let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
+    var location: LocationDetails?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +54,23 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
         datePicker.addTarget(self, action: #selector(datePickerEndEditing), for: .editingDidEnd)
         fromTimePicker.addTarget(self, action: #selector(fromTimePickerEndEditing), for: .valueChanged)
         setDefault()
+        
+        guard
+            let flowNavigator = flowNavigator,
+            let activityDetails = flowNavigator.editingActivity
+        else { return }
+        
+        location = flowNavigator.dataFlowManager.getData(forStep: .locationDetails)
+        print(location)
+        
+        if flowNavigator.isEditing {
+            let fromTime = timeDetailsManager.getDateFromString(timestamp: activityDetails.startTime)
+            let untilTime = timeDetailsManager.getDateFromString(timestamp: activityDetails.endTime)
+            datePicker.date = fromTime
+            fromTimePicker.date = fromTime
+            untilTimePicker.date = untilTime
+        }
+        
         checkDate()
     }
     
@@ -92,7 +108,10 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
 private extension TimeDetailsViewController {
     
     func getForecast(date: Date) {
-        weatherManager.getWeatherForecast(date: date, locationCoordinates: dummyLocation) { weatherData in
+        guard let location = location else {
+            return
+        }
+        weatherManager.getWeatherForecast(date: date, locationCoordinates: location) { weatherData in
             self.getForecastForDate(forDate: date, weatherData: weatherData)
         } failure: { error in
             print(error)

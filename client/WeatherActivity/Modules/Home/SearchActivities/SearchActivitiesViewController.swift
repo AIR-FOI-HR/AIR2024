@@ -206,7 +206,11 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     }
     
     func loadActivities() {
-        activityListView.setState(state: .loading)
+        if activitiesList.isEmpty {
+            activityListView.setState(state: .loading)
+        } else {
+            activitiesList = []
+        }
         if let sessionToken = SessionManager.shared.getToken() {
             activityService.getActivities(for: "search", token: sessionToken, success: { (activities) in
                 if activities.isEmpty {
@@ -231,11 +235,24 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         self.dismiss(animated: true, completion: nil)
     }
     
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItem?) {
+        let navigationController = UINavigationController()
+        let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
+        
+        let flowNavigator = AddActivityFlowNavigator(navigationController: navigationController, steps: steps)
+        
+        flowNavigator.presentFlow(from: self)
+        
+        flowNavigator.isEditing = isEditing
+        flowNavigator.editingActivity = activity
+        
+        flowNavigator.delegate = self
+    }
 }
 
 //MARK: - Extensions
 
-extension SearchActivitiesViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate {
+extension SearchActivitiesViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
     func didPressRow(activity: ActivityCellItem) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
@@ -253,5 +270,13 @@ extension SearchActivitiesViewController: ActivityListViewDelegate, ActivityDeta
         }
         activitiesList.remove(at: index)
         self.activityListView.setState(state: .normal(items: self.activitiesList))
+    }
+    
+    func didEditActivity(activity: ActivityCellItem) {
+        openActivityFlow(isEditing: true, activity: activity)
+    }
+    
+    func didFinishFlow() {
+        loadActivities()
     }
 }

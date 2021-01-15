@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="62S-Lz-yEg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="62S-Lz-yEg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -287,6 +287,9 @@
                     </view>
                     <connections>
                         <outlet property="descriptionTextField" destination="5Pl-z6-C9h" id="LKK-V2-DCq"/>
+                        <outlet property="indoorButton" destination="GxF-ll-8Z9" id="1hA-ZT-f3T"/>
+                        <outlet property="outdoorButton" destination="5Er-hw-dwg" id="0TE-a5-Dh8"/>
+                        <outlet property="submitButton" destination="iRa-lO-CmP" id="qTw-da-Gl8"/>
                         <outlet property="titleTextField" destination="2GM-iV-WUt" id="hSM-iE-p6r"/>
                         <outlet property="weathersCollectionView" destination="Ik9-Ir-flU" id="m5H-pL-eVt"/>
                     </connections>

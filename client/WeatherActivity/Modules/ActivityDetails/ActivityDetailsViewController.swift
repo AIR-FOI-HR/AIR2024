@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 
 protocol ActivityDetailsViewControllerDelegate: AnyObject {
+    func didEditActivity(activity: ActivityCellItem)
     func didDeleteActivity(deletedActivity: Int)
 }
 
@@ -89,6 +90,11 @@ class ActivityDetailsViewController: UIViewController {
     //MARK: - IBOutlet functions
     
     @IBAction func onEditPressed(_ sender: UIButton) {
+        guard let localActivity = self.localActivity else {
+            return
+        }
+        self.dismiss(animated: true, completion: nil)
+        delegate?.didEditActivity(activity: localActivity)
     }
     
     @IBAction func onDeletePressed(_ sender: UIButton) {
@@ -172,6 +178,7 @@ class ActivityDetailsViewController: UIViewController {
               let description = weatherData.weather?.first?.weatherDescription,
               let condition = weatherData.weather?.first?.id
         else { return }
+        weatherTypeLabel.text = String(description.capitalized)
         temperatureLabel.text = String(temperature)
         temperatureFeelsLabel.text = String(feelsLike)
         windLabel.text = String(windSpeed)

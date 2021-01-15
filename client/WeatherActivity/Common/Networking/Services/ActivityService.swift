@@ -48,6 +48,24 @@ class ActivityService {
         }
     }
     
+    func updateActivity(activity id: Int, activityData data: String, success: @escaping (Bool) -> Void, failure: @escaping (Error) -> Void) {
+        AF.request(Constants.baseUrl.appending("/activity/update/\(id)") as URLConvertible,
+                   method: .post,
+                   parameters: ["activityData": data, "sessionToken": SessionManager.shared.getToken()],
+                   encoder: JSONParameterEncoder.default
+        ).responseData { response in
+            switch response.result {
+            case .success(let data):
+                guard let response = String(bytes: data, encoding: .utf8), let res = Bool(response) else {
+                    return
+                }
+                success(res)
+            case .failure(let error):
+                failure(error)
+            }
+        }
+    }
+    
     func deleteActivities(activity id: Int, success: @escaping (Bool) -> Void, failure: @escaping (Error) -> Void) {
         AF.request(Constants.baseUrl.appending("/activity/delete/\(id)") as URLConvertible,
                    method: .post,
