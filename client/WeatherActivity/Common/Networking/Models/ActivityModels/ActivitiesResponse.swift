@@ -25,3 +25,25 @@ struct Activities: Codable {
     let type: String
     let statusType: String
 }
+ 
+public struct Activity: Codable, Identifiable {
+    public let id: Int
+    let startTime: String
+    let title: String
+    let locationName: String
+    let name: String
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "activityId"
+        case startTime = "startTime"
+        case title = "title"
+        case locationName = "locationName"
+        case name = "name"
+    }
+}
+ 
+extension Activity {
+    var deepLinkUrl: URL {
+        return URL(string: "\(id)")!
+    }
+}
