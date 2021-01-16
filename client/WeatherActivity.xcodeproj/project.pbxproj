@@ -147,6 +147,8 @@
 		4205CE1425705A3600FF056F /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		420EB74625790E9F00ABCFAE /* FinalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalDetailsViewController.swift; sourceTree = "<group>"; };
 		420EB74B25790EC100ABCFAE /* FinalDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FinalDetails.storyboard; sourceTree = "<group>"; };
+		42124F5425B395D7008B7ACF /* WeatherActivity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherActivity.entitlements; sourceTree = "<group>"; };
+		42124F5525B395F2008B7ACF /* WeatherActivityWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherActivityWidgetExtension.entitlements; sourceTree = "<group>"; };
 		4215924D25939B9700DF5C33 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4227A752258CB7730082C0E8 /* ActivityDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsViewController.swift; sourceTree = "<group>"; };
 		4227A753258CB7730082C0E8 /* ActivityDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityDetailsViewController.xib; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				42289B5B25B36F7D00B5C39C /* WeatherActivityWidget.intentdefinition */,
 				42289B5C25B36F7E00B5C39C /* Assets.xcassets */,
 				42289B5E25B36F7E00B5C39C /* Info.plist */,
+				42124F5525B395F2008B7ACF /* WeatherActivityWidgetExtension.entitlements */,
 			);
 			path = WeatherActivityWidget;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				4252F68725626EF100FCA0CB /* SupportingFiles */,
 				42B0FB00257070A700781940 /* Constants.swift */,
 				4252F65525626DE900FCA0CB /* Info.plist */,
+				42124F5425B395D7008B7ACF /* WeatherActivity.entitlements */,
 			);
 			path = WeatherActivity;
 			sourceTree = "<group>";
@@ -1247,7 +1251,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = WeatherActivityWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WeatherActivityWidget/WeatherActivityWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RA5CLW72Y4;
 				INFOPLIST_FILE = WeatherActivityWidget/Info.plist;
@@ -1271,7 +1275,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_ENTITLEMENTS = WeatherActivityWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = WeatherActivityWidget/WeatherActivityWidgetExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RA5CLW72Y4;
 				INFOPLIST_FILE = WeatherActivityWidget/Info.plist;
