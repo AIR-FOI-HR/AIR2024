@@ -35,11 +35,13 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
         setRecentCategories()
         
         guard
-            let flowNavigator = flowNavigator,
-            let activityDetails = flowNavigator.editingActivity
+            let flowNavigator = flowNavigator
         else { return }
         
         if flowNavigator.isEditing {
+            guard
+                let activityDetails = flowNavigator.editingActivity
+            else { return }
             selectedCategory = activityDetails.name
         }
     }

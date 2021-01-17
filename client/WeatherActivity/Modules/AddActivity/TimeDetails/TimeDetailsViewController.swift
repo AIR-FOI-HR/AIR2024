@@ -56,14 +56,15 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
         setDefault()
         
         guard
-            let flowNavigator = flowNavigator,
-            let activityDetails = flowNavigator.editingActivity
+            let flowNavigator = flowNavigator
         else { return }
         
         location = flowNavigator.dataFlowManager.getData(forStep: .locationDetails)
-        print(location)
         
         if flowNavigator.isEditing {
+            guard
+                let activityDetails = flowNavigator.editingActivity
+            else { return }
             let fromTime = timeDetailsManager.getDateFromString(timestamp: activityDetails.startTime)
             let untilTime = timeDetailsManager.getDateFromString(timestamp: activityDetails.endTime)
             datePicker.date = fromTime

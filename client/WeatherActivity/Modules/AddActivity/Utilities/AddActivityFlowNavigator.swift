@@ -46,15 +46,15 @@ class AddActivityFlowNavigator {
     }
     
     func showNextStep(from: StepInfo, data: StepData) {
-        
         if (isLastStep(step: from)) {
             dataFlowManager.saveData(data: data)
             guard
-                let jsonData = dataFlowManager.dataToJson(),
-                let localActivity = editingActivity
+                let jsonData = dataFlowManager.dataToJson()
             else { return }
-            print(jsonData)
             if isEditing {
+                guard
+                    let localActivity = editingActivity
+                else { return }
                 ActivityService().updateActivity(activity: localActivity.activityId, activityData: jsonData) { (provjera) -> Void in
                     if provjera {
                         self.dismissFlow()

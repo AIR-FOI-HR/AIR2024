@@ -38,10 +38,13 @@ class LocationDetailsViewController: AddActivityStepViewController, ViewInterfac
         setupDropDown()
         
         guard
-            let flowNavigator = flowNavigator,
-            let activityDetails = flowNavigator.editingActivity
+            let flowNavigator = flowNavigator
         else { return }
+        
         if flowNavigator.isEditing {
+            guard
+                let activityDetails = flowNavigator.editingActivity
+            else { return }
             zoomMap(lat: activityDetails.latitude, lon: activityDetails.longitude, setMapPoint: true)
         }
     }

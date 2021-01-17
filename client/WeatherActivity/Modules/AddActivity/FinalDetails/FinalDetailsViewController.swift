@@ -62,11 +62,13 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
         weathersCollectionView.allowsMultipleSelection = true
         
         guard
-            let flowNavigator = flowNavigator,
-            let activityDetails = flowNavigator.editingActivity
+            let flowNavigator = flowNavigator
         else { return }
         
         if flowNavigator.isEditing {
+            guard
+                let activityDetails = flowNavigator.editingActivity
+            else { return }
             titleTextField.text = activityDetails.title
             descriptionTextField.text = activityDetails.description
             if activityDetails.type == "Indoor" {
@@ -120,7 +122,6 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
     }
     
     @IBAction func addActivityClick(_ sender: UIButton) {
-        
         guard
             let title = titleTextField.text,
             let description = descriptionTextField.text
