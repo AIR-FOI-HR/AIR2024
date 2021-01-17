@@ -53,19 +53,8 @@
                                                             </stackView>
                                                         </subviews>
                                                     </stackView>
-                                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Q1h-aX-L5D">
-                                                        <rect key="frame" x="0.0" y="108" width="382" height="400"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="400" id="iOr-FD-Vyg"/>
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </mapView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="T58-UM-5Mx" userLabel="Location Stack View">
-                                                        <rect key="frame" x="0.0" y="538" width="382" height="60"/>
+                                                        <rect key="frame" x="0.0" y="108" width="382" height="60"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kUW-sQ-LVh" userLabel="Location Label">
                                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="21"/>
@@ -101,6 +90,17 @@
                                                             <constraint firstAttribute="trailing" secondItem="LkQ-Em-ahi" secondAttribute="trailing" id="wu6-eB-DQC"/>
                                                         </constraints>
                                                     </stackView>
+                                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Q1h-aX-L5D">
+                                                        <rect key="frame" x="0.0" y="198" width="382" height="400"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="400" id="iOr-FD-Vyg"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </mapView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="Q1h-aX-L5D" secondAttribute="trailing" id="8gA-Cl-pjI"/>
