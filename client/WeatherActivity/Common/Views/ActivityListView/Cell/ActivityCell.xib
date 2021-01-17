@@ -3,8 +3,8 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="C41-Y5-B64">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="105.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="om3-7e-B6F" userLabel="Horizontal Stack View">
-                                <rect key="frame" x="20" y="15" width="290" height="69.5"/>
+                                <rect key="frame" x="20" y="15" width="290" height="75.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar5" translatesAutoresizingMaskIntoConstraints="NO" id="T9L-KX-N33">
-                                        <rect key="frame" x="0.0" y="0.0" width="30" height="69.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="75.5"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="mF0-aC-bKo"/>
                                             <constraint firstAttribute="width" constant="30" id="xhZ-7R-5ND"/>
@@ -34,7 +34,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="ydu-6d-eN8">
-                                        <rect key="frame" x="55" y="0.0" width="235" height="69.5"/>
+                                        <rect key="frame" x="55" y="0.0" width="235" height="75.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="activityTitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMv-O9-dee">
                                                 <rect key="frame" x="0.0" y="0.0" width="235" height="21.5"/>
@@ -45,11 +45,19 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xvq-9W-d07">
-                                                <rect key="frame" x="0.0" y="26.5" width="235" height="19"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="xvq-9W-d07" userLabel="Date Time Stack View">
+                                                <rect key="frame" x="0.0" y="26.5" width="235" height="22"/>
                                                 <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jh6-tq-Rji">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="22"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="30" id="750-dZ-Z2J"/>
+                                                        </constraints>
+                                                        <color key="tintColor" name="CustomMainButton"/>
+                                                        <state key="normal" image="clock.fill" catalog="system"/>
+                                                    </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="activityDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I41-HW-gru" userLabel="Activity Date">
-                                                        <rect key="frame" x="0.0" y="0.0" width="84" height="19"/>
+                                                        <rect key="frame" x="35" y="0.0" width="84" height="22"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -57,8 +65,8 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="activityTime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5l-q8-Jlw" userLabel="Activity Time">
-                                                        <rect key="frame" x="89" y="0.0" width="146" height="19"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="activityTime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5l-q8-Jlw" userLabel="Activity Time">
+                                                        <rect key="frame" x="124" y="0.0" width="111" height="22"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -71,15 +79,28 @@
                                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="activityLocation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKc-qj-vwd">
-                                                <rect key="frame" x="0.0" y="50.5" width="235" height="19"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                                                </userDefinedRuntimeAttributes>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="akW-Ls-TgZ" userLabel="Location Stack View">
+                                                <rect key="frame" x="0.0" y="53.5" width="235" height="22"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="may-iG-mtX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="22"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="30" id="9jB-PH-JMP"/>
+                                                        </constraints>
+                                                        <color key="tintColor" name="CustomMainButton"/>
+                                                        <state key="normal" image="location.circle.fill" catalog="system"/>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="activityLocation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64O-Aa-pm4">
+                                                        <rect key="frame" x="35" y="0.0" width="200" height="22"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -88,7 +109,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <color key="backgroundColor" name="ActivityCell"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="om3-7e-B6F" secondAttribute="bottom" constant="15" id="Dhc-75-H8Y"/>
                             <constraint firstAttribute="trailing" secondItem="om3-7e-B6F" secondAttribute="trailing" constant="10" id="dsP-sx-k5J"/>
@@ -121,7 +142,7 @@
             <connections>
                 <outlet property="activityDate" destination="I41-HW-gru" id="30F-ra-aYP"/>
                 <outlet property="activityImage" destination="T9L-KX-N33" id="bsq-O1-pWy"/>
-                <outlet property="activityLocation" destination="YKc-qj-vwd" id="ko2-tx-aiM"/>
+                <outlet property="activityLocation" destination="64O-Aa-pm4" id="GnI-Na-wrC"/>
                 <outlet property="activityTime" destination="j5l-q8-Jlw" id="QcB-Rm-NWA"/>
                 <outlet property="activityTitle" destination="mMv-O9-dee" id="hB0-bq-PbN"/>
             </connections>
@@ -130,8 +151,13 @@
     </objects>
     <resources>
         <image name="avatar5" width="50" height="50"/>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
+        <image name="clock.fill" catalog="system" width="128" height="121"/>
+        <image name="location.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="ActivityCell">
+            <color red="0.92156862745098034" green="0.92156862745098034" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CustomMainButton">
+            <color red="0.12941176470588237" green="0.24313725490196078" blue="0.29019607843137257" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

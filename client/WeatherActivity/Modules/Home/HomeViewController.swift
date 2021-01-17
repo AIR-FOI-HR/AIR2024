@@ -161,12 +161,12 @@ extension HomeViewController {
             else { return }
             
             self.weatherTypeLabel.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst())"
-            self.temperatureLabel.text = "\(Int(temperatureForecast)) ° C"
-            self.temperatureFeelsLabel.text = "\(Int(temperatureFeelsLikeForecast)) ° C"
+            self.temperatureLabel.text = "\(Int(temperatureForecast)) °C"
+            self.temperatureFeelsLabel.text = "\(Int(temperatureFeelsLikeForecast)) °C"
             self.windLabel.text = "\(Int(windForecast)) km/h"
             self.humidityLabel.text = "\(humidityForecast) %"
             self.weatherTypeImageView.image = UIImage(systemName: self.forecastData.getConditionImage(id: condition))
-            self.todaysDescription.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst()), with temperature: \(Int(temperatureForecast)) ° C"
+            self.todaysDescription.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst()), with temperature: \(Int(temperatureForecast)) °C"
         } failure: { (error) in
             print(error)
         }
