@@ -44,6 +44,6 @@ public struct Activity: Codable, Identifiable {
  
 extension Activity {
     var deepLinkUrl: URL {
-        return URL(string: "\(id)")!
+        return URL(string: "\(Constants.widgetURLScheme)://\(id)")!
     }
 }

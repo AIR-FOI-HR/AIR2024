@@ -50,7 +50,11 @@ class ActivityDetailsViewController: UIViewController {
         titleUIView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         bodyUIView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
-        switch localActivity?.statusType {
+        guard let localActivity = localActivity else {
+            return
+        }
+        
+        switch localActivity.statusType {
         case "In progress":
             color = UIColor(red: 59.0/255.0, green: 245.0/255.0, blue: 170.0/255.0, alpha: 1)
         case "Delayed":
@@ -63,9 +67,6 @@ class ActivityDetailsViewController: UIViewController {
             color = UIColor(red: 59.0/255.0, green: 245.0/255.0, blue: 170.0/255.0, alpha: 1)
         }
         
-        guard let localActivity = localActivity else {
-            return
-        }
         activityTitle.text = localActivity.title
         activityStatus.text = localActivity.statusType
         activityStatus.backgroundColor = color
@@ -77,6 +78,16 @@ class ActivityDetailsViewController: UIViewController {
         activityLocation.text = localActivity.locationName
         
         zoomMap(lat: localActivity.latitude, lon: localActivity.longitude, setMapPoint: true)
+    }
+    
+    func commonInit(activity: ActivityCellItem) {
+        localActivity = activity
+    }
+    
+    func widgetInit(activity: ActivityCellItem) {
+        localActivity = activity
+        
+        viewDidLoad()
     }
     
     //MARK: - Functions
@@ -109,10 +120,6 @@ class ActivityDetailsViewController: UIViewController {
 
         guard let time = dateFormatterGet.date(from: timestamp) else { return "Err" }
         return dateFormatterPrint.string(from: time)
-    }
-    
-    func commonInit(activity: ActivityCellItem) {
-        localActivity = activity
     }
     
     func checkDate() {

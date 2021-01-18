@@ -30,6 +30,26 @@ class ActivityService {
         }
     }
     
+    func getWidgetActivityDetails(activity id: Int, success: @escaping (Activities) -> Void, failure: @escaping (Error) -> Void) {
+        AF.request(Constants.baseUrl.appending("/activity/widgetActivityDetails/\(id)") as URLConvertible,
+                   method: .post,
+                   parameters: ["sessionToken": SessionManager.shared.getToken()],
+                   encoder: JSONParameterEncoder.default
+        ).responseData { response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let jsonData = try JSONDecoder().decode(Activities.self, from: data)
+                    success(jsonData)
+                } catch (let error) {
+                    failure(error)
+                }
+            case .failure(let error):
+                failure(error)
+            }
+        }
+    }
+    
     func getWidgetActivities(success: @escaping ([Activity]) -> Void, failure: @escaping (Error) -> Void) {
         AF.request(Constants.baseUrl.appending("/activity/getWidgetActivities") as URLConvertible,
                      method: .post,

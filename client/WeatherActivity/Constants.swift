@@ -13,6 +13,10 @@ struct Constants {
     
     static let baseUrl = "http://seyziich.com:3100"
     
+    // MARK: - Widget
+    
+    static let widgetURLScheme = "activitywidget"
+    
     // MARK: Date time
     
     static let defaultTime = "16:00"

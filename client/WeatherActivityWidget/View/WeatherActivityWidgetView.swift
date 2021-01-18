@@ -62,7 +62,7 @@ struct ActivityErrorView: View {
                 .resizable()
                 .foregroundColor(.orange)
                 .frame(width: 40, height: 40)
-            Text("Fetching hot repos data failed.\nPlease try to refresh later.")
+            Text("Fetching activity data failed.\nPlease try to refresh later.")
                 .font(.callout)
                 .multilineTextAlignment(.center)
         })
