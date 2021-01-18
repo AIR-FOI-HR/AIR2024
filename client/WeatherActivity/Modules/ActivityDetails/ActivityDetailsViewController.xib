@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -22,6 +22,8 @@
                 <outlet property="activityTime" destination="qiA-rY-aVk" id="ZHF-cX-oiM"/>
                 <outlet property="activityTitle" destination="wKe-Bi-JgZ" id="m1F-w3-i7J"/>
                 <outlet property="bodyUIView" destination="s4C-51-Lhe" id="Xyz-UP-mXT"/>
+                <outlet property="deleteButton" destination="YGe-Z3-7wv" id="FSb-Wr-NnW"/>
+                <outlet property="editButton" destination="mHf-pz-UCc" id="n66-43-ciS"/>
                 <outlet property="humidityLabel" destination="ONY-KO-UQf" id="qjr-h7-4x7"/>
                 <outlet property="locationMapView" destination="Gwv-XH-eUm" id="xBM-4E-BF8"/>
                 <outlet property="temperatureFeelsLabel" destination="uW0-fD-8GU" id="xeY-Xp-gLa"/>
@@ -44,28 +46,55 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WaJ-0G-Bbv">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="1205.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1250.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f0u-Xn-h0m" userLabel="Parent Stack View">
-                                    <rect key="frame" x="16" y="30" width="382" height="1155.5"/>
+                                    <rect key="frame" x="16" y="30" width="382" height="1200.5"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ze-Hx-x2a" userLabel="TitleHeader View">
-                                            <rect key="frame" x="0.0" y="0.0" width="382" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="382" height="145"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="spT-6a-pyT" userLabel="Title Stack View">
-                                                    <rect key="frame" x="10" y="10" width="362" height="75"/>
+                                                    <rect key="frame" x="10" y="10" width="362" height="120"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="activityTitle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKe-Bi-JgZ">
-                                                            <rect key="frame" x="0.0" y="0.0" width="362" height="33.5"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="BZh-Pv-vhX">
+                                                            <rect key="frame" x="0.0" y="0.0" width="362" height="56"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="activityTitle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKe-Bi-JgZ">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="266" height="56"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mHf-pz-UCc">
+                                                                    <rect key="frame" x="274" y="0.0" width="40" height="56"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="40" id="NiK-wZ-FYQ"/>
+                                                                    </constraints>
+                                                                    <color key="tintColor" red="0.95294117647058818" green="0.80784313725490198" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <state key="normal" image="pencil.circle.fill" catalog="system"/>
+                                                                    <connections>
+                                                                        <action selector="onEditPressed:" destination="-1" eventType="touchUpInside" id="aXW-k7-vag"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGe-Z3-7wv" userLabel="delete">
+                                                                    <rect key="frame" x="322" y="0.0" width="40" height="56"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="40" id="6Ez-ad-bYO"/>
+                                                                    </constraints>
+                                                                    <color key="tintColor" red="0.78823529411764703" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <state key="normal" image="trash.circle.fill" catalog="system"/>
+                                                                    <connections>
+                                                                        <action selector="onDeletePressed:" destination="-1" eventType="touchUpInside" id="CK1-Js-svi"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FVW-OV-7S7" userLabel="Activity status Stack View">
-                                                            <rect key="frame" x="0.0" y="41.5" width="362" height="33.5"/>
+                                                            <rect key="frame" x="0.0" y="64" width="362" height="56"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In progress" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAf-31-fg7" userLabel="activityStatus">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="114" height="33.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="114" height="56"/>
                                                                     <color key="backgroundColor" red="0.1176470588" green="0.21176470589999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -122,7 +151,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4C-51-Lhe" userLabel="Body View">
-                                            <rect key="frame" x="0.0" y="100" width="382" height="1055.5"/>
+                                            <rect key="frame" x="0.0" y="145" width="382" height="1055.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="kA0-mG-qRm">
                                                     <rect key="frame" x="10" y="15" width="362" height="1025.5"/>
@@ -605,8 +634,10 @@
     <resources>
         <image name="cloud.sun.fill" catalog="system" width="128" height="93"/>
         <image name="drop" catalog="system" width="101" height="128"/>
+        <image name="pencil.circle.fill" catalog="system" width="128" height="121"/>
         <image name="thermometer" catalog="system" width="93" height="128"/>
         <image name="thermometer.sun" catalog="system" width="114" height="128"/>
+        <image name="trash.circle.fill" catalog="system" width="128" height="121"/>
         <image name="wind" catalog="system" width="128" height="101"/>
         <namedColor name="CustomTextField">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

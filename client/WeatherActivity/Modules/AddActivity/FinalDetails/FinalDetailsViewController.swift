@@ -50,13 +50,38 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
     
     @IBOutlet weak private var titleTextField: UITextField!
     @IBOutlet weak private var descriptionTextField: UITextField!
+    @IBOutlet weak var indoorButton: UIButton!
+    @IBOutlet weak var outdoorButton: UIButton!
     @IBOutlet weak private var weathersCollectionView: UICollectionView!
+    @IBOutlet weak var submitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         weathersCollectionView.delegate = self
         weathersCollectionView.dataSource = self
         weathersCollectionView.allowsMultipleSelection = true
+        
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        
+        if flowNavigator.isEditing {
+            guard
+                let activityDetails = flowNavigator.editingActivity
+            else { return }
+            titleTextField.text = activityDetails.title
+            descriptionTextField.text = activityDetails.description
+            if activityDetails.type == "Indoor" {
+                selectedActivityType = SelectedActivityType.indoor
+                indoorButton.selectedOutdoorIndoor(indoorButton)
+            } else {
+                selectedActivityType = SelectedActivityType.outdoor
+                outdoorButton.selectedOutdoorIndoor(outdoorButton)
+            }
+            isSelectedActivityType = true
+//            selectedSupportedWeathers = ["1", "2"] // DODATI POLJE IZ BAZE
+            submitButton.setTitle("Edit activity", for: .normal)
+        }
     }
     
     // MARK: - Properties
@@ -97,7 +122,6 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
     }
     
     @IBAction func addActivityClick(_ sender: UIButton) {
-        
         guard
             let title = titleTextField.text,
             let description = descriptionTextField.text
@@ -167,6 +191,19 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
             if let weatherImage = item.image {
                 weatherImages.append(weatherImage)
             }
+        }
+        
+        if selectedSupportedWeathers.contains("\(indexPath.item + 1)") {
+            cell.isSelected = true
+            cell.layer.borderColor = UIColor(red:115/255, green:204/255, blue:255/255, alpha: 1).cgColor
+            cell.layer.borderWidth = 1.0
+            cell.layer.backgroundColor = UIColor(red:29/255, green:53/255, blue:66/255, alpha: 1).cgColor
+        }
+        else {
+            cell.isSelected = false
+            cell.layer.borderColor = UIColor.white.cgColor
+            cell.layer.borderWidth = 0
+            cell.layer.backgroundColor = UIColor.systemGray6.cgColor
         }
 
         cell.weatherLabel.text = weatherNames[indexPath.item]

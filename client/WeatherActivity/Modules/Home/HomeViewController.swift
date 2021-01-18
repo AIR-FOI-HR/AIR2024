@@ -12,7 +12,7 @@ enum HomeNavigation: String {
     case search = "toSearchActivities"
 }
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UISearchBarDelegate {
     
     // MARK: IBOutlets
     
@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak private var weatherTypeImageView: UIImageView!
     @IBOutlet weak private var helloNameLabel: UILabel!
     @IBOutlet weak private var avatarImageView: UIImageView!
+    @IBOutlet weak private var searchBar: UISearchBar!
     
     // MARK: Properties
     
@@ -34,13 +35,19 @@ class HomeViewController: UIViewController {
     private let forecastService = ForecastService()
     private let forecastData = ForecastData()
     private let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
+    private var activitiesList: [ActivityCellItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         headerSetUp()
         setupListView()
-        loadActivities()
         getTodaysForecast()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadActivities()
+        print("home will appear")
     }
     
     // MARK: Custom functions
@@ -68,25 +75,21 @@ class HomeViewController: UIViewController {
     }
     
     func loadActivities() {
-        activityListView.setState(state: .loading)
-        let currentTime = getCurrentTimeStamp()
-        var activitiesList: [ActivityCellItem] = []
+        if activitiesList.isEmpty {
+            activityListView.setState(state: .loading)
+        } else {
+            activitiesList = []
+        }
         if let sessionToken = SessionManager.shared.getToken() {
-            activityService.getActivities(token: sessionToken, success: { (activities) in
+            activityService.getActivities(for: "home", token: sessionToken, success: { (activities) in
                 if activities.isEmpty {
                     self.activityListView.setState(state: .noActivities)
                 }
                 else {
                     for activity in activities {
-                        if activity.startTime > currentTime {
-                            activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType))
-                        }
+                        self.activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType))
                     }
-                    if activitiesList.isEmpty {
-                        self.activityListView.setState(state: .noActivities)
-                    } else {
-                        self.activityListView.setState(state: .normal(items: activitiesList))
-                    }
+                    self.activityListView.setState(state: .normal(items: self.activitiesList))
                 }
             }, failure: { error in
                 self.activityListView.setState(state: .error)
@@ -109,8 +112,9 @@ class HomeViewController: UIViewController {
         navigate(to: .login)
     }
     
-    @IBAction func searchButtonClicked(_ sender: UIButton) {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         navigate(to: .search)
+        return false
     }
 }
 
@@ -120,7 +124,10 @@ private extension HomeViewController {
     }
     
     @IBAction func addActivityButtonPressed(_ sender: UIButton) {
-        
+        openActivityFlow(activity: nil)
+    }
+    
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItem?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
@@ -128,18 +135,38 @@ private extension HomeViewController {
         
         flowNavigator.presentFlow(from: self)
         
+        flowNavigator.isEditing = isEditing
+        flowNavigator.editingActivity = activity
+        
         flowNavigator.delegate = self
     }
 }
 
-extension HomeViewController: ActivityListViewDelegate {
+extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
     func didPressRow(activity: ActivityCellItem) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
+        details.delegate = self
     }
     
     func didPressReloadAction() {
+        loadActivities()
+    }
+    
+    func didDeleteActivity(deletedActivity: Int) {
+        guard let index = activitiesList.firstIndex(where: { $0.activityId == deletedActivity }) else {
+            return
+        }
+        activitiesList.remove(at: index)
+        self.activityListView.setState(state: .normal(items: self.activitiesList))
+    }
+    
+    func didEditActivity(activity: ActivityCellItem) {
+        openActivityFlow(isEditing: true, activity: activity)
+    }
+    
+    func didFinishFlow() {
         loadActivities()
     }
 }
@@ -170,11 +197,5 @@ extension HomeViewController {
         } failure: { (error) in
             print(error)
         }
-    }
-}
-
-extension HomeViewController: AddActivityFlowNavigatorDelegate {
-    func didFinishInsert() {
-        loadActivities()
     }
 }

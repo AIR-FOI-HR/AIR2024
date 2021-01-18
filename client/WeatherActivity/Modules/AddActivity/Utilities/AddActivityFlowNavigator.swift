@@ -8,7 +8,7 @@
 import UIKit
 
 protocol AddActivityFlowNavigatorDelegate: AnyObject {
-    func didFinishInsert()
+    func didFinishFlow()
 }
 
 class AddActivityFlowNavigator {
@@ -19,6 +19,8 @@ class AddActivityFlowNavigator {
     let steps: [StepInfo]
     let initialStep: StepInfo
     let dataFlowManager = AddActivityFlowDataManager()
+    var isEditing: Bool = false
+    var editingActivity: ActivityCellItem? = nil
     
     weak var delegate: AddActivityFlowNavigatorDelegate?
     
@@ -44,22 +46,35 @@ class AddActivityFlowNavigator {
     }
     
     func showNextStep(from: StepInfo, data: StepData) {
-        
         if (isLastStep(step: from)) {
             dataFlowManager.saveData(data: data)
             guard
                 let jsonData = dataFlowManager.dataToJson()
             else { return }
-            ActivityService().insertActivities(activityData: jsonData) { (provjera) -> Void in
-                print(provjera)
-                self.dismissFlow()
-                self.delegate?.didFinishInsert()
-            } failure: { (error) in
-                print(error)
+            if isEditing {
+                guard
+                    let localActivity = editingActivity
+                else { return }
+                ActivityService().updateActivity(activity: localActivity.activityId, activityData: jsonData) { (provjera) -> Void in
+                    if provjera {
+                        self.dismissFlow()
+                        self.delegate?.didFinishFlow()
+                    }
+                    print(provjera)
+                } failure: { (error) in
+                    print(error)
+                }
+            } else {
+                ActivityService().insertActivities(activityData: jsonData) { (provjera) -> Void in
+                    if provjera {
+                        self.dismissFlow()
+                        self.delegate?.didFinishFlow()
+                    }
+                } failure: { (error) in
+                    print(error)
+                }
             }
-            
-        }
-        else {
+        } else {
             dataFlowManager.saveData(data: data)
             
             guard let currentStep = steps.firstIndex(of: from) else { return }

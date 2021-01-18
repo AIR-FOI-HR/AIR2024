@@ -59,4 +59,12 @@ class TimeDetailsManager {
         guard let modifiedDate = Calendar.current.date(byAdding: .hour, value: hoursValue, to: toDate) else { return toDate }
         return modifiedDate
     }
+    
+    func getDateFromString(timestamp: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+        guard let date = dateFormatter.date(from: timestamp) else { return Date() }
+        return date
+    }
 }
