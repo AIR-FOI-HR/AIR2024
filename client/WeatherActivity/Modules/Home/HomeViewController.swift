@@ -12,7 +12,7 @@ enum HomeNavigation: String {
     case search = "toSearchActivities"
 }
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UISearchBarDelegate {
     
     // MARK: IBOutlets
     
@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak private var weatherTypeImageView: UIImageView!
     @IBOutlet weak private var helloNameLabel: UILabel!
     @IBOutlet weak private var avatarImageView: UIImageView!
+    @IBOutlet weak private var searchBar: UISearchBar!
     
     // MARK: Properties
     
@@ -38,6 +39,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         headerSetUp()
         setupListView()
         getTodaysForecast()
@@ -110,8 +112,9 @@ class HomeViewController: UIViewController {
         navigate(to: .login)
     }
     
-    @IBAction func searchButtonClicked(_ sender: UIButton) {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         navigate(to: .search)
+        return false
     }
 }
 
@@ -185,12 +188,12 @@ extension HomeViewController {
             else { return }
             
             self.weatherTypeLabel.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst())"
-            self.temperatureLabel.text = "\(Int(temperatureForecast)) ° C"
-            self.temperatureFeelsLabel.text = "\(Int(temperatureFeelsLikeForecast)) ° C"
+            self.temperatureLabel.text = "\(Int(temperatureForecast)) °C"
+            self.temperatureFeelsLabel.text = "\(Int(temperatureFeelsLikeForecast)) °C"
             self.windLabel.text = "\(Int(windForecast)) km/h"
             self.humidityLabel.text = "\(humidityForecast) %"
             self.weatherTypeImageView.image = UIImage(systemName: self.forecastData.getConditionImage(id: condition))
-            self.todaysDescription.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst()), with temperature: \(Int(temperatureForecast)) ° C"
+            self.todaysDescription.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst()), with temperature: \(Int(temperatureForecast)) °C"
         } failure: { (error) in
             print(error)
         }

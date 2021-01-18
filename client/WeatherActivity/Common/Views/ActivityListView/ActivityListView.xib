@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,7 +20,7 @@
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tp1-44-PTf">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" name="CustomBackground"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
                                     <real key="value" value="0.0"/>
@@ -30,50 +31,58 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyP-Tk-Z2P">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="JbG-jS-Vot">
-                                    <rect key="frame" x="57" y="159" width="300" height="300"/>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Errr... there seems to be something missing here... try refreshing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ka-Od-GxU" userLabel="Message">
-                                    <rect key="frame" x="44.5" y="514" width="325" height="40"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="t6Q-vw-Py5">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="JbG-jS-Vot">
+                                            <rect key="frame" x="107" y="0.0" width="200" height="200"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="200" id="I3E-v6-EJe"/>
+                                                <constraint firstAttribute="height" constant="200" id="sDt-OO-2s8"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Errr... there seems to be something missing here... try refreshing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Ka-Od-GxU" userLabel="Message">
+                                            <rect key="frame" x="14.5" y="210" width="385.5" height="558"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsC-oU-vpY" userLabel="Refresh">
+                                            <rect key="frame" x="80" y="778" width="254" height="40"/>
+                                            <color key="backgroundColor" name="LightBlue"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="izU-tR-G8P"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="20"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="didClickButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="d76-Np-bco"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="325" id="EcJ-5u-FtX"/>
+                                        <constraint firstItem="qsC-oU-vpY" firstAttribute="leading" secondItem="t6Q-vw-Py5" secondAttribute="leading" constant="80" id="DOD-dz-wEC"/>
+                                        <constraint firstAttribute="trailing" secondItem="qsC-oU-vpY" secondAttribute="trailing" constant="80" id="s7L-mf-yLq"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qsC-oU-vpY" userLabel="Refresh">
-                                    <rect key="frame" x="107" y="593" width="200" height="32"/>
-                                    <color key="backgroundColor" red="0.15729419350000001" green="0.81116270980000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="200" id="cUA-Gz-HFQ"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                    <state key="normal" title="Button">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="15"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="didClickButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="d76-Np-bco"/>
-                                    </connections>
-                                </button>
+                                </stackView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" name="CustomBackground"/>
                             <constraints>
-                                <constraint firstItem="JbG-jS-Vot" firstAttribute="centerX" secondItem="HyP-Tk-Z2P" secondAttribute="centerX" id="BUD-Lf-Jd0"/>
-                                <constraint firstItem="JbG-jS-Vot" firstAttribute="centerY" secondItem="HyP-Tk-Z2P" secondAttribute="centerY" constant="-100" id="VgN-Mh-KGM"/>
-                                <constraint firstItem="qsC-oU-vpY" firstAttribute="centerX" secondItem="HyP-Tk-Z2P" secondAttribute="centerX" id="ZJK-OR-hMl"/>
-                                <constraint firstItem="7Ka-Od-GxU" firstAttribute="centerY" secondItem="HyP-Tk-Z2P" secondAttribute="centerY" constant="125" id="f4B-rX-aiM"/>
-                                <constraint firstItem="7Ka-Od-GxU" firstAttribute="centerX" secondItem="HyP-Tk-Z2P" secondAttribute="centerX" id="ikK-IW-ghs"/>
-                                <constraint firstItem="qsC-oU-vpY" firstAttribute="centerY" secondItem="HyP-Tk-Z2P" secondAttribute="centerY" constant="200" id="li3-4h-6FE"/>
+                                <constraint firstItem="t6Q-vw-Py5" firstAttribute="leading" secondItem="HyP-Tk-Z2P" secondAttribute="leading" id="54m-f0-MsD"/>
+                                <constraint firstItem="t6Q-vw-Py5" firstAttribute="top" secondItem="HyP-Tk-Z2P" secondAttribute="top" id="Cdh-tc-gQy"/>
+                                <constraint firstAttribute="trailing" secondItem="t6Q-vw-Py5" secondAttribute="trailing" id="TUH-Ea-zt4"/>
+                                <constraint firstAttribute="bottom" secondItem="t6Q-vw-Py5" secondAttribute="bottom" id="ZVb-Vb-8T9"/>
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" name="CustomBackground"/>
                     <constraints>
                         <constraint firstItem="HyP-Tk-Z2P" firstAttribute="top" secondItem="Clt-sp-7Vw" secondAttribute="top" id="LSH-4g-0Jk"/>
                         <constraint firstItem="Tp1-44-PTf" firstAttribute="centerX" secondItem="Clt-sp-7Vw" secondAttribute="centerX" id="Lo0-ha-3Z7"/>
@@ -111,6 +120,12 @@
     </objects>
     <resources>
         <image name="blank" width="300" height="300"/>
+        <namedColor name="CustomBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightBlue">
+            <color red="0.40000000000000002" green="0.77647058823529413" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
