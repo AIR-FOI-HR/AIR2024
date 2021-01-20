@@ -35,6 +35,8 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     @IBOutlet private weak var warningAlertView: UIStackView!
     @IBOutlet private weak var weatherTypeImageView: UIImageView!
     @IBOutlet private weak var weatherDescriptionLabel: UILabel!
+    @IBOutlet private weak var weatherTypeLabel: UILabel!
+    
     
     // MARK: Properties
     
@@ -45,8 +47,7 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     let forecastData = ForecastData()
     var timeDetails: TimeDetails?
     var weatherDetails: WeatherDetails?
-    #warning("Delete dummy location and replace with previous screen data")
-    let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
+    var location: LocationDetails?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,24 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
         datePicker.addTarget(self, action: #selector(datePickerEndEditing), for: .editingDidEnd)
         fromTimePicker.addTarget(self, action: #selector(fromTimePickerEndEditing), for: .valueChanged)
         setDefault()
+        
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        
+        location = flowNavigator.dataFlowManager.getData(forStep: .locationDetails)
+        
+        if flowNavigator.isEditing {
+            guard
+                let activityDetails = flowNavigator.editingActivity
+            else { return }
+            let fromTime = timeDetailsManager.getDateFromString(timestamp: activityDetails.startTime)
+            let untilTime = timeDetailsManager.getDateFromString(timestamp: activityDetails.endTime)
+            datePicker.date = fromTime
+            fromTimePicker.date = fromTime
+            untilTimePicker.date = untilTime
+        }
+        
         checkDate()
     }
     
@@ -92,7 +111,10 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
 private extension TimeDetailsViewController {
     
     func getForecast(date: Date) {
-        weatherManager.getWeatherForecast(date: date, locationCoordinates: dummyLocation) { weatherData in
+        guard let location = location else {
+            return
+        }
+        weatherManager.getWeatherForecast(date: date, locationCoordinates: location) { weatherData in
             self.getForecastForDate(forDate: date, weatherData: weatherData)
         } failure: { error in
             print(error)
@@ -128,12 +150,15 @@ private extension TimeDetailsViewController {
               let description = weatherData.weather?.first?.weatherDescription,
               let condition = weatherData.weather?.first?.id
         else { return }
-        temperatureLabel.text = String(temperature)
-        temperatureFeelsLikeLabel.text = String(feelsLike)
-        windLabel.text = String(windSpeed)
-        humidityLabel.text = String(humidity)
-        weatherDescriptionLabel.text = String(description.capitalized)
+        weatherTypeLabel.text = "\(description.prefix(1).capitalized)\(description.dropFirst())"
+        temperatureLabel.text = "\(Int(temperature)) °C"
+        temperatureFeelsLikeLabel.text = "\(Int(feelsLike)) °C"
+        windLabel.text = "\(Int(windSpeed)) km/h"
+        humidityLabel.text = "\(humidity) %"
         weatherTypeImageView.image = UIImage(systemName: forecastData.getConditionImage(id: condition))
+        weatherDescriptionLabel.text = "\(description.prefix(1).capitalized)\(description.dropFirst()), with temperature: \(Int(temperature)) °C"
+        
+        setInitialDate()
         
         weatherDetails = WeatherDetails(
             weatherIdentifier: forecastData.getConditionId(id: condition),

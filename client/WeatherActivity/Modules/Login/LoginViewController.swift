@@ -19,6 +19,7 @@ final class LoginViewController: UIViewController {
     
     @IBOutlet weak private var emailTextField: UITextField!
     @IBOutlet weak private var passwordTextField: UITextField!
+    @IBOutlet weak private var registerButton: UIButton!
     
     // MARK: Properties
     
@@ -62,6 +63,10 @@ final class LoginViewController: UIViewController {
     
     @IBAction func loginTextFieldDidEndEditing(_ sender: UITextField) {
         textFieldAppearance.updateTextAppearanceOnFieldDidEndEditing(sender)
+    }
+    
+    @IBAction func registerButtonClick(_ sender: UIButton) {
+        navigate(to: .registration)
     }
 }
 

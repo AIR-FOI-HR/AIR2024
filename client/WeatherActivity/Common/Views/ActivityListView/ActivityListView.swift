@@ -22,9 +22,10 @@ class ActivityListView: UIView, UITableViewDelegate {
         case normal(items: [ActivityCellItem])
         case noActivities
         case noFilteredActivities
+        case noActivitiesOnDate
     }
     
-    @IBOutlet private var activityListView: UITableView!
+    @IBOutlet var activityListView: UITableView!
     @IBOutlet private var messageView: UIView!
     @IBOutlet private var message: UILabel!
     @IBOutlet private var button: UIButton!
@@ -70,6 +71,9 @@ class ActivityListView: UIView, UITableViewDelegate {
         case .noFilteredActivities:
             showMessage(messageText: "Looks like your search didn't find anything... hmm try something else!", buttonText: "")
             button.isHidden = true
+        case .noActivitiesOnDate:
+            showMessage(messageText: "Looks like you don't have any activities on selected date. Try adding some", buttonText: "")
+            button.isHidden = true
         }
     }
     
@@ -86,6 +90,9 @@ class ActivityListView: UIView, UITableViewDelegate {
     
     private func reload(with items: [ActivityCellItem]) {
         dataSource = items
+        if !activityListView.isSkeletonActive {
+            showLoading()
+        }
         activityListView.hideSkeleton(reloadDataAfter: true)
     }
     
@@ -103,6 +110,8 @@ class ActivityListView: UIView, UITableViewDelegate {
             break
         case .noActivities:
             #warning("addActivityFunction")
+        case .noActivitiesOnDate:
+            break
         case .noFilteredActivities:
             break
         default:
@@ -112,7 +121,11 @@ class ActivityListView: UIView, UITableViewDelegate {
 }
 
 extension ActivityListView: SkeletonTableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return dataSource.count
+    }
+
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
@@ -120,15 +133,19 @@ extension ActivityListView: SkeletonTableViewDataSource {
         return Self.cellIdentifier
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath) as! ActivityCell
         let item = dataSource[indexPath.section]
         cell.configure(with: item)
         return cell
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return dataSource.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

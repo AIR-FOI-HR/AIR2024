@@ -10,9 +10,8 @@ target 'WeatherActivity' do
   end
   pod 'IQKeyboardManagerSwift'
   pod 'KeychainSwift', '~> 19.0'
-  
   pod 'CHIPageControl/Aleppo'
-  
+  pod 'FSCalendar'
   pod 'SkeletonView'
   pod 'DropDown'
   # Pods for WeatherActivity

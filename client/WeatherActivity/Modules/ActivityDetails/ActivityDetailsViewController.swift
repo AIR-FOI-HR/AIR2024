@@ -8,10 +8,16 @@
 import UIKit
 import MapKit
 
+protocol ActivityDetailsViewControllerDelegate: AnyObject {
+    func didEditActivity(activity: ActivityCellItem)
+    func didDeleteActivity(deletedActivity: Int)
+}
+
 class ActivityDetailsViewController: UIViewController {
 
     //MARK: - IBOutlets
-    
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak private var activityTitle: UILabel!
     @IBOutlet weak private var activityDate: UILabel!
     @IBOutlet weak private var activityTime: UILabel!
@@ -42,6 +48,8 @@ class ActivityDetailsViewController: UIViewController {
     let weatherManager = ForecastService()
     let forecastData = ForecastData()
     var color: UIColor?
+    
+    weak var delegate: ActivityDetailsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +96,38 @@ class ActivityDetailsViewController: UIViewController {
         localActivity = activity
         
         viewDidLoad()
+    }
+    
+    //MARK: - IBOutlet functions
+    
+    @IBAction func onEditPressed(_ sender: UIButton) {
+        guard let localActivity = self.localActivity else {
+            return
+        }
+        self.dismiss(animated: true, completion: nil)
+        delegate?.didEditActivity(activity: localActivity)
+    }
+    
+    @IBAction func onDeletePressed(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Activity deletion", message: "Do you really want to delete selected activity? This action cannot be undone!", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { action in
+            guard let localActivity = self.localActivity else {
+                return
+            }
+            ActivityService().deleteActivities(activity: localActivity.activityId, success: { response in
+                if response {
+                    self.dismiss(animated: true, completion: nil)
+                    self.delegate?.didDeleteActivity(deletedActivity: localActivity.activityId)
+                } else {
+                    print("there was an error deleting activity!")
+                }
+            }, failure: { error in
+                print(error)
+            })
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
     
     //MARK: - Functions
@@ -145,11 +185,12 @@ class ActivityDetailsViewController: UIViewController {
               let description = weatherData.weather?.first?.weatherDescription,
               let condition = weatherData.weather?.first?.id
         else { return }
-        temperatureLabel.text = String(temperature)
-        temperatureFeelsLabel.text = String(feelsLike)
-        windLabel.text = String(windSpeed)
-        humidityLabel.text = String(humidity)
-        weatherDescriptionLabel.text = String(description.capitalized)
+        weatherTypeLabel.text = "\(description.prefix(1).capitalized)\(description.dropFirst())"
+        temperatureLabel.text = "\(Int(temperature)) °C"
+        temperatureFeelsLabel.text = "\(Int(feelsLike)) °C"
+        windLabel.text = "\(Int(windSpeed)) km/h"
+        humidityLabel.text = "\(humidity) %"
+        weatherDescriptionLabel.text = "\(description.prefix(1).capitalized)\(description.dropFirst()), with temperature: \(Int(temperature)) °C"
         weatherImageView.image = UIImage(systemName: forecastData.getConditionImage(id: condition))
     }
 }

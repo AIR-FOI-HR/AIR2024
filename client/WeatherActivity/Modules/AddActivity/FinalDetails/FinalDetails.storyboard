@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="62S-Lz-yEg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="62S-Lz-yEg">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -42,7 +43,7 @@
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fill out remaining activity details" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yam-sT-UKL">
                                                                 <rect key="frame" x="0.0" y="58.5" width="382" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                                <color key="textColor" red="0.37445438269412878" green="0.37445438269412878" blue="0.37445438269412878" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="textColor" name="SecondaryColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
@@ -52,6 +53,7 @@
                                                         <subviews>
                                                             <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2GM-iV-WUt" userLabel="titleTextField">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
+                                                                <color key="backgroundColor" name="CustomTextField"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="9IO-Ga-wK7"/>
                                                                 </constraints>
@@ -64,6 +66,7 @@
                                                             </textField>
                                                             <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Pl-z6-C9h" userLabel="descriptionTextField">
                                                                 <rect key="frame" x="0.0" y="70" width="382" height="50"/>
+                                                                <color key="backgroundColor" name="CustomTextField"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="9oH-TK-WDf"/>
                                                                 </constraints>
@@ -98,7 +101,7 @@
                                                                                 </connections>
                                                                             </button>
                                                                         </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                                        <color key="backgroundColor" name="ImageBackground"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                                 <integer key="value" value="5"/>
@@ -116,7 +119,7 @@
                                                                                 </connections>
                                                                             </button>
                                                                         </subviews>
-                                                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                                        <color key="backgroundColor" name="ImageBackground"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                                 <integer key="value" value="5"/>
@@ -140,7 +143,7 @@
                                                             </label>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ik9-Ir-flU" userLabel="collectionView">
                                                                 <rect key="frame" x="0.0" y="31" width="382" height="150"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <color key="backgroundColor" name="CustomBackground"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="150" id="BSU-QT-bwH"/>
                                                                 </constraints>
@@ -159,12 +162,11 @@
                                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t8i-7g-sQS">
-                                                                                    <rect key="frame" x="10" y="0.0" width="35" height="36.5"/>
+                                                                                    <rect key="frame" x="10" y="0.0" width="35" height="37"/>
                                                                                 </imageView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygE-Tj-Uh5">
-                                                                                    <rect key="frame" x="0.0" y="38.5" width="55" height="14.5"/>
-                                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                                    <nil key="textColor"/>
+                                                                                    <rect key="frame" x="0.0" y="39" width="55" height="14"/>
+                                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                             </subviews>
@@ -178,7 +180,7 @@
                                                                                 <constraint firstItem="ygE-Tj-Uh5" firstAttribute="top" secondItem="t8i-7g-sQS" secondAttribute="bottom" constant="2" id="vpM-uj-c3d"/>
                                                                             </constraints>
                                                                         </collectionViewCellContentView>
-                                                                        <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <color key="backgroundColor" name="ImageBackground"/>
                                                                         <size key="customSize" width="55" height="55"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -197,7 +199,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="CustomBackground"/>
                                         <constraints>
                                             <constraint firstItem="pcW-0W-dBi" firstAttribute="top" secondItem="Ut9-de-IOp" secondAttribute="top" constant="30" id="6py-jC-rkU"/>
                                             <constraint firstAttribute="bottom" secondItem="pcW-0W-dBi" secondAttribute="bottom" constant="20" id="Luw-ZE-T4n"/>
@@ -206,6 +208,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" name="CustomBackground"/>
                                 <constraints>
                                     <constraint firstItem="Ut9-de-IOp" firstAttribute="leading" secondItem="Hby-ZD-FqM" secondAttribute="leading" id="NVg-EL-PlP"/>
                                     <constraint firstItem="Ut9-de-IOp" firstAttribute="top" secondItem="Hby-ZD-FqM" secondAttribute="top" id="gdN-rR-rFB"/>
@@ -221,7 +224,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gaS-6a-gXJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="181" height="50"/>
-                                                <color key="backgroundColor" red="0.10980392160000001" green="0.20784313730000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="BackButton"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="XcP-Mz-zkj"/>
                                                 </constraints>
@@ -240,7 +243,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRa-lO-CmP">
                                                 <rect key="frame" x="201" y="0.0" width="181" height="50"/>
-                                                <color key="backgroundColor" red="0.35677075390000001" green="0.74840950969999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="LightBlue"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                                 <state key="normal" title="Add activity">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -257,6 +260,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <color key="backgroundColor" name="CustomBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="X1x-Pw-h2U" secondAttribute="bottom" constant="20" id="Ui5-s2-Axx"/>
                                     <constraint firstAttribute="trailing" secondItem="X1x-Pw-h2U" secondAttribute="trailing" constant="16" id="YZ6-0D-Rej"/>
@@ -266,10 +270,11 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2db-dZ-fB7">
                                 <rect key="frame" x="0.0" y="862" width="414" height="34"/>
+                                <color key="backgroundColor" name="CustomBackground"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v7R-oQ-ydb"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="CustomBackground"/>
                         <constraints>
                             <constraint firstItem="rVe-Jd-mgO" firstAttribute="top" secondItem="Hby-ZD-FqM" secondAttribute="bottom" id="0iH-fQ-4cn"/>
                             <constraint firstItem="2db-dZ-fB7" firstAttribute="leading" secondItem="uJ4-BX-DPD" secondAttribute="leading" id="6d9-AO-JBa"/>
@@ -287,6 +292,9 @@
                     </view>
                     <connections>
                         <outlet property="descriptionTextField" destination="5Pl-z6-C9h" id="LKK-V2-DCq"/>
+                        <outlet property="indoorButton" destination="GxF-ll-8Z9" id="1hA-ZT-f3T"/>
+                        <outlet property="outdoorButton" destination="5Er-hw-dwg" id="0TE-a5-Dh8"/>
+                        <outlet property="submitButton" destination="iRa-lO-CmP" id="qTw-da-Gl8"/>
                         <outlet property="titleTextField" destination="2GM-iV-WUt" id="hSM-iE-p6r"/>
                         <outlet property="weathersCollectionView" destination="Ik9-Ir-flU" id="m5H-pL-eVt"/>
                     </connections>
@@ -300,14 +308,26 @@
         <image name="Indoor" width="170" height="170"/>
         <image name="Outdoor" width="170" height="170"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="BackButton">
+            <color red="0.11764705882352941" green="0.21176470588235294" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CustomBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CustomTextField">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ImageBackground">
+            <color red="0.95686274509803926" green="0.95686274509803926" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightBlue">
+            <color red="0.40000000000000002" green="0.77647058823529413" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryColor">
+            <color red="0.81176470588235294" green="0.81176470588235294" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
