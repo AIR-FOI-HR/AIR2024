@@ -13,7 +13,7 @@ enum HomeNavigation: String {
     case calendar = "toCalendar"
 }
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UISearchBarDelegate {
     
     // MARK: IBOutlets
     
@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak private var weatherTypeImageView: UIImageView!
     @IBOutlet weak private var helloNameLabel: UILabel!
     @IBOutlet weak private var avatarImageView: UIImageView!
+    @IBOutlet weak private var searchBar: UISearchBar!
     
     // MARK: Properties
     
@@ -36,14 +37,18 @@ class HomeViewController: UIViewController {
     private let forecastData = ForecastData()
     private let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
     private var activitiesList: [ActivityCellItem] = []
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         headerSetUp()
         setupListView()
-        loadActivities()
         getTodaysForecast()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadActivities()
+        print("home will appear")
     }
     
     // MARK: Custom functions
@@ -108,8 +113,9 @@ class HomeViewController: UIViewController {
         navigate(to: .login)
     }
     
-    @IBAction func searchButtonClicked(_ sender: UIButton) {
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         navigate(to: .search)
+        return false
     }
     
     @IBAction func openCalendarClicked(_ sender: UIButton) {
@@ -123,7 +129,10 @@ private extension HomeViewController {
     }
     
     @IBAction func addActivityButtonPressed(_ sender: UIButton) {
-        
+        openActivityFlow(activity: nil)
+    }
+    
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItem?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
@@ -131,18 +140,38 @@ private extension HomeViewController {
         
         flowNavigator.presentFlow(from: self)
         
+        flowNavigator.isEditing = isEditing
+        flowNavigator.editingActivity = activity
+        
         flowNavigator.delegate = self
     }
 }
 
-extension HomeViewController: ActivityListViewDelegate {
+extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
     func didPressRow(activity: ActivityCellItem) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
+        details.delegate = self
     }
     
     func didPressReloadAction() {
+        loadActivities()
+    }
+    
+    func didDeleteActivity(deletedActivity: Int) {
+        guard let index = activitiesList.firstIndex(where: { $0.activityId == deletedActivity }) else {
+            return
+        }
+        activitiesList.remove(at: index)
+        self.activityListView.setState(state: .normal(items: self.activitiesList))
+    }
+    
+    func didEditActivity(activity: ActivityCellItem) {
+        openActivityFlow(isEditing: true, activity: activity)
+    }
+    
+    func didFinishFlow() {
         loadActivities()
     }
 }
@@ -164,20 +193,14 @@ extension HomeViewController {
             else { return }
             
             self.weatherTypeLabel.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst())"
-            self.temperatureLabel.text = "\(Int(temperatureForecast)) ° C"
-            self.temperatureFeelsLabel.text = "\(Int(temperatureFeelsLikeForecast)) ° C"
+            self.temperatureLabel.text = "\(Int(temperatureForecast)) °C"
+            self.temperatureFeelsLabel.text = "\(Int(temperatureFeelsLikeForecast)) °C"
             self.windLabel.text = "\(Int(windForecast)) km/h"
             self.humidityLabel.text = "\(humidityForecast) %"
             self.weatherTypeImageView.image = UIImage(systemName: self.forecastData.getConditionImage(id: condition))
-            self.todaysDescription.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst()), with temperature: \(Int(temperatureForecast)) ° C"
+            self.todaysDescription.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst()), with temperature: \(Int(temperatureForecast)) °C"
         } failure: { (error) in
             print(error)
         }
-    }
-}
-
-extension HomeViewController: AddActivityFlowNavigatorDelegate {
-    func didFinishInsert() {
-        loadActivities()
     }
 }

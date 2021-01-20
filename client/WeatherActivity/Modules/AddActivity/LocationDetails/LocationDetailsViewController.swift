@@ -36,6 +36,17 @@ class LocationDetailsViewController: AddActivityStepViewController, ViewInterfac
         setupMapGestureRecognizer()
         setupLocationManager()
         setupDropDown()
+        
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        
+        if flowNavigator.isEditing {
+            guard
+                let activityDetails = flowNavigator.editingActivity
+            else { return }
+            zoomMap(lat: activityDetails.latitude, lon: activityDetails.longitude, setMapPoint: true)
+        }
     }
     
     // MARK: IBActions
@@ -46,7 +57,6 @@ class LocationDetailsViewController: AddActivityStepViewController, ViewInterfac
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-            
         guard
             let flowNavigator = flowNavigator
         else { return }
@@ -65,7 +75,6 @@ class LocationDetailsViewController: AddActivityStepViewController, ViewInterfac
 extension LocationDetailsViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         if let location = locations.last {
             self.locationManager.stopUpdatingLocation()
             zoomMap(lat: location.coordinate.latitude, lon: location.coordinate.longitude, setMapPoint: true)
@@ -190,6 +199,7 @@ extension LocationDetailsViewController {
                 let latitude = loc.location?.coordinate.latitude,
                 let longitude = loc.location?.coordinate.longitude
             else { return }
+            self.locationTextField.text = locationName
             self.saveLocationData(locationName: locationName, latitude: latitude, longitude: longitude)
         }
     }
@@ -238,8 +248,13 @@ private extension LocationDetailsViewController {
     func setupLocationManager() {
         
         locationManager.delegate = self
-        locationManager.requestLocation()
         locationManager.requestWhenInUseAuthorization()
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        if !flowNavigator.isEditing {
+            locationManager.requestLocation()
+        }
     }
 }
 

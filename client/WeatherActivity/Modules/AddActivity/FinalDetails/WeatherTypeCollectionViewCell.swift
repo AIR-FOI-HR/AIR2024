@@ -14,12 +14,4 @@ class WeatherTypeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var weatherLabel: UILabel!
     
-    //MARK: - Selected cells text handling
-    
-    override var isSelected: Bool {
-        didSet {
-            weatherLabel.textColor = isSelected ? .white : .black
-        }
-    }
-    
 }

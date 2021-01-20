@@ -80,8 +80,6 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     //MARK: - Search bar
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        activityListView.setState(state: .loading)
-        
         let filteredActivitiesBySearch = filteredActivitiesList.filter { activity in
             return activity.title.lowercased().contains(searchText.lowercased())
         }
@@ -168,8 +166,6 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     // MARK: - Custom functions
     
     private func handleFilter() {
-        activityListView.setState(state: .loading)
-        
         var filter: [(ActivityCellItem) -> Bool] = []
         
         if searchBar.text != "" {
@@ -239,18 +235,48 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         self.dismiss(animated: true, completion: nil)
     }
     
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItem?) {
+        let navigationController = UINavigationController()
+        let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
+        
+        let flowNavigator = AddActivityFlowNavigator(navigationController: navigationController, steps: steps)
+        
+        flowNavigator.presentFlow(from: self)
+        
+        flowNavigator.isEditing = isEditing
+        flowNavigator.editingActivity = activity
+        
+        flowNavigator.delegate = self
+    }
 }
 
 //MARK: - Extensions
 
-extension SearchActivitiesViewController: ActivityListViewDelegate {
+extension SearchActivitiesViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
     func didPressRow(activity: ActivityCellItem) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
+        details.delegate = self
     }
     
     func didPressReloadAction() {
+        loadActivities()
+    }
+    
+    func didDeleteActivity(deletedActivity: Int) {
+        guard let index = activitiesList.firstIndex(where: { $0.activityId == deletedActivity }) else {
+            return
+        }
+        activitiesList.remove(at: index)
+        self.activityListView.setState(state: .normal(items: self.activitiesList))
+    }
+    
+    func didEditActivity(activity: ActivityCellItem) {
+        openActivityFlow(isEditing: true, activity: activity)
+    }
+    
+    func didFinishFlow() {
         loadActivities()
     }
 }

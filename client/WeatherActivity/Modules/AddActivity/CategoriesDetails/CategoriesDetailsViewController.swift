@@ -33,6 +33,17 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
         setAllCategories()
         setCollectionViewLayout()
         setRecentCategories()
+        
+        guard
+            let flowNavigator = flowNavigator
+        else { return }
+        
+        if flowNavigator.isEditing {
+            guard
+                let activityDetails = flowNavigator.editingActivity
+            else { return }
+            selectedCategory = activityDetails.name
+        }
     }
     
     func updateHorizontalStackView() {
