@@ -10,10 +10,10 @@ import Alamofire
 
 class ActivityService {
     
-    func getActivities(token sessionToken: String, success: @escaping ([Activities]) -> Void, failure: @escaping (Error) -> Void) {
+    func getActivities(for purpose: String, token sessionToken: String, success: @escaping ([Activities]) -> Void, failure: @escaping (Error) -> Void) {
         AF.request(Constants.baseUrl.appending("/activity") as URLConvertible,
                    method: .post,
-                   parameters: ["sessionToken": sessionToken],
+                   parameters: ["sessionToken": sessionToken, "purpose": purpose],
                    encoder: JSONParameterEncoder.default
         ).responseData { response in
             switch response.result {

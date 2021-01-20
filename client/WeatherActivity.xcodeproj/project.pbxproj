@@ -7,15 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4204AFFE25A228E800ED9F3B /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */; };
 		4215924E25939B9700DF5C33 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4215924D25939B9700DF5C33 /* CategoryCollectionViewCell.swift */; };
 		4227A754258CB7730082C0E8 /* ActivityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227A752258CB7730082C0E8 /* ActivityDetailsViewController.swift */; };
 		4227A755258CB7730082C0E8 /* ActivityDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4227A753258CB7730082C0E8 /* ActivityDetailsViewController.xib */; };
-		4204AFFE25A228E800ED9F3B /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */; };
-		4205CE1525705A3600FF056F /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4205CE1425705A3600FF056F /* UIExtensions.swift */; };
 		4238F62E257D7C7600A755BE /* ActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4238F62D257D7C7600A755BE /* ActivityService.swift */; };
 		4238F634257D7DDE00A755BE /* ActivitiesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4238F633257D7DDE00A755BE /* ActivitiesResponse.swift */; };
-		42394BCF25A33D6D0088DE9B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42394BCE25A33D6D0088DE9B /* CalendarViewController.swift */; };
-		42394BDC25A33DA40088DE9B /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42394BDB25A33DA40088DE9B /* Calendar.storyboard */; };
 		423CFA5C2572A5BA005CF798 /* RegistrationCompletion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */; };
 		423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */; };
 		424F7EA3258BA504003EC185 /* UIButton+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */; };
@@ -42,6 +39,8 @@
 		4278015C257CFBEB00E9EE9C /* UITableView+RegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4278015B257CFBEB00E9EE9C /* UITableView+RegisterCell.swift */; };
 		427A6F44258C03AA007EDB4B /* RegistrationUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427A6F43258C03AA007EDB4B /* RegistrationUserData.swift */; };
 		4294A88F258CEAA60003240C /* CagegoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4294A88E258CEAA60003240C /* CagegoryModel.swift */; };
+		4299725E25AD001F0021245B /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4299725C25AD001F0021245B /* Calendar.storyboard */; };
+		4299725F25AD001F0021245B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4299725D25AD001F0021245B /* CalendarViewController.swift */; };
 		429A736825758E9E00B99F8D /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A736725758E9E00B99F8D /* UIViewController+Alert.swift */; };
 		429A737025758EC900B99F8D /* RegistrationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 429A736F25758EC900B99F8D /* RegistrationValidator.swift */; };
 		42B0FB01257070A700781940 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42B0FB00257070A700781940 /* Constants.swift */; };
@@ -120,8 +119,6 @@
 		4227A753258CB7730082C0E8 /* ActivityDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityDetailsViewController.xib; sourceTree = "<group>"; };
 		4238F62D257D7C7600A755BE /* ActivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityService.swift; sourceTree = "<group>"; };
 		4238F633257D7DDE00A755BE /* ActivitiesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesResponse.swift; sourceTree = "<group>"; };
-		42394BCE25A33D6D0088DE9B /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		42394BDB25A33DA40088DE9B /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		423CFA5B2572A5BA005CF798 /* RegistrationCompletion.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationCompletion.storyboard; sourceTree = "<group>"; };
 		423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCompletionViewController.swift; sourceTree = "<group>"; };
 		424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Appearance.swift"; sourceTree = "<group>"; };
@@ -155,6 +152,8 @@
 		4278015B257CFBEB00E9EE9C /* UITableView+RegisterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+RegisterCell.swift"; sourceTree = "<group>"; };
 		427A6F43258C03AA007EDB4B /* RegistrationUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationUserData.swift; sourceTree = "<group>"; };
 		4294A88E258CEAA60003240C /* CagegoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CagegoryModel.swift; sourceTree = "<group>"; };
+		4299725C25AD001F0021245B /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		4299725D25AD001F0021245B /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		429A736725758E9E00B99F8D /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		429A736F25758EC900B99F8D /* RegistrationValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationValidator.swift; sourceTree = "<group>"; };
 		42B0FB00257070A700781940 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -259,15 +258,6 @@
 			path = ActivityModels;
 			sourceTree = "<group>";
 		};
-		42394BCD25A33D500088DE9B /* Calendar */ = {
-			isa = PBXGroup;
-			children = (
-				42394BCE25A33D6D0088DE9B /* CalendarViewController.swift */,
-				42394BDB25A33DA40088DE9B /* Calendar.storyboard */,
-			);
-			path = Calendar;
-			sourceTree = "<group>";
-		};
 		4252F63B25626DE600FCA0CB = {
 			isa = PBXGroup;
 			children = (
@@ -348,7 +338,7 @@
 		4252F67F25626E9F00FCA0CB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				42394BCD25A33D500088DE9B /* Calendar */,
+				4299725B25AD00050021245B /* Calendar */,
 				4227A751258CB6FA0082C0E8 /* ActivityDetails */,
 				8CB0C474258A4CBA009450B3 /* AddActivity */,
 				42EF36C0256C157C0069E590 /* Home */,
@@ -469,6 +459,15 @@
 				4278013E257CF11200E9EE9C /* ActivityCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		4299725B25AD00050021245B /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				4299725C25AD001F0021245B /* Calendar.storyboard */,
+				4299725D25AD001F0021245B /* CalendarViewController.swift */,
+			);
+			path = Calendar;
 			sourceTree = "<group>";
 		};
 		429A736425758E7500B99F8D /* ErrorHandling */ = {
@@ -850,10 +849,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4299725E25AD001F0021245B /* Calendar.storyboard in Resources */,
 				8C9CD86D2594A9FB00D49E16 /* Login.storyboard in Resources */,
 				423CFA5C2572A5BA005CF798 /* RegistrationCompletion.storyboard in Resources */,
 				42D29B9D257FAE0900F74E5D /* CategoriesDetails.storyboard in Resources */,
-				42394BDC25A33DA40088DE9B /* Calendar.storyboard in Resources */,
 				4252471F25A0E0B700E5F003 /* LaunchScreen.storyboard in Resources */,
 				4252F6AB2562871200FCA0CB /* FirstInitialScreen.storyboard in Resources */,
 				4252F6B72562A04000FCA0CB /* SecondInitialScreen.storyboard in Resources */,
@@ -1008,7 +1007,6 @@
 				8C49F0C12579748D0067EA86 /* NewActivity.swift in Sources */,
 				4215924E25939B9700DF5C33 /* CategoryCollectionViewCell.swift in Sources */,
 				4252F64825626DE600FCA0CB /* AppDelegate.swift in Sources */,
-				42394BCF25A33D6D0088DE9B /* CalendarViewController.swift in Sources */,
 				42D29BA2257FAE2D00F74E5D /* CategoriesCollectionViewCell.swift in Sources */,
 				42780156257CF94E00E9EE9C /* ActivityListView.swift in Sources */,
 				8CB0C47A258A4D46009450B3 /* FinalDetailsViewController.swift in Sources */,
@@ -1054,6 +1052,7 @@
 				4278015C257CFBEB00E9EE9C /* UITableView+RegisterCell.swift in Sources */,
 				8CA49C5F257E249C008515B0 /* TimeDetailsManager.swift in Sources */,
 				4238F634257D7DDE00A755BE /* ActivitiesResponse.swift in Sources */,
+				4299725F25AD001F0021245B /* CalendarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

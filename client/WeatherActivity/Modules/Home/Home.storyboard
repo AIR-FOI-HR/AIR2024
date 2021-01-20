@@ -21,10 +21,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLY-mf-Ab6">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1103"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1257"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pZO-DJ-CeB">
-                                                <rect key="frame" x="16" y="20" width="382" height="1063"/>
+                                                <rect key="frame" x="16" y="20" width="382" height="1217"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="IB6-9e-XnZ" userLabel="Header Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
@@ -75,17 +75,17 @@
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4IS-q9-HT3" userLabel="Activities Container View">
-                                                        <rect key="frame" x="0.0" y="196" width="382" height="350"/>
+                                                        <rect key="frame" x="0.0" y="196" width="382" height="450"/>
                                                         <color key="backgroundColor" red="0.1176470588" green="0.21176470589999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="350" id="45w-Zl-jDQ"/>
+                                                            <constraint firstAttribute="height" constant="450" id="45w-Zl-jDQ"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDd-aY-Cfj">
-                                                        <rect key="frame" x="0.0" y="566" width="382" height="34"/>
+                                                        <rect key="frame" x="0.0" y="666" width="382" height="34"/>
                                                         <color key="backgroundColor" red="0.1176470588" green="0.21176470589999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                                         <state key="normal" title="Add new activity">
@@ -100,8 +100,24 @@
                                                             <action selector="addActivityButtonPressed:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="boD-EE-N8j"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pc-lx-z96">
+                                                        <rect key="frame" x="0.0" y="720" width="382" height="34"/>
+                                                        <color key="backgroundColor" red="0.1176470588" green="0.21176470589999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                                        <state key="normal" title="Open calendar">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="openCalendarClicked:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="IOV-0Q-gXl"/>
+                                                        </connections>
+                                                    </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="aWA-4q-L3S" userLabel="Weather forecast Stack View">
-                                                        <rect key="frame" x="0.0" y="620" width="382" height="393"/>
+                                                        <rect key="frame" x="0.0" y="774" width="382" height="393"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="hN8-Yz-J67">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="43"/>
@@ -381,7 +397,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qka-ro-0dV">
-                                                        <rect key="frame" x="0.0" y="1033" width="382" height="30"/>
+                                                        <rect key="frame" x="0.0" y="1187" width="382" height="30"/>
                                                         <state key="normal" title="Log Out"/>
                                                         <connections>
                                                             <action selector="logoutPressed:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="OGs-je-KgY"/>
@@ -434,6 +450,7 @@
                         <outlet property="windLabel" destination="HBT-6d-wUz" id="ZOV-eD-d1s"/>
                         <segue destination="ZfN-al-jwA" kind="presentation" identifier="HomeToLogin" modalPresentationStyle="fullScreen" id="hHI-Xm-YvE"/>
                         <segue destination="lwX-kA-JEc" kind="presentation" identifier="toSearchActivities" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="3ab-cc-GgR"/>
+                        <segue destination="P4r-eN-XrT" kind="presentation" identifier="toCalendar" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="FVz-i5-cKf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3T-Fp-iTu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -451,7 +468,15 @@
                 <viewControllerPlaceholder storyboardName="SearchActivities" id="lwX-kA-JEc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5NB-9F-9Ps" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="511" y="55"/>
+            <point key="canvasLocation" x="551" y="-3"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="ia5-9y-pIc">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Calendar" id="P4r-eN-XrT" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jbr-18-vtI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="520" y="143"/>
         </scene>
         <!--Main-->
         <scene sceneID="aTk-0E-t4M">

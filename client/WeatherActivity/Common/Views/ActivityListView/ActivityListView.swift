@@ -22,9 +22,10 @@ class ActivityListView: UIView, UITableViewDelegate {
         case normal(items: [ActivityCellItem])
         case noActivities
         case noFilteredActivities
+        case noActivitiesOnDate
     }
     
-    @IBOutlet private var activityListView: UITableView!
+    @IBOutlet var activityListView: UITableView!
     @IBOutlet private var messageView: UIView!
     @IBOutlet private var message: UILabel!
     @IBOutlet private var button: UIButton!
@@ -70,6 +71,9 @@ class ActivityListView: UIView, UITableViewDelegate {
         case .noFilteredActivities:
             showMessage(messageText: "Looks like your search didn't find anything... hmm try something else!", buttonText: "")
             button.isHidden = true
+        case .noActivitiesOnDate:
+            showMessage(messageText: "Looks like you don't have any activities on selected date. Try adding some", buttonText: "")
+            button.isHidden = true
         }
     }
     
@@ -103,6 +107,8 @@ class ActivityListView: UIView, UITableViewDelegate {
             break
         case .noActivities:
             #warning("addActivityFunction")
+        case .noActivitiesOnDate:
+            break
         case .noFilteredActivities:
             break
         default:
