@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 enum LoginNavigation: String {
     case home = "toHome"
@@ -44,6 +45,7 @@ final class LoginViewController: UIViewController {
                 UserDefaultsManager.shared.saveUserDefault(value: apiResponse.userName, key: .userName)
                 UserDefaultsManager.shared.saveUserDefault(value: apiResponse.userAvatar, key: .userAvatar)
                 SessionManager.shared.saveToken(apiResponse.sessionToken)
+                WidgetCenter.shared.reloadAllTimelines()
                 self.navigate(to: .home)
             }
             else {

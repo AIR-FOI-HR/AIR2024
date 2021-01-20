@@ -63,10 +63,14 @@ extension SceneDelegate {
     func handleDeepLink(url: Set<UIOpenURLContext>) {
         guard
             let widgetUrl = url.first(where: { $0.url.absoluteString.contains(Constants.widgetURLScheme) })?.url.host?.removingPercentEncoding,
-            let activityId = Int(widgetUrl),
             let topViewController = UIViewController.topViewController()
         else { return }
         
-        topViewController.showActivityDetails(withId: activityId)
+        if widgetUrl == "add" {
+            #warning("startAddActivityFlow")
+        } else if !widgetUrl.isEmpty {
+            guard let activityId = Int(widgetUrl) else { return }
+            topViewController.showActivityDetails(withId: activityId)
+        }
     }
 }

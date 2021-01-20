@@ -12,6 +12,8 @@ struct ActivityWidgetEntry: TimelineEntry {
  
     enum State {
         case normal([Activity])
+        case notLogged
+        case noActivities
         case error
     }
  
@@ -22,22 +24,22 @@ struct ActivityWidgetEntry: TimelineEntry {
         let activities = [
             Activity(
                 id: 1,
-                startTime: "hehe",
-                title: "haha",
-                locationName: "hihi",
-                name: "hoho"),
+                startTime: "2021-01-01T20:00:00.000Z",
+                title: "Football with crew",
+                locationName: "TTS Varaždin",
+                name: "Sports"),
             Activity(
                 id: 2,
-                startTime: "hehe1",
-                title: "haha1",
-                locationName: "hihi1",
-                name: "hoho1"),
+                startTime: "2021-05-01T22:00:00.000Z",
+                title: "Business meeting",
+                locationName: "FOI",
+                name: "Business"),
             Activity(
                 id: 3,
-                startTime: "hehe2",
-                title: "haha2",
-                locationName: "hihi2",
-                name: "hoho2"),
+                startTime: "2021-10-01T23:00:00.000Z",
+                title: "Fun night with my lady",
+                locationName: "Home",
+                name: "Romance")
         ]
         let entry = Self(date: Date(), state: .normal(activities))
         return entry
@@ -58,14 +60,23 @@ struct ActivityWidgetProvider: TimelineProvider {
     }
  
     func getTimeline(in context: Context, completion: @escaping (Timeline<ActivityWidgetEntry>) -> ()) {
-        service.getWidgetActivities(
-            success: { (activities) in
-                completion(.singleEntryActivityWidgetTimeline(forWidgetState: .normal(activities)))
-            },
-            failure: { error in
-                completion(.singleEntryActivityWidgetTimeline(forWidgetState: .error))
-            }
-        )
+        if let sessionToken = SessionManager.shared.getToken() {
+            service.getWidgetActivities(
+                success: { (activities) in
+                    if activities.isEmpty {
+                        completion(.singleEntryActivityWidgetTimeline(forWidgetState: .noActivities))
+                    } else {
+                        completion(.singleEntryActivityWidgetTimeline(forWidgetState: .normal(activities)))
+                    }
+                },
+                failure: { error in
+                    completion(.singleEntryActivityWidgetTimeline(forWidgetState: .error))
+                }
+            )
+        } else {
+            completion(.singleEntryActivityWidgetTimeline(forWidgetState: .notLogged))
+        }
+        
     }
 }
  

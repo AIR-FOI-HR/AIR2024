@@ -45,6 +45,8 @@
 		4252F6B125628A3800FCA0CB /* ThirdInitialScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4252F6B025628A3800FCA0CB /* ThirdInitialScreen.storyboard */; };
 		4252F6B72562A04000FCA0CB /* SecondInitialScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4252F6B62562A04000FCA0CB /* SecondInitialScreen.storyboard */; };
 		4257F70F259137F7004F191A /* SearchActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4257F70E259137F7004F191A /* SearchActivitiesViewController.swift */; };
+		4274646B25B8A128007842C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4252F65025626DE900FCA0CB /* Assets.xcassets */; };
+		4274647125B8A95E007842C7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4274647025B8A95E007842C7 /* Colors.xcassets */; };
 		4278013F257CF11200E9EE9C /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4278013D257CF11200E9EE9C /* ActivityCell.swift */; };
 		42780140257CF11200E9EE9C /* ActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4278013E257CF11200E9EE9C /* ActivityCell.xib */; };
 		42780151257CF91800E9EE9C /* ActivityListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 42780150257CF91800E9EE9C /* ActivityListView.xib */; };
@@ -188,6 +190,7 @@
 		4252F6B025628A3800FCA0CB /* ThirdInitialScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThirdInitialScreen.storyboard; sourceTree = "<group>"; };
 		4252F6B62562A04000FCA0CB /* SecondInitialScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SecondInitialScreen.storyboard; sourceTree = "<group>"; };
 		4257F70E259137F7004F191A /* SearchActivitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchActivitiesViewController.swift; sourceTree = "<group>"; };
+		4274647025B8A95E007842C7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		4278013D257CF11200E9EE9C /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		4278013E257CF11200E9EE9C /* ActivityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityCell.xib; sourceTree = "<group>"; };
 		42780150257CF91800E9EE9C /* ActivityListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityListView.xib; sourceTree = "<group>"; };
@@ -311,6 +314,7 @@
 				42289B5925B36F7D00B5C39C /* WeatherActivityWidget.swift */,
 				42289B5B25B36F7D00B5C39C /* WeatherActivityWidget.intentdefinition */,
 				42289B5C25B36F7E00B5C39C /* Assets.xcassets */,
+				4274647025B8A95E007842C7 /* Colors.xcassets */,
 				42289B5E25B36F7E00B5C39C /* Info.plist */,
 				42124F5525B395F2008B7ACF /* WeatherActivityWidgetExtension.entitlements */,
 			);
@@ -946,6 +950,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4274647125B8A95E007842C7 /* Colors.xcassets in Resources */,
+				4274646B25B8A128007842C7 /* Assets.xcassets in Resources */,
 				42289B5D25B36F7E00B5C39C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
