@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rz7-H8-n4h">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,51 +21,72 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1G-tZ-bTQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="874"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="876.66666666666663"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="POb-D4-7qa">
-                                                <rect key="frame" x="16" y="10" width="382" height="854"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="POb-D4-7qa">
+                                                <rect key="frame" x="16" y="10" width="382" height="856.66666666666663"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LD9-aa-jUi">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="22"/>
+                                                        <color key="tintColor" systemColor="labelColor"/>
                                                         <state key="normal" image="arrow.left" catalog="system"/>
                                                         <connections>
                                                             <action selector="backButtonClicked:" destination="Rz7-H8-n4h" eventType="touchUpInside" id="Isu-Sn-bNb"/>
                                                         </connections>
                                                     </button>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5hk-TR-sT5" userLabel="Labels">
-                                                        <rect key="frame" x="0.0" y="32" width="382" height="52"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="5hk-TR-sT5" userLabel="Labels">
+                                                        <rect key="frame" x="0.0" y="37" width="382" height="44.666666666666657"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calendar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMg-Be-ArB">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="26.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="26.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="22"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calendar of all activities" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZk-bh-usg">
-                                                                <rect key="frame" x="0.0" y="36.5" width="382" height="15.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search your activities by date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZk-bh-usg">
+                                                                <rect key="frame" x="0.0" y="29.333333333333325" width="382" height="15.333333333333332"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                                                <color key="textColor" systemColor="systemGrayColor"/>
+                                                                <color key="textColor" name="SecondaryColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HD9-se-OvC" userLabel="Calendar items">
-                                                        <rect key="frame" x="0.0" y="94" width="382" height="760"/>
+                                                        <rect key="frame" x="0.0" y="96.666666666666629" width="382" height="760"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbC-6l-w7H" customClass="FSCalendar">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="250"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <color key="backgroundColor" name="CustomBackground"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="250" id="223-cX-kG2"/>
                                                                 </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="headerTitleColor">
+                                                                        <color key="value" name="CalendarDarkLightBlue"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="titleDefaultColor">
+                                                                        <color key="value" systemColor="labelColor"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="titleSelectionColor">
+                                                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="selectionColor">
+                                                                        <color key="value" name="LightBlue"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="weekdayTextColor">
+                                                                        <color key="value" name="CalendarDarkLightBlue"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="headerTitleTextSize">
+                                                                        <real key="value" value="18"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <outlet property="delegate" destination="Rz7-H8-n4h" id="EQ6-ur-IAJ"/>
                                                                 </connections>
                                                             </view>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="W8c-2F-B7F" userLabel="Activities Container View">
                                                                 <rect key="frame" x="0.0" y="260" width="382" height="500"/>
-                                                                <color key="backgroundColor" red="0.1176470588" green="0.21176470589999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="backgroundColor" name="CustomBackground"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="500" id="wlA-HF-XjB"/>
                                                                 </constraints>
@@ -77,7 +99,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="CustomBackground"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="POb-D4-7qa" secondAttribute="trailing" constant="16" id="ONQ-uh-YyT"/>
@@ -87,6 +109,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" name="CustomBackground"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="M1G-tZ-bTQ" secondAttribute="trailing" id="7kh-5X-wOo"/>
                                     <constraint firstAttribute="bottom" secondItem="M1G-tZ-bTQ" secondAttribute="bottom" id="Zby-fa-ugj"/>
@@ -96,7 +119,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="BDA-ns-FUt"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="CustomBackground"/>
                         <constraints>
                             <constraint firstItem="HmU-Bt-RlY" firstAttribute="trailing" secondItem="BDA-ns-FUt" secondAttribute="trailing" id="3fj-u0-9Gh"/>
                             <constraint firstItem="HmU-Bt-RlY" firstAttribute="bottom" secondItem="BDA-ns-FUt" secondAttribute="bottom" id="R8V-LT-Z0Z"/>
@@ -117,11 +140,20 @@
     </scenes>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="CalendarDarkLightBlue">
+            <color red="0.18823529411764706" green="0.2627450980392157" blue="0.32156862745098042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CustomBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightBlue">
+            <color red="0.40000000000000002" green="0.77647058823529413" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SecondaryColor">
+            <color red="0.81176470588235294" green="0.81176470588235294" blue="0.81176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

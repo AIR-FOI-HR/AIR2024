@@ -7,6 +7,8 @@
 
 import UIKit
 import MapKit
+import WidgetKit
+import SkeletonView
 
 protocol ActivityDetailsViewControllerDelegate: AnyObject {
     func didEditActivity(activity: ActivityCellItem)
@@ -16,8 +18,10 @@ protocol ActivityDetailsViewControllerDelegate: AnyObject {
 class ActivityDetailsViewController: UIViewController {
 
     //MARK: - IBOutlets
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
+    
+    @IBOutlet weak private var mainView: UIView!
+    @IBOutlet weak private var editButton: UIButton!
+    @IBOutlet weak private var deleteButton: UIButton!
     @IBOutlet weak private var activityTitle: UILabel!
     @IBOutlet weak private var activityDate: UILabel!
     @IBOutlet weak private var activityTime: UILabel!
@@ -26,8 +30,6 @@ class ActivityDetailsViewController: UIViewController {
     @IBOutlet weak private var activityImageView: UIImageView!
     @IBOutlet weak private var activityLocation: UILabel!
     @IBOutlet weak private var activityStatus: UILabel!
-    @IBOutlet weak private var titleUIView: UIView!
-    @IBOutlet weak private var bodyUIView: UIView!
     @IBOutlet weak private var locationMapView: MKMapView!
     @IBOutlet weak private var weatherForecastStackView: UIStackView!
     
@@ -53,12 +55,13 @@ class ActivityDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard let localActivity = localActivity else {
+            return
+        }
         checkDate()
         
-        titleUIView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        bodyUIView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-        
-        switch localActivity?.statusType {
+        switch localActivity.statusType {
         case "In progress":
             color = UIColor(red: 59.0/255.0, green: 245.0/255.0, blue: 170.0/255.0, alpha: 1)
         case "Delayed":
@@ -71,20 +74,32 @@ class ActivityDetailsViewController: UIViewController {
             color = UIColor(red: 59.0/255.0, green: 245.0/255.0, blue: 170.0/255.0, alpha: 1)
         }
         
-        guard let localActivity = localActivity else {
-            return
-        }
         activityTitle.text = localActivity.title
         activityStatus.text = localActivity.statusType
-        activityStatus.backgroundColor = color
+        activityStatus.textColor = color
         activityDate.text = getDate(timestamp: localActivity.startTime)
-        activityTime.text = getTime(timestamp: localActivity.startTime)
+        activityTime.text = getTime(timestamp: localActivity.startTime) + " - " + getTime(timestamp: localActivity.endTime)
         activityDescription.text = localActivity.description
         activityCategory.text = localActivity.name
         activityImageView.image = UIImage(named: localActivity.type)
         activityLocation.text = localActivity.locationName
         
         zoomMap(lat: localActivity.latitude, lon: localActivity.longitude, setMapPoint: true)
+    }
+    
+    func commonInit(activity: ActivityCellItem) {
+        localActivity = activity
+    }
+    
+    func widgetInit(activity: ActivityCellItem) {
+        localActivity = activity
+        viewDidLoad()
+        mainView.hideSkeleton(transition: .crossDissolve(1))
+    }
+    
+    func showSkeleton() {
+        let gradient = SkeletonGradient(baseColor: .silver)
+        mainView.showAnimatedGradientSkeleton(usingGradient: gradient)
     }
     
     //MARK: - IBOutlet functions
@@ -106,6 +121,7 @@ class ActivityDetailsViewController: UIViewController {
             }
             ActivityService().deleteActivities(activity: localActivity.activityId, success: { response in
                 if response {
+                    WidgetCenter.shared.reloadAllTimelines()
                     self.dismiss(animated: true, completion: nil)
                     self.delegate?.didDeleteActivity(deletedActivity: localActivity.activityId)
                 } else {
@@ -145,14 +161,10 @@ class ActivityDetailsViewController: UIViewController {
         dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
 
         let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "HH:mm:ss"
+        dateFormatterPrint.dateFormat = "HH:mm"
 
         guard let time = dateFormatterGet.date(from: timestamp) else { return "Err" }
         return dateFormatterPrint.string(from: time)
-    }
-    
-    func commonInit(activity: ActivityCellItem) {
-        localActivity = activity
     }
     
     func checkDate() {

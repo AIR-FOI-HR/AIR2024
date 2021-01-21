@@ -5,6 +5,9 @@ target 'WeatherActivity' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'Alamofire', '~> 5.2'
+  target 'WeatherActivityWidgetExtension' do
+    inherit! :search_paths
+  end
   pod 'IQKeyboardManagerSwift'
   pod 'KeychainSwift', '~> 19.0'
   pod 'CHIPageControl/Aleppo'

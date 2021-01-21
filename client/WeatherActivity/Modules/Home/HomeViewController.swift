@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 enum HomeNavigation: String {
     case login = "HomeToLogin"
@@ -110,6 +111,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     
     @IBAction func logoutPressed(_ sender: UIButton) {
         SessionManager.shared.deleteToken()
+        WidgetCenter.shared.reloadAllTimelines()
         navigate(to: .login)
     }
     
