@@ -37,7 +37,7 @@ final class RegistrationViewController: UIViewController {
             return
         }
         
-        let registrationValidator = RegistrationValidator(firstName: firstName, lastName: lastName, email: email, password: password, repeatedPassword: repeatedPassword)
+        let registrationValidator = CustomRegistrationValidator(firstName: firstName, lastName: lastName, email: email, password: password, repeatedPassword: repeatedPassword)
         
         if(checkAllValidators(registrationValidator: registrationValidator) == false) {
             return
@@ -98,7 +98,7 @@ private extension RegistrationViewController {
 
 private extension RegistrationViewController {
     
-    func checkAllValidators(registrationValidator: RegistrationValidator) -> Bool {
+    func checkAllValidators(registrationValidator: RegistrationProtocol) -> Bool {
         if (checkForEmptyFields(registrationValidator: registrationValidator) == false) {
             return false
         }
@@ -110,11 +110,13 @@ private extension RegistrationViewController {
         }
         else if (isPasswordLengthValid(registrationValidator: registrationValidator) == false) {
             return false
+        } else if (customValidation(registrationValidator: registrationValidator) == false) {
+            return false
         }
         return true
     }
     
-    func checkForEmptyFields(registrationValidator: RegistrationValidator) -> Bool {
+    func checkForEmptyFields(registrationValidator: RegistrationProtocol) -> Bool {
         if(registrationValidator.emptyFieldExist()){
             presentAlert(title: "Oops!", message: "One or more fields are empty!")
             return false
@@ -122,7 +124,7 @@ private extension RegistrationViewController {
         return true
     }
     
-    func isEmailValid(registrationValidator: RegistrationValidator) -> Bool {
+    func isEmailValid(registrationValidator: RegistrationProtocol) -> Bool {
         if(!registrationValidator.isValidEmail()){
             presentAlert(title: "Oops!", message: "You entered invalid e-mail format!")
             return false
@@ -130,7 +132,7 @@ private extension RegistrationViewController {
         return true
     }
     
-    func isRepeatedPasswordValid(registrationValidator: RegistrationValidator) -> Bool {
+    func isRepeatedPasswordValid(registrationValidator: RegistrationProtocol) -> Bool {
         if(!registrationValidator.isValidRepeatedPassword()){
             presentAlert(title: "Oops!", message: "Your passwords don't match!")
             return false
@@ -138,9 +140,23 @@ private extension RegistrationViewController {
         return true
     }
     
-    func isPasswordLengthValid(registrationValidator: RegistrationValidator) -> Bool {
+    func isPasswordLengthValid(registrationValidator: RegistrationProtocol) -> Bool {
         if(!registrationValidator.isValidPasswordLength()){
             presentAlert(title: "Oops!", message: "Password must be at least 6 characters long!")
+            return false
+        }
+        return true
+    }
+    
+    func customValidation(registrationValidator: RegistrationProtocol) -> Bool {
+        guard
+            let validation = registrationValidator.customValidation()?.0,
+            let msg = registrationValidator.customValidation()?.1
+        else {
+            return true
+        }
+        if(validation == false) {
+            presentAlert(title: "Oops!", message: msg)
             return false
         }
         return true
