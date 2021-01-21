@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 enum CustomColors {
     case OrangeColor
@@ -18,6 +19,7 @@ enum CustomColors {
     case CyanColor
     case LightBlueColor
     case DarkBlueColor
+    case DarkBlueLowAlphaColor
     
     func toUIColor() -> UIColor {
         switch self {
@@ -41,8 +43,16 @@ enum CustomColors {
             return UIColor.hexColorFullAlpha(hex: "#5BBFFF")
         case .DarkBlueColor:
             return UIColor.hexColorFullAlpha(hex: "#1C3643")
+        case .DarkBlueLowAlphaColor:
+            return UIColor.hexColor(hex: "#1C3643")
         }
     }
+}
+
+extension Color {
+    static let widgetBody = Color("WidgetBody")
+    static let widgetTitle = Color("WidgetTitle")
+    static let widgetBlue = Color("WidgetBlue")
 }
 
 extension UIColor {
@@ -56,6 +66,9 @@ extension UIColor {
     static var Entertainment = CustomColors.CyanColor.toUIColor()
     static var LightBlueColor = CustomColors.LightBlueColor.toUIColor()
     static var DarkBlueColor = CustomColors.DarkBlueColor.toUIColor()
+    static var DarkBlueLowAlphaColor = CustomColors.DarkBlueLowAlphaColor.toUIColor()
+    
+    static let CalendarBlueColor = UIColor(named: "CalendarDarkLightBlue")
     
     class func hexColor(hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

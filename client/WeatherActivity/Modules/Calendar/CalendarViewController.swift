@@ -7,6 +7,7 @@
 
 
 import UIKit
+import SwiftUI
 import FSCalendar
 
 
@@ -111,8 +112,9 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
         let currentFormattedDateString = calendarDateFormatter.string(from: date)
         guard let currentFormattedDate = calendarDateFormatter.date(from: currentFormattedDateString) else { return nil }
+        
         if formattedActivityDates.contains(currentFormattedDate) {
-            return .darkGray
+            return UIColor(named: "LightDarkBlue")
         }
         else {
             return nil

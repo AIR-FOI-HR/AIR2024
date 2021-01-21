@@ -46,6 +46,7 @@ struct ActivityRow: View {
                 }
                 Text("@ " + activity.locationName)
                     .italic()
+                    .lineLimit(1)
             }
             .font(.system(size: 16))
             HStack (spacing: 5) {
@@ -213,10 +214,4 @@ struct WeatherActivityWidget_Preview: PreviewProvider {
         WeatherActivityWidgetView(entry: .activityWidgetPlaceholder)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
-}
-
-extension Color {
-    static let widgetBody = Color("WidgetBody")
-    static let widgetTitle = Color("WidgetTitle")
-    static let widgetBlue = Color("WidgetBlue")
 }

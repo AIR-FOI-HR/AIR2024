@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4204AFFE25A228E800ED9F3B /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */; };
+		4215034D25B8EE3800C0C499 /* UIColor+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F2E8ED259C8B07000D26B1 /* UIColor+Appearance.swift */; };
 		4215924E25939B9700DF5C33 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4215924D25939B9700DF5C33 /* CategoryCollectionViewCell.swift */; };
 		4227A754258CB7730082C0E8 /* ActivityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227A752258CB7730082C0E8 /* ActivityDetailsViewController.swift */; };
 		4227A755258CB7730082C0E8 /* ActivityDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4227A753258CB7730082C0E8 /* ActivityDetailsViewController.xib */; };
@@ -1146,6 +1147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42289B7D25B3710000B5C39C /* ActivityService.swift in Sources */,
+				4215034D25B8EE3800C0C499 /* UIColor+Appearance.swift in Sources */,
 				42289B5F25B36F7E00B5C39C /* WeatherActivityWidget.intentdefinition in Sources */,
 				42289B8725B3711200B5C39C /* SecureStorage.swift in Sources */,
 				42289B8225B3710A00B5C39C /* SessionManager.swift in Sources */,

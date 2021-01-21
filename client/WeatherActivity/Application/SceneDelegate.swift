@@ -67,6 +67,7 @@ extension SceneDelegate {
         else { return }
         
         if widgetUrl == "add" {
+            topViewController.openAddActivityFlow(topViewController: topViewController, activity: nil)
             #warning("startAddActivityFlow")
         } else if !widgetUrl.isEmpty {
             guard let activityId = Int(widgetUrl) else { return }

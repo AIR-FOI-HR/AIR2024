@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 protocol AddActivityFlowNavigatorDelegate: AnyObject {
     func didFinishFlow()
@@ -57,6 +58,7 @@ class AddActivityFlowNavigator {
                 else { return }
                 ActivityService().updateActivity(activity: localActivity.activityId, activityData: jsonData) { (provjera) -> Void in
                     if provjera {
+                        WidgetCenter.shared.reloadAllTimelines()
                         self.dismissFlow()
                         self.delegate?.didFinishFlow()
                     }
@@ -67,6 +69,7 @@ class AddActivityFlowNavigator {
             } else {
                 ActivityService().insertActivities(activityData: jsonData) { (provjera) -> Void in
                     if provjera {
+                        WidgetCenter.shared.reloadAllTimelines()
                         self.dismissFlow()
                         self.delegate?.didFinishFlow()
                     }

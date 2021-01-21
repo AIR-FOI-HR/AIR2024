@@ -109,7 +109,7 @@ class ActivityListView: UIView, UITableViewDelegate {
         case .normal(items: _):
             break
         case .noActivities:
-            #warning("addActivityFunction")
+            break
         case .noActivitiesOnDate:
             break
         case .noFilteredActivities:
