@@ -53,8 +53,8 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     private var previous = 0
     private var selectedCategory: String? = ""
     private var activityListView: ActivityListView!
-    private var activitiesList: [ActivityCellItem] = []
-    private var filteredActivitiesList: [ActivityCellItem] = []
+    private var activitiesList: [ActivityCellItemP] = []
+    private var filteredActivitiesList: [ActivityCellItemP] = []
     private let activityService = ActivityService()
     private var categoryNames = [String]()
     
@@ -166,7 +166,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     // MARK: - Custom functions
     
     private func handleFilter() {
-        var filter: [(ActivityCellItem) -> Bool] = []
+        var filter: [(ActivityCellItemP) -> Bool] = []
         
         if searchBar.text != "" {
             guard let searchText = searchBar.text?.lowercased() else {
@@ -212,13 +212,22 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
             activitiesList = []
         }
         if let sessionToken = SessionManager.shared.getToken() {
-            activityService.getActivities(for: "search", token: sessionToken, success: { (activities) in
+            activityService.getActivities(for: "home", token: sessionToken, success: { (activities) in
                 if activities.isEmpty {
                     self.activityListView.setState(state: .noActivities)
                 }
                 else {
                     for activity in activities {
-                        self.activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType))
+                        var pActivity: ActivityCellItemP
+                        switch(activity.statusType) {
+                        case .inProgress:
+                            pActivity = InProgressActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
+                            break;
+                        default:
+                            pActivity = DefaultActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
+                        }
+                        print("SEARCH: ", self.activitiesList)
+                        self.activitiesList.append(pActivity)
                     }
                     self.filteredActivitiesList = self.activitiesList
                     self.activityListView.setState(state: .normal(items: self.activitiesList))
@@ -235,7 +244,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         self.dismiss(animated: true, completion: nil)
     }
     
-    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItem?) {
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemP?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
@@ -253,7 +262,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
 //MARK: - Extensions
 
 extension SearchActivitiesViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
-    func didPressRow(activity: ActivityCellItem) {
+    func didPressRow(activity: ActivityCellItemP) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
@@ -272,7 +281,7 @@ extension SearchActivitiesViewController: ActivityListViewDelegate, ActivityDeta
         self.activityListView.setState(state: .normal(items: self.activitiesList))
     }
     
-    func didEditActivity(activity: ActivityCellItem) {
+    func didEditActivity(activity: ActivityCellItemP) {
         openActivityFlow(isEditing: true, activity: activity)
     }
     

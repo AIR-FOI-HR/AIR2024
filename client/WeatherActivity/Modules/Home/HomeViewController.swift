@@ -37,7 +37,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     private let forecastService = ForecastService()
     private let forecastData = ForecastData()
     private let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
-    private var activitiesList: [ActivityCellItem] = []
+    private var activitiesList: [ActivityCellItemP] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +49,6 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         loadActivities()
-        print("home will appear")
     }
     
     // MARK: Custom functions
@@ -89,7 +88,16 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
                 }
                 else {
                     for activity in activities {
-                        self.activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType))
+                        var pActivity: ActivityCellItemP
+                        switch(activity.statusType) {
+                        case .inProgress:
+                            pActivity = InProgressActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
+                            break;
+                        default:
+                            pActivity = DefaultActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
+                        }
+                        print("P ACTIVITY HOME: ", pActivity)
+                        self.activitiesList.append(pActivity)
                     }
                     self.activityListView.setState(state: .normal(items: self.activitiesList))
                 }
@@ -134,7 +142,7 @@ private extension HomeViewController {
         openActivityFlow(activity: nil)
     }
     
-    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItem?) {
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemP?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
@@ -150,7 +158,7 @@ private extension HomeViewController {
 }
 
 extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
-    func didPressRow(activity: ActivityCellItem) {
+    func didPressRow(activity: ActivityCellItemP) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
@@ -169,7 +177,7 @@ extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewContr
         self.activityListView.setState(state: .normal(items: self.activitiesList))
     }
     
-    func didEditActivity(activity: ActivityCellItem) {
+    func didEditActivity(activity: ActivityCellItemP) {
         openActivityFlow(isEditing: true, activity: activity)
     }
     

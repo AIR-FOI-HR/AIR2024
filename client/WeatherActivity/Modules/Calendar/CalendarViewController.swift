@@ -21,7 +21,7 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
     // MARK: Properties
     
     private let activityService = ActivityService()
-    private var allActivities = [Activities]()
+    private var allActivities = [ActivityCellItemP]()
     private var activityListView: ActivityListView!
     private let responseDateFormatter = DateFormatter()
     private let calendarDateFormatter = DateFormatter()
@@ -52,12 +52,24 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
     }
     
     private func loadAllActivities() {
+        print("GETTING ALL")
         guard let userToken = SessionManager.shared.getToken() else {
             self.activityListView.setState(state: .error)
             return
         }
-        activityService.getActivities(for: "calendar", token: userToken, success: { (activities) in
-            self.allActivities = activities
+        activityService.getActivities(for: "home", token: userToken, success: { (activities) in
+            for activity in activities {
+                var pActivity: ActivityCellItemP
+                switch(activity.statusType) {
+                case .inProgress:
+                    pActivity = InProgressActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
+                    break;
+                default:
+                    pActivity = DefaultActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
+                }
+                print("P ACTIVITY HOME: ", pActivity)
+                self.allActivities.append(pActivity)
+            }
             for activity in self.allActivities {
                 guard let activityDate = self.convertResponseDateStringToCalendarDate(responseDateString: activity.startTime) else { break }
                 self.formattedActivityDates.append(activityDate)
@@ -86,9 +98,9 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
             activityListView.setState(state: .noActivitiesOnDate)
         }
         else {
-            var activitiesList: [ActivityCellItem] = []
+            var activitiesList: [ActivityCellItemP] = []
             for activity in filteredActivities {
-                activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType))
+                activitiesList.append(activity)
             }
             activityListView.setState(state: .normal(items: activitiesList))
             activityListView.activityListView.reloadData()
@@ -130,7 +142,7 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
 //MARK: - Extensions
 
 extension CalendarViewController: ActivityListViewDelegate {
-    func didPressRow(activity: ActivityCellItem) {
+    func didPressRow(activity: ActivityCellItemP) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
