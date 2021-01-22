@@ -7,6 +7,13 @@
 
 import Foundation
 
+
+enum StatusType: String, Codable {
+    case inProgress = "In progress"
+    case finished = "Finished"
+    case future = "Future"
+}
+
 struct Activities: Codable {
     let activityId: Int
     let startTime: String
@@ -23,7 +30,7 @@ struct Activities: Codable {
     let forecastType: String?
     let name: String
     let type: String
-    let statusType: String
+    let statusType: StatusType
 }
  
 public struct Activity: Codable, Identifiable {
