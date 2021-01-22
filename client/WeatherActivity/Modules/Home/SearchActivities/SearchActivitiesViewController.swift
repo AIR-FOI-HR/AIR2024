@@ -213,7 +213,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
             activitiesList = []
         }
         if let sessionToken = SessionManager.shared.getToken() {
-            activityService.getActivities(for: "home", token: sessionToken, success: { (activities) in
+            activityService.getActivities(for: "search", token: sessionToken, success: { (activities) in
                 if activities.isEmpty {
                     self.activityListView.setState(state: .noActivities)
                 }

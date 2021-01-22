@@ -57,7 +57,7 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
             self.activityListView.setState(state: .error)
             return
         }
-        activityService.getActivities(for: "home", token: userToken, success: { (activities) in
+        activityService.getActivities(for: "calendar", token: userToken, success: { (activities) in
             let activityItems = self.activityItemHelper.getActivityCellItems(activities: activities)
             self.allActivities = activityItems
             for activity in self.allActivities {

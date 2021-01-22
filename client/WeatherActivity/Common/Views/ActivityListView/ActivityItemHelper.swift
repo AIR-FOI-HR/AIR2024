@@ -10,17 +10,36 @@ import UIKit
 struct ActivityItemHelper {
     func getActivityCellItems(activities: [Activities]) -> [ActivityCellItemP] {
         var activitiesItems = [ActivityCellItemP]()
-        for activity in activities {
-            var pActivity: ActivityCellItemP
-            switch(activity.statusType) {
-            case .inProgress:
-                pActivity = InProgressActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
-                break;
-            default:
-                pActivity = DefaultActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
-            }
+        if(activities.count == 1) {
+            let activity = activities[0]
+            let pActivity: ActivityCellItemP = initCellItem(activity: activity)
             activitiesItems.append(pActivity)
+        } else {
+            for activity in activities {
+                let pActivity: ActivityCellItemP = initCellItem(activity: activity)
+                activitiesItems.append(pActivity)
+            }
         }
         return activitiesItems
     }
+    
+    func initCellItem(activity: Activities) -> ActivityCellItemP{
+        var initActivity: ActivityCellItemP
+        switch(activity.statusType) {
+        case .inProgress:
+            initActivity = FinishedActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue, color: UIColor.systemGray)
+            break;
+        case .canceled:
+            initActivity = CanceledActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue, color: UIColor.secondarySystemFill)
+            break;
+        case .future:
+            initActivity = CanceledActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue, color: UIColor.secondarySystemFill)
+            break;
+        default:
+            initActivity = DefaultActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue, color: UIColor.blue)
+            break;
+        }
+        return initActivity
+    }
+    
 }

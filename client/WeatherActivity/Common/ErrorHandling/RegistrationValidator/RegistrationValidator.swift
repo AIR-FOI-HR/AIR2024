@@ -103,5 +103,5 @@ class CustomRegistrationValidator: RegistrationProtocol {
             return nil
         }
     }
-    
 }
+

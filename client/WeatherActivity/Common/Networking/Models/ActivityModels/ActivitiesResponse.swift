@@ -12,6 +12,8 @@ enum StatusType: String, Codable {
     case inProgress = "In progress"
     case finished = "Finished"
     case future = "Future"
+    case canceled = "Canceled"
+    case completed = "Completed"
 }
 
 struct Activities: Codable {
