@@ -12,6 +12,7 @@ enum HomeNavigation: String {
     case login = "HomeToLogin"
     case search = "toSearchActivities"
     case calendar = "toCalendar"
+    case profile = "toProfile"
 }
 
 class HomeViewController: UIViewController, UISearchBarDelegate {
@@ -109,12 +110,6 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
-    @IBAction func logoutPressed(_ sender: UIButton) {
-        SessionManager.shared.deleteToken()
-        WidgetCenter.shared.reloadAllTimelines()
-        navigate(to: .login)
-    }
-    
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         navigate(to: .search)
         return false
@@ -123,6 +118,11 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     @IBAction func openCalendarClicked(_ sender: UIButton) {
         navigate(to: .calendar)
     }
+    
+    @IBAction func goToProfilePressed(_ sender: UIButton) {
+        navigate(to: .profile)
+    }
+    
 }
 
 private extension HomeViewController {

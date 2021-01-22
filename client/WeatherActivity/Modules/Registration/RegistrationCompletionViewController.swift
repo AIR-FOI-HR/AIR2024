@@ -11,7 +11,7 @@ enum RegistrationCompletionNavigation: String {
     case home = "CompletionToHome"
 }
 
-enum Avatars: String, CaseIterable {
+public enum Avatars: String, CaseIterable {
     case avatar1 = "avatar1"
     case avatar2 = "avatar2"
     case avatar3 = "avatar3"
@@ -26,7 +26,7 @@ enum Avatars: String, CaseIterable {
 
 //MARK: - AvatarCell class
 
-class AvatarCell {
+public class AvatarCell {
     var avatar: Avatars
     var image: UIImage? { UIImage(named: avatar.rawValue) }
     
@@ -55,25 +55,6 @@ final class RegistrationCompletionViewController: UIViewController, UICollection
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    
-    // MARK: IBActions
-    
-    //    @IBAction func avatarPresed(_ sender: UIButton) {
-    //        if(selectedAvatar != 0){
-    //            let currentAvatar = self.view.viewWithTag(sender.tag)
-    //            sender.selectedButtonAvatar(currentAvatar as! UIButton)
-    //
-    //            let previousAvatar = self.view.viewWithTag(selectedAvatar)
-    //            sender.deselectedButtonAvatar(previousAvatar as! UIButton)
-    //
-    //            selectedAvatar = sender.tag
-    //        } else {
-    //            let currentAvatar = self.view.viewWithTag(sender.tag)
-    //            sender.selectedButtonAvatar(currentAvatar as! UIButton)
-    //
-    //            selectedAvatar = Int(sender.tag)
-    //        }
-    //    }
     
     //MARK: - CollectionVIew handling
     
