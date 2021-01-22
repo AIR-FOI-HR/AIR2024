@@ -18,24 +18,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HmU-Bt-RlY">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1G-tZ-bTQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="876.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="839.66666666666663"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="POb-D4-7qa">
-                                                <rect key="frame" x="16" y="10" width="382" height="856.66666666666663"/>
+                                                <rect key="frame" x="16" y="10" width="382" height="819.66666666666663"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LD9-aa-jUi">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="22"/>
-                                                        <color key="tintColor" systemColor="labelColor"/>
-                                                        <state key="normal" image="arrow.left" catalog="system"/>
-                                                        <connections>
-                                                            <action selector="backButtonClicked:" destination="Rz7-H8-n4h" eventType="touchUpInside" id="Isu-Sn-bNb"/>
-                                                        </connections>
-                                                    </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="5hk-TR-sT5" userLabel="Labels">
-                                                        <rect key="frame" x="0.0" y="37" width="382" height="44.666666666666657"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="44.666666666666664"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Calendar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMg-Be-ArB">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="26.333333333333332"/>
@@ -52,7 +44,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HD9-se-OvC" userLabel="Calendar items">
-                                                        <rect key="frame" x="0.0" y="96.666666666666629" width="382" height="760"/>
+                                                        <rect key="frame" x="0.0" y="59.666666666666686" width="382" height="760"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbC-6l-w7H" customClass="FSCalendar">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="250"/>
@@ -128,6 +120,8 @@
                             <constraint firstItem="M1G-tZ-bTQ" firstAttribute="width" secondItem="J2g-65-Av7" secondAttribute="width" id="zTf-21-bgW"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="calendar" catalog="system" id="QKR-99-lwl"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activitiesStackView" destination="W8c-2F-B7F" id="DVZ-Se-5oW"/>
                         <outlet property="calendarView" destination="wbC-6l-w7H" id="wjd-EL-a2O"/>
@@ -139,7 +133,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left" catalog="system" width="128" height="98"/>
+        <image name="calendar" catalog="system" width="128" height="106"/>
         <namedColor name="CalendarDarkLightBlue">
             <color red="0.18823529411764706" green="0.2627450980392157" blue="0.32156862745098042" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

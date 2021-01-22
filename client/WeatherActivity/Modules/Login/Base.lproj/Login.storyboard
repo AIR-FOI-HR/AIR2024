@@ -196,13 +196,21 @@
                         <outlet property="emailTextField" destination="jVp-hi-iDh" id="wdW-jB-VnS"/>
                         <outlet property="passwordTextField" destination="L48-zr-7aj" id="hih-mm-CGR"/>
                         <outlet property="registerButton" destination="2dn-ls-ZZB" id="6at-7L-Wem"/>
-                        <segue destination="U3S-Q6-jJq" kind="presentation" identifier="toHome" modalPresentationStyle="fullScreen" id="LlH-TO-2hZ"/>
                         <segue destination="pv5-4w-qde" kind="presentation" identifier="toRegistration" modalPresentationStyle="fullScreen" id="n6t-VO-bxg"/>
+                        <segue destination="1Ij-pV-eOs" kind="presentation" identifier="toTabBar" id="LYm-h7-XJe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-226.08695652173915" y="76.339285714285708"/>
+        </scene>
+        <!--TabBar-->
+        <scene sceneID="3Zj-Yu-b9b">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TabBar" id="1Ij-pV-eOs" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="udi-6B-SPe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="517" y="76"/>
         </scene>
         <!--Registration-->
         <scene sceneID="km8-1y-uRG">
@@ -213,16 +221,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gkj-wq-FVS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-225" y="476"/>
-        </scene>
-        <!--Home-->
-        <scene sceneID="cms-pL-fLZ">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Home" id="U3S-Q6-jJq" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="c56-Jl-yxK"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pXF-Lx-oAT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="318" y="76"/>
         </scene>
     </scenes>
     <resources>

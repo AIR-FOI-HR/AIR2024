@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h2b-z1-m7v">
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar View Controller-->
+        <scene sceneID="VTC-tc-kT3">
+            <objects>
+                <tabBarController storyboardIdentifier="TabBarViewController" modalPresentationStyle="fullScreen" id="h2b-z1-m7v" customClass="TabBarViewController" customModule="WeatherActivity" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="p5H-eo-qJV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" name="LightBlue"/>
+                        <color key="barTintColor" name="CustomBackground"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="GmU-dE-7Ex" kind="relationship" relationship="viewControllers" id="JNz-2Z-8f0"/>
+                        <segue destination="bWC-GK-Y7R" kind="relationship" relationship="viewControllers" id="uZE-FR-QQB"/>
+                        <segue destination="qjP-iw-6pI" kind="relationship" relationship="viewControllers" id="TgO-1g-dcL"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cV3-7T-TXP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="888" y="76"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="jhl-IO-Ajz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" id="GmU-dE-7Ex" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="XXv-Ej-cNB">
+                        <color key="badgeColor" red="0.0" green="0.49034621880000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </tabBarItem>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3SG-kz-Kus" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1677" y="10"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="YeY-PR-OUK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Calendar" id="bWC-GK-Y7R" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="mue-6b-rAJ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9f8-qy-gFg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1678" y="173"/>
+        </scene>
+        <!--SearchActivities-->
+        <scene sceneID="7MJ-Ic-G10">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SearchActivities" id="qjP-iw-6pI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="8ti-3P-064"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vle-FV-Gq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1678" y="60"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="CustomBackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightBlue">
+            <color red="0.40000000000000002" green="0.77647058823529413" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
