@@ -143,7 +143,6 @@ extension ActivityListView: SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath) as! ActivityCell
-        print("test: ", dataSource)
         let item = dataSource[indexPath.section]
         cell.configure(with: item)
         return cell

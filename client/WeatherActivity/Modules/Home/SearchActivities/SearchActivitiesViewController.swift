@@ -57,6 +57,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     private var filteredActivitiesList: [ActivityCellItemP] = []
     private let activityService = ActivityService()
     private var categoryNames = [String]()
+    private var activityItemHelper = ActivityItemHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -217,18 +218,8 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
                     self.activityListView.setState(state: .noActivities)
                 }
                 else {
-                    for activity in activities {
-                        var pActivity: ActivityCellItemP
-                        switch(activity.statusType) {
-                        case .inProgress:
-                            pActivity = InProgressActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
-                            break;
-                        default:
-                            pActivity = DefaultActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
-                        }
-                        print("SEARCH: ", self.activitiesList)
-                        self.activitiesList.append(pActivity)
-                    }
+                    let activityItems = self.activityItemHelper.getActivityCellItems(activities: activities)
+                    self.activitiesList = activityItems
                     self.filteredActivitiesList = self.activitiesList
                     self.activityListView.setState(state: .normal(items: self.activitiesList))
                 }

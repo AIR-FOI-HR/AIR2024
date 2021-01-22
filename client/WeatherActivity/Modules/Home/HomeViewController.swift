@@ -38,6 +38,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     private let forecastData = ForecastData()
     private let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
     private var activitiesList: [ActivityCellItemP] = []
+    private var activityItemHelper = ActivityItemHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,18 +88,8 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
                     self.activityListView.setState(state: .noActivities)
                 }
                 else {
-                    for activity in activities {
-                        var pActivity: ActivityCellItemP
-                        switch(activity.statusType) {
-                        case .inProgress:
-                            pActivity = InProgressActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
-                            break;
-                        default:
-                            pActivity = DefaultActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
-                        }
-                        print("P ACTIVITY HOME: ", pActivity)
-                        self.activitiesList.append(pActivity)
-                    }
+                    let activityItems = self.activityItemHelper.getActivityCellItems(activities: activities)
+                    self.activitiesList = activityItems
                     self.activityListView.setState(state: .normal(items: self.activitiesList))
                 }
             }, failure: { error in

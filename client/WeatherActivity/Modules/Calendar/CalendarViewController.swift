@@ -26,6 +26,7 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
     private let responseDateFormatter = DateFormatter()
     private let calendarDateFormatter = DateFormatter()
     private var formattedActivityDates = [Date]()
+    private let activityItemHelper = ActivityItemHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,24 +53,13 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
     }
     
     private func loadAllActivities() {
-        print("GETTING ALL")
         guard let userToken = SessionManager.shared.getToken() else {
             self.activityListView.setState(state: .error)
             return
         }
         activityService.getActivities(for: "home", token: userToken, success: { (activities) in
-            for activity in activities {
-                var pActivity: ActivityCellItemP
-                switch(activity.statusType) {
-                case .inProgress:
-                    pActivity = InProgressActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
-                    break;
-                default:
-                    pActivity = DefaultActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
-                }
-                print("P ACTIVITY HOME: ", pActivity)
-                self.allActivities.append(pActivity)
-            }
+            let activityItems = self.activityItemHelper.getActivityCellItems(activities: activities)
+            self.allActivities = activityItems
             for activity in self.allActivities {
                 guard let activityDate = self.convertResponseDateStringToCalendarDate(responseDateString: activity.startTime) else { break }
                 self.formattedActivityDates.append(activityDate)
@@ -152,3 +142,23 @@ extension CalendarViewController: ActivityListViewDelegate {
         loadAllActivities()
     }
 }
+
+//extension CalendarViewController {
+//
+//    func getActivityCellItems(activities: [Activities]) -> [ActivityCellItemP] {
+//        var activitiesItems = [ActivityCellItemP]()
+//        for activity in activities {
+//            var pActivity: ActivityCellItemP
+//            switch(activity.statusType) {
+//            case .inProgress:
+//                pActivity = InProgressActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
+//                break;
+//            default:
+//                pActivity = DefaultActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
+//            }
+//            print("P ACTIVITY HOME: ", pActivity)
+//            activitiesItems.append(pActivity)
+//        }
+//        return activitiesItems
+//    }
+//}
