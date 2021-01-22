@@ -11,7 +11,7 @@ import SkeletonView
 
 protocol ActivityListViewDelegate: AnyObject {
     func didPressReloadAction()
-    func didPressRow(activity: ActivityCellItem)
+    func didPressRow(activity: ActivityCellItemP)
 }
 
 class ActivityListView: UIView, UITableViewDelegate {
@@ -19,7 +19,7 @@ class ActivityListView: UIView, UITableViewDelegate {
     enum State {
         case loading
         case error
-        case normal(items: [ActivityCellItem])
+        case normal(items: [ActivityCellItemP])
         case noActivities
         case noFilteredActivities
         case noActivitiesOnDate
@@ -37,7 +37,7 @@ class ActivityListView: UIView, UITableViewDelegate {
     
     weak var delegate: ActivityListViewDelegate?
     
-    private var dataSource = [ActivityCellItem]()
+    private var dataSource = [ActivityCellItemP]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -88,7 +88,7 @@ class ActivityListView: UIView, UITableViewDelegate {
         activityListView.showAnimatedGradientSkeleton()
     }
     
-    private func reload(with items: [ActivityCellItem]) {
+    private func reload(with items: [ActivityCellItemP]) {
         dataSource = items
         if !activityListView.isSkeletonActive {
             showLoading()
@@ -143,6 +143,7 @@ extension ActivityListView: SkeletonTableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath) as! ActivityCell
+        print("test: ", dataSource)
         let item = dataSource[indexPath.section]
         cell.configure(with: item)
         return cell
