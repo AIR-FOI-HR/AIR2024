@@ -32,7 +32,7 @@ enum CustomColors {
         case .RedColor:
             return UIColor.hexColor(hex: "#FA7673")
         case .PurpleColor:
-            return UIColor.hexColor(hex: "#EDABFF")
+            return UIColor.hexColor(hex: "#C27EDE")
         case .YellowColor:
             return UIColor.hexColor(hex: "#F5DE50")
         case .PinkColor:

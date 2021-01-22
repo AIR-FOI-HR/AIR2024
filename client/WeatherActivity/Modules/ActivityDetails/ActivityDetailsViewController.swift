@@ -133,6 +133,16 @@ class ActivityDetailsViewController: UIViewController {
         }))
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
         self.present(alert, animated: true)
+        let subview = (alert.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        subview.layer.cornerRadius = 5
+        switch traitCollection.userInterfaceStyle {
+            case .light, .unspecified:
+                subview.backgroundColor = UIColor(red: (245/255.0), green: (245/255.0), blue: (245/255.0), alpha: 1.0)
+            case .dark:
+                subview.backgroundColor = UIColor(red: (75/255.0), green: (100/255.0), blue: (120/255.0), alpha: 1.0)
+            @unknown default:
+                subview.backgroundColor = UIColor(red: (245/255.0), green: (245/255.0), blue: (245/255.0), alpha: 1.0)
+        }
     }
     
     //MARK: - Functions
