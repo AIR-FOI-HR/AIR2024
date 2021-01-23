@@ -101,7 +101,7 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
             
             let textLabel = UILabel()
             textLabel.textAlignment = .center
-            textLabel.textColor = UIColor.black
+            textLabel.textColor = UIColor.label
             textLabel.font = textLabel.font.withSize(13)
             textLabel.text  = categoryName
             

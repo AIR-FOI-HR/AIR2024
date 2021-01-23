@@ -24,6 +24,10 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
         let tabBarIndex = tabBarController.selectedIndex
         if tabBarIndex == 3 {
             self.viewControllers?[3] = initNavigationController()
+//            flowNavigator.isEditing = isEditing
+//            flowNavigator.editingActivity = activity
+//            
+//            flowNavigator.delegate = self
         }
     }
 
