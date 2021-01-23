@@ -12,6 +12,7 @@ enum HomeNavigation: String {
     case login = "HomeToLogin"
     case search = "toSearchActivities"
     case calendar = "toCalendar"
+    case profile = "toProfile"
 }
 
 class HomeViewController: UIViewController {
@@ -105,12 +106,6 @@ class HomeViewController: UIViewController {
         if sender.state == .ended {
             dismiss(animated: true, completion: nil)
         }
-    }
-    
-    @IBAction func logoutPressed(_ sender: UIButton) {
-        SessionManager.shared.deleteToken()
-        WidgetCenter.shared.reloadAllTimelines()
-        navigate(to: .login)
     }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {

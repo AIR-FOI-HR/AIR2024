@@ -348,13 +348,6 @@
                                                             </label>
                                                         </subviews>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qka-ro-0dV">
-                                                        <rect key="frame" x="0.0" y="953" width="382" height="30"/>
-                                                        <state key="normal" title="Log Out"/>
-                                                        <connections>
-                                                            <action selector="logoutPressed:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="OGs-je-KgY"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -406,6 +399,7 @@
                         <segue destination="ZfN-al-jwA" kind="presentation" identifier="HomeToLogin" modalPresentationStyle="fullScreen" id="hHI-Xm-YvE"/>
                         <segue destination="lwX-kA-JEc" kind="presentation" identifier="toSearchActivities" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="3ab-cc-GgR"/>
                         <segue destination="P4r-eN-XrT" kind="presentation" identifier="toCalendar" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="FVz-i5-cKf"/>
+                        <segue destination="jlJ-OI-o8w" kind="presentation" identifier="toProfile" modalPresentationStyle="fullScreen" id="pkq-vO-5mV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3T-Fp-iTu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -423,7 +417,7 @@
                 <viewControllerPlaceholder storyboardName="SearchActivities" id="lwX-kA-JEc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5NB-9F-9Ps" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="551" y="-3"/>
+            <point key="canvasLocation" x="551" y="-38"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="ia5-9y-pIc">
@@ -461,7 +455,15 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZSQ-lH-jn0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12" y="459"/>
+            <point key="canvasLocation" x="-207" y="473"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="RdY-62-SDH">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" id="jlJ-OI-o8w" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KHS-GI-YTv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="186" y="473"/>
         </scene>
     </scenes>
     <resources>
