@@ -709,7 +709,7 @@
                 <constraint firstItem="2El-th-MFM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ead-ig-69s"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2El-th-MFM" secondAttribute="trailing" id="htB-5W-85P"/>
             </constraints>
-            <point key="canvasLocation" x="8.6956521739130448" y="54.910714285714285"/>
+            <point key="canvasLocation" x="-304" y="23"/>
         </view>
     </objects>
     <resources>

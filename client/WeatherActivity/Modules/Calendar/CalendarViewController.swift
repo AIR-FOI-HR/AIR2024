@@ -38,7 +38,6 @@ final class CalendarViewController: UIViewController , FSCalendarDelegate, FSCal
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("calendar will appear")
         loadAllActivities()
     }
 

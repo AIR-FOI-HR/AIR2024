@@ -66,7 +66,6 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("search will appear")
         loadActivities()
     }
     

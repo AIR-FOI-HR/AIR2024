@@ -8,7 +8,7 @@
 import UIKit
 
 enum RegistrationCompletionNavigation: String {
-    case home = "CompletionToHome"
+    case tabBar = "toTabBar"
 }
 
 public enum Avatars: String, CaseIterable {
@@ -39,8 +39,8 @@ final class RegistrationCompletionViewController: UIViewController, UICollection
     
     // MARK: IBOutlets
     
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak private var usernameTextField: UITextField!
+    @IBOutlet weak private var collectionView: UICollectionView!
     
     // MARK: Properties
     
@@ -91,6 +91,7 @@ final class RegistrationCompletionViewController: UIViewController, UICollection
         } else {
             cell.isSelected = true
             cell.layer.borderWidth = 1.0
+            cell.layer.cornerRadius = 5
             cell.layer.borderColor = UIColor(red:115/255, green:204/255, blue:255/255, alpha: 1).cgColor
             selectedAvatar = indexPath.item + 1
         }
@@ -125,7 +126,7 @@ final class RegistrationCompletionViewController: UIViewController, UICollection
             UserDefaultsManager.shared.saveUserDefault(value: registrationResponse.userName, key: .userName)
             UserDefaultsManager.shared.saveUserDefault(value: registrationResponse.userAvatar, key: .userAvatar)
             SessionManager.shared.saveToken(registrationResponse.sessionToken)
-            self.navigate(to: .home)
+            self.navigate(to: .tabBar)
         }, failure: {error in
             debugPrint(error)
             self.presentAlert(title: "Oops!", message: "Error occured in registration process!")

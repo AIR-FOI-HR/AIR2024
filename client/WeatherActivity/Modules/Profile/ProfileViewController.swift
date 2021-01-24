@@ -58,10 +58,7 @@ final class ProfileViewController: UIViewController, UICollectionViewDelegate, U
     let userService = UserService()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        print("Loadam")
-        
+        super.viewDidLoad()        
         showProfileStack()
         fetchUserProfileData()
     }

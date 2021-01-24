@@ -164,6 +164,7 @@
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                             </subviews>
+                                                                            <color key="backgroundColor" name="ImageBackground"/>
                                                                             <constraints>
                                                                                 <constraint firstItem="ygE-Tj-Uh5" firstAttribute="leading" secondItem="9Pw-qH-EuL" secondAttribute="leading" id="3JY-fC-vNv"/>
                                                                                 <constraint firstItem="t8i-7g-sQS" firstAttribute="leading" secondItem="9Pw-qH-EuL" secondAttribute="leading" constant="10" id="FQK-KI-VhS"/>

@@ -33,7 +33,6 @@
 		423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */; };
 		424F7EA3258BA504003EC185 /* UIButton+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */; };
 		424F7EA8258BB3CE003EC185 /* TextFieldAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 424F7EA7258BB3CE003EC185 /* TextFieldAppearance.swift */; };
-		425246FA25A0DBE500E5F003 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425246F925A0DBE500E5F003 /* UIExtensions.swift */; };
 		4252471F25A0E0B700E5F003 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4252471E25A0E0B700E5F003 /* LaunchScreen.storyboard */; };
 		4252C841258F95C900A2A7CC /* StandardStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252C840258F95C900A2A7CC /* StandardStorage.swift */; };
 		4252C846258F99E400A2A7CC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4252C845258F99E400A2A7CC /* UserDefaultsManager.swift */; };
@@ -78,6 +77,7 @@
 		42D29BA2257FAE2D00F74E5D /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D29BA1257FAE2D00F74E5D /* CategoriesCollectionViewCell.swift */; };
 		42D320F225A0EE4F002E627E /* AvatarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D320F125A0EE4F002E627E /* AvatarCollectionViewCell.swift */; };
 		42E92A0725BA3474007881A3 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E92A0625BA3474007881A3 /* UserService.swift */; };
+		42EC82DD25BE2ABA009BDEE3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EC82DC25BE2ABA009BDEE3 /* UIExtensions.swift */; };
 		42EF36C2256C159F0069E590 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42EF36C1256C159F0069E590 /* Home.storyboard */; };
 		42EF36C7256C15EB0069E590 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EF36C6256C15EB0069E590 /* HomeViewController.swift */; };
 		42F2E8EE259C8B07000D26B1 /* UIColor+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F2E8ED259C8B07000D26B1 /* UIColor+Appearance.swift */; };
@@ -157,7 +157,6 @@
 /* Begin PBXFileReference section */
 		21E3DBCF3D927D95E4389908 /* Pods_WeatherActivity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherActivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
-		4205CE1425705A3600FF056F /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		420EB74625790E9F00ABCFAE /* FinalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalDetailsViewController.swift; sourceTree = "<group>"; };
 		420EB74B25790EC100ABCFAE /* FinalDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FinalDetails.storyboard; sourceTree = "<group>"; };
 		42124F5425B395D7008B7ACF /* WeatherActivity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherActivity.entitlements; sourceTree = "<group>"; };
@@ -181,7 +180,6 @@
 		423CFA602572A60F005CF798 /* RegistrationCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCompletionViewController.swift; sourceTree = "<group>"; };
 		424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Appearance.swift"; sourceTree = "<group>"; };
 		424F7EA7258BB3CE003EC185 /* TextFieldAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldAppearance.swift; sourceTree = "<group>"; };
-		425246F925A0DBE500E5F003 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		4252471E25A0E0B700E5F003 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4252C840258F95C900A2A7CC /* StandardStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardStorage.swift; sourceTree = "<group>"; };
 		4252C845258F99E400A2A7CC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
@@ -233,6 +231,7 @@
 		42D29BA1257FAE2D00F74E5D /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		42D320F125A0EE4F002E627E /* AvatarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarCollectionViewCell.swift; sourceTree = "<group>"; };
 		42E92A0625BA3474007881A3 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		42EC82DC25BE2ABA009BDEE3 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIExtensions.swift; path = ../../../../../../.Trash/UIExtensions.swift; sourceTree = "<group>"; };
 		42EF36C1256C159F0069E590 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		42EF36C6256C15EB0069E590 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		42F2E8ED259C8B07000D26B1 /* UIColor+Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Appearance.swift"; sourceTree = "<group>"; };
@@ -784,11 +783,10 @@
 		8C7C9A7C256EA3D000683AE5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				4205CE1425705A3600FF056F /* UIExtensions.swift */,
+				42EC82DC25BE2ABA009BDEE3 /* UIExtensions.swift */,
 				42F2E8ED259C8B07000D26B1 /* UIColor+Appearance.swift */,
 				424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */,
 				424F7EA7258BB3CE003EC185 /* TextFieldAppearance.swift */,
-				425246F925A0DBE500E5F003 /* UIExtensions.swift */,
 				4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */,
 			);
 			path = UI;
@@ -1236,6 +1234,7 @@
 				8C2D04292576D9E9002E51D0 /* SecureStorage.swift in Sources */,
 				8CDA3FB8257ACB340047C727 /* WeatherInfo.swift in Sources */,
 				8C2D042F2576DE3F002E51D0 /* SessionManager.swift in Sources */,
+				42EC82DD25BE2ABA009BDEE3 /* UIExtensions.swift in Sources */,
 				8C4C9C57257AC78100B05F3D /* ForecastService.swift in Sources */,
 				8C2D041F2576D394002E51D0 /* EmailCheckResponse.swift in Sources */,
 				8C9CD85E2594A96B00D49E16 /* WeatherTypeCollectionViewCell.swift in Sources */,
@@ -1250,7 +1249,6 @@
 				423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */,
 				4204AFFE25A228E800ED9F3B /* PaddingLabel.swift in Sources */,
 				8CE0417225764E04005EFEC4 /* RegistrationUser.swift in Sources */,
-				425246FA25A0DBE500E5F003 /* UIExtensions.swift in Sources */,
 				4278013F257CF11200E9EE9C /* ActivityCell.swift in Sources */,
 				42F2E8EE259C8B07000D26B1 /* UIColor+Appearance.swift in Sources */,
 				4252F64A25626DE600FCA0CB /* SceneDelegate.swift in Sources */,

@@ -48,7 +48,6 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         loadActivities()
-        print("home will appear")
     }
     
     // MARK: Custom functions
