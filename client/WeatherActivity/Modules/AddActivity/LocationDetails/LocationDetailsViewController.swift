@@ -81,6 +81,29 @@ extension LocationDetailsViewController: CLLocationManagerDelegate {
         }
     }
     
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+
+            switch manager.authorizationStatus {
+                case .authorizedAlways , .authorizedWhenInUse:
+                    print("AUTH AL OR IN")
+                    break
+                case .notDetermined , .denied , .restricted:
+                    print("NOT")
+                    break
+                default:
+                    break
+            }
+            
+            switch manager.accuracyAuthorization {
+                case .fullAccuracy:
+                    break
+                case .reducedAccuracy:
+                    break
+                default:
+                    break
+            }
+    }
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
         #warning("Handle error")
@@ -248,7 +271,7 @@ private extension LocationDetailsViewController {
     func setupLocationManager() {
         
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        
         guard
             let flowNavigator = flowNavigator
         else { return }
@@ -266,3 +289,4 @@ extension LocationDetailsViewController {
         #warning("Set it up with proper buttons")
     }
 }
+
