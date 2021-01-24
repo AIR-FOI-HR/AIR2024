@@ -20,6 +20,7 @@
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tp1-44-PTf">
                             <rect key="frame" x="0.0" y="0.0" width="264" height="818"/>
+                            <color key="backgroundColor" name="CustomBackground"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
                                     <real key="value" value="0.0"/>
