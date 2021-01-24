@@ -15,7 +15,7 @@ enum HomeNavigation: String {
     case profile = "toProfile"
 }
 
-class HomeViewController: UIViewController, UISearchBarDelegate {
+class HomeViewController: UIViewController {
     
     // MARK: IBOutlets
     
@@ -29,7 +29,6 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak private var weatherTypeImageView: UIImageView!
     @IBOutlet weak private var helloNameLabel: UILabel!
     @IBOutlet weak private var avatarImageView: UIImageView!
-    @IBOutlet weak private var searchBar: UISearchBar!
     
     // MARK: Properties
     
@@ -42,7 +41,6 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
         headerSetUp()
         setupListView()
         getTodaysForecast()
@@ -114,24 +112,11 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
         navigate(to: .search)
         return false
     }
-    
-    @IBAction func openCalendarClicked(_ sender: UIButton) {
-        navigate(to: .calendar)
-    }
-    
-    @IBAction func goToProfilePressed(_ sender: UIButton) {
-        navigate(to: .profile)
-    }
-    
 }
 
 private extension HomeViewController {
     func navigate(to path: HomeNavigation) {
         performSegue(withIdentifier: path.rawValue, sender: self)
-    }
-    
-    @IBAction func addActivityButtonPressed(_ sender: UIButton) {
-        openActivityFlow(activity: nil)
     }
     
     func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItem?) {

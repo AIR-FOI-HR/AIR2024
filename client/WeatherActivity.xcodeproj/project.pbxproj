@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4204AFFE25A228E800ED9F3B /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */; };
+		42133F2A25BA14AE002925CE /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42133F2925BA14AE002925CE /* TabBar.storyboard */; };
+		42133F3025BA14E9002925CE /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42133F2F25BA14E9002925CE /* TabBarViewController.swift */; };
 		4215034D25B8EE3800C0C499 /* UIColor+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F2E8ED259C8B07000D26B1 /* UIColor+Appearance.swift */; };
 		4215924E25939B9700DF5C33 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4215924D25939B9700DF5C33 /* CategoryCollectionViewCell.swift */; };
 		4227A754258CB7730082C0E8 /* ActivityDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4227A752258CB7730082C0E8 /* ActivityDetailsViewController.swift */; };
@@ -160,6 +162,8 @@
 		420EB74B25790EC100ABCFAE /* FinalDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FinalDetails.storyboard; sourceTree = "<group>"; };
 		42124F5425B395D7008B7ACF /* WeatherActivity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherActivity.entitlements; sourceTree = "<group>"; };
 		42124F5525B395F2008B7ACF /* WeatherActivityWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherActivityWidgetExtension.entitlements; sourceTree = "<group>"; };
+		42133F2925BA14AE002925CE /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		42133F2F25BA14E9002925CE /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		4215924D25939B9700DF5C33 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4227A752258CB7730082C0E8 /* ActivityDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityDetailsViewController.swift; sourceTree = "<group>"; };
 		4227A753258CB7730082C0E8 /* ActivityDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityDetailsViewController.xib; sourceTree = "<group>"; };
@@ -315,6 +319,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42133F2825BA1475002925CE /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				42133F2925BA14AE002925CE /* TabBar.storyboard */,
+				42133F2F25BA14E9002925CE /* TabBarViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		4227A751258CB6FA0082C0E8 /* ActivityDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +450,7 @@
 		4252F67F25626E9F00FCA0CB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				42133F2825BA1475002925CE /* TabBar */,
 				42CB928625B9E41000551378 /* Profile */,
 				4299725B25AD00050021245B /* Calendar */,
 				4227A751258CB6FA0082C0E8 /* ActivityDetails */,
@@ -1009,6 +1023,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42133F2A25BA14AE002925CE /* TabBar.storyboard in Resources */,
 				4299725E25AD001F0021245B /* Calendar.storyboard in Resources */,
 				8C9CD86D2594A9FB00D49E16 /* Login.storyboard in Resources */,
 				42CB929225B9E63400551378 /* Profile.storyboard in Resources */,
@@ -1202,6 +1217,7 @@
 				42D29B86257FAD0A00F74E5D /* CategoryResponse.swift in Sources */,
 				8CB0C48C258A4D5F009450B3 /* TimeDetailsViewController.swift in Sources */,
 				8C7C9A6D256E9FAE00683AE5 /* LoginService.swift in Sources */,
+				42133F3025BA14E9002925CE /* TabBarViewController.swift in Sources */,
 				42C372C425A255C600A061BD /* FirstInitialScreenViewController.swift in Sources */,
 				424F7EA3258BA504003EC185 /* UIButton+Appearance.swift in Sources */,
 				42959A8B25BAEB2A00B9B915 /* ProfileCollectionViewCell.swift in Sources */,

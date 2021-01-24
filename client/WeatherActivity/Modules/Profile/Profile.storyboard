@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ljd-l1-2PH">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z0c-ZT-d9Z">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1206"/>
@@ -499,6 +499,8 @@
                             <constraint firstItem="ljd-l1-2PH" firstAttribute="leading" secondItem="pIf-eb-gjB" secondAttribute="leading" id="xGF-PI-pM2"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="person.fill" catalog="system" id="ldk-i2-jIx"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="avatarImageView" destination="JyE-y4-YDw" id="Dy5-GZ-OQo"/>
                         <outlet property="collectionView" destination="SOK-Tv-DXm" id="KLV-uq-2He"/>
@@ -531,6 +533,7 @@
     <resources>
         <image name="arrow.clockwise" catalog="system" width="115" height="128"/>
         <image name="avatar6" width="50" height="50"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="trash.fill" catalog="system" width="121" height="128"/>
         <namedColor name="ActivityCell">
             <color red="0.92199999094009399" green="0.92199999094009399" blue="0.94099998474121094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

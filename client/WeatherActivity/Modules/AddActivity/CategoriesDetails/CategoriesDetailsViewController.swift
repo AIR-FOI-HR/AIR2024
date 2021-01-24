@@ -25,6 +25,7 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
     var searchAllCategories = [Category]()
     var selectedCategory = ""
     var isRecentCategoriesSelected: Bool = false
+    let nbItemsPerRow = 4
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +51,7 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
         horizontalStackView.axis  = NSLayoutConstraint.Axis.horizontal
         horizontalStackView.distribution  = UIStackView.Distribution.fillEqually
         horizontalStackView.alignment = UIStackView.Alignment.center
-        horizontalStackView.spacing = 5.0
+        horizontalStackView.spacing = 10.0
         horizontalStackView.translatesAutoresizingMaskIntoConstraints = false
         
         if recentCategories.isEmpty {
@@ -95,20 +96,21 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
             let verticalStackView = UIStackView()
             verticalStackView.axis = NSLayoutConstraint.Axis.vertical
             verticalStackView.accessibilityIdentifier = categoryName
-            verticalStackView.spacing = 10.0
+            verticalStackView.spacing = 0.0
             
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(stackViewPressed(_:)))
             
             let textLabel = UILabel()
             textLabel.textAlignment = .center
-            textLabel.textColor = UIColor.black
+            textLabel.textColor = UIColor.label
             textLabel.font = textLabel.font.withSize(13)
             textLabel.text  = categoryName
             
             let categoryImage = UIImage(named: categoryName.lowercased())
             let imageView = UIImageView(image: categoryImage)
             imageView.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint(item: imageView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 84.0).isActive = true
+            
+            NSLayoutConstraint(item: imageView, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 50.0).isActive = true
             
             imageView.contentMode = .scaleAspectFit
             imageView.isUserInteractionEnabled = true
@@ -183,7 +185,8 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
             self.allCategories = apiResponse.categories
             self.searchAllCategories = self.allCategories
             let nbCategories = Double(self.allCategories.count)
-            self.pageControl.numberOfPages = Int(ceil(nbCategories / 6.0))
+            let nbItemsPerScreen = Double(self.nbItemsPerRow * 2)
+            self.pageControl.numberOfPages = Int(ceil(nbCategories / nbItemsPerScreen))
             self.updateCollectionView()
         }, failure: { error in
             print(error.localizedDescription)
@@ -255,14 +258,18 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
     
     func setCollectionViewLayout() {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let width = (UIScreen.main.bounds.width - 40) / 3 - (collectionView.layoutMargins.left + collectionView.layoutMargins.right) / 2
-        let height = collectionView.bounds.size.height / 2 - (collectionView.layoutMargins.top + collectionView.layoutMargins.bottom) / 2
-        layout.scrollDirection = .horizontal
-        layout.itemSize = CGSize(width: width, height: height)
+
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.allowsMultipleSelection = false
+
+        let width = (UIScreen.main.bounds.width - 32) / CGFloat(nbItemsPerRow)
+        let height = collectionView.frame.size.height / 2 - 20
+        layout.scrollDirection = .horizontal
+//        layout.sectionInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+        layout.itemSize = CGSize(width: width, height: height)
+
         collectionView.collectionViewLayout = layout
     }
     

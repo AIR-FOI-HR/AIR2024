@@ -21,4 +21,5 @@ enum AllCategories: String, Codable, CaseIterable {
     case studying = "Studying"
     case shopping = "Shopping"
     case entertainment = "Entertainment"
+    case uncategorized = "Uncategorized"
 }

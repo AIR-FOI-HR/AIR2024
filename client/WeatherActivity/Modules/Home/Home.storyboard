@@ -18,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="we2-RB-N6M">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLY-mf-Ab6">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1211"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1023"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="pZO-DJ-CeB">
-                                                <rect key="frame" x="16" y="20" width="382" height="1171"/>
+                                                <rect key="frame" x="16" y="20" width="382" height="983"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="IB6-9e-XnZ" userLabel="Header Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
@@ -51,12 +51,8 @@
                                                             </imageView>
                                                         </subviews>
                                                     </stackView>
-                                                    <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search activities..." translatesAutoresizingMaskIntoConstraints="NO" id="Nng-ra-aXg">
-                                                        <rect key="frame" x="0.0" y="70" width="382" height="56"/>
-                                                        <textInputTraits key="textInputTraits"/>
-                                                    </searchBar>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4IS-q9-HT3" userLabel="Activities Container View">
-                                                        <rect key="frame" x="0.0" y="146" width="382" height="450"/>
+                                                        <rect key="frame" x="0.0" y="70" width="382" height="450"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="450" id="45w-Zl-jDQ"/>
                                                         </constraints>
@@ -64,56 +60,8 @@
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DDd-aY-Cfj">
-                                                        <rect key="frame" x="0.0" y="616" width="382" height="34"/>
-                                                        <color key="backgroundColor" red="0.12941176470588234" green="0.24313725490196078" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                                        <state key="normal" title="Add new activity">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="addActivityButtonPressed:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="boD-EE-N8j"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Pc-lx-z96">
-                                                        <rect key="frame" x="0.0" y="670" width="382" height="34"/>
-                                                        <color key="backgroundColor" red="0.1176470588" green="0.21176470589999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                                        <state key="normal" title="Open calendar">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="openCalendarClicked:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="IOV-0Q-gXl"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hwu-5M-ibp" userLabel="Profile button">
-                                                        <rect key="frame" x="0.0" y="724" width="382" height="34"/>
-                                                        <color key="backgroundColor" red="0.1176470588" green="0.21176470589999999" blue="0.25490196079999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                                        <state key="normal" title="Go to profile">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="goToProfilePressed:" destination="F6W-Xh-eMs" eventType="touchUpInside" id="8H8-If-fcE"/>
-                                                        </connections>
-                                                    </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="aWA-4q-L3S" userLabel="Weather forecast Stack View">
-                                                        <rect key="frame" x="0.0" y="778" width="382" height="393"/>
+                                                        <rect key="frame" x="0.0" y="540" width="382" height="393"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="hN8-Yz-J67">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="43"/>
@@ -435,12 +383,13 @@
                             <outletCollection property="gestureRecognizers" destination="pNP-S9-QkH" appends="YES" id="cj2-Jf-kUG"/>
                         </connections>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="house.fill" catalog="system" id="YXW-6m-sAH"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activitiesContainerView" destination="4IS-q9-HT3" id="NVE-ZY-2Yi"/>
                         <outlet property="avatarImageView" destination="Q4U-28-9de" id="qS0-sX-OCR"/>
                         <outlet property="helloNameLabel" destination="rGy-n5-WBc" id="wKi-LI-AO9"/>
                         <outlet property="humidityLabel" destination="lvK-hg-6JG" id="KEe-yM-Gpe"/>
-                        <outlet property="searchBar" destination="Nng-ra-aXg" id="InN-lV-Dub"/>
                         <outlet property="temperatureFeelsLabel" destination="m3G-um-0si" id="koG-27-jrZ"/>
                         <outlet property="temperatureLabel" destination="WH1-9q-5j6" id="C0n-pX-VtU"/>
                         <outlet property="todaysDescription" destination="Y8l-5E-QwK" id="zmt-k4-B5L"/>
@@ -521,6 +470,7 @@
         <image name="avatar6" width="50" height="50"/>
         <image name="cloud.sun.fill" catalog="system" width="128" height="93"/>
         <image name="drop" catalog="system" width="101" height="128"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="thermometer" catalog="system" width="93" height="128"/>
         <image name="thermometer.sun" catalog="system" width="114" height="128"/>
         <image name="wind" catalog="system" width="128" height="101"/>
