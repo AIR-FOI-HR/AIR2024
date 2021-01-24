@@ -65,6 +65,11 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         loadActivities()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("search will appear")
+        loadActivities()
+    }
+    
     //MARK: - Current time function
     
     private func getCurrentTimeStamp() -> String {

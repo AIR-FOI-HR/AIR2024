@@ -11,7 +11,7 @@ import SwiftUI
 import FSCalendar
 
 
-final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDelegateAppearance {
+final class CalendarViewController: UIViewController , FSCalendarDelegate, FSCalendarDelegateAppearance {
     
     // MARK: - IBOutlets
     
@@ -38,8 +38,8 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        print("calendar will appear")
         loadAllActivities()
-        calendarView.configureAppearance()
     }
 
     // MARK: Custom functions
@@ -58,10 +58,12 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
         }
         activityService.getActivities(for: "calendar", token: userToken, success: { (activities) in
             self.allActivities = activities
+            self.formattedActivityDates = []
             for activity in self.allActivities {
                 guard let activityDate = self.convertResponseDateStringToCalendarDate(responseDateString: activity.startTime) else { break }
                 self.formattedActivityDates.append(activityDate)
             }
+            self.updateActivityListView(withDate: self.selectedDate)
             self.calendarView.reloadData()
         }, failure: { error in
             self.activityListView.setState(state: .error)
@@ -136,16 +138,22 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
         flowNavigator.isEditing = isEditing
         flowNavigator.editingActivity = activity
         
-//        flowNavigator.delegate = self
+        flowNavigator.delegate = self
     }
     
 }
 
 //MARK: - Extensions
 
-extension CalendarViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate {
+extension CalendarViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
+    
+    func didFinishFlow() {
+        loadAllActivities()
+    }
+    
     func didEditActivity(activity: ActivityCellItem) {
         openActivityFlow(isEditing: true, activity: activity)
+        
     }
     
     func didDeleteActivity(deletedActivity: Int) {

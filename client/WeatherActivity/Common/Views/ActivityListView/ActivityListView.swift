@@ -68,6 +68,7 @@ class ActivityListView: UIView, UITableViewDelegate {
             reload(with: items)
         case .noActivities:
             showMessage(messageText: "Looks like you don't have any activities. Try adding some", buttonText: "Add activity")
+            button.isHidden = true
         case .noFilteredActivities:
             showMessage(messageText: "Looks like your search didn't find anything... hmm try something else!", buttonText: "")
             button.isHidden = true

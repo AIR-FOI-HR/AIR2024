@@ -10,20 +10,28 @@ import UIKit
 
 final class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
     
+    
+    // MARK: Properties
+    
+    private let newActivityIndex = 2
+        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         self.tabBar.tintColor = UIColor(named: "CustomMainButton")
     
         let navigationController = initNavigationController()
-        self.viewControllers?.append(navigationController)
+        self.viewControllers?.insert(navigationController, at: newActivityIndex)
     }
+    
+    // MARK: Tab Bar handling
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
 
         let tabBarIndex = tabBarController.selectedIndex
-        if tabBarIndex == 3 {
-            self.viewControllers?[3] = initNavigationController()
+        if tabBarIndex == newActivityIndex {
+            self.viewControllers?[newActivityIndex] = initNavigationController()
 //            flowNavigator.isEditing = isEditing
 //            flowNavigator.editingActivity = activity
 //            
@@ -31,6 +39,8 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
         }
     }
 
+    // MARK: Custom methods
+    
     private func initNavigationController()  -> UINavigationController{
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
