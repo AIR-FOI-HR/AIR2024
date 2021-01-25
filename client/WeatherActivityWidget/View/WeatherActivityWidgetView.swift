@@ -144,7 +144,7 @@ struct NoActivitiesView: View {
                 .font(.system(size: 14))
                 .bold()
                 .multilineTextAlignment(.center)
-            Text("Hmmm.. Looks like you don't have any upcoming activities.\nGo add some!")
+            Text("Hmmm.. Looks like you don't\nhave any upcoming activities.\nGo add some!")
                 .font(.system(size: 14))
                 .multilineTextAlignment(.center)
         })

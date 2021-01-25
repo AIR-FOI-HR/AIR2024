@@ -8,17 +8,11 @@
 import UIKit
 import WidgetKit
 
-enum HomeNavigation: String {
-    case login = "HomeToLogin"
-    case search = "toSearchActivities"
-    case calendar = "toCalendar"
-    case profile = "toProfile"
-}
-
 class HomeViewController: UIViewController {
     
     // MARK: IBOutlets
     
+    @IBOutlet weak private var mainView: UIView!
     @IBOutlet weak private var activitiesContainerView: UIStackView!
     @IBOutlet weak private var weatherTypeLabel: UILabel!
     @IBOutlet weak private var temperatureLabel: UILabel!
@@ -35,37 +29,25 @@ class HomeViewController: UIViewController {
     private var activityListView: ActivityListView!
     private let activityService = ActivityService()
     private let forecastService = ForecastService()
+    private let userService = UserService()
     private let forecastData = ForecastData()
-    private let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
     private var activitiesList: [ActivityCellItem] = []
+    
+    private let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerSetUp()
         setupListView()
+        
         getTodaysForecast()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getUserData()
         loadActivities()
     }
     
     // MARK: Custom functions
-    
-    private func getCurrentTimeStamp() -> String {
-        let currentDateTime = Date()
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        
-        let currentTimeStamp = dateFormatter.string(from: currentDateTime)
-        return currentTimeStamp
-    }
-    
-    private func headerSetUp() {
-        helloNameLabel.text = "Hello " + UserDefaultsManager.shared.getUserDefaultString(key: .userName)
-        avatarImageView.image = UIImage(named: UserDefaultsManager.shared.getUserDefaultString(key: .userAvatar))
-    }
     
     private func setupListView() {
         let listView = ActivityListView.loadFromXib()
@@ -74,13 +56,24 @@ class HomeViewController: UIViewController {
         activityListView = listView
     }
     
+    private func getUserData() {
+        mainView.showAnimatedGradientSkeleton()
+        userService.getUserHomeData(success: { data in
+            self.helloNameLabel.text = "Hello " + data.firstName
+            self.avatarImageView.image = UIImage(named: data.avatarName)
+            self.mainView.hideSkeleton()
+        }, failure: { error in
+            print(error)
+        })
+    }
+    
     func loadActivities() {
         if activitiesList.isEmpty {
             activityListView.setState(state: .loading)
         } else {
             activitiesList = []
         }
-        if let sessionToken = SessionManager.shared.getToken() {
+        if let sessionToken = SessionManager.shared.getStringFromKeychain(key: .sessionToken) {
             activityService.getActivities(for: "home", token: sessionToken, success: { (activities) in
                 if activities.isEmpty {
                     self.activityListView.setState(state: .noActivities)
@@ -99,25 +92,22 @@ class HomeViewController: UIViewController {
         }
     }
     
-    // MARK: IBActions
-    
-    @IBAction func backSwipe(_ sender: UISwipeGestureRecognizer) {
-        if sender.state == .ended {
-            dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        navigate(to: .search)
-        return false
+    func openActivityDetails(id: Int) {
+        let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
+        self.present(details, animated: true, completion: nil)
+        details.showSkeleton()
+        
+        ActivityService().getWidgetActivityDetails(activity: id, success: { activity in
+            let fetchedActivity = ActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType)
+            details.widgetInit(activity: fetchedActivity)
+        }, failure: { error in
+            print(error)
+        })
+        details.delegate = self
     }
 }
 
 private extension HomeViewController {
-    func navigate(to path: HomeNavigation) {
-        performSegue(withIdentifier: path.rawValue, sender: self)
-    }
-    
     func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItem?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
@@ -132,6 +122,8 @@ private extension HomeViewController {
         flowNavigator.delegate = self
     }
 }
+
+// MARK: Protocols
 
 extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
     func didPressRow(activity: ActivityCellItem) {
@@ -163,9 +155,7 @@ extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewContr
 }
 
 extension HomeViewController {
-    
     func getTodaysForecast() {
-        
         forecastService.getWeatherForecast(date: Date(), locationCoordinates: dummyLocation) { (weatherInfo) in
             guard
                 let weatherList = weatherInfo.weatherList,

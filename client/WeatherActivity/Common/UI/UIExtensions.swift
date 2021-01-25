@@ -34,17 +34,4 @@ extension UIViewController {
         }
         return controller
     }
-    
-    func showActivityDetails(withId id: Int) {
-        let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
-        self.present(details, animated: true, completion: nil)
-        details.showSkeleton()
-        
-        ActivityService().getWidgetActivityDetails(activity: id, success: { activity in
-            let fetchedActivity = ActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType)
-            details.widgetInit(activity: fetchedActivity)
-        }, failure: { error in
-            print(error)
-        })
-    }
 }

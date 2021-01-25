@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F6W-Xh-eMs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="F6W-Xh-eMs">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -37,6 +37,9 @@
                                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have a look at your activities!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hm6-Kb-BOY">
                                                                         <rect key="frame" x="0.0" y="31" width="308.5" height="19"/>
@@ -45,11 +48,20 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </stackView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar6" translatesAutoresizingMaskIntoConstraints="NO" id="Q4U-28-9de">
                                                                 <rect key="frame" x="308.5" y="0.0" width="73.5" height="50"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                </userDefinedRuntimeAttributes>
                                                             </imageView>
                                                         </subviews>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="4IS-q9-HT3" userLabel="Activities Container View">
                                                         <rect key="frame" x="0.0" y="70" width="382" height="330"/>
@@ -349,6 +361,9 @@
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" name="CustomBackground"/>
@@ -358,6 +373,9 @@
                                             <constraint firstItem="pZO-DJ-CeB" firstAttribute="leading" secondItem="dLY-mf-Ab6" secondAttribute="leading" constant="16" id="N6A-GX-t8b"/>
                                             <constraint firstAttribute="bottom" secondItem="pZO-DJ-CeB" secondAttribute="bottom" constant="20" id="WZp-3E-ZMG"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" name="CustomBackground"/>
@@ -379,9 +397,6 @@
                             <constraint firstItem="we2-RB-N6M" firstAttribute="leading" secondItem="Xft-eF-z2H" secondAttribute="leading" id="AfS-kS-v2O"/>
                             <constraint firstItem="Xft-eF-z2H" firstAttribute="trailing" secondItem="we2-RB-N6M" secondAttribute="trailing" id="flM-hf-yPe"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="pNP-S9-QkH" appends="YES" id="cj2-Jf-kUG"/>
-                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="house.fill" catalog="system" id="YXW-6m-sAH"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -390,6 +405,7 @@
                         <outlet property="avatarImageView" destination="Q4U-28-9de" id="qS0-sX-OCR"/>
                         <outlet property="helloNameLabel" destination="rGy-n5-WBc" id="wKi-LI-AO9"/>
                         <outlet property="humidityLabel" destination="lvK-hg-6JG" id="KEe-yM-Gpe"/>
+                        <outlet property="mainView" destination="dLY-mf-Ab6" id="tif-Uc-zQe"/>
                         <outlet property="temperatureFeelsLabel" destination="m3G-um-0si" id="koG-27-jrZ"/>
                         <outlet property="temperatureLabel" destination="WH1-9q-5j6" id="C0n-pX-VtU"/>
                         <outlet property="todaysDescription" destination="Y8l-5E-QwK" id="zmt-k4-B5L"/>
@@ -403,11 +419,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3T-Fp-iTu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="right" id="pNP-S9-QkH">
-                    <connections>
-                        <action selector="backSwipe:" destination="F6W-Xh-eMs" id="EP8-Ti-F9o"/>
-                    </connections>
-                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-13.043478260869566" y="54.910714285714285"/>
         </scene>
