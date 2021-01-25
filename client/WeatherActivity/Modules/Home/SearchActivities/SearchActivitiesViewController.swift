@@ -62,7 +62,6 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         super.viewDidLoad()
         searchBar.delegate = self
         setupListView()
-        loadActivities()
     }
     
     override func viewWillAppear(_ animated: Bool) {

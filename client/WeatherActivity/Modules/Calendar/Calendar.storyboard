@@ -21,10 +21,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M1G-tZ-bTQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="839.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="859.66666666666663"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="POb-D4-7qa">
-                                                <rect key="frame" x="16" y="10" width="382" height="819.66666666666663"/>
+                                                <rect key="frame" x="16" y="20" width="382" height="819.66666666666663"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="5hk-TR-sT5" userLabel="Labels">
                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="44.666666666666664"/>
@@ -95,8 +95,8 @@
                                         <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="POb-D4-7qa" secondAttribute="trailing" constant="16" id="ONQ-uh-YyT"/>
-                                            <constraint firstAttribute="bottom" secondItem="POb-D4-7qa" secondAttribute="bottom" constant="10" id="QtW-XN-Gpw"/>
-                                            <constraint firstItem="POb-D4-7qa" firstAttribute="top" secondItem="M1G-tZ-bTQ" secondAttribute="top" constant="10" id="gn3-zg-4q6"/>
+                                            <constraint firstAttribute="bottom" secondItem="POb-D4-7qa" secondAttribute="bottom" constant="20" id="QtW-XN-Gpw"/>
+                                            <constraint firstItem="POb-D4-7qa" firstAttribute="top" secondItem="M1G-tZ-bTQ" secondAttribute="top" constant="20" id="gn3-zg-4q6"/>
                                             <constraint firstItem="POb-D4-7qa" firstAttribute="leading" secondItem="M1G-tZ-bTQ" secondAttribute="leading" constant="16" id="sHn-Sk-2ce"/>
                                         </constraints>
                                     </view>

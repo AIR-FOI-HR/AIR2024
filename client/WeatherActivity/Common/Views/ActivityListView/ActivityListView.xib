@@ -32,23 +32,26 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="TFp-Xu-EOs">
-                                    <rect key="frame" x="0.0" y="30" width="414" height="788"/>
+                                    <rect key="frame" x="16" y="40" width="382" height="778"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="cvZ-0f-cVd">
-                                            <rect key="frame" x="107" y="0.0" width="200" height="200"/>
+                                            <rect key="frame" x="91" y="0.0" width="200" height="200"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="200" id="Hvf-4z-AXM"/>
                                                 <constraint firstAttribute="width" constant="200" id="rrF-GH-Dxt"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Errr... there seems to be something missing here... try refreshing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faW-Zj-OMt" userLabel="Message">
-                                            <rect key="frame" x="14.5" y="240" width="385.5" height="40"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Errr... there seems to be something missing here... try refreshing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faW-Zj-OMt" userLabel="Message">
+                                            <rect key="frame" x="0.0" y="240" width="382" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="j78-h5-hcy"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckt-3z-fuc" userLabel="Refresh">
-                                            <rect key="frame" x="0.0" y="320" width="414" height="40"/>
+                                            <rect key="frame" x="0.0" y="320" width="382" height="40"/>
                                             <color key="backgroundColor" name="LightBlue"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="SOU-ck-j8P"/>
@@ -67,22 +70,26 @@
                                             </connections>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJJ-GI-rdU">
-                                            <rect key="frame" x="87" y="400" width="240" height="388"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <rect key="frame" x="16" y="400" width="350" height="378"/>
+                                            <color key="backgroundColor" name="CustomBackground"/>
                                         </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="ckt-3z-fuc" firstAttribute="leading" secondItem="TFp-Xu-EOs" secondAttribute="leading" id="4Yw-md-vut"/>
+                                        <constraint firstAttribute="trailing" secondItem="faW-Zj-OMt" secondAttribute="trailing" id="ZjS-il-3S4"/>
+                                        <constraint firstAttribute="trailing" secondItem="sJJ-GI-rdU" secondAttribute="trailing" constant="16" id="bHQ-rM-pHu"/>
+                                        <constraint firstItem="faW-Zj-OMt" firstAttribute="leading" secondItem="TFp-Xu-EOs" secondAttribute="leading" id="chM-2H-haf"/>
+                                        <constraint firstItem="sJJ-GI-rdU" firstAttribute="leading" secondItem="TFp-Xu-EOs" secondAttribute="leading" constant="16" id="tUz-Ud-i7V"/>
                                         <constraint firstAttribute="trailing" secondItem="ckt-3z-fuc" secondAttribute="trailing" id="wDu-JJ-WT9"/>
                                     </constraints>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" name="CustomBackground"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="TFp-Xu-EOs" secondAttribute="bottom" id="42E-3W-yeT"/>
-                                <constraint firstItem="TFp-Xu-EOs" firstAttribute="leading" secondItem="HyP-Tk-Z2P" secondAttribute="leading" id="Nrq-Bi-TiP"/>
-                                <constraint firstAttribute="trailing" secondItem="TFp-Xu-EOs" secondAttribute="trailing" id="hXs-Yq-dxp"/>
-                                <constraint firstItem="TFp-Xu-EOs" firstAttribute="top" secondItem="HyP-Tk-Z2P" secondAttribute="top" constant="30" id="rOZ-y9-WKM"/>
+                                <constraint firstItem="TFp-Xu-EOs" firstAttribute="top" secondItem="HyP-Tk-Z2P" secondAttribute="top" constant="40" id="Fyi-gg-bcD"/>
+                                <constraint firstAttribute="bottom" secondItem="TFp-Xu-EOs" secondAttribute="bottom" id="JYj-4c-1A1"/>
+                                <constraint firstItem="TFp-Xu-EOs" firstAttribute="leading" secondItem="HyP-Tk-Z2P" secondAttribute="leading" constant="16" id="KWW-sO-c4H"/>
+                                <constraint firstAttribute="trailing" secondItem="TFp-Xu-EOs" secondAttribute="trailing" constant="16" id="nrl-WA-llc"/>
                             </constraints>
                         </view>
                     </subviews>

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4204AFFE25A228E800ED9F3B /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */; };
 		42133F2A25BA14AE002925CE /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42133F2925BA14AE002925CE /* TabBar.storyboard */; };
 		42133F3025BA14E9002925CE /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42133F2F25BA14E9002925CE /* TabBarViewController.swift */; };
 		4215034D25B8EE3800C0C499 /* UIColor+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F2E8ED259C8B07000D26B1 /* UIColor+Appearance.swift */; };
@@ -156,7 +155,6 @@
 
 /* Begin PBXFileReference section */
 		21E3DBCF3D927D95E4389908 /* Pods_WeatherActivity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherActivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		420EB74625790E9F00ABCFAE /* FinalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalDetailsViewController.swift; sourceTree = "<group>"; };
 		420EB74B25790EC100ABCFAE /* FinalDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FinalDetails.storyboard; sourceTree = "<group>"; };
 		42124F5425B395D7008B7ACF /* WeatherActivity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherActivity.entitlements; sourceTree = "<group>"; };
@@ -787,7 +785,6 @@
 				42F2E8ED259C8B07000D26B1 /* UIColor+Appearance.swift */,
 				424F7EA2258BA504003EC185 /* UIButton+Appearance.swift */,
 				424F7EA7258BB3CE003EC185 /* TextFieldAppearance.swift */,
-				4204AFFD25A228E800ED9F3B /* PaddingLabel.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1247,7 +1244,6 @@
 				429A737025758EC900B99F8D /* RegistrationValidator.swift in Sources */,
 				427A6F44258C03AA007EDB4B /* RegistrationUserData.swift in Sources */,
 				423CFA612572A60F005CF798 /* RegistrationCompletionViewController.swift in Sources */,
-				4204AFFE25A228E800ED9F3B /* PaddingLabel.swift in Sources */,
 				8CE0417225764E04005EFEC4 /* RegistrationUser.swift in Sources */,
 				4278013F257CF11200E9EE9C /* ActivityCell.swift in Sources */,
 				42F2E8EE259C8B07000D26B1 /* UIColor+Appearance.swift in Sources */,
