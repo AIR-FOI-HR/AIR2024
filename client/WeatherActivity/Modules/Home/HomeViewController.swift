@@ -142,7 +142,11 @@ extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewContr
             return
         }
         activitiesList.remove(at: index)
-        self.activityListView.setState(state: .normal(items: self.activitiesList))
+        if activitiesList.isEmpty {
+            self.activityListView.setState(state: .noActivities)
+        } else {
+            self.activityListView.setState(state: .normal(items: self.activitiesList))
+        }
     }
     
     func didEditActivity(activity: ActivityCellItem) {
