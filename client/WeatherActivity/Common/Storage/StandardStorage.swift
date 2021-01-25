@@ -8,9 +8,6 @@
 import UIKit
 
 enum StandardStorageKeys: String {
-    case lastEnteredEmail = "LastEnteredEmail"
-    case userName = "UserName"
-    case userAvatar = "UserAvatar"
     case firstTime = "FirstTime"
 }
 
@@ -23,13 +20,6 @@ class StandardStorage {
     
     func getUserDefaultBool(key: StandardStorageKeys) -> Bool {
         return userDefaults.bool(forKey: key.rawValue)
-    }
-    
-    func getUserDefaultString(key: StandardStorageKeys) -> String {
-        guard let value = userDefaults.string(forKey: key.rawValue) else {
-            return ""
-        }
-        return value
     }
     
     func deleteUserDefault(key: StandardStorageKeys) {

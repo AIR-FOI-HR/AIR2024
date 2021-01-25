@@ -214,7 +214,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         } else {
             activitiesList = []
         }
-        if let sessionToken = SessionManager.shared.getToken() {
+        if let sessionToken = SessionManager.shared.getStringFromKeychain(key: .sessionToken) {
             activityService.getActivities(for: "search", token: sessionToken, success: { (activities) in
                 if activities.isEmpty {
                     self.activityListView.setState(state: .noActivities)
@@ -232,10 +232,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         } else {
             self.activityListView.setState(state: .error)
         }
-    }
-    
-    @IBAction func backButtonClicked(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        searchBar.selectedScopeButtonIndex = 0
     }
     
     func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItem?) {

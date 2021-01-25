@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if !UserDefaultsManager.shared.getUserDefaultBool(key: .firstTime) {
             self.setupInitialStoryboard(storyboard: .firstInitialScreen, viewContoller: .firstInitialScreen)
         } else {
-            if let sessionToken = SessionManager.shared.getToken() {
+            if let sessionToken = SessionManager.shared.getStringFromKeychain(key: .sessionToken) {
                 loginService.checkForToken(token: sessionToken, success: { checkResponse in
                     if(checkResponse.sessionToken == true) {
                         self.setupInitialStoryboard(storyboard: .tabBar, viewContoller: .tabBar)
@@ -68,8 +68,8 @@ extension SceneDelegate {
         else { return }
         
         if widgetUrl == "add" {
-            topViewController.openAddActivityFlow(topViewController: topViewController, activity: nil)
-            #warning("startAddActivityFlow")
+            let viewController = window?.rootViewController as? TabBarViewController
+            viewController?.selectedIndex = 2
         } else if !widgetUrl.isEmpty {
             guard let activityId = Int(widgetUrl) else { return }
             topViewController.showActivityDetails(withId: activityId)

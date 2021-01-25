@@ -65,7 +65,6 @@ final class RegistrationViewController: UIViewController {
         textFieldAppearance.updateTextAppearanceOnFieldDidEndEditing(sender)
     }
     
-    
     @IBAction func backToLogin(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }

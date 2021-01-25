@@ -63,7 +63,7 @@ class TimeDetailsManager {
     func getDateFromString(timestamp: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-
+        
         guard let date = dateFormatter.date(from: timestamp) else { return Date() }
         return date
     }

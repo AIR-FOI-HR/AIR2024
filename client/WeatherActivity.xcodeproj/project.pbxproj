@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4200021925BF1FD000990642 /* UserHomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4200021825BF1FD000990642 /* UserHomeData.swift */; };
 		42133F2A25BA14AE002925CE /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42133F2925BA14AE002925CE /* TabBar.storyboard */; };
 		42133F3025BA14E9002925CE /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42133F2F25BA14E9002925CE /* TabBarViewController.swift */; };
 		4215034D25B8EE3800C0C499 /* UIColor+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F2E8ED259C8B07000D26B1 /* UIColor+Appearance.swift */; };
@@ -155,6 +156,7 @@
 
 /* Begin PBXFileReference section */
 		21E3DBCF3D927D95E4389908 /* Pods_WeatherActivity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherActivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4200021825BF1FD000990642 /* UserHomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeData.swift; sourceTree = "<group>"; };
 		420EB74625790E9F00ABCFAE /* FinalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalDetailsViewController.swift; sourceTree = "<group>"; };
 		420EB74B25790EC100ABCFAE /* FinalDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FinalDetails.storyboard; sourceTree = "<group>"; };
 		42124F5425B395D7008B7ACF /* WeatherActivity.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WeatherActivity.entitlements; sourceTree = "<group>"; };
@@ -641,6 +643,7 @@
 			children = (
 				8C7C9A7D256EA3EF00683AE5 /* User.swift */,
 				42959A9025BB0C4900B9B915 /* UserUpdate.swift */,
+				4200021825BF1FD000990642 /* UserHomeData.swift */,
 			);
 			path = UserModels;
 			sourceTree = "<group>";
@@ -1211,6 +1214,7 @@
 				4252F64C25626DE600FCA0CB /* LoginViewController.swift in Sources */,
 				42D29B86257FAD0A00F74E5D /* CategoryResponse.swift in Sources */,
 				8CB0C48C258A4D5F009450B3 /* TimeDetailsViewController.swift in Sources */,
+				4200021925BF1FD000990642 /* UserHomeData.swift in Sources */,
 				8C7C9A6D256E9FAE00683AE5 /* LoginService.swift in Sources */,
 				42133F3025BA14E9002925CE /* TabBarViewController.swift in Sources */,
 				42C372C425A255C600A061BD /* FirstInitialScreenViewController.swift in Sources */,

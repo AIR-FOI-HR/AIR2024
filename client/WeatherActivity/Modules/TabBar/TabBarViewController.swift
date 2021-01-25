@@ -29,10 +29,6 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
         let tabBarIndex = tabBarController.selectedIndex
         if tabBarIndex == newActivityIndex {
             self.viewControllers?[newActivityIndex] = initNavigationController()
-            //            flowNavigator.isEditing = isEditing
-            //            flowNavigator.editingActivity = activity
-            //
-            //            flowNavigator.delegate = self
         }
     }
     
@@ -41,7 +37,7 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
             return false
         }
         if transitionFrom != transitionTo {
-            UIView.transition(from: transitionFrom, to: transitionTo, duration: 0.5, options: [.curveEaseIn], completion: nil)
+            UIView.transition(from: transitionFrom, to: transitionTo, duration: 0.25, options: [.transitionCrossDissolve], completion: nil)
         }
         return true
     }

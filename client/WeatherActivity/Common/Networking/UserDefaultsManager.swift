@@ -27,10 +27,6 @@ class UserDefaultsManager {
         return standardStorage.getUserDefaultBool(key: key)
     }
     
-    func getUserDefaultString(key: StandardStorageKeys) -> String {
-        return standardStorage.getUserDefaultString(key: key)
-    }
-    
     func deleteUserDefault(key: StandardStorageKeys) {
         standardStorage.deleteUserDefault(key: key)
     }

@@ -47,16 +47,4 @@ extension UIViewController {
             print(error)
         })
     }
-    
-    func openAddActivityFlow(topViewController: UIViewController, isEditing: Bool = false, activity: ActivityCellItem?) {
-        let navigationController = UINavigationController()
-        let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
-        
-        let flowNavigator = AddActivityFlowNavigator(navigationController: navigationController, steps: steps)
-        
-        flowNavigator.presentFlow(from: self)
-        
-        flowNavigator.isEditing = isEditing
-        flowNavigator.editingActivity = activity
-    }
 }

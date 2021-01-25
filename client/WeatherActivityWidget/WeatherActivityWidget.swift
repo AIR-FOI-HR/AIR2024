@@ -60,7 +60,7 @@ struct ActivityWidgetProvider: TimelineProvider {
     }
  
     func getTimeline(in context: Context, completion: @escaping (Timeline<ActivityWidgetEntry>) -> ()) {
-        if let sessionToken = SessionManager.shared.getToken() {
+        if SessionManager.shared.getStringFromKeychain(key: .sessionToken) != nil {
             service.getWidgetActivities(
                 success: { (activities) in
                     if activities.isEmpty {

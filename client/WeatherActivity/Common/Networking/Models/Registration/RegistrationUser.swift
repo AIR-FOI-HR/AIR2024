@@ -5,10 +5,7 @@
 //  Created by Kevin Bogdan on 01.12.2020..
 //
 
-import Foundation
-
 struct RegistrationUser: Codable {
-    
     let firstName: String
     let lastName: String
     let email: String

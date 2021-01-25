@@ -19,15 +19,15 @@ class SessionManager {
 
     // MARK: Public methods
 
-    func saveToken(_ value: String) {
-        secureStorage.saveToken(sessionToken: value, keyType: .sessionToken)
+    func saveStringToKeychain(value: String, key: SecureStorageKey) {
+        secureStorage.saveStringToKeychain(value: value, key: key)
     }
 
-    func getToken() -> String? {
-        return secureStorage.getToken(keyType: .sessionToken)
+    func getStringFromKeychain(key: SecureStorageKey) -> String? {
+        return secureStorage.getStringFromKeychain(key: key)
     }
     
-    func deleteToken() {
-        secureStorage.deleteToken(keyType: .sessionToken)
+    func deleteFromKeychain(key: SecureStorageKey) {
+        secureStorage.deleteFromKeychain(key: key)
     }
 }

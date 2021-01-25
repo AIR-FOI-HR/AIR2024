@@ -51,7 +51,7 @@ final class CalendarViewController: UIViewController , FSCalendarDelegate, FSCal
     }
     
     private func loadAllActivities() {
-        guard let userToken = SessionManager.shared.getToken() else {
+        guard let userToken = SessionManager.shared.getStringFromKeychain(key: .sessionToken) else {
             self.activityListView.setState(state: .error)
             return
         }

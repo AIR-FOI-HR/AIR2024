@@ -115,19 +115,18 @@ final class ProfileViewController: UIViewController, UICollectionViewDelegate, U
     @IBAction func setUpInitialScreensPressed(_ sender: UIButton) {
         self.presentAlertMessage(title: ProfileAlertMessages.firstTimeTitle.rawValue, message: ProfileAlertMessages.firstTimeMessage.rawValue, length: 1.2)
         UserDefaultsManager.shared.deleteUserDefault(key: .firstTime)
-        SessionManager.shared.deleteToken()
     }
     
     @IBAction func deleteLastEnteredMailPressed(_ sender: UIButton) {
         self.presentAlertMessage(title: ProfileAlertMessages.deletedMailTitle.rawValue, message: ProfileAlertMessages.deletedMailMessage.rawValue, length: 1.2)
-        UserDefaultsManager.shared.deleteUserDefault(key: .lastEnteredEmail)
+        SessionManager.shared.deleteFromKeychain(key: .lastEnteredMail)
     }
     
     @IBAction func saveChangesPressed(_ sender: UIButton) {
         if selectedAvatar == nil {
             selectedAvatar = userDefaultAvatar
         }
-        guard let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let username = usernameTextField.text, let avatarId = selectedAvatar, let sessionToken = SessionManager.shared.getToken() else { return }
+        guard let firstName = firstNameTextField.text, let lastName = lastNameTextField.text, let username = usernameTextField.text, let avatarId = selectedAvatar, let sessionToken = SessionManager.shared.getStringFromKeychain(key: .sessionToken) else { return }
         let userUpdateData = UserUpdate(firstName: firstName, lastName: lastName, username: username, avatarId: avatarId, sessionToken: sessionToken)
         
         userService.updateUserProfileData(userData: userUpdateData, success: { response in
@@ -148,7 +147,7 @@ final class ProfileViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     @IBAction func logoutPressed(_ sender: UIButton) {
-        SessionManager.shared.deleteToken()
+        SessionManager.shared.deleteFromKeychain(key: .sessionToken)
         WidgetCenter.shared.reloadAllTimelines()
         navigate(to: .login)
     }

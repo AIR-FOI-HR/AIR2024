@@ -174,7 +174,7 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
     }
     
     func setRecentCategories() {
-        if let sessionToken = SessionManager.shared.getToken() {
+        if let sessionToken = SessionManager.shared.getStringFromKeychain(key: .sessionToken) {
             categoryService.getRecentCategories(token: sessionToken, success: { apiResponse in
                 if(!apiResponse.categories.isEmpty) {
                     self.recentCategories = apiResponse.categories
