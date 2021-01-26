@@ -59,7 +59,6 @@ class ActivityService {
             switch response.result {
             case .success(let data):
                 do {
-                    print("hehe")
                     let jsonData = try JSONDecoder().decode([Activity].self, from: data)
                     success(jsonData)
                 } catch (let error) {

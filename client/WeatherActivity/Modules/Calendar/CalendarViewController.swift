@@ -11,7 +11,7 @@ import SwiftUI
 import FSCalendar
 
 
-final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDelegateAppearance {
+final class CalendarViewController: UIViewController , FSCalendarDelegate, FSCalendarDelegateAppearance {
     
     // MARK: - IBOutlets
     
@@ -27,22 +27,22 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
     private let calendarDateFormatter = DateFormatter()
     private var formattedActivityDates = [Date]()
     private let activityItemHelper = ActivityItemHelper()
+    private var activitiesList: [ActivityCellItemP] = []
+    private var selectedDate: Date = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         calendarView.delegate = self
         calendarDateFormatter.dateFormat = "yyyy-MM-dd"
         responseDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        loadAllActivities()
         setupListView()
     }
     
-    // MARK: - IBActions
-
-    @IBAction func backButtonClicked(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+    override func viewWillAppear(_ animated: Bool) {
+        print("calendar will appear")
+        loadAllActivities()
     }
-    
+
     // MARK: Custom functions
     
     func convertResponseDateStringToCalendarDate(responseDateString: String) -> Date? {
@@ -60,10 +60,12 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
         activityService.getActivities(for: "calendar", token: userToken, success: { (activities) in
             let activityItems = self.activityItemHelper.getActivityCellItems(activities: activities)
             self.allActivities = activityItems
+            self.formattedActivityDates = []
             for activity in self.allActivities {
                 guard let activityDate = self.convertResponseDateStringToCalendarDate(responseDateString: activity.startTime) else { break }
                 self.formattedActivityDates.append(activityDate)
             }
+            self.updateActivityListView(withDate: self.selectedDate)
             self.calendarView.reloadData()
         }, failure: { error in
             self.activityListView.setState(state: .error)
@@ -93,7 +95,6 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
                 activitiesList.append(activity)
             }
             activityListView.setState(state: .normal(items: activitiesList))
-            activityListView.activityListView.reloadData()
         }
     }
     
@@ -124,18 +125,54 @@ final class CalendarViewController: UIViewController, FSCalendarDelegate, FSCale
     }
 
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        selectedDate = date
         updateActivityListView(withDate: date)
+    }
+    
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemP?) {
+        let navigationController = UINavigationController()
+        let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
+        
+        let flowNavigator = AddActivityFlowNavigator(navigationController: navigationController, steps: steps)
+        
+        flowNavigator.presentFlow(from: self)
+        
+        flowNavigator.isEditing = isEditing
+        flowNavigator.editingActivity = activity
+        
+        flowNavigator.delegate = self
     }
     
 }
 
 //MARK: - Extensions
 
-extension CalendarViewController: ActivityListViewDelegate {
+extension CalendarViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
+    
+    func didFinishFlow() {
+        loadAllActivities()
+    }
+    
+    func didEditActivity(activity: ActivityCellItemP) {
+        openActivityFlow(isEditing: true, activity: activity)
+        
+    }
+    
+    func didDeleteActivity(deletedActivity: Int) {
+        guard
+            let indexAllActivities = allActivities.firstIndex(where: { $0.activityId == deletedActivity })
+        else { return }
+        allActivities.remove(at: indexAllActivities)
+        updateActivityListView(withDate: selectedDate)
+        calendarView.reloadData()
+
+    }
+    
     func didPressRow(activity: ActivityCellItemP) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
+        details.delegate = self
     }
     
     func didPressReloadAction() {

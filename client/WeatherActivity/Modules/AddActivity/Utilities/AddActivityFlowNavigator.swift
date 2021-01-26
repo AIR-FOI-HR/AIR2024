@@ -96,8 +96,8 @@ class AddActivityFlowNavigator {
     }
     
     func dismissFlow() {
-        
         navigationController?.dismiss(animated: true, completion: nil)
+        self.navigationController?.tabBarController?.selectedIndex = 0
     }
     
     func isLastStep(step: StepInfo) -> Bool {

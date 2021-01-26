@@ -12,12 +12,14 @@ enum initialStoryboard: String {
     case home = "Home"
     case login = "Login"
     case firstInitialScreen = "FirstInitialScreen"
+    case tabBar = "TabBar"
 }
 
 enum initialViewController: String {
     case home = "HomeViewController"
     case login = "LoginViewController"
     case firstInitialScreen = "FirstInitialScreenViewController"
+    case tabBar = "TabBarViewController"
 }
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -58,7 +60,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if let sessionToken = SessionManager.shared.getToken() {
                 loginService.checkForToken(token: sessionToken, success: { checkResponse in
                     if(checkResponse.sessionToken == true) {
-                        self.setupInitialStoryboard(storyboard: .home, viewContoller: .home)
+                        self.setupInitialStoryboard(storyboard: .tabBar, viewContoller: .tabBar)
                         let contexts = connectionOptions.urlContexts
                         self.handleDeepLink(url: contexts)
                     } else {
@@ -82,8 +84,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 extension SceneDelegate {
     func setupInitialStoryboard(storyboard: initialStoryboard, viewContoller: initialViewController) {
-        let initialViewController = UIStoryboard(name: storyboard.rawValue, bundle: nil).instantiateViewController(identifier: viewContoller.rawValue)
-        self.window?.rootViewController = initialViewController
+        self.window?.rootViewController = UIStoryboard(name: storyboard.rawValue, bundle: nil).instantiateViewController(identifier: viewContoller.rawValue)
         self.window?.makeKeyAndVisible()
     }
     

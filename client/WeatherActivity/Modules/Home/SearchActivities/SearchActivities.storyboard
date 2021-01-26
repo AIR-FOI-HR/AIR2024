@@ -19,28 +19,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vt3-GI-4rs">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k7u-7a-kZd">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="820"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="793"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CnU-Nk-uRn" userLabel="Parent Stack View">
-                                                <rect key="frame" x="16" y="10" width="382" height="800"/>
+                                                <rect key="frame" x="16" y="10" width="382" height="773"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Gxa-Cx-Tz8" userLabel="Search Filter Stack View">
-                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="130"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="103"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drh-X2-99J">
-                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="22"/>
-                                                                <color key="backgroundColor" name="CustomBackground"/>
-                                                                <color key="tintColor" systemColor="labelColor"/>
-                                                                <state key="normal" image="arrow.left" catalog="system"/>
-                                                                <connections>
-                                                                    <action selector="backButtonClicked:" destination="Nge-wy-o5I" eventType="touchUpInside" id="4zL-gH-kJa"/>
-                                                                </connections>
-                                                            </button>
                                                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search activities.." showsCancelButton="YES" showsScopeBar="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mgw-Yn-MUg">
-                                                                <rect key="frame" x="0.0" y="27" width="382" height="103"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="103"/>
                                                                 <color key="backgroundColor" name="CustomBackground"/>
                                                                 <color key="tintColor" systemColor="labelColor"/>
                                                                 <color key="barTintColor" name="CustomBackground"/>
@@ -55,7 +46,7 @@
                                                         <color key="backgroundColor" name="CustomBackground"/>
                                                     </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="MlP-Jc-UDX" userLabel="Categories Collection View">
-                                                        <rect key="frame" x="0.0" y="140" width="382" height="50"/>
+                                                        <rect key="frame" x="0.0" y="113" width="382" height="50"/>
                                                         <color key="backgroundColor" name="CustomBackground"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="mvN-dB-yFE"/>
@@ -111,7 +102,7 @@
                                                         </connections>
                                                     </collectionView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="dAe-FI-Q56" userLabel="Activities Stack View">
-                                                        <rect key="frame" x="0.0" y="200" width="382" height="600"/>
+                                                        <rect key="frame" x="0.0" y="173" width="382" height="600"/>
                                                         <color key="backgroundColor" name="CustomBackground"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="600" id="PXc-5n-Zhi"/>
@@ -148,6 +139,8 @@
                             <constraint firstItem="Vt3-GI-4rs" firstAttribute="leading" secondItem="pW4-Fk-Ehr" secondAttribute="leading" id="z17-2V-2Wx"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="magnifyingglass" catalog="system" id="jXI-hp-yOd"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activitiesStackView" destination="dAe-FI-Q56" id="Wdg-Eh-tdY"/>
                         <outlet property="collectionView" destination="MlP-Jc-UDX" id="tHJ-7p-SLc"/>
@@ -160,7 +153,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.left" catalog="system" width="128" height="98"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <namedColor name="CustomBackground">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

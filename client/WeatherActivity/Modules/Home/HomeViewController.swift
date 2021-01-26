@@ -13,9 +13,10 @@ enum HomeNavigation: String {
     case login = "HomeToLogin"
     case search = "toSearchActivities"
     case calendar = "toCalendar"
+    case profile = "toProfile"
 }
 
-class HomeViewController: UIViewController, UISearchBarDelegate {
+class HomeViewController: UIViewController {
     
     // MARK: IBOutlets
     
@@ -29,7 +30,6 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak private var weatherTypeImageView: UIImageView!
     @IBOutlet weak private var helloNameLabel: UILabel!
     @IBOutlet weak private var avatarImageView: UIImageView!
-    @IBOutlet weak private var searchBar: UISearchBar!
     
     // MARK: Properties
     
@@ -45,7 +45,6 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
         headerSetUp()
         setupListView()
     }
@@ -114,19 +113,9 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
-    @IBAction func logoutPressed(_ sender: UIButton) {
-        SessionManager.shared.deleteToken()
-        WidgetCenter.shared.reloadAllTimelines()
-        navigate(to: .login)
-    }
-    
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         navigate(to: .search)
         return false
-    }
-    
-    @IBAction func openCalendarClicked(_ sender: UIButton) {
-        navigate(to: .calendar)
     }
 }
 
@@ -232,6 +221,17 @@ extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
         #warning("Handle error")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+          case .restricted, .denied:
+            setupLocation()
+          case .authorizedWhenInUse, .authorizedAlways:
+            locationManager.requestLocation()
+          case .notDetermined:
+             setupLocation()
+       }
     }
     
     func setupLocation() {

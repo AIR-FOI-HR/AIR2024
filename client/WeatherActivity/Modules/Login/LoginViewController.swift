@@ -11,6 +11,7 @@ import WidgetKit
 enum LoginNavigation: String {
     case home = "toHome"
     case registration = "toRegistration"
+    case tabBar = "toTabBar"
 }
 
 final class LoginViewController: UIViewController {
@@ -47,7 +48,8 @@ final class LoginViewController: UIViewController {
                 UserDefaultsManager.shared.saveUserDefault(value: apiResponse.userAvatar, key: .userAvatar)
                 SessionManager.shared.saveToken(apiResponse.sessionToken)
                 WidgetCenter.shared.reloadAllTimelines()
-                self.navigate(to: .home)
+                
+                self.navigate(to: .tabBar)
             }
             else {
                 self.presentAlert(title: "Oops!", message: "You entered wrong credentials")
