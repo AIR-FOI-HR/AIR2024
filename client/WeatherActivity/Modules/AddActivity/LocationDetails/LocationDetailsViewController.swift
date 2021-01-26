@@ -259,7 +259,7 @@ private extension LocationDetailsViewController {
             alertVC.addAction(UIAlertAction(title: "Open Settings", style: .default) { value in
                 let path = UIApplication.openSettingsURLString
                 if let settingsURL = URL(string: path), UIApplication.shared.canOpenURL(settingsURL) {
-                    UIApplication.shared.canOpenURL(settingsURL)
+                    UIApplication.shared.openURL(settingsURL)
                 }
             })
             alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
