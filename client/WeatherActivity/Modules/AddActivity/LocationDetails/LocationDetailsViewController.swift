@@ -12,7 +12,7 @@ import CoreLocation
 import MapKit
 import DropDown
 
-class LocationDetailsViewController: AddActivityStepViewController, ViewInterface {
+class LocationDetailsViewController: AddActivityStepViewController {
     
     // MARK: IBOutlets
     
@@ -27,6 +27,7 @@ class LocationDetailsViewController: AddActivityStepViewController, ViewInterfac
     let geoCoder = CLGeocoder()
     var locationDetails: LocationDetails?
     let dropDown = DropDown()
+    let locationChecker = LocationChecker()
     
     override func viewDidLoad() {
         
@@ -43,9 +44,11 @@ class LocationDetailsViewController: AddActivityStepViewController, ViewInterfac
         
         if flowNavigator.isEditing {
             guard
-                let activityDetails = flowNavigator.editingActivity
+                let activityDetails = flowNavigator.editingActivity,
+                let latitude = activityDetails.latitude,
+                let longitude = activityDetails.longitude
             else { return }
-            zoomMap(lat: activityDetails.latitude, lon: activityDetails.longitude, setMapPoint: true)
+            zoomMap(lat: latitude, lon: longitude, setMapPoint: true)
         }
     }
     
@@ -248,7 +251,27 @@ private extension LocationDetailsViewController {
     func setupLocationManager() {
         
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
+        let locationPermissionStatus = locationChecker.checkLocationPermission()
+        
+        switch(locationPermissionStatus) {
+        case .never:
+            let alertVC = UIAlertController(title: "Geolocation is not enabled", message: "For using geolocation you need to enable it in Settings", preferredStyle: .actionSheet)
+            alertVC.addAction(UIAlertAction(title: "Open Settings", style: .default) { value in
+                let path = UIApplication.openSettingsURLString
+                if let settingsURL = URL(string: path), UIApplication.shared.canOpenURL(settingsURL) {
+                    UIApplication.shared.canOpenURL(settingsURL)
+                }
+            })
+            alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+            self.present(alertVC, animated: true, completion: nil)
+        case .notAllowed:
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            locationManager.requestWhenInUseAuthorization()
+        }
+        locationManager.requestLocation()
+        
         guard
             let flowNavigator = flowNavigator
         else { return }
@@ -258,11 +281,3 @@ private extension LocationDetailsViewController {
     }
 }
 
-// MARK: - Protocol ViewInteface
-
-extension LocationDetailsViewController {
-    
-    func setAction(_ actiion: Action, hidden: Bool) {
-        #warning("Set it up with proper buttons")
-    }
-}

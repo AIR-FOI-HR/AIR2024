@@ -53,10 +53,11 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     private var previous = 0
     private var selectedCategory: String? = ""
     private var activityListView: ActivityListView!
-    private var activitiesList: [ActivityCellItem] = []
-    private var filteredActivitiesList: [ActivityCellItem] = []
+    private var activitiesList: [ActivityCellItemP] = []
+    private var filteredActivitiesList: [ActivityCellItemP] = []
     private let activityService = ActivityService()
     private var categoryNames = [String]()
+    private var activityItemHelper = ActivityItemHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -171,7 +172,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     // MARK: - Custom functions
     
     private func handleFilter() {
-        var filter: [(ActivityCellItem) -> Bool] = []
+        var filter: [(ActivityCellItemP) -> Bool] = []
         
         if searchBar.text != "" {
             guard let searchText = searchBar.text?.lowercased() else {
@@ -222,9 +223,8 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
                     self.activityListView.setState(state: .noActivities)
                 }
                 else {
-                    for activity in activities {
-                        self.activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType))
-                    }
+                    let activityItems = self.activityItemHelper.getActivityCellItems(activities: activities)
+                    self.activitiesList = activityItems
                     self.filteredActivitiesList = self.activitiesList
                     self.activityListView.setState(state: .normal(items: self.activitiesList))
                 }
@@ -240,7 +240,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         self.dismiss(animated: true, completion: nil)
     }
     
-    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItem?) {
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemP?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
@@ -258,7 +258,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
 //MARK: - Extensions
 
 extension SearchActivitiesViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
-    func didPressRow(activity: ActivityCellItem) {
+    func didPressRow(activity: ActivityCellItemP) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
@@ -277,7 +277,7 @@ extension SearchActivitiesViewController: ActivityListViewDelegate, ActivityDeta
         self.activityListView.setState(state: .normal(items: self.activitiesList))
     }
     
-    func didEditActivity(activity: ActivityCellItem) {
+    func didEditActivity(activity: ActivityCellItemP) {
         openActivityFlow(isEditing: true, activity: activity)
     }
     

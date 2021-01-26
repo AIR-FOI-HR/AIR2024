@@ -23,6 +23,7 @@
                 <outlet property="editButton" destination="mHf-pz-UCc" id="n66-43-ciS"/>
                 <outlet property="humidityLabel" destination="ONY-KO-UQf" id="qjr-h7-4x7"/>
                 <outlet property="locationMapView" destination="Gwv-XH-eUm" id="xBM-4E-BF8"/>
+                <outlet property="locationStackView" destination="DOf-I6-mA3" id="bd8-Sw-fml"/>
                 <outlet property="mainView" destination="WaJ-0G-Bbv" id="NR8-81-Nlp"/>
                 <outlet property="temperatureFeelsLabel" destination="uW0-fD-8GU" id="xeY-Xp-gLa"/>
                 <outlet property="temperatureLabel" destination="zEb-mK-dJP" id="0bK-vH-NJy"/>

@@ -7,6 +7,7 @@
 
 import UIKit
 import WidgetKit
+import CoreLocation
 
 enum HomeNavigation: String {
     case login = "HomeToLogin"
@@ -29,6 +30,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak private var weatherTypeImageView: UIImageView!
     @IBOutlet weak private var helloNameLabel: UILabel!
     @IBOutlet weak private var avatarImageView: UIImageView!
+    @IBOutlet weak private var weatherForecastView: UIStackView!
+    @IBOutlet weak private var weatherForecastMessage: UILabel!
+    @IBOutlet weak private var weatherDescriptionLabel: UILabel!
     
     // MARK: Properties
     
@@ -36,19 +40,24 @@ class HomeViewController: UIViewController {
     private let activityService = ActivityService()
     private let forecastService = ForecastService()
     private let forecastData = ForecastData()
-    private let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
-    private var activitiesList: [ActivityCellItem] = []
+    private var currentLocation: LocationDetails?
+    private var activitiesList: [ActivityCellItemP] = []
+    private var activityItemHelper = ActivityItemHelper()
+    private var locationManager = CLLocationManager()
+    private var locationChecker = LocationChecker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         headerSetUp()
         setupListView()
-        getTodaysForecast()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setupLocation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         loadActivities()
-        print("home will appear")
     }
     
     // MARK: Custom functions
@@ -87,9 +96,8 @@ class HomeViewController: UIViewController {
                     self.activityListView.setState(state: .noActivities)
                 }
                 else {
-                    for activity in activities {
-                        self.activitiesList.append(.init(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType))
-                    }
+                    let activityItems = self.activityItemHelper.getActivityCellItems(activities: activities)
+                    self.activitiesList = activityItems
                     self.activityListView.setState(state: .normal(items: self.activitiesList))
                 }
             }, failure: { error in
@@ -119,7 +127,11 @@ private extension HomeViewController {
         performSegue(withIdentifier: path.rawValue, sender: self)
     }
     
-    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItem?) {
+    @IBAction func addActivityButtonPressed(_ sender: UIButton) {
+        openActivityFlow(activity: nil)
+    }
+    
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemP?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
@@ -135,7 +147,7 @@ private extension HomeViewController {
 }
 
 extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
-    func didPressRow(activity: ActivityCellItem) {
+    func didPressRow(activity: ActivityCellItemP) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
@@ -154,7 +166,7 @@ extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewContr
         self.activityListView.setState(state: .normal(items: self.activitiesList))
     }
     
-    func didEditActivity(activity: ActivityCellItem) {
+    func didEditActivity(activity: ActivityCellItemP) {
         openActivityFlow(isEditing: true, activity: activity)
     }
     
@@ -166,8 +178,13 @@ extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewContr
 extension HomeViewController {
     
     func getTodaysForecast() {
-        
-        forecastService.getWeatherForecast(date: Date(), locationCoordinates: dummyLocation) { (weatherInfo) in
+        guard
+            let location = currentLocation
+        else {
+            print("CNAT GET LOCATION")
+            return
+        }
+        forecastService.getWeatherForecast(date: Date(), locationCoordinates: location) { (weatherInfo) in
             guard
                 let weatherList = weatherInfo.weatherList,
                 let temperatureForecast = weatherList.first?.main?.temp?.rounded(.up),
@@ -189,5 +206,66 @@ extension HomeViewController {
         } failure: { (error) in
             print(error)
         }
+    }
+}
+
+// MARK: CLLocationManagerDelegate
+
+extension HomeViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            self.locationManager.stopUpdatingLocation()
+            currentLocation = LocationDetails(locationName: "", latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            print("CURR LOC: ", currentLocation!.latitude)
+            
+            weatherForecastView.isHidden = false
+            weatherDescriptionLabel.isHidden = false
+            getTodaysForecast()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+        #warning("Handle error")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+          case .restricted, .denied:
+            weatherForecastView.isHidden = true
+            weatherDescriptionLabel.isHidden = true
+            setupLocation()
+          case .authorizedWhenInUse, .authorizedAlways:
+            locationManager.requestLocation()
+          case .notDetermined:
+             setupLocation()
+       }
+    }
+    
+    func setupLocation() {
+        locationManager.delegate = self
+        let locationPermissionStatus = locationChecker.checkLocationPermission()
+        print(locationPermissionStatus.rawValue)
+        switch(locationPermissionStatus) {
+        case .never:
+            let alertVC = UIAlertController(title: "Geolocation is not enabled", message: "For using geolocation you need to enable it in Settings", preferredStyle: .actionSheet)
+            alertVC.addAction(UIAlertAction(title: "Open Settings", style: .default) { value in
+                let path = UIApplication.openSettingsURLString
+                if let settingsURL = URL(string: path), UIApplication.shared.canOpenURL(settingsURL) {
+                    UIApplication.shared.openURL(settingsURL)
+                }
+                
+            })
+            alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+            self.present(alertVC, animated: true, completion: nil)
+            weatherForecastView.isHidden = true
+            weatherDescriptionLabel.isHidden = true
+        case .notAllowed:
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            locationManager.requestWhenInUseAuthorization()
+        }
+        locationManager.requestLocation()
     }
 }

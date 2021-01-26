@@ -21,7 +21,7 @@ class AddActivityFlowNavigator {
     let initialStep: StepInfo
     let dataFlowManager = AddActivityFlowDataManager()
     var isEditing: Bool = false
-    var editingActivity: ActivityCellItem? = nil
+    var editingActivity: ActivityCellItemP? = nil
     
     weak var delegate: AddActivityFlowNavigatorDelegate?
     
@@ -62,7 +62,6 @@ class AddActivityFlowNavigator {
                         self.dismissFlow()
                         self.delegate?.didFinishFlow()
                     }
-                    print(provjera)
                 } failure: { (error) in
                     print(error)
                 }

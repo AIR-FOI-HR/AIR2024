@@ -43,14 +43,14 @@ extension UIViewController {
         details.showSkeleton()
         
         ActivityService().getWidgetActivityDetails(activity: id, success: { activity in
-            let fetchedActivity = ActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType)
-            details.widgetInit(activity: fetchedActivity)
+            var pActivity: ActivityCellItemP = ActivityItemHelper().initCellItem(activity: activity)
+            details.widgetInit(activity: pActivity)
         }, failure: { error in
             print(error)
         })
     }
     
-    func openAddActivityFlow(topViewController: UIViewController, isEditing: Bool = false, activity: ActivityCellItem?) {
+    func openAddActivityFlow(topViewController: UIViewController, isEditing: Bool = false, activity: ActivityCellItemP?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
