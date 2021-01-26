@@ -53,8 +53,8 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     private var previous = 0
     private var selectedCategory: String? = ""
     private var activityListView: ActivityListView!
-    private var activitiesList: [ActivityCellItemP] = []
-    private var filteredActivitiesList: [ActivityCellItemP] = []
+    private var activitiesList: [ActivityCellItemProtocol] = []
+    private var filteredActivitiesList: [ActivityCellItemProtocol] = []
     private let activityService = ActivityService()
     private var categoryNames = [String]()
     private var activityItemHelper = ActivityItemHelper()
@@ -170,7 +170,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
     // MARK: - Custom functions
     
     private func handleFilter() {
-        var filter: [(ActivityCellItemP) -> Bool] = []
+        var filter: [(ActivityCellItemProtocol) -> Bool] = []
         
         if searchBar.text != "" {
             guard let searchText = searchBar.text?.lowercased() else {
@@ -235,7 +235,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
         searchBar.selectedScopeButtonIndex = 0
     }
     
-    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemP?) {
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemProtocol?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
@@ -253,7 +253,7 @@ class SearchActivitiesViewController: UIViewController, UICollectionViewDelegate
 //MARK: - Extensions
 
 extension SearchActivitiesViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
-    func didPressRow(activity: ActivityCellItemP) {
+    func didPressRow(activity: ActivityCellItemProtocol) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
@@ -272,7 +272,7 @@ extension SearchActivitiesViewController: ActivityListViewDelegate, ActivityDeta
         self.activityListView.setState(state: .normal(items: self.activitiesList))
     }
     
-    func didEditActivity(activity: ActivityCellItemP) {
+    func didEditActivity(activity: ActivityCellItemProtocol) {
         openActivityFlow(isEditing: true, activity: activity)
     }
     

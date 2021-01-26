@@ -21,13 +21,13 @@ final class CalendarViewController: UIViewController , FSCalendarDelegate, FSCal
     // MARK: Properties
     
     private let activityService = ActivityService()
-    private var allActivities = [ActivityCellItemP]()
+    private var allActivities = [ActivityCellItemProtocol]()
     private var activityListView: ActivityListView!
     private let responseDateFormatter = DateFormatter()
     private let calendarDateFormatter = DateFormatter()
     private var formattedActivityDates = [Date]()
     private let activityItemHelper = ActivityItemHelper()
-    private var activitiesList: [ActivityCellItemP] = []
+    private var activitiesList: [ActivityCellItemProtocol] = []
     private var selectedDate: Date = Date()
     
     override func viewDidLoad() {
@@ -89,7 +89,7 @@ final class CalendarViewController: UIViewController , FSCalendarDelegate, FSCal
             activityListView.setState(state: .noActivitiesOnDate)
         }
         else {
-            var activitiesList: [ActivityCellItemP] = []
+            var activitiesList: [ActivityCellItemProtocol] = []
             for activity in filteredActivities {
                 activitiesList.append(activity)
             }
@@ -128,7 +128,7 @@ final class CalendarViewController: UIViewController , FSCalendarDelegate, FSCal
         updateActivityListView(withDate: date)
     }
     
-    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemP?) {
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemProtocol?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
@@ -152,7 +152,7 @@ extension CalendarViewController: ActivityListViewDelegate, ActivityDetailsViewC
         loadAllActivities()
     }
     
-    func didEditActivity(activity: ActivityCellItemP) {
+    func didEditActivity(activity: ActivityCellItemProtocol) {
         openActivityFlow(isEditing: true, activity: activity)
         
     }
@@ -167,7 +167,7 @@ extension CalendarViewController: ActivityListViewDelegate, ActivityDetailsViewC
 
     }
     
-    func didPressRow(activity: ActivityCellItemP) {
+    func didPressRow(activity: ActivityCellItemProtocol) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)

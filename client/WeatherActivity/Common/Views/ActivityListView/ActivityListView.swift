@@ -11,7 +11,7 @@ import SkeletonView
 
 protocol ActivityListViewDelegate: AnyObject {
     func didPressReloadAction()
-    func didPressRow(activity: ActivityCellItemP)
+    func didPressRow(activity: ActivityCellItemProtocol)
 }
 
 class ActivityListView: UIView, UITableViewDelegate {
@@ -19,7 +19,7 @@ class ActivityListView: UIView, UITableViewDelegate {
     enum State {
         case loading
         case error
-        case normal(items: [ActivityCellItemP])
+        case normal(items: [ActivityCellItemProtocol])
         case noActivities
         case noFilteredActivities
         case noActivitiesOnDate
@@ -37,7 +37,7 @@ class ActivityListView: UIView, UITableViewDelegate {
     
     weak var delegate: ActivityListViewDelegate?
     
-    private var dataSource = [ActivityCellItemP]()
+    private var dataSource = [ActivityCellItemProtocol]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -89,7 +89,7 @@ class ActivityListView: UIView, UITableViewDelegate {
         activityListView.showAnimatedGradientSkeleton()
     }
     
-    private func reload(with items: [ActivityCellItemP]) {
+    private func reload(with items: [ActivityCellItemProtocol]) {
         dataSource = items
         if !activityListView.isSkeletonActive {
             showLoading()

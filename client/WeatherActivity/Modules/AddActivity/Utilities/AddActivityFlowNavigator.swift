@@ -21,7 +21,7 @@ class AddActivityFlowNavigator {
     let initialStep: StepInfo
     let dataFlowManager = AddActivityFlowDataManager()
     var isEditing: Bool = false
-    var editingActivity: ActivityCellItemP? = nil
+    var editingActivity: ActivityCellItemProtocol? = nil
     
     weak var delegate: AddActivityFlowNavigatorDelegate?
     

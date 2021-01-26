@@ -10,6 +10,7 @@
 import Alamofire
 
 class ForecastService {
+    
     func getWeatherForecast(date: Date, locationCoordinates: LocationDetails, success: @escaping (WeatherInfo)->Void, failure: @escaping (Error)->Void) {
         AF.request(
             Constants.weatherBaseUrlCoordinates.appending("&lat=\(locationCoordinates.latitude)&lon=\(locationCoordinates.longitude)") as URLConvertible,

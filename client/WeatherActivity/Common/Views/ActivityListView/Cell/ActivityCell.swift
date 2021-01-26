@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ActivityCellItemP {
+protocol ActivityCellItemProtocol {
     var activityId: Int { get }
     var startTime: String { get }
     var endTime: String { get }
@@ -27,7 +27,7 @@ protocol ActivityCellItemP {
     var color: UIColor { get }
 }
 
-class DefaultActivityCellItem: ActivityCellItemP {
+class DefaultActivityCellItem: ActivityCellItemProtocol {
     var activityId: Int
     var startTime: String
     var endTime: String
@@ -85,7 +85,7 @@ class DefaultActivityCellItem: ActivityCellItemP {
     }
 }
 
-class InProgressActivityCellItem: ActivityCellItemP {
+class InProgressActivityCellItem: ActivityCellItemProtocol {
     var activityId: Int
     var startTime: String
     var endTime: String
@@ -143,7 +143,7 @@ class InProgressActivityCellItem: ActivityCellItemP {
     }
 }
 
-class CanceledActivityCellItem: ActivityCellItemP {
+class CanceledActivityCellItem: ActivityCellItemProtocol {
     var activityId: Int
     var startTime: String
     var endTime: String
@@ -201,7 +201,7 @@ class CanceledActivityCellItem: ActivityCellItemP {
     }
 }
 
-class FinishedActivityCellItem: ActivityCellItemP {
+class FinishedActivityCellItem: ActivityCellItemProtocol {
     var activityId: Int
     var startTime: String
     var endTime: String
@@ -269,7 +269,7 @@ class ActivityCell: UITableViewCell {
     @IBOutlet weak private var cellBody: UIStackView!
     @IBOutlet weak private var progressBar: UIProgressView!
 
-    func configure(with item: ActivityCellItemP) {
+    func configure(with item: ActivityCellItemProtocol) {
         let dateFormatter = DateFormatter()
         let dateTime = TimeDetailsManager().getCorrectDateAsString(from: item.startTime)
         guard let timestamp = dateTime else { return }

@@ -43,14 +43,14 @@ extension UIViewController {
         details.showSkeleton()
         
         ActivityService().getWidgetActivityDetails(activity: id, success: { activity in
-            var pActivity: ActivityCellItemP = ActivityItemHelper().initCellItem(activity: activity)
+            var pActivity: ActivityCellItemProtocol = ActivityItemHelper().initCellItem(activity: activity)
             details.widgetInit(activity: pActivity)
         }, failure: { error in
             print(error)
         })
     }
     
-    func openAddActivityFlow(topViewController: UIViewController, isEditing: Bool = false, activity: ActivityCellItemP?) {
+    func openAddActivityFlow(topViewController: UIViewController, isEditing: Bool = false, activity: ActivityCellItemProtocol?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         

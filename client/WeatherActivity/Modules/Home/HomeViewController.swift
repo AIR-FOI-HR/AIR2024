@@ -36,7 +36,7 @@ class HomeViewController: UIViewController {
     private let userService = UserService()
     private let forecastData = ForecastData()
     private var currentLocation: LocationDetails?
-    private var activitiesList: [ActivityCellItemP] = []
+    private var activitiesList: [ActivityCellItemProtocol] = []
     private var activityItemHelper = ActivityItemHelper()
     private var locationManager = CLLocationManager()
     private var locationChecker = LocationChecker()
@@ -122,7 +122,7 @@ private extension HomeViewController {
         openActivityFlow(activity: nil)
     }
     
-    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemP?) {
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemProtocol?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
@@ -140,7 +140,7 @@ private extension HomeViewController {
 // MARK: Protocols
 
 extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
-    func didPressRow(activity: ActivityCellItemP) {
+    func didPressRow(activity: ActivityCellItemProtocol) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
@@ -163,7 +163,7 @@ extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewContr
         }
     }
     
-    func didEditActivity(activity: ActivityCellItemP) {
+    func didEditActivity(activity: ActivityCellItemProtocol) {
         openActivityFlow(isEditing: true, activity: activity)
     }
     

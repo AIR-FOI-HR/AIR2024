@@ -11,7 +11,7 @@ import WidgetKit
 import SkeletonView
 
 protocol ActivityDetailsViewControllerDelegate: AnyObject {
-    func didEditActivity(activity: ActivityCellItemP)
+    func didEditActivity(activity: ActivityCellItemProtocol)
     func didDeleteActivity(deletedActivity: Int)
 }
 
@@ -46,7 +46,7 @@ class ActivityDetailsViewController: UIViewController {
     
     //MARK: - Properties
     
-    var localActivity: ActivityCellItemP?
+    var localActivity: ActivityCellItemProtocol?
     let timeDetailsManager = TimeDetailsManager()
     let weatherManager = ForecastService()
     let forecastData = ForecastData()
@@ -91,11 +91,11 @@ class ActivityDetailsViewController: UIViewController {
         zoomMap(lat: latitude, lon: longitude, setMapPoint: true)
     }
     
-    func commonInit(activity: ActivityCellItemP) {
+    func commonInit(activity: ActivityCellItemProtocol) {
         localActivity = activity
     }
     
-    func widgetInit(activity: ActivityCellItemP) {
+    func widgetInit(activity: ActivityCellItemProtocol) {
         localActivity = activity
         viewDidLoad()
         mainView.hideSkeleton(transition: .crossDissolve(1))
