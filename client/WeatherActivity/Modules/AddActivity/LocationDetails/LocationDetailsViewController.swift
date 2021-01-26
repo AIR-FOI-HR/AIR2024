@@ -44,9 +44,11 @@ class LocationDetailsViewController: AddActivityStepViewController {
         
         if flowNavigator.isEditing {
             guard
-                let activityDetails = flowNavigator.editingActivity
+                let activityDetails = flowNavigator.editingActivity,
+                let latitude = activityDetails.latitude,
+                let longitude = activityDetails.longitude
             else { return }
-            zoomMap(lat: activityDetails.latitude, lon: activityDetails.longitude, setMapPoint: true)
+            zoomMap(lat: latitude, lon: longitude, setMapPoint: true)
         }
     }
     

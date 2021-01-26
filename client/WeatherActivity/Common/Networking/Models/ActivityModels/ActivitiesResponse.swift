@@ -22,9 +22,9 @@ struct Activities: Codable {
     let endTime: String
     let title: String
     let description: String
-    let locationName: String
-    let latitude: Double
-    let longitude: Double
+    let locationName: String?
+    let latitude: Double?
+    let longitude: Double?
     let temperature: Float?
     let feelsLike: Float?
     let wind: Float?

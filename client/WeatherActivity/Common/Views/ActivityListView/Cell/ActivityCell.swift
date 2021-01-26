@@ -13,9 +13,9 @@ protocol ActivityCellItemP {
     var endTime: String { get }
     var title: String { get }
     var description: String { get }
-    var locationName: String { get }
-    var latitude: Double { get }
-    var longitude: Double { get }
+    var locationName: String? { get }
+    var latitude: Double? { get }
+    var longitude: Double? { get }
     var temperature: Float? { get }
     var feelsLike: Float? { get }
     var wind: Float? { get }
@@ -33,9 +33,9 @@ class DefaultActivityCellItem: ActivityCellItemP {
     var endTime: String
     var title: String
     var description: String
-    var locationName: String
-    var latitude: Double
-    var longitude: Double
+    var locationName: String?
+    var latitude: Double?
+    var longitude: Double?
     var temperature: Float?
     var feelsLike: Float?
     var wind: Float?
@@ -51,9 +51,9 @@ class DefaultActivityCellItem: ActivityCellItemP {
         endTime: String,
         title: String,
         description: String,
-        locationName: String,
-        latitude: Double,
-        longitude: Double,
+        locationName: String?,
+        latitude: Double?,
+        longitude: Double?,
         temperature: Float?,
         feelsLike: Float?,
         wind: Float?,
@@ -91,9 +91,9 @@ class InProgressActivityCellItem: ActivityCellItemP {
     var endTime: String
     var title: String
     var description: String
-    var locationName: String
-    var latitude: Double
-    var longitude: Double
+    var locationName: String?
+    var latitude: Double?
+    var longitude: Double?
     var temperature: Float?
     var feelsLike: Float?
     var wind: Float?
@@ -109,9 +109,9 @@ class InProgressActivityCellItem: ActivityCellItemP {
         endTime: String,
         title: String,
         description: String,
-        locationName: String,
-        latitude: Double,
-        longitude: Double,
+        locationName: String?,
+        latitude: Double?,
+        longitude: Double?,
         temperature: Float?,
         feelsLike: Float?,
         wind: Float?,
@@ -149,9 +149,9 @@ class CanceledActivityCellItem: ActivityCellItemP {
     var endTime: String
     var title: String
     var description: String
-    var locationName: String
-    var latitude: Double
-    var longitude: Double
+    var locationName: String?
+    var latitude: Double?
+    var longitude: Double?
     var temperature: Float?
     var feelsLike: Float?
     var wind: Float?
@@ -167,9 +167,9 @@ class CanceledActivityCellItem: ActivityCellItemP {
         endTime: String,
         title: String,
         description: String,
-        locationName: String,
-        latitude: Double,
-        longitude: Double,
+        locationName: String?,
+        latitude: Double?,
+        longitude: Double?,
         temperature: Float?,
         feelsLike: Float?,
         wind: Float?,
@@ -207,9 +207,9 @@ class FinishedActivityCellItem: ActivityCellItemP {
     var endTime: String
     var title: String
     var description: String
-    var locationName: String
-    var latitude: Double
-    var longitude: Double
+    var locationName: String?
+    var latitude: Double?
+    var longitude: Double?
     var temperature: Float?
     var feelsLike: Float?
     var wind: Float?
@@ -225,9 +225,9 @@ class FinishedActivityCellItem: ActivityCellItemP {
         endTime: String,
         title: String,
         description: String,
-        locationName: String,
-        latitude: Double,
-        longitude: Double,
+        locationName: String?,
+        latitude: Double?,
+        longitude: Double?,
         temperature: Float?,
         feelsLike: Float?,
         wind: Float?,

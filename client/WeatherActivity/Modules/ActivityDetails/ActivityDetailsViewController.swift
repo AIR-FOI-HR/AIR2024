@@ -32,6 +32,7 @@ class ActivityDetailsViewController: UIViewController {
     @IBOutlet weak private var activityStatus: UILabel!
     @IBOutlet weak private var locationMapView: MKMapView!
     @IBOutlet weak private var weatherForecastStackView: UIStackView!
+    @IBOutlet weak private var locationStackView: UIStackView!
     
     //MARK: Weather IBOutlets
     
@@ -83,8 +84,11 @@ class ActivityDetailsViewController: UIViewController {
         activityCategory.text = localActivity.name
         activityImageView.image = UIImage(named: localActivity.type)
         activityLocation.text = localActivity.locationName
-        
-        zoomMap(lat: localActivity.latitude, lon: localActivity.longitude, setMapPoint: true)
+        guard
+            let latitude = localActivity.latitude,
+            let longitude = localActivity.longitude
+        else { return }
+        zoomMap(lat: latitude, lon: longitude, setMapPoint: true)
     }
     
     func commonInit(activity: ActivityCellItemP) {
@@ -178,17 +182,20 @@ class ActivityDetailsViewController: UIViewController {
     }
     
     func checkDate() {
-        guard let localActivityTime = localActivity?.startTime else { return }
+        guard
+            let localActivityTime = localActivity?.startTime
+        else { return }
         let testDate = getRealDate(timestamp: localActivityTime)
         let newDate = timeDetailsManager.combineDateAndTime(date: testDate, time: testDate)
         
-        if(timeDetailsManager.isDateRangeValid(date: newDate)) {
+        if(timeDetailsManager.isDateRangeValid(date: newDate) && localActivity?.latitude != nil && localActivity?.longitude != nil) {
             getForecast(date: newDate)
             weatherForecastStackView.isHidden = false
+            locationStackView.isHidden = false
         } else {
             weatherForecastStackView.isHidden = true
+            locationStackView.isHidden = true
         }
-        
     }
     
     func presentData(weatherData: WeatherList) {

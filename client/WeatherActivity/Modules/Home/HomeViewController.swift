@@ -30,6 +30,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak private var weatherTypeImageView: UIImageView!
     @IBOutlet weak private var helloNameLabel: UILabel!
     @IBOutlet weak private var avatarImageView: UIImageView!
+    @IBOutlet weak private var weatherForecastView: UIStackView!
+    @IBOutlet weak private var weatherForecastMessage: UILabel!
+    @IBOutlet weak private var weatherDescriptionLabel: UILabel!
     
     // MARK: Properties
     
@@ -214,6 +217,9 @@ extension HomeViewController: CLLocationManagerDelegate {
             self.locationManager.stopUpdatingLocation()
             currentLocation = LocationDetails(locationName: "", latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             print("CURR LOC: ", currentLocation!.latitude)
+            
+            weatherForecastView.isHidden = false
+            weatherDescriptionLabel.isHidden = false
             getTodaysForecast()
         }
     }
@@ -226,6 +232,8 @@ extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
           case .restricted, .denied:
+            weatherForecastView.isHidden = true
+            weatherDescriptionLabel.isHidden = true
             setupLocation()
           case .authorizedWhenInUse, .authorizedAlways:
             locationManager.requestLocation()
@@ -251,6 +259,8 @@ extension HomeViewController: CLLocationManagerDelegate {
             alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
             self.present(alertVC, animated: true, completion: nil)
+            weatherForecastView.isHidden = true
+            weatherDescriptionLabel.isHidden = true
         case .notAllowed:
             locationManager.requestWhenInUseAuthorization()
         default:
