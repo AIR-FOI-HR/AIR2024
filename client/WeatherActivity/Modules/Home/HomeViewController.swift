@@ -7,6 +7,7 @@
 
 import UIKit
 import WidgetKit
+import CoreLocation
 
 enum HomeNavigation: String {
     case login = "HomeToLogin"
@@ -39,6 +40,8 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     private let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
     private var activitiesList: [ActivityCellItemP] = []
     private var activityItemHelper = ActivityItemHelper()
+    private var locationManager = CLLocationManager()
+    private var locationChecker = LocationChecker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +49,10 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
         headerSetUp()
         setupListView()
         getTodaysForecast()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setupLocation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -202,6 +209,32 @@ extension HomeViewController {
             self.todaysDescription.text = "\(forecastDescription.prefix(1).capitalized)\(forecastDescription.dropFirst()), with temperature: \(Int(temperatureForecast)) °C"
         } failure: { (error) in
             print(error)
+        }
+    }
+}
+
+extension HomeViewController: CLLocationManagerDelegate {
+    func setupLocation() {
+        locationManager.delegate = self
+        let locationPermissionStatus = locationChecker.checkLocationPermission()
+        print(locationPermissionStatus.rawValue)
+        switch(locationPermissionStatus) {
+        case .never:
+            let alertVC = UIAlertController(title: "Geolocation is not enabled", message: "For using geolocation you need to enable it in Settings", preferredStyle: .actionSheet)
+            alertVC.addAction(UIAlertAction(title: "Open Settings", style: .default) { value in
+                let path = UIApplication.openSettingsURLString
+                if let settingsURL = URL(string: path), UIApplication.shared.canOpenURL(settingsURL) {
+                    UIApplication.shared.openURL(settingsURL)
+                }
+                
+            })
+            alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+            self.present(alertVC, animated: true, completion: nil)
+        case .notAllowed:
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            locationManager.requestWhenInUseAuthorization()
         }
     }
 }

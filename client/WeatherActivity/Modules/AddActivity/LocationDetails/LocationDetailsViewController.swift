@@ -27,6 +27,7 @@ class LocationDetailsViewController: AddActivityStepViewController {
     let geoCoder = CLGeocoder()
     var locationDetails: LocationDetails?
     let dropDown = DropDown()
+    let locationChecker = LocationChecker()
     
     override func viewDidLoad() {
         
@@ -79,29 +80,6 @@ extension LocationDetailsViewController: CLLocationManagerDelegate {
             self.locationManager.stopUpdatingLocation()
             zoomMap(lat: location.coordinate.latitude, lon: location.coordinate.longitude, setMapPoint: true)
         }
-    }
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-
-            switch manager.authorizationStatus {
-                case .authorizedAlways , .authorizedWhenInUse:
-                    print("AUTH AL OR IN")
-                    break
-                case .notDetermined , .denied , .restricted:
-                    print("NOT")
-                    break
-                default:
-                    break
-            }
-            
-            switch manager.accuracyAuthorization {
-                case .fullAccuracy:
-                    break
-                case .reducedAccuracy:
-                    break
-                default:
-                    break
-            }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -271,6 +249,26 @@ private extension LocationDetailsViewController {
     func setupLocationManager() {
         
         locationManager.delegate = self
+        let locationPermissionStatus = locationChecker.checkLocationPermission()
+        
+        switch(locationPermissionStatus) {
+        case .never:
+            let alertVC = UIAlertController(title: "Geolocation is not enabled", message: "For using geolocation you need to enable it in Settings", preferredStyle: .actionSheet)
+            alertVC.addAction(UIAlertAction(title: "Open Settings", style: .default) { value in
+                let path = UIApplication.openSettingsURLString
+                if let settingsURL = URL(string: path), UIApplication.shared.canOpenURL(settingsURL) {
+                    UIApplication.shared.canOpenURL(settingsURL)
+                }
+            })
+            alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+            self.present(alertVC, animated: true, completion: nil)
+        case .notAllowed:
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            locationManager.requestWhenInUseAuthorization()
+        }
+        locationManager.requestLocation()
         
         guard
             let flowNavigator = flowNavigator

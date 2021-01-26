@@ -32,29 +32,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             // https://developer.apple.com/documentation/corelocation/cllocationmanagerdelegate/3563956-locationmanagerdidchangeauthoriz
             // https://stackoverflow.com/questions/63788488/checking-user-location-permission-status-on-ios-14
-            if CLLocationManager.locationServicesEnabled() {
-                switch CLLocationManager.authorizationStatus() {
-                case .notDetermined, .restricted:
-                    print("Ask next time / unknown")
-                    locationManager.requestWhenInUseAuthorization()
-                    break
-                case .denied:
-                    print("Never")
-                    locationManager.requestWhenInUseAuthorization()
-                    break
-                case .authorizedAlways, .authorizedWhenInUse:
-                    print("Auth always / in use")
-                    locationManager.requestWhenInUseAuthorization()
-                    break
-                default:
-                    print("???")
-                    break
-                }
-            }
-            else {
-                print("Location services are not enabled")
-            }
-            locationManager.requestWhenInUseAuthorization()
+//            if CLLocationManager.locationServicesEnabled() {
+//                switch CLLocationManager.authorizationStatus() {
+//                case .notDetermined, .restricted:
+//                    print("Ask next time / unknown")
+//                    locationManager.requestWhenInUseAuthorization()
+//                    break
+//                case .denied:
+//                    print("Never")
+//                    locationManager.requestWhenInUseAuthorization()
+//                    break
+//                case .authorizedAlways, .authorizedWhenInUse:
+//                    print("Auth always / in use")
+//                    locationManager.requestWhenInUseAuthorization()
+//                    break
+//                default:
+//                    print("???")
+//                    break
+//                }
+//            }
+//            else {
+//                print("Location services are not enabled")
+//            }
+//            locationManager.requestWhenInUseAuthorization()
             if let sessionToken = SessionManager.shared.getToken() {
                 loginService.checkForToken(token: sessionToken, success: { checkResponse in
                     if(checkResponse.sessionToken == true) {
