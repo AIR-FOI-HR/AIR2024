@@ -12,7 +12,7 @@ import CoreLocation
 import MapKit
 import DropDown
 
-class LocationDetailsViewController: AddActivityStepViewController, ViewInterface {
+class LocationDetailsViewController: AddActivityStepViewController {
     
     // MARK: IBOutlets
     
@@ -278,15 +278,6 @@ private extension LocationDetailsViewController {
         if !flowNavigator.isEditing {
             locationManager.requestLocation()
         }
-    }
-}
-
-// MARK: - Protocol ViewInteface
-
-extension LocationDetailsViewController {
-    
-    func setAction(_ actiion: Action, hidden: Bool) {
-        #warning("Set it up with proper buttons")
     }
 }
 

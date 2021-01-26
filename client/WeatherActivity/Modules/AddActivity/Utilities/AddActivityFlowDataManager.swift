@@ -29,7 +29,6 @@ class AddActivityFlowDataManager {
                 dictionary[stepData.stepInfo.rawValue] = dictionaryInfo
             }
         }
-        #warning("Handle if failed to parse to JSON")
         guard let data = try? JSONSerialization.data(withJSONObject: dictionary, options: .fragmentsAllowed) else { return nil }
         let json = String(data: data, encoding: .utf8)
         return json

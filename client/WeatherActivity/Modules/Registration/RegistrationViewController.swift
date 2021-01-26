@@ -37,7 +37,7 @@ final class RegistrationViewController: UIViewController {
             return
         }
         
-        let registrationValidator = CustomRegistrationValidator(firstName: firstName, lastName: lastName, email: email, password: password, repeatedPassword: repeatedPassword)
+        let registrationValidator = RegistrationValidator(firstName: firstName, lastName: lastName, email: email, password: password, repeatedPassword: repeatedPassword)
         
         if(checkAllValidators(registrationValidator: registrationValidator) == false) {
             return

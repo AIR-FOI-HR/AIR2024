@@ -62,7 +62,6 @@ class AddActivityFlowNavigator {
                         self.dismissFlow()
                         self.delegate?.didFinishFlow()
                     }
-                    print(provjera)
                 } failure: { (error) in
                     print(error)
                 }
