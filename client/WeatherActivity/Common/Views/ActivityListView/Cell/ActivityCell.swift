@@ -271,12 +271,12 @@ class ActivityCell: UITableViewCell {
 
     func configure(with item: ActivityCellItemP) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        let timestamp = dateFormatter.date(from: item.startTime)
+        let dateTime = TimeDetailsManager().getCorrectDateAsString(from: item.startTime)
+        guard let timestamp = dateTime else { return }
         dateFormatter.dateFormat = "dd/MM/yyyy"
-        let date = dateFormatter.string(from: timestamp!)
+        let date = dateFormatter.string(from: timestamp)
         dateFormatter.dateFormat = "HH:mm"
-        let time = dateFormatter.string(from: timestamp!)
+        let time = dateFormatter.string(from: timestamp)
         cellBody.backgroundColor = item.color
         activityTitle.text = item.title
         activityLocation.text = item.locationName
@@ -287,8 +287,11 @@ class ActivityCell: UITableViewCell {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         
         let startDate = dateFormatter.date(from: item.startTime)!
+        print(startDate)
         let duration = dateFormatter.date(from: item.endTime)!.timeIntervalSince(startDate)
-        let elapsed = dateFormatter.date(from: dateFormatter.string(from: Date()))!.timeIntervalSince(startDate)
+        print(duration)
+        let elapsed = dateFormatter.date(from: dateFormatter.string(from: Date()))!.timeIntervalSince(timestamp)
+        print(elapsed)
         let percentage = elapsed / duration
     
         if(percentage >= 0 && percentage <= 1) {

@@ -67,4 +67,16 @@ class TimeDetailsManager {
         guard let date = dateFormatter.date(from: timestamp) else { return Date() }
         return date
     }
+    
+    func getCorrectDateAsString(from: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        guard
+            var newDate = dateFormatter.date(from: from)
+        else { return nil}
+        newDate = addTime(to: newDate, hours: -1)
+        
+        let timestamp = dateFormatter.date(from: dateFormatter.string(from: newDate))
+        return timestamp
+    }
 }

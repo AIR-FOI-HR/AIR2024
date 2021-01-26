@@ -158,7 +158,7 @@ class ActivityDetailsViewController: UIViewController {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "dd/MM/yyyy"
 
-        guard let date = dateFormatterGet.date(from: timestamp) else { return "Err" }
+        guard var date = dateFormatterGet.date(from: timestamp) else { return "Err" }
         return dateFormatterPrint.string(from: date)
     }
     
@@ -177,7 +177,8 @@ class ActivityDetailsViewController: UIViewController {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "HH:mm"
 
-        guard let time = dateFormatterGet.date(from: timestamp) else { return "Err" }
+        guard var time = dateFormatterGet.date(from: timestamp) else { return "Err" }
+        time = timeDetailsManager.addTime(to: time, hours: -1)
         return dateFormatterPrint.string(from: time)
     }
     
