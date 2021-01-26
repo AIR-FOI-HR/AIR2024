@@ -10,10 +10,8 @@ import Foundation
 
 enum StatusType: String, Codable {
     case inProgress = "In progress"
-    case finished = "Finished"
+    case past = "Past"
     case future = "Future"
-    case canceled = "Canceled"
-    case completed = "Completed"
 }
 
 struct Activities: Codable {
