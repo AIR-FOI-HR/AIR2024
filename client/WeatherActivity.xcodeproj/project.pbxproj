@@ -103,6 +103,8 @@
 		8CB0C494258A4D70009450B3 /* FinalDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB0C493258A4D70009450B3 /* FinalDetails.storyboard */; };
 		8CB0C49E258A4D7E009450B3 /* LocationDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB0C49D258A4D7E009450B3 /* LocationDetails.storyboard */; };
 		8CB0C4A3258A4D85009450B3 /* TimeDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB0C4A2258A4D85009450B3 /* TimeDetails.storyboard */; };
+		8CD693D825C0281900BB90C2 /* ActivityItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD693D725C0281900BB90C2 /* ActivityItemHelper.swift */; };
+		8CD693DE25C0282F00BB90C2 /* LocationChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD693DD25C0282F00BB90C2 /* LocationChecker.swift */; };
 		8CDA3FB8257ACB340047C727 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA3FB7257ACB340047C727 /* WeatherInfo.swift */; };
 		8CE0417225764E04005EFEC4 /* RegistrationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE0417125764E04005EFEC4 /* RegistrationUser.swift */; };
 		9B611762AF873A0410982DF9 /* Pods_WeatherActivityWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D940EF3CEB4D27461352F0 /* Pods_WeatherActivityWidgetExtension.framework */; };
@@ -255,6 +257,8 @@
 		8CB0C493258A4D70009450B3 /* FinalDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FinalDetails.storyboard; sourceTree = "<group>"; };
 		8CB0C49D258A4D7E009450B3 /* LocationDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationDetails.storyboard; sourceTree = "<group>"; };
 		8CB0C4A2258A4D85009450B3 /* TimeDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeDetails.storyboard; sourceTree = "<group>"; };
+		8CD693D725C0281900BB90C2 /* ActivityItemHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityItemHelper.swift; sourceTree = "<group>"; };
+		8CD693DD25C0282F00BB90C2 /* LocationChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationChecker.swift; sourceTree = "<group>"; };
 		8CDA3FB7257ACB340047C727 /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
 		8CE0417125764E04005EFEC4 /* RegistrationUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationUser.swift; sourceTree = "<group>"; };
 		8F2D4BEF3035C874E7B0413D /* Pods-WeatherActivityWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherActivityWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-WeatherActivityWidgetExtension/Pods-WeatherActivityWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
@@ -538,6 +542,7 @@
 				42780145257CF78400E9EE9C /* Cell */,
 				42780150257CF91800E9EE9C /* ActivityListView.xib */,
 				42780155257CF94E00E9EE9C /* ActivityListView.swift */,
+				8CD693D725C0281900BB90C2 /* ActivityItemHelper.swift */,
 			);
 			path = ActivityListView;
 			sourceTree = "<group>";
@@ -563,6 +568,7 @@
 		429A736425758E7500B99F8D /* ErrorHandling */ = {
 			isa = PBXGroup;
 			children = (
+				8CD693DD25C0282F00BB90C2 /* LocationChecker.swift */,
 				429A736625758E8900B99F8D /* Alert */,
 				429A736525758E7E00B99F8D /* RegistrationValidator */,
 			);
@@ -1180,6 +1186,7 @@
 				42780156257CF94E00E9EE9C /* ActivityListView.swift in Sources */,
 				8CB0C47A258A4D46009450B3 /* FinalDetailsViewController.swift in Sources */,
 				8C7C9A7E256EA3EF00683AE5 /* User.swift in Sources */,
+				8CD693D825C0281900BB90C2 /* ActivityItemHelper.swift in Sources */,
 				4227A754258CB7730082C0E8 /* ActivityDetailsViewController.swift in Sources */,
 				42D29B92257FADC500F74E5D /* CategoriesDetailsViewController.swift in Sources */,
 				8C7C9A57256D610900683AE5 /* RegistrationViewController.swift in Sources */,
@@ -1211,6 +1218,7 @@
 				42EF36C7256C15EB0069E590 /* HomeViewController.swift in Sources */,
 				4252C846258F99E400A2A7CC /* UserDefaultsManager.swift in Sources */,
 				42B0FB01257070A700781940 /* Constants.swift in Sources */,
+				8CD693DE25C0282F00BB90C2 /* LocationChecker.swift in Sources */,
 				8C250065258B761D00C79832 /* AddActivityFlowDataManager.swift in Sources */,
 				42C372C925A2569700A061BD /* SecondInitialScreenViewController.swift in Sources */,
 				8CB0C487258A4D57009450B3 /* LocationDetailsViewController.swift in Sources */,

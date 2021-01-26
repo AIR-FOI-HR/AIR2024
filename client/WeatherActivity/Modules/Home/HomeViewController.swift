@@ -37,7 +37,7 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
     private let activityService = ActivityService()
     private let forecastService = ForecastService()
     private let forecastData = ForecastData()
-    private let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
+    private var currentLocation: LocationDetails?
     private var activitiesList: [ActivityCellItemP] = []
     private var activityItemHelper = ActivityItemHelper()
     private var locationManager = CLLocationManager()
@@ -48,7 +48,6 @@ class HomeViewController: UIViewController, UISearchBarDelegate {
         searchBar.delegate = self
         headerSetUp()
         setupListView()
-        getTodaysForecast()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -187,8 +186,13 @@ extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewContr
 extension HomeViewController {
     
     func getTodaysForecast() {
-        
-        forecastService.getWeatherForecast(date: Date(), locationCoordinates: dummyLocation) { (weatherInfo) in
+        guard
+            let location = currentLocation
+        else {
+            print("CNAT GET LOCATION")
+            return
+        }
+        forecastService.getWeatherForecast(date: Date(), locationCoordinates: location) { (weatherInfo) in
             guard
                 let weatherList = weatherInfo.weatherList,
                 let temperatureForecast = weatherList.first?.main?.temp?.rounded(.up),
@@ -213,7 +217,23 @@ extension HomeViewController {
     }
 }
 
+// MARK: CLLocationManagerDelegate
+
 extension HomeViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            self.locationManager.stopUpdatingLocation()
+            currentLocation = LocationDetails(locationName: "", latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            print("CURR LOC: ", currentLocation!.latitude)
+            getTodaysForecast()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+        #warning("Handle error")
+    }
+    
     func setupLocation() {
         locationManager.delegate = self
         let locationPermissionStatus = locationChecker.checkLocationPermission()
@@ -236,5 +256,6 @@ extension HomeViewController: CLLocationManagerDelegate {
         default:
             locationManager.requestWhenInUseAuthorization()
         }
+        locationManager.requestLocation()
     }
 }
