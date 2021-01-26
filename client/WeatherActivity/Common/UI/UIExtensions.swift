@@ -35,3 +35,30 @@ extension UIViewController {
         return controller
     }
 }
+
+extension UIViewController {
+    func showActivityDetails(withId id: Int) {
+        let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
+        self.present(details, animated: true, completion: nil)
+        details.showSkeleton()
+        
+        ActivityService().getWidgetActivityDetails(activity: id, success: { activity in
+            var pActivity: ActivityCellItemP = ActivityItemHelper().initCellItem(activity: activity)
+            details.widgetInit(activity: pActivity)
+        }, failure: { error in
+            print(error)
+        })
+    }
+    
+    func openAddActivityFlow(topViewController: UIViewController, isEditing: Bool = false, activity: ActivityCellItemP?) {
+        let navigationController = UINavigationController()
+        let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
+        
+        let flowNavigator = AddActivityFlowNavigator(navigationController: navigationController, steps: steps)
+        
+        flowNavigator.presentFlow(from: self)
+        
+        flowNavigator.isEditing = isEditing
+        flowNavigator.editingActivity = activity
+    }
+}

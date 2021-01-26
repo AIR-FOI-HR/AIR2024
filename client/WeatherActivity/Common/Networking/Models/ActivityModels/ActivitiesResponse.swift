@@ -7,15 +7,24 @@
 
 import Foundation
 
+
+enum StatusType: String, Codable {
+    case inProgress = "In progress"
+    case finished = "Finished"
+    case future = "Future"
+    case canceled = "Canceled"
+    case completed = "Completed"
+}
+
 struct Activities: Codable {
     let activityId: Int
     let startTime: String
     let endTime: String
     let title: String
     let description: String
-    let locationName: String
-    let latitude: Double
-    let longitude: Double
+    let locationName: String?
+    let latitude: Double?
+    let longitude: Double?
     let temperature: Float?
     let feelsLike: Float?
     let wind: Float?
@@ -23,7 +32,7 @@ struct Activities: Codable {
     let forecastType: String?
     let name: String
     let type: String
-    let statusType: String
+    let statusType: StatusType
 }
  
 public struct Activity: Codable, Identifiable {

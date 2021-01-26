@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 enum initialStoryboard: String {
     case home = "Home"
@@ -25,6 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     let loginService = LoginService()
+    var locationManager = CLLocationManager()
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if !UserDefaultsManager.shared.getUserDefaultBool(key: .firstTime) {

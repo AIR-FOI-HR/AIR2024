@@ -409,6 +409,9 @@
                         <outlet property="temperatureFeelsLabel" destination="m3G-um-0si" id="koG-27-jrZ"/>
                         <outlet property="temperatureLabel" destination="WH1-9q-5j6" id="C0n-pX-VtU"/>
                         <outlet property="todaysDescription" destination="Y8l-5E-QwK" id="zmt-k4-B5L"/>
+                        <outlet property="weatherDescriptionLabel" destination="Y8l-5E-QwK" id="iXC-v4-RST"/>
+                        <outlet property="weatherForecastMessage" destination="wSt-bg-fvJ" id="zYa-6r-kZV"/>
+                        <outlet property="weatherForecastView" destination="axO-0h-9us" id="vuD-vF-O4n"/>
                         <outlet property="weatherTypeImageView" destination="7Mm-VN-asj" id="nfl-ef-bd4"/>
                         <outlet property="weatherTypeLabel" destination="Gjm-lJ-UFv" id="D4g-9h-VxG"/>
                         <outlet property="windLabel" destination="HBT-6d-wUz" id="ZOV-eD-d1s"/>
