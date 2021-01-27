@@ -21,7 +21,6 @@ class ActivityCell: UITableViewCell, ActivityCellProtocol {
     func configure(with item: ActivityCellItemProtocol) {
         let dateFormatter = DateFormatter()
         let timestamp = TimeDetailsManager().getCorrectDateAsString(from: item.startTime)
-//        guard let timestamp = dateTime else { return }
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let date = dateFormatter.string(from: timestamp)
         dateFormatter.dateFormat = "HH:mm"

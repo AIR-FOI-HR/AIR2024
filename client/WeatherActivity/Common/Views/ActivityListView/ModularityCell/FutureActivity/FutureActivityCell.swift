@@ -29,10 +29,18 @@ class FutureActivityCell: UITableViewCell, ActivityCellProtocol {
         let endDate = calendar.startOfDay(for: timeDetailsManager.getDateFromString(timestamp: item.startTime))
         let inDays = calendar.dateComponents([.day], from: startDate, to: endDate)
         guard let inDaysString = inDays.day else { return }
+        var label: String
+        if inDaysString == 0 {
+            label = "Today"
+        } else if inDaysString == 1 {
+            label = "in 1 day"
+        } else {
+            label = "in \(inDaysString) days"
+        }
 
         activityTitleLabel.text = item.title
         activityDateLabel.text = timeDetailsManager.getCustomFormatFromDate(timestamp: item.startTime, format: DateTimeFormat.dayMonth.rawValue) + " " + timeDetailsManager.getCustomFormatFromDate(timestamp: item.startTime, format: DateTimeFormat.hoursMinutes.rawValue)
-        activityTimeLabel.text =  "in \(String(inDaysString)) days"
+        activityTimeLabel.text = label
         activityTimeLabel.textColor = UIColor.CustomGreen
         activityTimeLabel.font = UIFont.boldSystemFont(ofSize: 16)
         activityLocationLabel.text = item.locationName

@@ -122,12 +122,8 @@ class ActivityListView: UIView, UITableViewDelegate {
 }
 
 extension ActivityListView: SkeletonTableViewDataSource {
-    func numSections(in collectionSkeletonView: UITableView) -> Int {
-        return dataSource.count
-    }
-
     func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
 
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {

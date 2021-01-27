@@ -265,11 +265,7 @@ extension SearchActivitiesViewController: ActivityListViewDelegate, ActivityDeta
     }
     
     func didDeleteActivity(deletedActivity: Int) {
-        guard let index = activitiesList.firstIndex(where: { $0.activityId == deletedActivity }) else {
-            return
-        }
-        activitiesList.remove(at: index)
-        self.activityListView.setState(state: .normal(items: self.activitiesList))
+        loadActivities()
     }
     
     func didEditActivity(activity: ActivityCellItemProtocol) {

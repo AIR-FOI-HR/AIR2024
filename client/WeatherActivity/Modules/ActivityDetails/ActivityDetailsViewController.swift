@@ -65,13 +65,13 @@ class ActivityDetailsViewController: UIViewController {
         
         switch localActivity.statusType {
         case .inProgress:
-            color = UIColor(red: 59.0/255.0, green: 245.0/255.0, blue: 170.0/255.0, alpha: 1)
+            color = UIColor(red: 102.0/255.0, green: 198.0/255.0, blue: 255.0/255.0, alpha: 1)
         case .future:
-            color = UIColor(red: 242.0/255.0, green: 146.0/255.0, blue: 97.0/255.0, alpha: 1)
+            color = UIColor(red: 59.0/255.0, green: 245.0/255.0, blue: 170.0/255.0, alpha: 1)
         case .past:
             color = UIColor(red: 242.0/255.0, green: 146.0/255.0, blue: 97.0/255.0, alpha: 1)
         default:
-            color = UIColor(red: 59.0/255.0, green: 245.0/255.0, blue: 170.0/255.0, alpha: 1)
+            color = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1)
         }
         
         activityTitle.text = localActivity.title
@@ -165,7 +165,7 @@ class ActivityDetailsViewController: UIViewController {
     }
     
     func isLocationNull() {
-        if localActivity?.locationName == nil {
+        if localActivity?.locationName == "None" {
             locationStackView.isHidden = true
         }
     }

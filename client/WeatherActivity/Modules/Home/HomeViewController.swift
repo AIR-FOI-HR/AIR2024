@@ -151,15 +151,7 @@ extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewContr
     }
     
     func didDeleteActivity(deletedActivity: Int) {
-        guard let index = activitiesList.firstIndex(where: { $0.activityId == deletedActivity }) else {
-            return
-        }
-        activitiesList.remove(at: index)
-        if activitiesList.isEmpty {
-            self.activityListView.setState(state: .noActivities)
-        } else {
-            self.activityListView.setState(state: .normal(items: self.activitiesList))
-        }
+        loadActivities()
     }
     
     func didEditActivity(activity: ActivityCellItemProtocol) {
@@ -214,7 +206,7 @@ extension HomeViewController: CLLocationManagerDelegate {
             print("CURR LOC: ", currentLocation!.latitude)
             
             weatherForecastView.isHidden = false
-            weatherDescriptionLabel.isHidden = false
+            weatherForecastNoLocation.isHidden = true
             getTodaysForecast()
         }
     }
@@ -256,7 +248,6 @@ extension HomeViewController: CLLocationManagerDelegate {
             
             self.present(alertVC, animated: true, completion: nil)
             weatherForecastView.isHidden = true
-            weatherDescriptionLabel.isHidden = true
         case .notAllowed:
             locationManager.requestWhenInUseAuthorization()
         default:

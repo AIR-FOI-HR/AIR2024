@@ -35,6 +35,7 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     @IBOutlet private weak var warningAlertView: UIStackView!
     @IBOutlet private weak var weatherTypeImageView: UIImageView!
     @IBOutlet private weak var weatherDescriptionLabel: UILabel!
+    @IBOutlet weak var weatherStackNoLocation: UIStackView!
     @IBOutlet private weak var weatherTypeLabel: UILabel!
     
     
@@ -131,14 +132,21 @@ private extension TimeDetailsViewController {
     func checkDate() {
         
         let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
-        if(timeDetailsManager.isDateRangeValid(date: forecastDate)) {
-            weatherStackView.isHidden = false
-            warningAlertView.isHidden = true
-            getForecast(date: forecastDate)
+        if location != nil {
+            weatherStackNoLocation.isHidden = true
+            if(timeDetailsManager.isDateRangeValid(date: forecastDate)) {
+                weatherStackView.isHidden = false
+                warningAlertView.isHidden = true
+                getForecast(date: forecastDate)
+            } else {
+                weatherStackView.isHidden = true
+                warningAlertView.isHidden = false
+                setInitialDate()
+            }
         } else {
+            weatherStackNoLocation.isHidden = false
             weatherStackView.isHidden = true
-            warningAlertView.isHidden = false
-            setInitialDate()
+            warningAlertView.isHidden = true
         }
     }
     

@@ -135,6 +135,10 @@ final class RegistrationCompletionViewController: UIViewController, UICollection
         })
     }
     
+    @IBAction func goBackClicked(_ sender: UIButton) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func registrationCompletionTextFieldDidBeginEditing(_ sender: UITextField) {
         textFieldAppearance.updateTextAppearanceOnFieldDidBeginEditing(sender)
     }

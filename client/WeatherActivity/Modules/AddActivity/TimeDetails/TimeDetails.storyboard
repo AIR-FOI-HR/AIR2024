@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ycq-qu-8D1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ycq-qu-8D1">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -22,10 +22,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="728"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gZx-78-sOc" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="775.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1041"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="PIT-fh-PdS">
-                                                <rect key="frame" x="16" y="30" width="382" height="725.33333333333337"/>
+                                                <rect key="frame" x="16" y="30" width="382" height="991"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5ZD-Et-My7" userLabel="Header Stack View">
                                                         <rect key="frame" x="0.0" y="0.0" width="372.66666666666669" height="62"/>
@@ -110,13 +110,13 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="MFW-Fh-jF6">
                                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="42.666666666666664"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Todays weather forecast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLZ-g2-odZ">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity weather forecast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLZ-g2-odZ">
                                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="23.333333333333332"/>
                                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Todays weather forecast for your current location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5f-et-5YG">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather forecast for selected location and date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5f-et-5YG">
                                                                         <rect key="frame" x="0.0" y="26.333333333333314" width="382" height="16.333333333333329"/>
                                                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                                         <color key="textColor" name="SecondaryColor"/>
@@ -393,7 +393,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ko1-yO-oHg" userLabel="Warning Stack View">
-                                                        <rect key="frame" x="0.0" y="725.33333333333337" width="382" height="120"/>
+                                                        <rect key="frame" x="0.0" y="740.33333333333337" width="382" height="120"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar.badge.exclamationmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9P3-4c-Agh">
                                                                 <rect key="frame" x="0.0" y="1.6666666666666643" width="383.33333333333331" height="98.666666666666671"/>
@@ -427,12 +427,60 @@
                                                             </label>
                                                         </subviews>
                                                     </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="FWz-OU-bR3" userLabel="Weather forecast No location">
+                                                        <rect key="frame" x="0.0" y="755.33333333333337" width="382" height="235.66666666666663"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="QzY-Ic-eab">
+                                                                <rect key="frame" x="0.0" y="0.0" width="382" height="42.666666666666664"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Activity weather forecast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCG-Zf-mt0">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="23.333333333333332"/>
+                                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Weather forecast for selected location and date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7KX-En-i1N">
+                                                                        <rect key="frame" x="0.0" y="26.333333333333258" width="382" height="16.333333333333329"/>
+                                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                                        <color key="textColor" name="SecondaryColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar.badge.exclamationmark" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hc3-Ib-hrZ">
+                                                                <rect key="frame" x="0.0" y="69.333333333333286" width="383.33333333333331" height="98.666666666666686"/>
+                                                                <color key="tintColor" name="LightLighterBlue"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="100" id="qtE-m4-uUJ"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Rct-7r-auX">
+                                                                <rect key="frame" x="0.0" y="192.66666666666663" width="382" height="43"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We can't show you activity weather forecast" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h4g-WD-iUP">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="382" height="18.666666666666668"/>
+                                                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select location to show it!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uL-cH-WV3">
+                                                                        <rect key="frame" x="0.0" y="23.666666666666742" width="382" height="19.333333333333329"/>
+                                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="1h1-c1-cSF" secondAttribute="trailing" id="2x8-tb-mX8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="FWz-OU-bR3" secondAttribute="trailing" id="6x5-Pk-m6L"/>
                                                     <constraint firstAttribute="trailing" secondItem="Ko1-yO-oHg" secondAttribute="trailing" id="XQf-dO-bio"/>
                                                     <constraint firstItem="Ko1-yO-oHg" firstAttribute="leading" secondItem="PIT-fh-PdS" secondAttribute="leading" id="cZY-Nf-bKx"/>
                                                     <constraint firstItem="1h1-c1-cSF" firstAttribute="leading" secondItem="PIT-fh-PdS" secondAttribute="leading" id="j5j-gf-rdf"/>
+                                                    <constraint firstItem="FWz-OU-bR3" firstAttribute="leading" secondItem="PIT-fh-PdS" secondAttribute="leading" id="stj-PW-2B3"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
@@ -536,6 +584,7 @@
                         <outlet property="untilTimePicker" destination="gdU-y9-Huo" id="t8B-oe-UEm"/>
                         <outlet property="warningAlertView" destination="Ko1-yO-oHg" id="6ST-52-paO"/>
                         <outlet property="weatherDescriptionLabel" destination="yAr-I7-02C" id="Hgc-gd-yBA"/>
+                        <outlet property="weatherStackNoLocation" destination="FWz-OU-bR3" id="BMX-PN-U3l"/>
                         <outlet property="weatherStackView" destination="1h1-c1-cSF" id="h0a-p3-ezd"/>
                         <outlet property="weatherTypeImageView" destination="1TZ-JS-t7M" id="NmD-AM-MWL"/>
                         <outlet property="weatherTypeLabel" destination="FDR-rz-mDn" id="H2P-t6-0Ip"/>
