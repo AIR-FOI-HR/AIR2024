@@ -1,18 +1,13 @@
 //
-//  RegistrationCheck.swift
+//  CustomRegistrationValidator.swift
 //  WeatherActivity
 //
-//  Created by Infinum on 29.11.2020..
+//  Created by Kevin Bogdan on 27.01.2021..
 //
 
 import Foundation
 
-
-
-class RegistrationValidator: RegistrationRegistrationProtocol {
-    
-    // MARK: Properties
-    
+class CustomRegistrationValidator: RegistrationRegistrationProtocol {
     let firstName: String
     let lastName: String
     let email: String
@@ -26,29 +21,28 @@ class RegistrationValidator: RegistrationRegistrationProtocol {
         self.password = password
         self.repeatedPassword = repeatedPassword
     }
-
-    // MARK: Validate functions
     
-    func emptyFieldExist() -> Bool{
+    func emptyFieldExist() -> Bool {
         return firstName.isEmpty || lastName.isEmpty || email.isEmpty || password.isEmpty || repeatedPassword.isEmpty
     }
     
     func isValidEmail() -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailCheck = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailCheck.evaluate(with: self.email)
+        return email.contains("@gmail.com")
     }
-
+    
     func isValidRepeatedPassword() -> Bool {
         return self.password == repeatedPassword
     }
-
-    func isValidPasswordLength() -> Bool{
-        return self.password.count >= 6
+    
+    func isValidPasswordLength() -> Bool {
+        return self.password.count >= 8
     }
     
     func customValidation() -> (Bool, String)? {
-        return nil
+        if(firstName.contains("#")) {
+            return (false, "First name contains '#'")
+        } else {
+            return nil
+        }
     }
 }
-

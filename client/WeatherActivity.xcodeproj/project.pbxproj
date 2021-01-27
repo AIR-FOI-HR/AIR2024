@@ -123,6 +123,8 @@
 		8CD75E9625C164E800390C98 /* ActivityCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD75E9525C164E800390C98 /* ActivityCellItem.swift */; };
 		8CDA3FB8257ACB340047C727 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA3FB7257ACB340047C727 /* WeatherInfo.swift */; };
 		8CE0417225764E04005EFEC4 /* RegistrationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE0417125764E04005EFEC4 /* RegistrationUser.swift */; };
+		8CFAA58725C1F52400029A1D /* RegistrationValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFAA58625C1F52400029A1D /* RegistrationValidatorProtocol.swift */; };
+		8CFAA58D25C1F55300029A1D /* CustomRegistrationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFAA58C25C1F55300029A1D /* CustomRegistrationValidator.swift */; };
 		9B611762AF873A0410982DF9 /* Pods_WeatherActivityWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D940EF3CEB4D27461352F0 /* Pods_WeatherActivityWidgetExtension.framework */; };
 		DD643BF0A9E441A5AFDCC5B5 /* Pods_WeatherActivity_WeatherActivityUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B02EEB462094EE6C98877B /* Pods_WeatherActivity_WeatherActivityUITests.framework */; };
 /* End PBXBuildFile section */
@@ -292,6 +294,8 @@
 		8CD75E9525C164E800390C98 /* ActivityCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCellItem.swift; sourceTree = "<group>"; };
 		8CDA3FB7257ACB340047C727 /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
 		8CE0417125764E04005EFEC4 /* RegistrationUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationUser.swift; sourceTree = "<group>"; };
+		8CFAA58625C1F52400029A1D /* RegistrationValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationValidatorProtocol.swift; sourceTree = "<group>"; };
+		8CFAA58C25C1F55300029A1D /* CustomRegistrationValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRegistrationValidator.swift; sourceTree = "<group>"; };
 		8F2D4BEF3035C874E7B0413D /* Pods-WeatherActivityWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherActivityWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-WeatherActivityWidgetExtension/Pods-WeatherActivityWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		93D4A326927C9B3C8B862DF3 /* Pods-WeatherActivityWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherActivityWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-WeatherActivityWidgetExtension/Pods-WeatherActivityWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		B5B02EEB462094EE6C98877B /* Pods_WeatherActivity_WeatherActivityUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherActivity_WeatherActivityUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -650,6 +654,8 @@
 			isa = PBXGroup;
 			children = (
 				429A736F25758EC900B99F8D /* RegistrationValidator.swift */,
+				8CFAA58625C1F52400029A1D /* RegistrationValidatorProtocol.swift */,
+				8CFAA58C25C1F55300029A1D /* CustomRegistrationValidator.swift */,
 			);
 			path = RegistrationValidator;
 			sourceTree = "<group>";
@@ -1292,6 +1298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4252C841258F95C900A2A7CC /* StandardStorage.swift in Sources */,
+				8CFAA58725C1F52400029A1D /* RegistrationValidatorProtocol.swift in Sources */,
 				8C4B6447258B62230013DADD /* AddActivityStepInfo.swift in Sources */,
 				8C2D04142576D2B8002E51D0 /* TokenCheckResponse.swift in Sources */,
 				8CB1E79B25C15C710011A145 /* ActivityItem.swift in Sources */,
@@ -1359,6 +1366,7 @@
 				8C4B642F258B51B70013DADD /* AddActivityStepViewController.swift in Sources */,
 				4226D50E25C1BD13000E4DDE /* FutureActivityCell.swift in Sources */,
 				8C25006B258B890800C79832 /* Encodable+Dictionary.swift in Sources */,
+				8CFAA58D25C1F55300029A1D /* CustomRegistrationValidator.swift in Sources */,
 				428265F225BF1BBC007ADD3E /* UIExtensions.swift in Sources */,
 				4278015C257CFBEB00E9EE9C /* UITableView+RegisterCell.swift in Sources */,
 				8CA49C5F257E249C008515B0 /* TimeDetailsManager.swift in Sources */,
