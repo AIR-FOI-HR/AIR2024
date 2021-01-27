@@ -51,6 +51,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         handleDeepLink(url: URLContexts)
     }
+    
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        guard
+            let topViewController = UIViewController.topViewController(),
+            let tabBarController = topViewController.tabBarController
+        else { return }
+        
+        switch shortcutItem.type {
+        case "ColorAction":
+            tabBarController.selectedIndex = 2
+        default:
+            break
+        }
+    }
 }
 
 extension SceneDelegate {

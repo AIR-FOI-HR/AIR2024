@@ -71,6 +71,19 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemType</key>
+			<string>ColorAction</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Add activity</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>Click to start activity flow</string>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeCompose</string>
+		</dict>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
