@@ -35,9 +35,8 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     @IBOutlet private weak var warningAlertView: UIStackView!
     @IBOutlet private weak var weatherTypeImageView: UIImageView!
     @IBOutlet private weak var weatherDescriptionLabel: UILabel!
-    @IBOutlet weak var weatherStackNoLocation: UIStackView!
+    @IBOutlet private weak var weatherStackNoLocation: UIStackView!
     @IBOutlet private weak var weatherTypeLabel: UILabel!
-    
     
     // MARK: Properties
     
