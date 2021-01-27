@@ -145,16 +145,16 @@ extension ActivityListView: SkeletonTableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ActivityCellProtocol
         let item = dataSource[indexPath.section]
-        print("ASDASDSA", item.statusType)
         switch(item.statusType){
-        case "Past":
-            print(item.title)
-            activityListView.registerXibCell(fileName: "PastActivityCell", withReuseIdentifier: "PastActivityCell")
-            cell = tableView.dequeueReusableCell(withIdentifier: "PastActivityCell", for: indexPath) as! PastActivityCell
+        case .past:
+            let identifier = Identifier.pastIdentifier.rawValue
+            activityListView.registerXibCell(fileName: identifier, withReuseIdentifier: identifier)
+            cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PastActivityCell
         default:
+            let identifier = Identifier.defaultIdentifier.rawValue
             print(item.title)
-            activityListView.registerXibCell(fileName: "ActivityCell", withReuseIdentifier: "ActivityCell")
-            cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath) as! ActivityCell
+            activityListView.registerXibCell(fileName: identifier, withReuseIdentifier: identifier)
+            cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! ActivityCell
         }
         
         cell.configure(with: item)

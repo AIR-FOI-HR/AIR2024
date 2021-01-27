@@ -63,20 +63,18 @@ class ActivityDetailsViewController: UIViewController {
         checkDate()
         
         switch localActivity.statusType {
-        case "In progress":
+        case .inProgress:
             color = UIColor(red: 59.0/255.0, green: 245.0/255.0, blue: 170.0/255.0, alpha: 1)
-        case "Delayed":
+        case .future:
             color = UIColor(red: 242.0/255.0, green: 146.0/255.0, blue: 97.0/255.0, alpha: 1)
-        case "Canceled":
-            color = UIColor(red: 242.0/255.0, green: 146.0/255.0, blue: 97.0/255.0, alpha: 1)
-        case "Completed":
+        case .past:
             color = UIColor(red: 242.0/255.0, green: 146.0/255.0, blue: 97.0/255.0, alpha: 1)
         default:
             color = UIColor(red: 59.0/255.0, green: 245.0/255.0, blue: 170.0/255.0, alpha: 1)
         }
         
         activityTitle.text = localActivity.title
-        activityStatus.text = localActivity.statusType
+        activityStatus.text = localActivity.statusType.rawValue
         activityStatus.textColor = color
         activityDate.text = getDate(timestamp: localActivity.startTime)
         activityTime.text = getTime(timestamp: localActivity.startTime) + " - " + getTime(timestamp: localActivity.endTime)

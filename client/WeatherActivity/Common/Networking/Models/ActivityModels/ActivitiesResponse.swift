@@ -9,6 +9,7 @@ import Foundation
 
 
 enum StatusType: String, Codable {
+    case defaultType = "Default"
     case inProgress = "In progress"
     case past = "Past"
     case future = "Future"

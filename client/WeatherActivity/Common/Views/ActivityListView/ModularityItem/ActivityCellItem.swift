@@ -24,7 +24,7 @@ class DefaultActivityCellItem: ActivityCellItemProtocol {
     var forecastType: String?
     var name: String
     var type: String
-    var statusType: String
+    var statusType: StatusType
     var color: UIColor
     init(
         activityId: Int,
@@ -42,7 +42,7 @@ class DefaultActivityCellItem: ActivityCellItemProtocol {
         forecastType: String?,
         name: String,
         type: String,
-        statusType: String,
+        statusType: StatusType,
         color: UIColor
     ) {
         
@@ -61,7 +61,7 @@ class DefaultActivityCellItem: ActivityCellItemProtocol {
         self.forecastType = forecastType
         self.name = name
         self.type = type
-        self.statusType = statusType
+        self.statusType = .defaultType
         self.color = color
     }
 }
@@ -82,7 +82,7 @@ class InProgressActivityCellItem: ActivityCellItemProtocol {
     var forecastType: String?
     var name: String
     var type: String
-    var statusType: String
+    var statusType: StatusType
     var color: UIColor
     init(
         activityId: Int,
@@ -100,14 +100,14 @@ class InProgressActivityCellItem: ActivityCellItemProtocol {
         forecastType: String?,
         name: String,
         type: String,
-        statusType: String,
+        statusType: StatusType,
         color: UIColor
     ) {
         
         self.activityId = activityId
         self.startTime = startTime
         self.endTime = endTime
-        self.title = "IP:" + title
+        self.title = "InProg:" + title
         self.description = description
         self.locationName = locationName
         self.latitude = latitude
@@ -119,7 +119,7 @@ class InProgressActivityCellItem: ActivityCellItemProtocol {
         self.forecastType = forecastType
         self.name = name
         self.type = type
-        self.statusType = statusType
+        self.statusType = .inProgress
         self.color = color
     }
 }
@@ -140,7 +140,7 @@ class PastActivityCellItem: ActivityCellItemProtocol {
     var forecastType: String?
     var name: String
     var type: String
-    var statusType: String
+    var statusType: StatusType
     var color: UIColor
     init(
         activityId: Int,
@@ -158,14 +158,14 @@ class PastActivityCellItem: ActivityCellItemProtocol {
         forecastType: String?,
         name: String,
         type: String,
-        statusType: String,
+        statusType: StatusType,
         color: UIColor
     ) {
         
         self.activityId = activityId
         self.startTime = startTime
         self.endTime = endTime
-        self.title = "FF:" + title
+        self.title = "Past:" + title
         self.description = description
         self.locationName = locationName
         self.latitude = latitude
@@ -177,7 +177,65 @@ class PastActivityCellItem: ActivityCellItemProtocol {
         self.forecastType = forecastType
         self.name = name
         self.type = type
-        self.statusType = statusType
+        self.statusType = .past
+        self.color = color
+    }
+}
+
+class FutureActivityCellItem: ActivityCellItemProtocol {
+    var activityId: Int
+    var startTime: String
+    var endTime: String
+    var title: String
+    var description: String
+    var locationName: String?
+    var latitude: Double?
+    var longitude: Double?
+    var temperature: Float?
+    var feelsLike: Float?
+    var wind: Float?
+    var humidity: Int?
+    var forecastType: String?
+    var name: String
+    var type: String
+    var statusType: StatusType
+    var color: UIColor
+    init(
+        activityId: Int,
+        startTime: String,
+        endTime: String,
+        title: String,
+        description: String,
+        locationName: String?,
+        latitude: Double?,
+        longitude: Double?,
+        temperature: Float?,
+        feelsLike: Float?,
+        wind: Float?,
+        humidity: Int?,
+        forecastType: String?,
+        name: String,
+        type: String,
+        statusType: StatusType,
+        color: UIColor
+    ) {
+        
+        self.activityId = activityId
+        self.startTime = startTime
+        self.endTime = endTime
+        self.title = "Future:" + title
+        self.description = description
+        self.locationName = locationName
+        self.latitude = latitude
+        self.longitude = longitude
+        self.temperature = temperature
+        self.feelsLike = feelsLike
+        self.wind = wind
+        self.humidity = humidity
+        self.forecastType = forecastType
+        self.name = name
+        self.type = type
+        self.statusType = .future
         self.color = color
     }
 }

@@ -23,6 +23,6 @@ protocol ActivityCellItemProtocol {
     var forecastType: String? { get }
     var name: String { get }
     var type: String { get }
-    var statusType: String { get }
+    var statusType: StatusType { get }
     var color: UIColor { get }
 }
