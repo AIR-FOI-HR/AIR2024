@@ -30,7 +30,7 @@ class ActivityListView: UIView, UITableViewDelegate {
     @IBOutlet private var message: UILabel!
     @IBOutlet private var button: UIButton!
     
-    static private let cellIdentifier = "PastActivityCell"
+    static private let cellIdentifier = "ActivityCell"
     static private let xibFileName = "ActivityListView"
     
     var state: State?
@@ -47,6 +47,7 @@ class ActivityListView: UIView, UITableViewDelegate {
     }
     
     private func setupActivityListView() {
+        activityListView.registerXibCell(fileName: "ActivityCell", withReuseIdentifier: "ActivityCell")
         activityListView.rowHeight = 100
         activityListView.estimatedRowHeight = 100
         activityListView.isSkeletonable = true
@@ -144,11 +145,14 @@ extension ActivityListView: SkeletonTableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ActivityCellProtocol
         let item = dataSource[indexPath.section]
+        print("ASDASDSA", item.statusType)
         switch(item.statusType){
         case "Past":
+            print(item.title)
             activityListView.registerXibCell(fileName: "PastActivityCell", withReuseIdentifier: "PastActivityCell")
             cell = tableView.dequeueReusableCell(withIdentifier: "PastActivityCell", for: indexPath) as! PastActivityCell
         default:
+            print(item.title)
             activityListView.registerXibCell(fileName: "ActivityCell", withReuseIdentifier: "ActivityCell")
             cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath) as! ActivityCell
         }
