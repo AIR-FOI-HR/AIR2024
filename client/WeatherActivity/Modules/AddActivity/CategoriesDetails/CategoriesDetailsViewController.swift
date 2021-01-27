@@ -160,14 +160,21 @@ final class CategoriesDetailsViewController: AddActivityStepViewController, UICo
     func addNoRecentCategoriesLabel() {
         let textLabel = UILabel()
         textLabel.textAlignment = .center
-        textLabel.textColor = UIColor.black
+        switch traitCollection.userInterfaceStyle {
+            case .light, .unspecified:
+                textLabel.textColor = UIColor(red: (0/255.0), green: (0/255.0), blue: (0/255.0), alpha: 1.0)
+            case .dark:
+                textLabel.textColor = UIColor(red: (255/255.0), green: (255/255.0), blue: (255/255.0), alpha: 1.0)
+            @unknown default:
+                textLabel.textColor = UIColor(red: (230/255.0), green: (230/255.0), blue: (230/255.0), alpha: 1.0)
+        }
         textLabel.font = textLabel.font.withSize(16)
         textLabel.text  = "You don't have any recent categories"
         horizontalStackView.addArrangedSubview(textLabel)
     }
     
     func setRecentCategories() {
-        if let sessionToken = SessionManager.shared.getToken() {
+        if let sessionToken = SessionManager.shared.getStringFromKeychain(key: .sessionToken) {
             categoryService.getRecentCategories(token: sessionToken, success: { apiResponse in
                 if(!apiResponse.categories.isEmpty) {
                     self.recentCategories = apiResponse.categories

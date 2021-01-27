@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" ambiguous="YES" id="iN0-l3-epB" userLabel="Activity List View" customClass="ActivityListView" customModule="WeatherActivity" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Activity List View" customClass="ActivityListView" customModule="WeatherActivity" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Clt-sp-7Vw">
-                    <rect key="frame" x="0.0" y="44" width="264" height="818"/>
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tp1-44-PTf">
-                            <rect key="frame" x="0.0" y="0.0" width="264" height="818"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                            <color key="backgroundColor" name="CustomBackground"/>
+                            <color key="sectionIndexBackgroundColor" name="CustomBackground"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
                                     <real key="value" value="0.0"/>
@@ -28,53 +29,67 @@
                             </userDefinedRuntimeAttributes>
                         </tableView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HyP-Tk-Z2P">
-                            <rect key="frame" x="0.0" y="0.0" width="264" height="818"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="cvZ-0f-cVd">
-                                    <rect key="frame" x="32" y="169.5" width="200" height="200"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="TFp-Xu-EOs">
+                                    <rect key="frame" x="16" y="40" width="382" height="778"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank" translatesAutoresizingMaskIntoConstraints="NO" id="cvZ-0f-cVd">
+                                            <rect key="frame" x="91" y="0.0" width="200" height="200"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="200" id="Hvf-4z-AXM"/>
+                                                <constraint firstAttribute="width" constant="200" id="rrF-GH-Dxt"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Errr... there seems to be something missing here... try refreshing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faW-Zj-OMt" userLabel="Message">
+                                            <rect key="frame" x="0.0" y="240" width="382" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="j78-h5-hcy"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckt-3z-fuc" userLabel="Refresh">
+                                            <rect key="frame" x="0.0" y="320" width="382" height="40"/>
+                                            <color key="backgroundColor" name="LightBlue"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="SOU-ck-j8P"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="20"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="didClickButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="MVx-e7-sVi"/>
+                                            </connections>
+                                        </button>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sJJ-GI-rdU">
+                                            <rect key="frame" x="16" y="400" width="350" height="378"/>
+                                            <color key="backgroundColor" name="CustomBackground"/>
+                                        </view>
+                                    </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="200" id="Hvf-4z-AXM"/>
-                                        <constraint firstAttribute="width" constant="200" id="rrF-GH-Dxt"/>
+                                        <constraint firstItem="ckt-3z-fuc" firstAttribute="leading" secondItem="TFp-Xu-EOs" secondAttribute="leading" id="4Yw-md-vut"/>
+                                        <constraint firstAttribute="trailing" secondItem="faW-Zj-OMt" secondAttribute="trailing" id="ZjS-il-3S4"/>
+                                        <constraint firstAttribute="trailing" secondItem="sJJ-GI-rdU" secondAttribute="trailing" constant="16" id="bHQ-rM-pHu"/>
+                                        <constraint firstItem="faW-Zj-OMt" firstAttribute="leading" secondItem="TFp-Xu-EOs" secondAttribute="leading" id="chM-2H-haf"/>
+                                        <constraint firstItem="sJJ-GI-rdU" firstAttribute="leading" secondItem="TFp-Xu-EOs" secondAttribute="leading" constant="16" id="tUz-Ud-i7V"/>
+                                        <constraint firstAttribute="trailing" secondItem="ckt-3z-fuc" secondAttribute="trailing" id="wDu-JJ-WT9"/>
                                     </constraints>
-                                </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Errr... there seems to be something missing here... try refreshing" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faW-Zj-OMt" userLabel="Message">
-                                    <rect key="frame" x="16" y="399.5" width="232" height="59.5"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ckt-3z-fuc" userLabel="Refresh">
-                                    <rect key="frame" x="16" y="509" width="232" height="40"/>
-                                    <color key="backgroundColor" name="LightBlue"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="SOU-ck-j8P"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                    <state key="normal" title="Button">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                            <integer key="value" value="20"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="didClickButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="MVx-e7-sVi"/>
-                                    </connections>
-                                </button>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" name="CustomBackground"/>
                             <constraints>
-                                <constraint firstItem="faW-Zj-OMt" firstAttribute="top" secondItem="cvZ-0f-cVd" secondAttribute="bottom" constant="30" id="64C-hr-A1f"/>
-                                <constraint firstItem="cvZ-0f-cVd" firstAttribute="leading" secondItem="HyP-Tk-Z2P" secondAttribute="leading" constant="32" id="8rK-hv-ftv"/>
-                                <constraint firstAttribute="trailing" secondItem="ckt-3z-fuc" secondAttribute="trailing" constant="16" id="9zi-1H-9o7"/>
-                                <constraint firstItem="ckt-3z-fuc" firstAttribute="top" secondItem="faW-Zj-OMt" secondAttribute="bottom" constant="50" id="D1X-Uf-Abn"/>
-                                <constraint firstAttribute="trailing" secondItem="faW-Zj-OMt" secondAttribute="trailing" constant="16" id="EKK-fA-uPj"/>
-                                <constraint firstItem="faW-Zj-OMt" firstAttribute="leading" secondItem="HyP-Tk-Z2P" secondAttribute="leading" constant="16" id="J0R-mK-sld"/>
-                                <constraint firstAttribute="trailing" secondItem="cvZ-0f-cVd" secondAttribute="trailing" constant="32" id="TD4-0k-M3J"/>
-                                <constraint firstItem="faW-Zj-OMt" firstAttribute="centerX" secondItem="HyP-Tk-Z2P" secondAttribute="centerX" id="aJN-68-KEF"/>
-                                <constraint firstItem="faW-Zj-OMt" firstAttribute="centerY" secondItem="HyP-Tk-Z2P" secondAttribute="centerY" constant="20" id="lgm-Js-Qek"/>
-                                <constraint firstItem="ckt-3z-fuc" firstAttribute="leading" secondItem="HyP-Tk-Z2P" secondAttribute="leading" constant="16" id="q01-tb-JyK"/>
+                                <constraint firstItem="TFp-Xu-EOs" firstAttribute="top" secondItem="HyP-Tk-Z2P" secondAttribute="top" constant="40" id="Fyi-gg-bcD"/>
+                                <constraint firstAttribute="bottom" secondItem="TFp-Xu-EOs" secondAttribute="bottom" id="JYj-4c-1A1"/>
+                                <constraint firstItem="TFp-Xu-EOs" firstAttribute="leading" secondItem="HyP-Tk-Z2P" secondAttribute="leading" constant="16" id="KWW-sO-c4H"/>
+                                <constraint firstAttribute="trailing" secondItem="TFp-Xu-EOs" secondAttribute="trailing" constant="16" id="nrl-WA-llc"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -95,16 +110,13 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" name="CustomBackground"/>
             <constraints>
                 <constraint firstItem="Clt-sp-7Vw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5qw-T6-o0R"/>
                 <constraint firstItem="Clt-sp-7Vw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Baz-fH-L7b"/>
                 <constraint firstItem="Clt-sp-7Vw" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="VPh-2G-1gP"/>
                 <constraint firstItem="Clt-sp-7Vw" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="nOj-mh-b2P"/>
             </constraints>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="activityListView" destination="Tp1-44-PTf" id="Hs3-hO-tOf"/>
                 <outlet property="button" destination="ckt-3z-fuc" id="xGC-zU-8NM"/>
@@ -122,8 +134,5 @@
         <namedColor name="LightBlue">
             <color red="0.40000000000000002" green="0.77647058823529413" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

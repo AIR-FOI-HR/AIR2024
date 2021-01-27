@@ -7,9 +7,32 @@
 
 import Foundation
 
+enum DateTimeFormat: String {
+    case dayMonthYear = "dd/MM/yyyy"
+    case dayMonth = "dd/MM"
+    case hoursMinutes = "HH:mm"
+}
+
 class TimeDetailsManager {
     
     let dateFormatter = DateFormatter()
+    
+    func getCustomFormatFromDate(timestamp: String, format: String) -> String {
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+        let dateFormatterPrint = DateFormatter()
+        dateFormatterPrint.dateFormat = format
+
+        guard var date = dateFormatter.date(from: timestamp) else { return "Err" }
+        return dateFormatterPrint.string(from: date)
+    }
+    
+    func getRealDateFromString(timestamp: String) -> Date {
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+
+        guard let date = dateFormatter.date(from: timestamp) else { return Date() }
+        return date
+    }
     
     // Maximum of 5 days apart -> Reason: OpenWeatherMap API Free version gives only forecast for 5 days infront
     func isDateRangeValid(date: Date) -> Bool {
@@ -63,8 +86,20 @@ class TimeDetailsManager {
     func getDateFromString(timestamp: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-
+        
         guard let date = dateFormatter.date(from: timestamp) else { return Date() }
         return date
+    }
+    
+    func getCorrectDateAsString(from: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        guard
+            var newDate = dateFormatter.date(from: from)
+        else { return Date()}
+        newDate = addTime(to: newDate, hours: -1)
+        
+        guard let timestamp = dateFormatter.date(from: dateFormatter.string(from: newDate)) else { return Date() }
+        return timestamp
     }
 }

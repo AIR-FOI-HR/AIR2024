@@ -7,20 +7,17 @@
 
 import UIKit
 
-
 final class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
-    
     
     // MARK: Properties
     
     private let newActivityIndex = 2
-        
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
         self.tabBar.tintColor = UIColor(named: "CustomMainButton")
-    
+        
         let navigationController = initNavigationController()
         self.viewControllers?.insert(navigationController, at: newActivityIndex)
     }
@@ -28,17 +25,23 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
     // MARK: Tab Bar handling
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-
+        
         let tabBarIndex = tabBarController.selectedIndex
         if tabBarIndex == newActivityIndex {
             self.viewControllers?[newActivityIndex] = initNavigationController()
-//            flowNavigator.isEditing = isEditing
-//            flowNavigator.editingActivity = activity
-//            
-//            flowNavigator.delegate = self
         }
     }
-
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard let transitionFrom = selectedViewController?.view, let transitionTo = viewController.view else {
+            return false
+        }
+        if transitionFrom != transitionTo {
+            UIView.transition(from: transitionFrom, to: transitionTo, duration: 0.25, options: [.transitionCrossDissolve], completion: nil)
+        }
+        return true
+    }
+    
     // MARK: Custom methods
     
     private func initNavigationController()  -> UINavigationController{
@@ -54,5 +57,4 @@ final class TabBarViewController: UITabBarController, UITabBarControllerDelegate
         navigationController.viewControllers = [stepViewController]
         return navigationController
     }
-    
 }

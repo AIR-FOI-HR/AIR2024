@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TPP-vD-yEk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TPP-vD-yEk">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -36,7 +36,7 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xuO-Lp-RK1" userLabel="registrationStack">
                                                                 <rect key="frame" x="0.0" y="58.666666666666657" width="382" height="330"/>
                                                                 <subviews>
-                                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="testfn" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3hc-Ip-zeg">
+                                                                    <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3hc-Ip-zeg">
                                                                         <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
                                                                         <color key="backgroundColor" name="CustomTextField"/>
                                                                         <constraints>
@@ -50,7 +50,7 @@
                                                                             <outlet property="delegate" destination="TPP-vD-yEk" id="kQZ-GX-KGi"/>
                                                                         </connections>
                                                                     </textField>
-                                                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="testln" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQE-wA-2Yw">
+                                                                    <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JQE-wA-2Yw">
                                                                         <rect key="frame" x="0.0" y="70" width="382" height="50"/>
                                                                         <color key="backgroundColor" name="CustomTextField"/>
                                                                         <constraints>
@@ -64,7 +64,7 @@
                                                                             <outlet property="delegate" destination="TPP-vD-yEk" id="rlH-Pe-jbX"/>
                                                                         </connections>
                                                                     </textField>
-                                                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test@gmail.com" borderStyle="roundedRect" placeholder="Your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j4p-Iu-cas">
+                                                                    <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j4p-Iu-cas">
                                                                         <rect key="frame" x="0.0" y="140.00000000000003" width="382" height="50"/>
                                                                         <color key="backgroundColor" name="CustomTextField"/>
                                                                         <constraints>
@@ -78,7 +78,7 @@
                                                                             <outlet property="delegate" destination="TPP-vD-yEk" id="sJ4-4M-jUx"/>
                                                                         </connections>
                                                                     </textField>
-                                                                    <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test1234" borderStyle="roundedRect" placeholder="Choose a password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMO-cz-1bD">
+                                                                    <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose a password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IMO-cz-1bD">
                                                                         <rect key="frame" x="0.0" y="210.00000000000003" width="382" height="49.999999999999972"/>
                                                                         <color key="backgroundColor" name="CustomTextField"/>
                                                                         <constraints>
@@ -92,7 +92,7 @@
                                                                             <outlet property="delegate" destination="TPP-vD-yEk" id="AfN-0p-Nh9"/>
                                                                         </connections>
                                                                     </textField>
-                                                                    <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="test1234" borderStyle="roundedRect" placeholder="Repeat your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAW-Y8-Olj">
+                                                                    <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Repeat your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAW-Y8-Olj">
                                                                         <rect key="frame" x="0.0" y="280" width="382" height="50"/>
                                                                         <color key="backgroundColor" name="CustomTextField"/>
                                                                         <constraints>

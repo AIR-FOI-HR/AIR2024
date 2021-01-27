@@ -9,21 +9,21 @@ import KeychainSwift
 
 enum SecureStorageKey: String {
     case sessionToken = "sessionToken"
+    case lastEnteredMail = "lastEnteredMail"
 }
 
 class SecureStorage {
-    
     let keychain = KeychainSwift()
     
-    func saveToken(sessionToken token: String, keyType key: SecureStorageKey) {
-        keychain.set(token, forKey: key.rawValue)
+    func saveStringToKeychain(value: String, key: SecureStorageKey) {
+        keychain.set(value, forKey: key.rawValue)
     }
     
-    func getToken(keyType key: SecureStorageKey) -> String? {
+    func getStringFromKeychain(key: SecureStorageKey) -> String? {
         return keychain.get(key.rawValue)
     }
     
-    func deleteToken(keyType key: SecureStorageKey) {
+    func deleteFromKeychain(key: SecureStorageKey) {
         keychain.delete(key.rawValue)
     }
 }

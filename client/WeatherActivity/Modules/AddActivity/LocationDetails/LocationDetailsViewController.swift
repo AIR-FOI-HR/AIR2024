@@ -270,7 +270,6 @@ private extension LocationDetailsViewController {
         default:
             locationManager.requestWhenInUseAuthorization()
         }
-        locationManager.requestLocation()
         
         guard
             let flowNavigator = flowNavigator

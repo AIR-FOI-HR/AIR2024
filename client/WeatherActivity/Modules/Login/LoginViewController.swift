@@ -30,7 +30,7 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        emailTextField.text = UserDefaultsManager.shared.getUserDefaultString(key: .lastEnteredEmail)
+        emailTextField.text = SessionManager.shared.getStringFromKeychain(key: .lastEnteredMail)
     }
     
     // MARK: IBActions
@@ -43,10 +43,8 @@ final class LoginViewController: UIViewController {
         let credentials = LoginCredentials(email: email, password: password)
         loginService.login(with: credentials, success: { apiResponse in
             if(!apiResponse.sessionToken.isEmpty) {
-                UserDefaultsManager.shared.saveUserDefault(value: email, key: .lastEnteredEmail)
-                UserDefaultsManager.shared.saveUserDefault(value: apiResponse.userName, key: .userName)
-                UserDefaultsManager.shared.saveUserDefault(value: apiResponse.userAvatar, key: .userAvatar)
-                SessionManager.shared.saveToken(apiResponse.sessionToken)
+                SessionManager.shared.saveStringToKeychain(value: email, key: .lastEnteredMail)
+                SessionManager.shared.saveStringToKeychain(value: apiResponse.sessionToken, key: .sessionToken)
                 WidgetCenter.shared.reloadAllTimelines()
                 
                 self.navigate(to: .tabBar)

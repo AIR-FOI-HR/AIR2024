@@ -21,7 +21,7 @@ class AddActivityFlowNavigator {
     let initialStep: StepInfo
     let dataFlowManager = AddActivityFlowDataManager()
     var isEditing: Bool = false
-    var editingActivity: ActivityCellItemP? = nil
+    var editingActivity: ActivityCellItemProtocol? = nil
     
     weak var delegate: AddActivityFlowNavigatorDelegate?
     
@@ -59,7 +59,7 @@ class AddActivityFlowNavigator {
                 ActivityService().updateActivity(activity: localActivity.activityId, activityData: jsonData) { (provjera) -> Void in
                     if provjera {
                         WidgetCenter.shared.reloadAllTimelines()
-                        self.dismissFlow()
+                        self.navigationController?.dismiss(animated: true, completion: nil)
                         self.delegate?.didFinishFlow()
                     }
                 } failure: { (error) in
@@ -69,7 +69,7 @@ class AddActivityFlowNavigator {
                 ActivityService().insertActivities(activityData: jsonData) { (provjera) -> Void in
                     if provjera {
                         WidgetCenter.shared.reloadAllTimelines()
-                        self.dismissFlow()
+                        self.navigationController?.tabBarController?.selectedIndex = 0
                         self.delegate?.didFinishFlow()
                     }
                 } failure: { (error) in
@@ -93,11 +93,6 @@ class AddActivityFlowNavigator {
     func showPreviousStep() {
         
         navigationController?.popViewController(animated: true)
-    }
-    
-    func dismissFlow() {
-        navigationController?.dismiss(animated: true, completion: nil)
-        self.navigationController?.tabBarController?.selectedIndex = 0
     }
     
     func isLastStep(step: StepInfo) -> Bool {

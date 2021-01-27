@@ -7,22 +7,9 @@
 
 import Foundation
 
-protocol RegistrationProtocol {
-    var firstName: String { get }
-    var lastName: String { get }
-    var email: String { get }
-    var password: String { get }
-    var repeatedPassword: String { get }
-    
-    func emptyFieldExist() -> Bool
-    func isValidEmail() -> Bool
-    func isValidRepeatedPassword() -> Bool
-    func isValidPasswordLength() -> Bool
-    func customValidation() -> (Bool, String)?
-    
-}
 
-class RegistrationValidator: RegistrationProtocol {
+
+class RegistrationValidator: RegistrationRegistrationProtocol {
     
     // MARK: Properties
     
@@ -62,46 +49,6 @@ class RegistrationValidator: RegistrationProtocol {
     
     func customValidation() -> (Bool, String)? {
         return nil
-    }
-}
-
-class CustomRegistrationValidator: RegistrationProtocol {
-    let firstName: String
-    let lastName: String
-    let email: String
-    let password: String
-    let repeatedPassword: String
-    
-    init(firstName: String, lastName: String, email: String, password: String, repeatedPassword: String){
-        self.firstName = firstName
-        self.lastName = lastName
-        self.email = email
-        self.password = password
-        self.repeatedPassword = repeatedPassword
-    }
-    
-    func emptyFieldExist() -> Bool {
-        return firstName.isEmpty || lastName.isEmpty || email.isEmpty || password.isEmpty || repeatedPassword.isEmpty
-    }
-    
-    func isValidEmail() -> Bool {
-        return email.contains("@gmail.com")
-    }
-    
-    func isValidRepeatedPassword() -> Bool {
-        return self.password == repeatedPassword
-    }
-    
-    func isValidPasswordLength() -> Bool {
-        return self.password.count >= 8
-    }
-    
-    func customValidation() -> (Bool, String)? {
-        if(firstName.contains("#")) {
-            return (false, "First name contains '#'")
-        } else {
-            return nil
-        }
     }
 }
 

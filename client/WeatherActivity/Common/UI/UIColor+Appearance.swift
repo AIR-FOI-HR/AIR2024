@@ -20,6 +20,7 @@ enum CustomColors {
     case LightBlueColor
     case DarkBlueColor
     case DarkBlueLowAlphaColor
+    case GreenFullAlpha
     
     func toUIColor() -> UIColor {
         switch self {
@@ -45,6 +46,8 @@ enum CustomColors {
             return UIColor.hexColorFullAlpha(hex: "#1C3643")
         case .DarkBlueLowAlphaColor:
             return UIColor.hexColor(hex: "#1C3643")
+        case .GreenFullAlpha:
+            return UIColor.hexColorFullAlpha(hex: "#42CF96")
         }
     }
 }
@@ -67,6 +70,7 @@ extension UIColor {
     static var LightBlueColor = CustomColors.LightBlueColor.toUIColor()
     static var DarkBlueColor = CustomColors.DarkBlueColor.toUIColor()
     static var DarkBlueLowAlphaColor = CustomColors.DarkBlueLowAlphaColor.toUIColor()
+    static var CustomGreen = CustomColors.GreenFullAlpha.toUIColor()
     
     static let CalendarBlueColor = UIColor(named: "CalendarDarkLightBlue")
     

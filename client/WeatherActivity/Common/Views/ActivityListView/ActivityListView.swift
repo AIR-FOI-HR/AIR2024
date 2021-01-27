@@ -11,7 +11,7 @@ import SkeletonView
 
 protocol ActivityListViewDelegate: AnyObject {
     func didPressReloadAction()
-    func didPressRow(activity: ActivityCellItemP)
+    func didPressRow(activity: ActivityCellItemProtocol)
 }
 
 class ActivityListView: UIView, UITableViewDelegate {
@@ -19,7 +19,7 @@ class ActivityListView: UIView, UITableViewDelegate {
     enum State {
         case loading
         case error
-        case normal(items: [ActivityCellItemP])
+        case normal(items: [ActivityCellItemProtocol])
         case noActivities
         case noFilteredActivities
         case noActivitiesOnDate
@@ -37,7 +37,7 @@ class ActivityListView: UIView, UITableViewDelegate {
     
     weak var delegate: ActivityListViewDelegate?
     
-    private var dataSource = [ActivityCellItemP]()
+    private var dataSource = [ActivityCellItemProtocol]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,7 +47,7 @@ class ActivityListView: UIView, UITableViewDelegate {
     }
     
     private func setupActivityListView() {
-        activityListView.registerXibCell(fileName: Self.cellIdentifier, withReuseIdentifier: Self.cellIdentifier)
+        activityListView.registerXibCell(fileName: "ActivityCell", withReuseIdentifier: "ActivityCell")
         activityListView.rowHeight = 100
         activityListView.estimatedRowHeight = 100
         activityListView.isSkeletonable = true
@@ -89,7 +89,7 @@ class ActivityListView: UIView, UITableViewDelegate {
         activityListView.showAnimatedGradientSkeleton()
     }
     
-    private func reload(with items: [ActivityCellItemP]) {
+    private func reload(with items: [ActivityCellItemProtocol]) {
         dataSource = items
         if !activityListView.isSkeletonActive {
             showLoading()
@@ -122,12 +122,8 @@ class ActivityListView: UIView, UITableViewDelegate {
 }
 
 extension ActivityListView: SkeletonTableViewDataSource {
-    func numSections(in collectionSkeletonView: UITableView) -> Int {
-        return dataSource.count
-    }
-
     func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
 
     func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
@@ -143,10 +139,30 @@ extension ActivityListView: SkeletonTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath) as! ActivityCell
+        let cell: ActivityCellProtocol
         let item = dataSource[indexPath.section]
+        switch(item.statusType){
+        case .past:
+            let identifier = Identifier.pastIdentifier.rawValue
+            activityListView.registerXibCell(fileName: identifier, withReuseIdentifier: identifier)
+            cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PastActivityCell
+        case .future:
+            let identifier = Identifier.futureIdentifier.rawValue
+            activityListView.registerXibCell(fileName: identifier, withReuseIdentifier: identifier)
+            cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! FutureActivityCell
+        case .inProgress:
+            let identifier = Identifier.inProgressIdentifier.rawValue
+            activityListView.registerXibCell(fileName: identifier, withReuseIdentifier: identifier)
+            cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! InProgressActivityCell
+        default:
+            let identifier = Identifier.defaultIdentifier.rawValue
+            print(item.title)
+            activityListView.registerXibCell(fileName: identifier, withReuseIdentifier: identifier)
+            cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! ActivityCell
+        }
+        
         cell.configure(with: item)
-        return cell
+        return cell.cell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

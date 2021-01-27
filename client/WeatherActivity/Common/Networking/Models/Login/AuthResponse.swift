@@ -7,6 +7,4 @@
 
 struct AuthResponse: Decodable {
     let sessionToken: String
-    let userName: String
-    let userAvatar: String
 }

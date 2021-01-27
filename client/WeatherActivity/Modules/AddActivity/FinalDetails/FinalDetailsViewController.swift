@@ -79,7 +79,6 @@ final class FinalDetailsViewController: AddActivityStepViewController, UICollect
                 outdoorButton.selectedOutdoorIndoor(outdoorButton)
             }
             isSelectedActivityType = true
-//            selectedSupportedWeathers = ["1", "2"] // DODATI POLJE IZ BAZE
             submitButton.setTitle("Edit activity", for: .normal)
         }
     }

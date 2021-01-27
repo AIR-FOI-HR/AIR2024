@@ -21,13 +21,13 @@ final class CalendarViewController: UIViewController , FSCalendarDelegate, FSCal
     // MARK: Properties
     
     private let activityService = ActivityService()
-    private var allActivities = [ActivityCellItemP]()
+    private var allActivities = [ActivityCellItemProtocol]()
     private var activityListView: ActivityListView!
     private let responseDateFormatter = DateFormatter()
     private let calendarDateFormatter = DateFormatter()
     private var formattedActivityDates = [Date]()
     private let activityItemHelper = ActivityItemHelper()
-    private var activitiesList: [ActivityCellItemP] = []
+    private var activitiesList: [ActivityCellItemProtocol] = []
     private var selectedDate: Date = Date()
     
     override func viewDidLoad() {
@@ -39,7 +39,6 @@ final class CalendarViewController: UIViewController , FSCalendarDelegate, FSCal
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("calendar will appear")
         loadAllActivities()
     }
 
@@ -53,7 +52,7 @@ final class CalendarViewController: UIViewController , FSCalendarDelegate, FSCal
     }
     
     private func loadAllActivities() {
-        guard let userToken = SessionManager.shared.getToken() else {
+        guard let userToken = SessionManager.shared.getStringFromKeychain(key: .sessionToken) else {
             self.activityListView.setState(state: .error)
             return
         }
@@ -90,7 +89,7 @@ final class CalendarViewController: UIViewController , FSCalendarDelegate, FSCal
             activityListView.setState(state: .noActivitiesOnDate)
         }
         else {
-            var activitiesList: [ActivityCellItemP] = []
+            var activitiesList: [ActivityCellItemProtocol] = []
             for activity in filteredActivities {
                 activitiesList.append(activity)
             }
@@ -129,7 +128,7 @@ final class CalendarViewController: UIViewController , FSCalendarDelegate, FSCal
         updateActivityListView(withDate: date)
     }
     
-    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemP?) {
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemProtocol?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
@@ -153,22 +152,16 @@ extension CalendarViewController: ActivityListViewDelegate, ActivityDetailsViewC
         loadAllActivities()
     }
     
-    func didEditActivity(activity: ActivityCellItemP) {
+    func didEditActivity(activity: ActivityCellItemProtocol) {
         openActivityFlow(isEditing: true, activity: activity)
         
     }
     
     func didDeleteActivity(deletedActivity: Int) {
-        guard
-            let indexAllActivities = allActivities.firstIndex(where: { $0.activityId == deletedActivity })
-        else { return }
-        allActivities.remove(at: indexAllActivities)
-        updateActivityListView(withDate: selectedDate)
-        calendarView.reloadData()
-
+        loadAllActivities()
     }
     
-    func didPressRow(activity: ActivityCellItemP) {
+    func didPressRow(activity: ActivityCellItemProtocol) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
@@ -179,23 +172,3 @@ extension CalendarViewController: ActivityListViewDelegate, ActivityDetailsViewC
         loadAllActivities()
     }
 }
-
-//extension CalendarViewController {
-//
-//    func getActivityCellItems(activities: [Activities]) -> [ActivityCellItemP] {
-//        var activitiesItems = [ActivityCellItemP]()
-//        for activity in activities {
-//            var pActivity: ActivityCellItemP
-//            switch(activity.statusType) {
-//            case .inProgress:
-//                pActivity = InProgressActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
-//                break;
-//            default:
-//                pActivity = DefaultActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType.rawValue)
-//            }
-//            print("P ACTIVITY HOME: ", pActivity)
-//            activitiesItems.append(pActivity)
-//        }
-//        return activitiesItems
-//    }
-//}

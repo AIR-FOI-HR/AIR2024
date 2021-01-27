@@ -11,9 +11,9 @@ import Alamofire
 class UserService {
     func getUserProfileData(success: @escaping (User) -> Void, failure: @escaping (Error) -> Void) {
         AF.request(Constants.baseUrl.appending("/user/profile") as URLConvertible,
-                     method: .post,
-                     parameters: ["sessionToken": SessionManager.shared.getToken()],
-                     encoder: JSONParameterEncoder.default
+                   method: .post,
+                   parameters: ["sessionToken": SessionManager.shared.getStringFromKeychain(key: .sessionToken)],
+                   encoder: JSONParameterEncoder.default
         ).responseData { response in
             switch response.result {
             case .success(let data):
@@ -46,5 +46,24 @@ class UserService {
             }
         }
     }
+    
+    func getUserHomeData(success: @escaping (UserHomeData) -> Void, failure: @escaping (Error) -> Void) {
+        AF.request(Constants.baseUrl.appending("/user/homeData") as URLConvertible,
+                   method: .post,
+                   parameters: ["sessionToken": SessionManager.shared.getStringFromKeychain(key: .sessionToken)],
+                   encoder: JSONParameterEncoder.default
+        ).responseData { response in
+            switch response.result {
+            case .success(let data):
+                do {
+                    let jsonData = try JSONDecoder().decode(UserHomeData.self, from: data)
+                    success(jsonData)
+                } catch (let error) {
+                    failure(error)
+                }
+            case .failure(let error):
+                failure(error)
+            }
+        }
+    }
 }
-

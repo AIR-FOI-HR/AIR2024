@@ -9,17 +9,11 @@ import UIKit
 import WidgetKit
 import CoreLocation
 
-enum HomeNavigation: String {
-    case login = "HomeToLogin"
-    case search = "toSearchActivities"
-    case calendar = "toCalendar"
-    case profile = "toProfile"
-}
-
 class HomeViewController: UIViewController {
     
     // MARK: IBOutlets
     
+    @IBOutlet weak private var mainView: UIView!
     @IBOutlet weak private var activitiesContainerView: UIStackView!
     @IBOutlet weak private var weatherTypeLabel: UILabel!
     @IBOutlet weak private var temperatureLabel: UILabel!
@@ -27,29 +21,31 @@ class HomeViewController: UIViewController {
     @IBOutlet weak private var windLabel: UILabel!
     @IBOutlet weak private var humidityLabel: UILabel!
     @IBOutlet weak private var todaysDescription: UILabel!
-    @IBOutlet weak private var weatherTypeImageView: UIImageView!
     @IBOutlet weak private var helloNameLabel: UILabel!
-    @IBOutlet weak private var avatarImageView: UIImageView!
-    @IBOutlet weak private var weatherForecastView: UIStackView!
     @IBOutlet weak private var weatherForecastMessage: UILabel!
     @IBOutlet weak private var weatherDescriptionLabel: UILabel!
+    @IBOutlet weak private var avatarImageView: UIImageView!
+    @IBOutlet weak private var weatherTypeImageView: UIImageView!
+    @IBOutlet weak private var weatherForecastNoLocation: UIStackView!
+    @IBOutlet weak private var weatherForecastView: UIStackView!
     
     // MARK: Properties
     
     private var activityListView: ActivityListView!
     private let activityService = ActivityService()
     private let forecastService = ForecastService()
+    private let userService = UserService()
     private let forecastData = ForecastData()
     private var currentLocation: LocationDetails?
-    private var activitiesList: [ActivityCellItemP] = []
+    private var activitiesList: [ActivityCellItemProtocol] = []
     private var activityItemHelper = ActivityItemHelper()
     private var locationManager = CLLocationManager()
     private var locationChecker = LocationChecker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        headerSetUp()
         setupListView()
+        getTodaysForecast()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,25 +53,11 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        getUserData()
         loadActivities()
     }
     
     // MARK: Custom functions
-    
-    private func getCurrentTimeStamp() -> String {
-        let currentDateTime = Date()
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        
-        let currentTimeStamp = dateFormatter.string(from: currentDateTime)
-        return currentTimeStamp
-    }
-    
-    private func headerSetUp() {
-        helloNameLabel.text = "Hello " + UserDefaultsManager.shared.getUserDefaultString(key: .userName)
-        avatarImageView.image = UIImage(named: UserDefaultsManager.shared.getUserDefaultString(key: .userAvatar))
-    }
     
     private func setupListView() {
         let listView = ActivityListView.loadFromXib()
@@ -84,13 +66,24 @@ class HomeViewController: UIViewController {
         activityListView = listView
     }
     
+    private func getUserData() {
+        mainView.showAnimatedGradientSkeleton()
+        userService.getUserHomeData(success: { data in
+            self.helloNameLabel.text = "Hello " + data.firstName
+            self.avatarImageView.image = UIImage(named: data.avatarName)
+            self.mainView.hideSkeleton()
+        }, failure: { error in
+            print(error)
+        })
+    }
+    
     func loadActivities() {
         if activitiesList.isEmpty {
             activityListView.setState(state: .loading)
         } else {
             activitiesList = []
         }
-        if let sessionToken = SessionManager.shared.getToken() {
+        if let sessionToken = SessionManager.shared.getStringFromKeychain(key: .sessionToken) {
             activityService.getActivities(for: "home", token: sessionToken, success: { (activities) in
                 if activities.isEmpty {
                     self.activityListView.setState(state: .noActivities)
@@ -108,30 +101,27 @@ class HomeViewController: UIViewController {
         }
     }
     
-    // MARK: IBActions
-    
-    @IBAction func backSwipe(_ sender: UISwipeGestureRecognizer) {
-        if sender.state == .ended {
-            dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        navigate(to: .search)
-        return false
+    func openActivityDetails(id: Int) {
+        let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
+        self.present(details, animated: true, completion: nil)
+        details.showSkeleton()
+        
+        ActivityService().getWidgetActivityDetails(activity: id, success: { activity in
+            let fetchedActivity = self.activityItemHelper.getActivityCellItems(activities: [activity])
+            details.widgetInit(activity: fetchedActivity.first!)
+        }, failure: { error in
+            print(error)
+        })
+        details.delegate = self
     }
 }
 
 private extension HomeViewController {
-    func navigate(to path: HomeNavigation) {
-        performSegue(withIdentifier: path.rawValue, sender: self)
-    }
-    
     @IBAction func addActivityButtonPressed(_ sender: UIButton) {
         openActivityFlow(activity: nil)
     }
     
-    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemP?) {
+    func openActivityFlow(isEditing: Bool = false, activity: ActivityCellItemProtocol?) {
         let navigationController = UINavigationController()
         let steps: [StepInfo] = [.locationDetails, .timeDetails, .categoriesDetails, .finalDetails]
         
@@ -146,8 +136,10 @@ private extension HomeViewController {
     }
 }
 
+// MARK: Protocols
+
 extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewControllerDelegate, AddActivityFlowNavigatorDelegate {
-    func didPressRow(activity: ActivityCellItemP) {
+    func didPressRow(activity: ActivityCellItemProtocol) {
         let details = ActivityDetailsViewController(nibName: "ActivityDetailsViewController", bundle: nil)
         details.commonInit(activity: activity)
         self.present(details, animated: true, completion: nil)
@@ -159,14 +151,10 @@ extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewContr
     }
     
     func didDeleteActivity(deletedActivity: Int) {
-        guard let index = activitiesList.firstIndex(where: { $0.activityId == deletedActivity }) else {
-            return
-        }
-        activitiesList.remove(at: index)
-        self.activityListView.setState(state: .normal(items: self.activitiesList))
+        loadActivities()
     }
     
-    func didEditActivity(activity: ActivityCellItemP) {
+    func didEditActivity(activity: ActivityCellItemProtocol) {
         openActivityFlow(isEditing: true, activity: activity)
     }
     
@@ -176,12 +164,11 @@ extension HomeViewController: ActivityListViewDelegate, ActivityDetailsViewContr
 }
 
 extension HomeViewController {
-    
     func getTodaysForecast() {
         guard
             let location = currentLocation
         else {
-            print("CNAT GET LOCATION")
+            print("Cant get location")
             return
         }
         forecastService.getWeatherForecast(date: Date(), locationCoordinates: location) { (weatherInfo) in
@@ -219,7 +206,7 @@ extension HomeViewController: CLLocationManagerDelegate {
             print("CURR LOC: ", currentLocation!.latitude)
             
             weatherForecastView.isHidden = false
-            weatherDescriptionLabel.isHidden = false
+            weatherForecastNoLocation.isHidden = true
             getTodaysForecast()
         }
     }
@@ -231,21 +218,22 @@ extension HomeViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
-          case .restricted, .denied:
+        case .restricted, .denied:
             weatherForecastView.isHidden = true
-            weatherDescriptionLabel.isHidden = true
+            weatherForecastNoLocation.isHidden = false
             setupLocation()
-          case .authorizedWhenInUse, .authorizedAlways:
+        case .authorizedWhenInUse, .authorizedAlways:
             locationManager.requestLocation()
-          case .notDetermined:
-             setupLocation()
-       }
+            weatherForecastView.isHidden = false
+            weatherForecastNoLocation.isHidden = true
+        case .notDetermined:
+            setupLocation()
+        }
     }
     
     func setupLocation() {
         locationManager.delegate = self
         let locationPermissionStatus = locationChecker.checkLocationPermission()
-        print(locationPermissionStatus.rawValue)
         switch(locationPermissionStatus) {
         case .never:
             let alertVC = UIAlertController(title: "Geolocation is not enabled", message: "For using geolocation you need to enable it in Settings", preferredStyle: .actionSheet)
@@ -257,10 +245,9 @@ extension HomeViewController: CLLocationManagerDelegate {
                 
             })
             alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
+            
             self.present(alertVC, animated: true, completion: nil)
             weatherForecastView.isHidden = true
-            weatherDescriptionLabel.isHidden = true
         case .notAllowed:
             locationManager.requestWhenInUseAuthorization()
         default:

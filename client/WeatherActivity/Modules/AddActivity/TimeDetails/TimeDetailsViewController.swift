@@ -35,8 +35,8 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     @IBOutlet private weak var warningAlertView: UIStackView!
     @IBOutlet private weak var weatherTypeImageView: UIImageView!
     @IBOutlet private weak var weatherDescriptionLabel: UILabel!
+    @IBOutlet private weak var weatherStackNoLocation: UIStackView!
     @IBOutlet private weak var weatherTypeLabel: UILabel!
-    
     
     // MARK: Properties
     
@@ -55,6 +55,7 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
         datePicker.minimumDate = Date()
         datePicker.addTarget(self, action: #selector(datePickerEndEditing), for: .editingDidEnd)
         fromTimePicker.addTarget(self, action: #selector(fromTimePickerEndEditing), for: .valueChanged)
+        untilTimePicker.addTarget(self, action: #selector(untilTimePickerEndEditing), for: .valueChanged)
         setDefault()
         
         guard
@@ -80,7 +81,7 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     // MARK: IBActions
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        
+        setInitialDate()
         guard
             let flowNavigator = flowNavigator,
             let timeDetails = timeDetails
@@ -130,14 +131,21 @@ private extension TimeDetailsViewController {
     func checkDate() {
         
         let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
-        if(timeDetailsManager.isDateRangeValid(date: forecastDate)) {
-            weatherStackView.isHidden = false
-            warningAlertView.isHidden = true
-            getForecast(date: forecastDate)
+        if location != nil {
+            weatherStackNoLocation.isHidden = true
+            if(timeDetailsManager.isDateRangeValid(date: forecastDate)) {
+                weatherStackView.isHidden = false
+                warningAlertView.isHidden = true
+                getForecast(date: forecastDate)
+            } else {
+                weatherStackView.isHidden = true
+                warningAlertView.isHidden = false
+                setInitialDate()
+            }
         } else {
+            weatherStackNoLocation.isHidden = false
             weatherStackView.isHidden = true
-            warningAlertView.isHidden = false
-            setInitialDate()
+            warningAlertView.isHidden = true
         }
     }
     
@@ -223,6 +231,10 @@ private extension TimeDetailsViewController {
         let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
         #warning("Handle if date is not in range")
         checkDate()
+    }
+    
+    @objc func untilTimePickerEndEditing() {
+        
     }
     
     func setDefault() {

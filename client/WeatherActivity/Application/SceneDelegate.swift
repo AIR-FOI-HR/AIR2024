@@ -32,40 +32,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if !UserDefaultsManager.shared.getUserDefaultBool(key: .firstTime) {
             self.setupInitialStoryboard(storyboard: .firstInitialScreen, viewContoller: .firstInitialScreen)
         } else {
-            // https://developer.apple.com/documentation/corelocation/cllocationmanagerdelegate/3563956-locationmanagerdidchangeauthoriz
-            // https://stackoverflow.com/questions/63788488/checking-user-location-permission-status-on-ios-14
-//            if CLLocationManager.locationServicesEnabled() {
-//                switch CLLocationManager.authorizationStatus() {
-//                case .notDetermined, .restricted:
-//                    print("Ask next time / unknown")
-//                    locationManager.requestWhenInUseAuthorization()
-//                    break
-//                case .denied:
-//                    print("Never")
-//                    locationManager.requestWhenInUseAuthorization()
-//                    break
-//                case .authorizedAlways, .authorizedWhenInUse:
-//                    print("Auth always / in use")
-//                    locationManager.requestWhenInUseAuthorization()
-//                    break
-//                default:
-//                    print("???")
-//                    break
-//                }
-//            }
-//            else {
-//                print("Location services are not enabled")
-//            }
-//            locationManager.requestWhenInUseAuthorization()
-            if let sessionToken = SessionManager.shared.getToken() {
+            if let sessionToken = SessionManager.shared.getStringFromKeychain(key: .sessionToken) {
                 loginService.checkForToken(token: sessionToken, success: { checkResponse in
-                    if(checkResponse.sessionToken == true) {
-                        self.setupInitialStoryboard(storyboard: .tabBar, viewContoller: .tabBar)
-                        let contexts = connectionOptions.urlContexts
-                        self.handleDeepLink(url: contexts)
-                    } else {
-                        self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
-                    }
+                    self.setupInitialStoryboard(storyboard: .tabBar, viewContoller: .tabBar)
+                    let contexts = connectionOptions.urlContexts
+                    self.handleDeepLink(url: contexts)
                 }, failure: { error in
                     self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
                 })
@@ -91,15 +62,19 @@ extension SceneDelegate {
     func handleDeepLink(url: Set<UIOpenURLContext>) {
         guard
             let widgetUrl = url.first(where: { $0.url.absoluteString.contains(Constants.widgetURLScheme) })?.url.host?.removingPercentEncoding,
-            let topViewController = UIViewController.topViewController()
+            let topViewController = UIViewController.topViewController(),
+            let tabBarController = topViewController.tabBarController
         else { return }
         
         if widgetUrl == "add" {
-            topViewController.openAddActivityFlow(topViewController: topViewController, activity: nil)
-            #warning("startAddActivityFlow")
+            tabBarController.selectedIndex = 2
         } else if !widgetUrl.isEmpty {
-            guard let activityId = Int(widgetUrl) else { return }
-            topViewController.showActivityDetails(withId: activityId)
+            tabBarController.selectedIndex = 0
+            guard
+                let homeVC = tabBarController.selectedViewController as? HomeViewController,
+                let activityId = Int(widgetUrl)
+            else { return }
+            homeVC.openActivityDetails(id: activityId)
         }
     }
 }

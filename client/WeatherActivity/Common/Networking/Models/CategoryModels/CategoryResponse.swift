@@ -5,9 +5,6 @@
 //  Created by Infinum on 06.12.2020..
 //
 
-import Foundation
-
-
 struct CategoryResponse: Codable {
     let categories: [Category]
 }
