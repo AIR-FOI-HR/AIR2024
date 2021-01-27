@@ -30,7 +30,7 @@ class ActivityListView: UIView, UITableViewDelegate {
     @IBOutlet private var message: UILabel!
     @IBOutlet private var button: UIButton!
     
-    static private let cellIdentifier = "ActivityCell"
+    static private let cellIdentifier = "PastActivityCell"
     static private let xibFileName = "ActivityListView"
     
     var state: State?
@@ -143,10 +143,20 @@ extension ActivityListView: SkeletonTableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath) as! ActivityCell
+        let cell: ActivityCellProtocol
         let item = dataSource[indexPath.section]
+        switch(item.statusType){
+        case "Past", "Future":
+            cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath) as! PastActivityCell
+        default:
+            cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath) as! ActivityCell
+        }
+        
         cell.configure(with: item)
-        return cell
+        return cell.cell
+         
+        
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -110,8 +110,13 @@
 		8CB0C494258A4D70009450B3 /* FinalDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB0C493258A4D70009450B3 /* FinalDetails.storyboard */; };
 		8CB0C49E258A4D7E009450B3 /* LocationDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB0C49D258A4D7E009450B3 /* LocationDetails.storyboard */; };
 		8CB0C4A3258A4D85009450B3 /* TimeDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CB0C4A2258A4D85009450B3 /* TimeDetails.storyboard */; };
+		8CB1E78F25C15C550011A145 /* PastActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1E78E25C15C550011A145 /* PastActivityCell.swift */; };
+		8CB1E79B25C15C710011A145 /* ActivityItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CB1E79A25C15C710011A145 /* ActivityItem.swift */; };
+		8CB1E7A525C15D040011A145 /* PastActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CB1E7A425C15D040011A145 /* PastActivityCell.xib */; };
 		8CD693D825C0281900BB90C2 /* ActivityItemHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD693D725C0281900BB90C2 /* ActivityItemHelper.swift */; };
 		8CD693DE25C0282F00BB90C2 /* LocationChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD693DD25C0282F00BB90C2 /* LocationChecker.swift */; };
+		8CD75E8A25C15FF300390C98 /* ActivityCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD75E8925C15FF300390C98 /* ActivityCellProtocol.swift */; };
+		8CD75E9625C164E800390C98 /* ActivityCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD75E9525C164E800390C98 /* ActivityCellItem.swift */; };
 		8CDA3FB8257ACB340047C727 /* WeatherInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA3FB7257ACB340047C727 /* WeatherInfo.swift */; };
 		8CE0417225764E04005EFEC4 /* RegistrationUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE0417125764E04005EFEC4 /* RegistrationUser.swift */; };
 		9B611762AF873A0410982DF9 /* Pods_WeatherActivityWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D940EF3CEB4D27461352F0 /* Pods_WeatherActivityWidgetExtension.framework */; };
@@ -270,8 +275,13 @@
 		8CB0C493258A4D70009450B3 /* FinalDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FinalDetails.storyboard; sourceTree = "<group>"; };
 		8CB0C49D258A4D7E009450B3 /* LocationDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationDetails.storyboard; sourceTree = "<group>"; };
 		8CB0C4A2258A4D85009450B3 /* TimeDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TimeDetails.storyboard; sourceTree = "<group>"; };
+		8CB1E78E25C15C550011A145 /* PastActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastActivityCell.swift; sourceTree = "<group>"; };
+		8CB1E79A25C15C710011A145 /* ActivityItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityItem.swift; sourceTree = "<group>"; };
+		8CB1E7A425C15D040011A145 /* PastActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PastActivityCell.xib; sourceTree = "<group>"; };
 		8CD693D725C0281900BB90C2 /* ActivityItemHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityItemHelper.swift; sourceTree = "<group>"; };
 		8CD693DD25C0282F00BB90C2 /* LocationChecker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationChecker.swift; sourceTree = "<group>"; };
+		8CD75E8925C15FF300390C98 /* ActivityCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCellProtocol.swift; sourceTree = "<group>"; };
+		8CD75E9525C164E800390C98 /* ActivityCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCellItem.swift; sourceTree = "<group>"; };
 		8CDA3FB7257ACB340047C727 /* WeatherInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfo.swift; sourceTree = "<group>"; };
 		8CE0417125764E04005EFEC4 /* RegistrationUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationUser.swift; sourceTree = "<group>"; };
 		8F2D4BEF3035C874E7B0413D /* Pods-WeatherActivityWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherActivityWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-WeatherActivityWidgetExtension/Pods-WeatherActivityWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
@@ -563,10 +573,12 @@
 		42780144257CF77800E9EE9C /* ActivityListView */ = {
 			isa = PBXGroup;
 			children = (
+				8CD75E9425C164D900390C98 /* ModularityItem */,
+				8CD75E9325C164B800390C98 /* Modularity */,
+				8CB1E78925C15B2A0011A145 /* ModularityCell */,
 				42780145257CF78400E9EE9C /* Cell */,
 				42780150257CF91800E9EE9C /* ActivityListView.xib */,
 				42780155257CF94E00E9EE9C /* ActivityListView.swift */,
-				8CD693D725C0281900BB90C2 /* ActivityItemHelper.swift */,
 			);
 			path = ActivityListView;
 			sourceTree = "<group>";
@@ -848,6 +860,33 @@
 			path = FinalDetails;
 			sourceTree = "<group>";
 		};
+		8CB1E78925C15B2A0011A145 /* ModularityCell */ = {
+			isa = PBXGroup;
+			children = (
+				8CB1E78E25C15C550011A145 /* PastActivityCell.swift */,
+				8CB1E7A425C15D040011A145 /* PastActivityCell.xib */,
+			);
+			path = ModularityCell;
+			sourceTree = "<group>";
+		};
+		8CD75E9325C164B800390C98 /* Modularity */ = {
+			isa = PBXGroup;
+			children = (
+				8CD75E8925C15FF300390C98 /* ActivityCellProtocol.swift */,
+				8CB1E79A25C15C710011A145 /* ActivityItem.swift */,
+				8CD693D725C0281900BB90C2 /* ActivityItemHelper.swift */,
+			);
+			path = Modularity;
+			sourceTree = "<group>";
+		};
+		8CD75E9425C164D900390C98 /* ModularityItem */ = {
+			isa = PBXGroup;
+			children = (
+				8CD75E9525C164E800390C98 /* ActivityCellItem.swift */,
+			);
+			path = ModularityItem;
+			sourceTree = "<group>";
+		};
 		8CDA3FB6257ACB2B0047C727 /* WeatherModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1039,6 +1078,7 @@
 				8CB0C49E258A4D7E009450B3 /* LocationDetails.storyboard in Resources */,
 				42780151257CF91800E9EE9C /* ActivityListView.xib in Resources */,
 				4252F69A256282E800FCA0CB /* Registration.storyboard in Resources */,
+				8CB1E7A525C15D040011A145 /* PastActivityCell.xib in Resources */,
 				42B69A4825B05DB9009481C4 /* Colors.xcassets in Resources */,
 				4252F6B125628A3800FCA0CB /* ThirdInitialScreen.storyboard in Resources */,
 				42780140257CF11200E9EE9C /* ActivityCell.xib in Resources */,
@@ -1216,6 +1256,7 @@
 				4252C841258F95C900A2A7CC /* StandardStorage.swift in Sources */,
 				8C4B6447258B62230013DADD /* AddActivityStepInfo.swift in Sources */,
 				8C2D04142576D2B8002E51D0 /* TokenCheckResponse.swift in Sources */,
+				8CB1E79B25C15C710011A145 /* ActivityItem.swift in Sources */,
 				42D320F225A0EE4F002E627E /* AvatarCollectionViewCell.swift in Sources */,
 				4252F64C25626DE600FCA0CB /* LoginViewController.swift in Sources */,
 				42D29B86257FAD0A00F74E5D /* CategoryResponse.swift in Sources */,
@@ -1262,12 +1303,14 @@
 				42959A9125BB0C4900B9B915 /* UserUpdate.swift in Sources */,
 				42E92A0725BA3474007881A3 /* UserService.swift in Sources */,
 				4294A88F258CEAA60003240C /* CagegoryModel.swift in Sources */,
+				8CD75E8A25C15FF300390C98 /* ActivityCellProtocol.swift in Sources */,
 				4238F62E257D7C7600A755BE /* ActivityService.swift in Sources */,
 				4257F70F259137F7004F191A /* SearchActivitiesViewController.swift in Sources */,
 				42EF36C7256C15EB0069E590 /* HomeViewController.swift in Sources */,
 				4252C846258F99E400A2A7CC /* UserDefaultsManager.swift in Sources */,
 				42B0FB01257070A700781940 /* Constants.swift in Sources */,
 				8CD693DE25C0282F00BB90C2 /* LocationChecker.swift in Sources */,
+				8CD75E9625C164E800390C98 /* ActivityCellItem.swift in Sources */,
 				8C250065258B761D00C79832 /* AddActivityFlowDataManager.swift in Sources */,
 				42C372C925A2569700A061BD /* SecondInitialScreenViewController.swift in Sources */,
 				8CB0C487258A4D57009450B3 /* LocationDetailsViewController.swift in Sources */,
@@ -1279,6 +1322,7 @@
 				4278015C257CFBEB00E9EE9C /* UITableView+RegisterCell.swift in Sources */,
 				8CA49C5F257E249C008515B0 /* TimeDetailsManager.swift in Sources */,
 				4238F634257D7DDE00A755BE /* ActivitiesResponse.swift in Sources */,
+				8CB1E78F25C15C550011A145 /* PastActivityCell.swift in Sources */,
 				4299725F25AD001F0021245B /* CalendarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
