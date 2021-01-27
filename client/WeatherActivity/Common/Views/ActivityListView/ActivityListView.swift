@@ -47,7 +47,6 @@ class ActivityListView: UIView, UITableViewDelegate {
     }
     
     private func setupActivityListView() {
-        activityListView.registerXibCell(fileName: Self.cellIdentifier, withReuseIdentifier: Self.cellIdentifier)
         activityListView.rowHeight = 100
         activityListView.estimatedRowHeight = 100
         activityListView.isSkeletonable = true
@@ -146,10 +145,12 @@ extension ActivityListView: SkeletonTableViewDataSource {
         let cell: ActivityCellProtocol
         let item = dataSource[indexPath.section]
         switch(item.statusType){
-        case "Past", "Future":
-            cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath) as! PastActivityCell
+        case "Past":
+            activityListView.registerXibCell(fileName: "PastActivityCell", withReuseIdentifier: "PastActivityCell")
+            cell = tableView.dequeueReusableCell(withIdentifier: "PastActivityCell", for: indexPath) as! PastActivityCell
         default:
-            cell = tableView.dequeueReusableCell(withIdentifier: Self.cellIdentifier, for: indexPath) as! ActivityCell
+            activityListView.registerXibCell(fileName: "ActivityCell", withReuseIdentifier: "ActivityCell")
+            cell = tableView.dequeueReusableCell(withIdentifier: "ActivityCell", for: indexPath) as! ActivityCell
         }
         
         cell.configure(with: item)
