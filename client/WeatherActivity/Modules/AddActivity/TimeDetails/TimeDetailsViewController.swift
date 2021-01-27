@@ -55,6 +55,7 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
         datePicker.minimumDate = Date()
         datePicker.addTarget(self, action: #selector(datePickerEndEditing), for: .editingDidEnd)
         fromTimePicker.addTarget(self, action: #selector(fromTimePickerEndEditing), for: .valueChanged)
+        untilTimePicker.addTarget(self, action: #selector(untilTimePickerEndEditing), for: .valueChanged)
         setDefault()
         
         guard
@@ -80,7 +81,7 @@ class TimeDetailsViewController: AddActivityStepViewController, ViewInterface {
     // MARK: IBActions
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        
+        setInitialDate()
         guard
             let flowNavigator = flowNavigator,
             let timeDetails = timeDetails
@@ -223,6 +224,10 @@ private extension TimeDetailsViewController {
         let forecastDate = timeDetailsManager.combineDateAndTime(date: datePicker.date, time: fromTimePicker.date)
         #warning("Handle if date is not in range")
         checkDate()
+    }
+    
+    @objc func untilTimePickerEndEditing() {
+        
     }
     
     func setDefault() {
