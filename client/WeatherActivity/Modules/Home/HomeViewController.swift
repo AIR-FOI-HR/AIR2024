@@ -241,7 +241,6 @@ extension HomeViewController: CLLocationManagerDelegate {
     func setupLocation() {
         locationManager.delegate = self
         let locationPermissionStatus = locationChecker.checkLocationPermission()
-        print(locationPermissionStatus.rawValue)
         switch(locationPermissionStatus) {
         case .never:
             let alertVC = UIAlertController(title: "Geolocation is not enabled", message: "For using geolocation you need to enable it in Settings", preferredStyle: .actionSheet)
