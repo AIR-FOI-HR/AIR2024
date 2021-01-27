@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,10 +22,10 @@
                                 <rect key="frame" x="0.0" y="44" width="390" height="766"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JEK-gK-Q9w">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="587.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="629.66666666666663"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="bT5-YE-IHE">
-                                                <rect key="frame" x="16" y="80.000000000000028" width="358" height="477.66666666666674"/>
+                                                <rect key="frame" x="16" y="80" width="358" height="519.66666666666663"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uAu-BC-QhA" userLabel="topTextStack">
                                                         <rect key="frame" x="0.0" y="0.0" width="358" height="59.666666666666664"/>
@@ -129,34 +130,54 @@
                                                             <constraint firstAttribute="trailing" secondItem="jlz-Fk-YBC" secondAttribute="trailing" id="f0c-II-L3J"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rt-Rq-Cud">
-                                                        <rect key="frame" x="0.0" y="427.66666666666663" width="358" height="50"/>
-                                                        <color key="backgroundColor" name="CustomMainButton"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="50" id="GRd-In-GPh"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
-                                                        <state key="normal" title="Finish"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                <integer key="value" value="5"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="finishButtonClicked:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="6U6-99-jfy"/>
-                                                        </connections>
-                                                    </button>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Szw-bK-DwT">
+                                                        <rect key="frame" x="0.0" y="427.66666666666663" width="358" height="92"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rt-Rq-Cud">
+                                                                <rect key="frame" x="0.0" y="0.0" width="358" height="50"/>
+                                                                <color key="backgroundColor" name="CustomMainButton"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="GRd-In-GPh"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
+                                                                <state key="normal" title="Finish"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="finishButtonClicked:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="6U6-99-jfy"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VmY-gP-D4D">
+                                                                <rect key="frame" x="0.0" y="60" width="358" height="32"/>
+                                                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
+                                                                <state key="normal" title="Go back">
+                                                                    <color key="titleColor" systemColor="labelColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                        <integer key="value" value="5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="finishButtonClicked:" destination="1Ru-Yl-sjw" eventType="touchUpInside" id="0Hk-eA-2yq"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                                 <constraints>
+                                                    <constraint firstItem="Szw-bK-DwT" firstAttribute="leading" secondItem="bT5-YE-IHE" secondAttribute="leading" id="BH9-vZ-Bpi"/>
                                                     <constraint firstItem="Ifm-gc-Joo" firstAttribute="leading" secondItem="bT5-YE-IHE" secondAttribute="leading" id="F9b-HU-aHz"/>
                                                     <constraint firstAttribute="trailing" secondItem="uAu-BC-QhA" secondAttribute="trailing" id="I5I-kz-OqO"/>
-                                                    <constraint firstItem="5Rt-Rq-Cud" firstAttribute="leading" secondItem="bT5-YE-IHE" secondAttribute="leading" id="Jb2-Uf-0F7"/>
-                                                    <constraint firstAttribute="trailing" secondItem="5Rt-Rq-Cud" secondAttribute="trailing" id="Vtq-2z-QmT"/>
                                                     <constraint firstAttribute="trailing" secondItem="4yJ-qV-x35" secondAttribute="trailing" id="W93-05-gbG"/>
                                                     <constraint firstAttribute="trailing" secondItem="Ifm-gc-Joo" secondAttribute="trailing" id="WnZ-y9-wjP"/>
                                                     <constraint firstItem="4yJ-qV-x35" firstAttribute="leading" secondItem="bT5-YE-IHE" secondAttribute="leading" id="d3N-J9-Bvy"/>
                                                     <constraint firstAttribute="trailing" secondItem="Zso-pi-fWC" secondAttribute="trailing" id="r0j-wQ-563"/>
                                                     <constraint firstItem="uAu-BC-QhA" firstAttribute="leading" secondItem="bT5-YE-IHE" secondAttribute="leading" id="rIy-as-FuA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Szw-bK-DwT" secondAttribute="trailing" id="sLU-Pd-TSs"/>
                                                     <constraint firstItem="Zso-pi-fWC" firstAttribute="leading" secondItem="bT5-YE-IHE" secondAttribute="leading" id="xz5-ou-DOO"/>
                                                 </constraints>
                                             </stackView>
@@ -191,6 +212,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="jlz-Fk-YBC" id="LC4-Sw-0rJ"/>
+                        <outlet property="goBackButton" destination="VmY-gP-D4D" id="sBt-Te-IeB"/>
                         <outlet property="usernameTextField" destination="QfX-ve-3B7" id="euA-PH-Eeq"/>
                         <segue destination="0kc-FN-c75" kind="presentation" identifier="toTabBar" modalPresentationStyle="fullScreen" id="HXJ-CD-cPH"/>
                     </connections>
@@ -226,5 +248,8 @@
         <namedColor name="LightBlue">
             <color red="0.40000000000000002" green="0.77647058823529413" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

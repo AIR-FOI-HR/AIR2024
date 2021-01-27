@@ -61,6 +61,7 @@ class ActivityDetailsViewController: UIViewController {
             return
         }
         checkDate()
+        isLocationNull()
         
         switch localActivity.statusType {
         case .inProgress:
@@ -76,8 +77,7 @@ class ActivityDetailsViewController: UIViewController {
         activityTitle.text = localActivity.title
         activityStatus.text = localActivity.statusType.rawValue
         activityStatus.textColor = color
-        activityDate.text = getDate(timestamp: localActivity.startTime)
-        activityTime.text = getTime(timestamp: localActivity.startTime) + " - " + getTime(timestamp: localActivity.endTime)
+        activityDate.text = timeDetailsManager.getCustomFormatFromDate(timestamp: localActivity.startTime, format: DateTimeFormat.dayMonthYear.rawValue) + " " + timeDetailsManager.getCustomFormatFromDate(timestamp: localActivity.startTime, format: DateTimeFormat.hoursMinutes.rawValue) + " - " + timeDetailsManager.getCustomFormatFromDate(timestamp: localActivity.endTime, format: DateTimeFormat.hoursMinutes.rawValue)
         activityDescription.text = localActivity.description
         activityCategory.text = localActivity.name
         activityImageView.image = UIImage(named: localActivity.type)
@@ -149,50 +149,23 @@ class ActivityDetailsViewController: UIViewController {
     
     //MARK: - Functions
     
-    func getDate(timestamp: String) -> String {
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "dd/MM/yyyy"
-
-        guard var date = dateFormatterGet.date(from: timestamp) else { return "Err" }
-        return dateFormatterPrint.string(from: date)
-    }
-    
-    func getRealDate(timestamp: String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-
-        guard let date = dateFormatter.date(from: timestamp) else { return Date() }
-        return date
-    }
-    
-    func getTime(timestamp: String) -> String {
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-
-        let dateFormatterPrint = DateFormatter()
-        dateFormatterPrint.dateFormat = "HH:mm"
-
-        guard var time = dateFormatterGet.date(from: timestamp) else { return "Err" }
-        time = timeDetailsManager.addTime(to: time, hours: -1)
-        return dateFormatterPrint.string(from: time)
-    }
-    
     func checkDate() {
         guard
             let localActivityTime = localActivity?.startTime
         else { return }
-        let testDate = getRealDate(timestamp: localActivityTime)
+        let testDate = timeDetailsManager.getRealDateFromString(timestamp: localActivityTime)
         let newDate = timeDetailsManager.combineDateAndTime(date: testDate, time: testDate)
         
         if(timeDetailsManager.isDateRangeValid(date: newDate) && localActivity?.latitude != nil && localActivity?.longitude != nil) {
             getForecast(date: newDate)
             weatherForecastStackView.isHidden = false
-            locationStackView.isHidden = false
         } else {
             weatherForecastStackView.isHidden = true
+        }
+    }
+    
+    func isLocationNull() {
+        if localActivity?.locationName == nil {
             locationStackView.isHidden = true
         }
     }

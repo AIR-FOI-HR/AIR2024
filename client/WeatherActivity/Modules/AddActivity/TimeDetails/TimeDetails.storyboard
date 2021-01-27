@@ -404,9 +404,7 @@
                                                             </imageView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forecast is not visible for more than five days from now" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uqi-kT-Y2r" userLabel="Warning Label" customClass="PaddingLabel" customModule="WeatherActivity" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="120" width="382" height="0.0"/>
-                                                                <color key="backgroundColor" red="0.39937916400000001" green="0.77816164489999995" blue="0.99987548589999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
-                                                                <color key="textColor" red="0.94551128149999997" green="0.94564706089999995" blue="0.94890063999999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                                 <userDefinedRuntimeAttributes>
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -549,11 +547,6 @@
             <point key="canvasLocation" x="227.536231884058" y="170.75892857142856"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="Uqi-kT-Y2r">
-            <size key="intrinsicContentSize" width="443" height="39.333333333333329"/>
-        </designable>
-    </designables>
     <resources>
         <image name="calendar.badge.exclamationmark" catalog="system" width="128" height="108"/>
         <image name="cloud.sun.fill" catalog="system" width="128" height="93"/>

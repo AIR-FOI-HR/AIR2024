@@ -150,6 +150,14 @@ extension ActivityListView: SkeletonTableViewDataSource {
             let identifier = Identifier.pastIdentifier.rawValue
             activityListView.registerXibCell(fileName: identifier, withReuseIdentifier: identifier)
             cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! PastActivityCell
+        case .future:
+            let identifier = Identifier.futureIdentifier.rawValue
+            activityListView.registerXibCell(fileName: identifier, withReuseIdentifier: identifier)
+            cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! FutureActivityCell
+        case .inProgress:
+            let identifier = Identifier.inProgressIdentifier.rawValue
+            activityListView.registerXibCell(fileName: identifier, withReuseIdentifier: identifier)
+            cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! InProgressActivityCell
         default:
             let identifier = Identifier.defaultIdentifier.rawValue
             print(item.title)
@@ -159,9 +167,6 @@ extension ActivityListView: SkeletonTableViewDataSource {
         
         cell.configure(with: item)
         return cell.cell
-         
-        
-        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

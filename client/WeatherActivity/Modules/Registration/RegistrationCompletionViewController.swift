@@ -42,6 +42,7 @@ final class RegistrationCompletionViewController: UIViewController, UICollection
     
     @IBOutlet weak private var usernameTextField: UITextField!
     @IBOutlet weak private var collectionView: UICollectionView!
+    @IBOutlet weak private var goBackButton: UIButton!
     
     // MARK: Properties
     

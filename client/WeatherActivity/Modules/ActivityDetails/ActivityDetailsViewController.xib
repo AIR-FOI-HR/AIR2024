@@ -17,7 +17,6 @@
                 <outlet property="activityImageView" destination="nLI-Q7-xu1" id="LDy-fg-zni"/>
                 <outlet property="activityLocation" destination="gxj-23-UFb" id="iyE-08-gSn"/>
                 <outlet property="activityStatus" destination="nAf-31-fg7" id="mzb-0d-BKp"/>
-                <outlet property="activityTime" destination="qiA-rY-aVk" id="ZHF-cX-oiM"/>
                 <outlet property="activityTitle" destination="wKe-Bi-JgZ" id="m1F-w3-i7J"/>
                 <outlet property="deleteButton" destination="YGe-Z3-7wv" id="FSb-Wr-NnW"/>
                 <outlet property="editButton" destination="mHf-pz-UCc" id="n66-43-ciS"/>
@@ -118,11 +117,11 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="38H-Jv-Kcq">
                                                     <rect key="frame" x="0.0" y="58" width="382" height="53.5"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FVW-OV-7S7" userLabel="Activity status Stack View">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FVW-OV-7S7" userLabel="Activity status Stack View">
                                                             <rect key="frame" x="0.0" y="0.0" width="382" height="19.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In progress" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAf-31-fg7" userLabel="activityStatus">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="19.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="119" height="19.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="125" id="DC7-zK-25g"/>
                                                                     </constraints>
@@ -136,42 +135,20 @@
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </label>
-                                                                <stackView opaque="NO" contentMode="right" translatesAutoresizingMaskIntoConstraints="NO" id="ydW-GI-GH9">
-                                                                    <rect key="frame" x="211" y="0.0" width="171" height="19.5"/>
-                                                                    <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="activityTime" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiA-rY-aVk">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="85.5" height="19.5"/>
-                                                                            <color key="backgroundColor" name="CustomTextField"/>
-                                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                                            <nil key="textColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                            <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                                    <integer key="value" value="5"/>
-                                                                                </userDefinedRuntimeAttribute>
-                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                                                                            </userDefinedRuntimeAttributes>
-                                                                        </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="activityDate" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFU-aE-oLp">
-                                                                            <rect key="frame" x="85.5" y="0.0" width="85.5" height="19.5"/>
-                                                                            <color key="backgroundColor" name="CustomTextField"/>
-                                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                                                            <nil key="textColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                            <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                                    <integer key="value" value="5"/>
-                                                                                </userDefinedRuntimeAttribute>
-                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                                                                            </userDefinedRuntimeAttributes>
-                                                                        </label>
-                                                                    </subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="activityDate" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFU-aE-oLp">
+                                                                    <rect key="frame" x="139" y="0.0" width="243" height="19.5"/>
+                                                                    <color key="backgroundColor" name="CustomTextField"/>
+                                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                            <integer key="value" value="5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                                     </userDefinedRuntimeAttributes>
-                                                                </stackView>
+                                                                </label>
                                                             </subviews>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>

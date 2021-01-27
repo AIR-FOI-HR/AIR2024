@@ -25,7 +25,6 @@ class DefaultActivityCellItem: ActivityCellItemProtocol {
     var name: String
     var type: String
     var statusType: StatusType
-    var color: UIColor
     init(
         activityId: Int,
         startTime: String,
@@ -42,8 +41,7 @@ class DefaultActivityCellItem: ActivityCellItemProtocol {
         forecastType: String?,
         name: String,
         type: String,
-        statusType: StatusType,
-        color: UIColor
+        statusType: StatusType
     ) {
         
         self.activityId = activityId
@@ -62,7 +60,6 @@ class DefaultActivityCellItem: ActivityCellItemProtocol {
         self.name = name
         self.type = type
         self.statusType = .defaultType
-        self.color = color
     }
 }
 
@@ -83,7 +80,6 @@ class InProgressActivityCellItem: ActivityCellItemProtocol {
     var name: String
     var type: String
     var statusType: StatusType
-    var color: UIColor
     init(
         activityId: Int,
         startTime: String,
@@ -100,8 +96,7 @@ class InProgressActivityCellItem: ActivityCellItemProtocol {
         forecastType: String?,
         name: String,
         type: String,
-        statusType: StatusType,
-        color: UIColor
+        statusType: StatusType
     ) {
         
         self.activityId = activityId
@@ -120,7 +115,6 @@ class InProgressActivityCellItem: ActivityCellItemProtocol {
         self.name = name
         self.type = type
         self.statusType = .inProgress
-        self.color = color
     }
 }
 
@@ -141,7 +135,6 @@ class PastActivityCellItem: ActivityCellItemProtocol {
     var name: String
     var type: String
     var statusType: StatusType
-    var color: UIColor
     init(
         activityId: Int,
         startTime: String,
@@ -158,14 +151,13 @@ class PastActivityCellItem: ActivityCellItemProtocol {
         forecastType: String?,
         name: String,
         type: String,
-        statusType: StatusType,
-        color: UIColor
+        statusType: StatusType
     ) {
         
         self.activityId = activityId
         self.startTime = startTime
         self.endTime = endTime
-        self.title = "Past: " + title
+        self.title = title
         self.description = description
         self.locationName = locationName
         self.latitude = latitude
@@ -178,7 +170,6 @@ class PastActivityCellItem: ActivityCellItemProtocol {
         self.name = name
         self.type = type
         self.statusType = .past
-        self.color = color
     }
 }
 
@@ -199,7 +190,6 @@ class FutureActivityCellItem: ActivityCellItemProtocol {
     var name: String
     var type: String
     var statusType: StatusType
-    var color: UIColor
     init(
         activityId: Int,
         startTime: String,
@@ -216,8 +206,7 @@ class FutureActivityCellItem: ActivityCellItemProtocol {
         forecastType: String?,
         name: String,
         type: String,
-        statusType: StatusType,
-        color: UIColor
+        statusType: StatusType
     ) {
         
         self.activityId = activityId
@@ -236,6 +225,5 @@ class FutureActivityCellItem: ActivityCellItemProtocol {
         self.name = name
         self.type = type
         self.statusType = .future
-        self.color = color
     }
 }

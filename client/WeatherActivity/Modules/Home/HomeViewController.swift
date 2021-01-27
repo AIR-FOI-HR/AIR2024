@@ -21,12 +21,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak private var windLabel: UILabel!
     @IBOutlet weak private var humidityLabel: UILabel!
     @IBOutlet weak private var todaysDescription: UILabel!
-    @IBOutlet weak private var weatherTypeImageView: UIImageView!
     @IBOutlet weak private var helloNameLabel: UILabel!
-    @IBOutlet weak private var avatarImageView: UIImageView!
-    @IBOutlet weak private var weatherForecastView: UIStackView!
     @IBOutlet weak private var weatherForecastMessage: UILabel!
     @IBOutlet weak private var weatherDescriptionLabel: UILabel!
+    @IBOutlet weak private var avatarImageView: UIImageView!
+    @IBOutlet weak private var weatherTypeImageView: UIImageView!
+    @IBOutlet weak private var weatherForecastNoLocation: UIStackView!
+    @IBOutlet weak private var weatherForecastView: UIStackView!
     
     // MARK: Properties
     
@@ -40,8 +41,6 @@ class HomeViewController: UIViewController {
     private var activityItemHelper = ActivityItemHelper()
     private var locationManager = CLLocationManager()
     private var locationChecker = LocationChecker()
-    
-    private let dummyLocation = LocationDetails(locationName: "Varaždin", latitude: 46.306268, longitude: 16.336089)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,8 +107,8 @@ class HomeViewController: UIViewController {
         details.showSkeleton()
         
         ActivityService().getWidgetActivityDetails(activity: id, success: { activity in
-            let fetchedActivity = DefaultActivityCellItem(activityId: activity.activityId, startTime: activity.startTime, endTime: activity.endTime, title: activity.title, description: activity.description, locationName: activity.locationName, latitude: activity.latitude, longitude: activity.longitude, temperature: activity.temperature, feelsLike: activity.feelsLike, wind: activity.wind, humidity: activity.humidity, forecastType: activity.forecastType, name: activity.name, type: activity.type, statusType: activity.statusType, color: UIColor.red)
-            details.widgetInit(activity: fetchedActivity)
+            let fetchedActivity = self.activityItemHelper.getActivityCellItems(activities: [activity])
+            details.widgetInit(activity: fetchedActivity.first!)
         }, failure: { error in
             print(error)
         })
@@ -227,15 +226,17 @@ extension HomeViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
-          case .restricted, .denied:
+        case .restricted, .denied:
             weatherForecastView.isHidden = true
-            weatherDescriptionLabel.isHidden = true
+            weatherForecastNoLocation.isHidden = false
             setupLocation()
-          case .authorizedWhenInUse, .authorizedAlways:
+        case .authorizedWhenInUse, .authorizedAlways:
             locationManager.requestLocation()
-          case .notDetermined:
-             setupLocation()
-       }
+            weatherForecastView.isHidden = false
+            weatherForecastNoLocation.isHidden = true
+        case .notDetermined:
+            setupLocation()
+        }
     }
     
     func setupLocation() {
@@ -252,7 +253,7 @@ extension HomeViewController: CLLocationManagerDelegate {
                 
             })
             alertVC.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
+            
             self.present(alertVC, animated: true, completion: nil)
             weatherForecastView.isHidden = true
             weatherDescriptionLabel.isHidden = true

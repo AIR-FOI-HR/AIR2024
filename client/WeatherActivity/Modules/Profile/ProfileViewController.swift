@@ -54,8 +54,8 @@ final class ProfileViewController: UIViewController, UICollectionViewDelegate, U
     var selectedAvatar: Int?
     var userDefaultAvatar: Int? = 0
     let textFieldAppearance = TextFieldAppearance()
-    var user: User?
     let userService = UserService()
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()        
