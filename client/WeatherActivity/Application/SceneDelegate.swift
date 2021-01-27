@@ -34,13 +34,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             if let sessionToken = SessionManager.shared.getStringFromKeychain(key: .sessionToken) {
                 loginService.checkForToken(token: sessionToken, success: { checkResponse in
-                    if(checkResponse.sessionToken == true) {
-                        self.setupInitialStoryboard(storyboard: .tabBar, viewContoller: .tabBar)
-                        let contexts = connectionOptions.urlContexts
-                        self.handleDeepLink(url: contexts)
-                    } else {
-                        self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
-                    }
+                    self.setupInitialStoryboard(storyboard: .tabBar, viewContoller: .tabBar)
+                    let contexts = connectionOptions.urlContexts
+                    self.handleDeepLink(url: contexts)
                 }, failure: { error in
                     self.setupInitialStoryboard(storyboard: .login, viewContoller: .login)
                 })
