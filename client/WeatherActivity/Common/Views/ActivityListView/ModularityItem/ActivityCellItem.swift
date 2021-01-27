@@ -107,7 +107,7 @@ class InProgressActivityCellItem: ActivityCellItemProtocol {
         self.activityId = activityId
         self.startTime = startTime
         self.endTime = endTime
-        self.title = "InProg:" + title
+        self.title = title
         self.description = description
         self.locationName = locationName
         self.latitude = latitude
@@ -165,7 +165,7 @@ class PastActivityCellItem: ActivityCellItemProtocol {
         self.activityId = activityId
         self.startTime = startTime
         self.endTime = endTime
-        self.title = "Past:" + title
+        self.title = "Past: " + title
         self.description = description
         self.locationName = locationName
         self.latitude = latitude
@@ -223,7 +223,7 @@ class FutureActivityCellItem: ActivityCellItemProtocol {
         self.activityId = activityId
         self.startTime = startTime
         self.endTime = endTime
-        self.title = "Future:" + title
+        self.title = title
         self.description = description
         self.locationName = locationName
         self.latitude = latitude

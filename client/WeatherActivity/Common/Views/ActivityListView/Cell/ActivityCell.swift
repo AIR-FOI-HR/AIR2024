@@ -16,9 +16,8 @@ class ActivityCell: UITableViewCell, ActivityCellProtocol {
     @IBOutlet weak private var activityTime: UILabel!
     @IBOutlet weak private var activityDate: UILabel!
     @IBOutlet weak private var activityImage: UIImageView!
-    @IBOutlet weak private var cellBody: UIStackView!
-    @IBOutlet weak private var progressBar: UIProgressView!
-
+    @IBOutlet weak private var cellBody: UIView!
+    
     func configure(with item: ActivityCellItemProtocol) {
         let dateFormatter = DateFormatter()
         let dateTime = TimeDetailsManager().getCorrectDateAsString(from: item.startTime)
@@ -34,20 +33,20 @@ class ActivityCell: UITableViewCell, ActivityCellProtocol {
         activityTime.text = time
         activityImage.image = UIImage(named: item.name.lowercased())
         
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+//
+//        let startDate = dateFormatter.date(from: item.startTime)!
+//        print(startDate)
+//        let duration = dateFormatter.date(from: item.endTime)!.timeIntervalSince(startDate)
+//        print(duration)
+//        let elapsed = dateFormatter.date(from: dateFormatter.string(from: Date()))!.timeIntervalSince(timestamp)
+//        print(elapsed)
         
-        let startDate = dateFormatter.date(from: item.startTime)!
-        print(startDate)
-        let duration = dateFormatter.date(from: item.endTime)!.timeIntervalSince(startDate)
-        print(duration)
-        let elapsed = dateFormatter.date(from: dateFormatter.string(from: Date()))!.timeIntervalSince(timestamp)
-        print(elapsed)
-        let percentage = elapsed / duration
-    
-        if(percentage >= 0 && percentage <= 1) {
-            progressBar.progress = Float(percentage)
-        } else {
-            progressBar.isHidden = true
-        }
+//        let percentage = elapsed / duration
+//        if(percentage >= 0 && percentage <= 1) {
+//            progressBar.progress = Float(percentage)
+//        } else {
+//            progressBar.isHidden = true
+//        }
     }
 }
