@@ -24,6 +24,7 @@ class TimeDetailsManager {
         dateFormatterPrint.dateFormat = format
 
         guard var date = dateFormatter.date(from: timestamp) else { return "Err" }
+        date = addTime(to: date, hours: -1)
         return dateFormatterPrint.string(from: date)
     }
     
