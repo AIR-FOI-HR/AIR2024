@@ -13,6 +13,8 @@ router.post('/', (req, res, next) => {
             JOIN user u ON d.mail=u.mail WHERE u.sessionToken='${req.body.sessionToken}'`;
     if (req.body.purpose === 'home') {
         sql += ' AND a.endTime>=CURDATE() ORDER BY startTime LIMIT 3';
+    } else if (req.body.purpose === 'search') {
+        sql += ' ORDER BY startTime';
     }
     dbConnection.connection.query(sql, (err, data) => {
         if (err) {
